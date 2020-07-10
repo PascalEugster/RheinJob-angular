@@ -1,0 +1,254 @@
+# this is an auto generated file. This will be overwritten
+query GetCompany($id: ID!) {
+  getCompany(id: $id) {
+    id
+    name
+    description
+    website
+    street
+    houseNumber
+    postcode
+    city
+    image
+    jobs {
+      items {
+        id
+        title
+        description
+        createDate
+        expireDate
+        companyID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListCompanys(
+  $filter: ModelCompanyFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listCompanys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      description
+      website
+      street
+      houseNumber
+      postcode
+      city
+      image
+      jobs {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetCategory($id: ID!) {
+  getCategory(id: $id) {
+    id
+    title
+    description
+    jobs {
+      items {
+        id
+        title
+        description
+        createDate
+        expireDate
+        companyID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    categoryID
+    category {
+      id
+      title
+      description
+      jobs {
+        nextToken
+      }
+      categoryID
+      category {
+        id
+        title
+        description
+        categoryID
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListCategorys(
+  $filter: ModelCategoryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listCategorys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      title
+      description
+      jobs {
+        nextToken
+      }
+      categoryID
+      category {
+        id
+        title
+        description
+        categoryID
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetJob($id: ID!) {
+  getJob(id: $id) {
+    id
+    title
+    description
+    createDate
+    expireDate
+    applications {
+      items {
+        id
+        title
+        jobID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    companyID
+    company {
+      id
+      name
+      description
+      website
+      street
+      houseNumber
+      postcode
+      city
+      image
+      jobs {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListJobs($filter: ModelJobFilterInput, $limit: Int, $nextToken: String) {
+  listJobs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      title
+      description
+      createDate
+      expireDate
+      applications {
+        nextToken
+      }
+      companyID
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        postcode
+        city
+        image
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetApplication($id: ID!) {
+  getApplication(id: $id) {
+    id
+    title
+    jobID
+    job {
+      id
+      title
+      description
+      createDate
+      expireDate
+      applications {
+        nextToken
+      }
+      companyID
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        postcode
+        city
+        image
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListApplications(
+  $filter: ModelApplicationFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listApplications(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      title
+      jobID
+      job {
+        id
+        title
+        description
+        createDate
+        expireDate
+        companyID
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}

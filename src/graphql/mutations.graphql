@@ -1,0 +1,466 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateCompany(
+  $input: CreateCompanyInput!
+  $condition: ModelCompanyConditionInput
+) {
+  createCompany(input: $input, condition: $condition) {
+    id
+    name
+    description
+    website
+    street
+    houseNumber
+    postcode
+    city
+    image
+    jobs {
+      items {
+        id
+        title
+        description
+        createDate
+        expireDate
+        companyID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateCompany(
+  $input: UpdateCompanyInput!
+  $condition: ModelCompanyConditionInput
+) {
+  updateCompany(input: $input, condition: $condition) {
+    id
+    name
+    description
+    website
+    street
+    houseNumber
+    postcode
+    city
+    image
+    jobs {
+      items {
+        id
+        title
+        description
+        createDate
+        expireDate
+        companyID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteCompany(
+  $input: DeleteCompanyInput!
+  $condition: ModelCompanyConditionInput
+) {
+  deleteCompany(input: $input, condition: $condition) {
+    id
+    name
+    description
+    website
+    street
+    houseNumber
+    postcode
+    city
+    image
+    jobs {
+      items {
+        id
+        title
+        description
+        createDate
+        expireDate
+        companyID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateCategory(
+  $input: CreateCategoryInput!
+  $condition: ModelCategoryConditionInput
+) {
+  createCategory(input: $input, condition: $condition) {
+    id
+    title
+    description
+    jobs {
+      items {
+        id
+        title
+        description
+        createDate
+        expireDate
+        companyID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    categoryID
+    category {
+      id
+      title
+      description
+      jobs {
+        nextToken
+      }
+      categoryID
+      category {
+        id
+        title
+        description
+        categoryID
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateCategory(
+  $input: UpdateCategoryInput!
+  $condition: ModelCategoryConditionInput
+) {
+  updateCategory(input: $input, condition: $condition) {
+    id
+    title
+    description
+    jobs {
+      items {
+        id
+        title
+        description
+        createDate
+        expireDate
+        companyID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    categoryID
+    category {
+      id
+      title
+      description
+      jobs {
+        nextToken
+      }
+      categoryID
+      category {
+        id
+        title
+        description
+        categoryID
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteCategory(
+  $input: DeleteCategoryInput!
+  $condition: ModelCategoryConditionInput
+) {
+  deleteCategory(input: $input, condition: $condition) {
+    id
+    title
+    description
+    jobs {
+      items {
+        id
+        title
+        description
+        createDate
+        expireDate
+        companyID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    categoryID
+    category {
+      id
+      title
+      description
+      jobs {
+        nextToken
+      }
+      categoryID
+      category {
+        id
+        title
+        description
+        categoryID
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateJob(
+  $input: CreateJobInput!
+  $condition: ModelJobConditionInput
+) {
+  createJob(input: $input, condition: $condition) {
+    id
+    title
+    description
+    createDate
+    expireDate
+    applications {
+      items {
+        id
+        title
+        jobID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    companyID
+    company {
+      id
+      name
+      description
+      website
+      street
+      houseNumber
+      postcode
+      city
+      image
+      jobs {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateJob(
+  $input: UpdateJobInput!
+  $condition: ModelJobConditionInput
+) {
+  updateJob(input: $input, condition: $condition) {
+    id
+    title
+    description
+    createDate
+    expireDate
+    applications {
+      items {
+        id
+        title
+        jobID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    companyID
+    company {
+      id
+      name
+      description
+      website
+      street
+      houseNumber
+      postcode
+      city
+      image
+      jobs {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteJob(
+  $input: DeleteJobInput!
+  $condition: ModelJobConditionInput
+) {
+  deleteJob(input: $input, condition: $condition) {
+    id
+    title
+    description
+    createDate
+    expireDate
+    applications {
+      items {
+        id
+        title
+        jobID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    companyID
+    company {
+      id
+      name
+      description
+      website
+      street
+      houseNumber
+      postcode
+      city
+      image
+      jobs {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateApplication(
+  $input: CreateApplicationInput!
+  $condition: ModelApplicationConditionInput
+) {
+  createApplication(input: $input, condition: $condition) {
+    id
+    title
+    jobID
+    job {
+      id
+      title
+      description
+      createDate
+      expireDate
+      applications {
+        nextToken
+      }
+      companyID
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        postcode
+        city
+        image
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateApplication(
+  $input: UpdateApplicationInput!
+  $condition: ModelApplicationConditionInput
+) {
+  updateApplication(input: $input, condition: $condition) {
+    id
+    title
+    jobID
+    job {
+      id
+      title
+      description
+      createDate
+      expireDate
+      applications {
+        nextToken
+      }
+      companyID
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        postcode
+        city
+        image
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteApplication(
+  $input: DeleteApplicationInput!
+  $condition: ModelApplicationConditionInput
+) {
+  deleteApplication(input: $input, condition: $condition) {
+    id
+    title
+    jobID
+    job {
+      id
+      title
+      description
+      createDate
+      expireDate
+      applications {
+        nextToken
+      }
+      companyID
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        postcode
+        city
+        image
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}

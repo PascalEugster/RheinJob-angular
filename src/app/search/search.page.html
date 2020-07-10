@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Jobsuche</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="stacked">Stellenbezeichnung <ion-text color="danger">*</ion-text>
+          </ion-label>
+          <ion-input required type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label position="stacked">Arbeitsort <ion-text color="danger">*</ion-text>
+          </ion-label>
+          <ion-input required type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>Arbeitspensum</ion-label>
+          <ion-select value="03">
+            <ion-select-option value="01">Stundenbasis</ion-select-option>
+            <ion-select-option value="02">20-40%</ion-select-option>
+            <ion-select-option value="03">50-70%</ion-select-option>
+            <ion-select-option value="04">80-100%</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-range min="0" max="200" pin color="secondary">
+          <ion-icon slot="start" size="small" name="location-outline"></ion-icon>
+        </ion-range>
+      </ion-col>
+      <ion-col>
+        <ion-list>
+          <ion-radio-group>
+            <ion-grid>
+              <ion-row  class="ion-text-center">
+                <div class="ion-text-center">
+                  <p>Sortieren nach:</p>
+                </div>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-item>
+                    <ion-radio value="revelance"></ion-radio>
+                    <ion-label>Relevanz</ion-label>
+                  </ion-item>
+                </ion-col>
+                <ion-col>
+                  <ion-item>
+                    <ion-radio value="date"></ion-radio>
+                    <ion-label>Datum</ion-label>
+                  </ion-item>
+
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-radio-group>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list>
+    <ion-list-header>
+     <h2>Suchergebnisse:</h2>
+    </ion-list-header>
+    
+    <ion-item>
+      <ion-label>
+        <h2>Fullstack React Entwickkler (m/w)</h2>
+        <h3>ValleySolutions - 9450 Altstätten</h3>
+        <p>Ihre Herausforderung
+          Sie werden Mitglied eines agilen Scrum-Teams dessen Ziel es ist, bestehende Java-Software-Lösungen zu
+          optimieren und weiterzuentwickeln. Zudem ist Ihre Mitarbeit bei der Entwicklung und Anwendung von
+          Full-Strack-Lösungen gefragt. Sie arbeiten mit den neusten Webtechnologien und ... </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Mega Man X</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>The Legend of Zelda</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Pac-Man</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Super Mario World</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

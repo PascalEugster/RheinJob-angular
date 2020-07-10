@@ -1,0 +1,430 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateCompany {
+  onCreateCompany {
+    id
+    name
+    description
+    website
+    street
+    houseNumber
+    postcode
+    city
+    image
+    jobs {
+      items {
+        id
+        title
+        description
+        createDate
+        expireDate
+        companyID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateCompany {
+  onUpdateCompany {
+    id
+    name
+    description
+    website
+    street
+    houseNumber
+    postcode
+    city
+    image
+    jobs {
+      items {
+        id
+        title
+        description
+        createDate
+        expireDate
+        companyID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteCompany {
+  onDeleteCompany {
+    id
+    name
+    description
+    website
+    street
+    houseNumber
+    postcode
+    city
+    image
+    jobs {
+      items {
+        id
+        title
+        description
+        createDate
+        expireDate
+        companyID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateCategory {
+  onCreateCategory {
+    id
+    title
+    description
+    jobs {
+      items {
+        id
+        title
+        description
+        createDate
+        expireDate
+        companyID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    categoryID
+    category {
+      id
+      title
+      description
+      jobs {
+        nextToken
+      }
+      categoryID
+      category {
+        id
+        title
+        description
+        categoryID
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateCategory {
+  onUpdateCategory {
+    id
+    title
+    description
+    jobs {
+      items {
+        id
+        title
+        description
+        createDate
+        expireDate
+        companyID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    categoryID
+    category {
+      id
+      title
+      description
+      jobs {
+        nextToken
+      }
+      categoryID
+      category {
+        id
+        title
+        description
+        categoryID
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteCategory {
+  onDeleteCategory {
+    id
+    title
+    description
+    jobs {
+      items {
+        id
+        title
+        description
+        createDate
+        expireDate
+        companyID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    categoryID
+    category {
+      id
+      title
+      description
+      jobs {
+        nextToken
+      }
+      categoryID
+      category {
+        id
+        title
+        description
+        categoryID
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateJob {
+  onCreateJob {
+    id
+    title
+    description
+    createDate
+    expireDate
+    applications {
+      items {
+        id
+        title
+        jobID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    companyID
+    company {
+      id
+      name
+      description
+      website
+      street
+      houseNumber
+      postcode
+      city
+      image
+      jobs {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateJob {
+  onUpdateJob {
+    id
+    title
+    description
+    createDate
+    expireDate
+    applications {
+      items {
+        id
+        title
+        jobID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    companyID
+    company {
+      id
+      name
+      description
+      website
+      street
+      houseNumber
+      postcode
+      city
+      image
+      jobs {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteJob {
+  onDeleteJob {
+    id
+    title
+    description
+    createDate
+    expireDate
+    applications {
+      items {
+        id
+        title
+        jobID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    companyID
+    company {
+      id
+      name
+      description
+      website
+      street
+      houseNumber
+      postcode
+      city
+      image
+      jobs {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateApplication {
+  onCreateApplication {
+    id
+    title
+    jobID
+    job {
+      id
+      title
+      description
+      createDate
+      expireDate
+      applications {
+        nextToken
+      }
+      companyID
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        postcode
+        city
+        image
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateApplication {
+  onUpdateApplication {
+    id
+    title
+    jobID
+    job {
+      id
+      title
+      description
+      createDate
+      expireDate
+      applications {
+        nextToken
+      }
+      companyID
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        postcode
+        city
+        image
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteApplication {
+  onDeleteApplication {
+    id
+    title
+    jobID
+    job {
+      id
+      title
+      description
+      createDate
+      expireDate
+      applications {
+        nextToken
+      }
+      companyID
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        postcode
+        city
+        image
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}

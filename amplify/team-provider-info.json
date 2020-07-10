@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-rheinjob-dev-102325-authRole",
+            "UnauthRoleArn": "arn:aws:iam::155466128416:role/amplify-rheinjob-dev-102325-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::155466128416:role/amplify-rheinjob-dev-102325-authRole",
+            "Region": "eu-central-1",
+            "DeploymentBucketName": "amplify-rheinjob-dev-102325-deployment",
+            "UnauthRoleName": "amplify-rheinjob-dev-102325-unauthRole",
+            "StackName": "amplify-rheinjob-dev-102325",
+            "StackId": "arn:aws:cloudformation:eu-central-1:155466128416:stack/amplify-rheinjob-dev-102325/023122d0-baab-11ea-bce2-06dd2d585442",
+            "AmplifyAppId": "d2mgy50shw2aud"
+        },
+        "categories": {
+            "auth": {
+                "rheinjob0fa83857": {}
+            }
+        }
+    }
+}
