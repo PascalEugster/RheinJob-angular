@@ -1,9 +1,9 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
-      <ion-content>
-        <ion-list id="inbox-list">
-          <ion-list-header>RheinJob</ion-list-header>
+      <ion-content >
+        <ion-list id="menue-list">
+          <ion-img src="./assets/images/rheinjob.png"></ion-img>
           <ion-note>Die einfache Jobvermittlung im Rheintal</ion-note>
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
@@ -12,6 +12,7 @@
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
+          <amplify-sign-out></amplify-sign-out>
         </ion-list>
       </ion-content>
     </ion-menu>

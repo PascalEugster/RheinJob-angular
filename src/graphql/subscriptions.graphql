@@ -17,7 +17,6 @@ subscription OnCreateCompany {
         description
         createDate
         expireDate
-        companyID
         createdAt
         updatedAt
       }
@@ -45,7 +44,6 @@ subscription OnUpdateCompany {
         description
         createDate
         expireDate
-        companyID
         createdAt
         updatedAt
       }
@@ -73,7 +71,6 @@ subscription OnDeleteCompany {
         description
         createDate
         expireDate
-        companyID
         createdAt
         updatedAt
       }
@@ -95,13 +92,21 @@ subscription OnCreateCategory {
         description
         createDate
         expireDate
-        companyID
         createdAt
         updatedAt
       }
       nextToken
     }
-    categoryID
+    categories {
+      items {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     category {
       id
       title
@@ -109,12 +114,13 @@ subscription OnCreateCategory {
       jobs {
         nextToken
       }
-      categoryID
+      categories {
+        nextToken
+      }
       category {
         id
         title
         description
-        categoryID
         createdAt
         updatedAt
       }
@@ -137,13 +143,21 @@ subscription OnUpdateCategory {
         description
         createDate
         expireDate
-        companyID
         createdAt
         updatedAt
       }
       nextToken
     }
-    categoryID
+    categories {
+      items {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     category {
       id
       title
@@ -151,12 +165,13 @@ subscription OnUpdateCategory {
       jobs {
         nextToken
       }
-      categoryID
+      categories {
+        nextToken
+      }
       category {
         id
         title
         description
-        categoryID
         createdAt
         updatedAt
       }
@@ -179,13 +194,21 @@ subscription OnDeleteCategory {
         description
         createDate
         expireDate
-        companyID
         createdAt
         updatedAt
       }
       nextToken
     }
-    categoryID
+    categories {
+      items {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     category {
       id
       title
@@ -193,12 +216,13 @@ subscription OnDeleteCategory {
       jobs {
         nextToken
       }
-      categoryID
+      categories {
+        nextToken
+      }
       category {
         id
         title
         description
-        categoryID
         createdAt
         updatedAt
       }
@@ -220,13 +244,11 @@ subscription OnCreateJob {
       items {
         id
         title
-        jobID
         createdAt
         updatedAt
       }
       nextToken
     }
-    companyID
     company {
       id
       name
@@ -239,6 +261,26 @@ subscription OnCreateJob {
       image
       jobs {
         nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    category {
+      id
+      title
+      description
+      jobs {
+        nextToken
+      }
+      categories {
+        nextToken
+      }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
       }
       createdAt
       updatedAt
@@ -258,13 +300,11 @@ subscription OnUpdateJob {
       items {
         id
         title
-        jobID
         createdAt
         updatedAt
       }
       nextToken
     }
-    companyID
     company {
       id
       name
@@ -277,6 +317,26 @@ subscription OnUpdateJob {
       image
       jobs {
         nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    category {
+      id
+      title
+      description
+      jobs {
+        nextToken
+      }
+      categories {
+        nextToken
+      }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
       }
       createdAt
       updatedAt
@@ -296,13 +356,11 @@ subscription OnDeleteJob {
       items {
         id
         title
-        jobID
         createdAt
         updatedAt
       }
       nextToken
     }
-    companyID
     company {
       id
       name
@@ -319,6 +377,26 @@ subscription OnDeleteJob {
       createdAt
       updatedAt
     }
+    category {
+      id
+      title
+      description
+      jobs {
+        nextToken
+      }
+      categories {
+        nextToken
+      }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -327,7 +405,6 @@ subscription OnCreateApplication {
   onCreateApplication {
     id
     title
-    jobID
     job {
       id
       title
@@ -337,7 +414,6 @@ subscription OnCreateApplication {
       applications {
         nextToken
       }
-      companyID
       company {
         id
         name
@@ -348,6 +424,13 @@ subscription OnCreateApplication {
         postcode
         city
         image
+        createdAt
+        updatedAt
+      }
+      category {
+        id
+        title
+        description
         createdAt
         updatedAt
       }
@@ -362,7 +445,6 @@ subscription OnUpdateApplication {
   onUpdateApplication {
     id
     title
-    jobID
     job {
       id
       title
@@ -372,7 +454,6 @@ subscription OnUpdateApplication {
       applications {
         nextToken
       }
-      companyID
       company {
         id
         name
@@ -383,6 +464,13 @@ subscription OnUpdateApplication {
         postcode
         city
         image
+        createdAt
+        updatedAt
+      }
+      category {
+        id
+        title
+        description
         createdAt
         updatedAt
       }
@@ -397,7 +485,6 @@ subscription OnDeleteApplication {
   onDeleteApplication {
     id
     title
-    jobID
     job {
       id
       title
@@ -407,7 +494,6 @@ subscription OnDeleteApplication {
       applications {
         nextToken
       }
-      companyID
       company {
         id
         name
@@ -418,6 +504,13 @@ subscription OnDeleteApplication {
         postcode
         city
         image
+        createdAt
+        updatedAt
+      }
+      category {
+        id
+        title
+        description
         createdAt
         updatedAt
       }

@@ -19,6 +19,7 @@ type Category @model {
   description: String!
   jobs: [Job] @connection(name: "CategoryJobs")
   # TODO: Anschauen ob dies die korrekte Implementierung ist
+  categories: [Category] @connection(name: "CategoryCategory")
   category: Category @connection(name: "CategoryCategory")
 }
 
@@ -30,14 +31,14 @@ type Job @model {
   createDate: AWSDate!
   expireDate: AWSDate!
   applications: [Application] @connection(name: "JobApplications")
-  company: Company @connection(name: "JobCompany")
+  company: Company @connection(name: "CompanyJobs")
+  category: Category @connection(name: "CategoryJobs")
 }
 
 
 type Application @model {
   id: ID!
   title: String!
-  jobID: ID!
   job: Job @connection(name: "JobApplications")
 }
 

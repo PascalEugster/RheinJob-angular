@@ -17,7 +17,6 @@ query GetCompany($id: ID!) {
         description
         createDate
         expireDate
-        companyID
         createdAt
         updatedAt
       }
@@ -64,13 +63,21 @@ query GetCategory($id: ID!) {
         description
         createDate
         expireDate
-        companyID
         createdAt
         updatedAt
       }
       nextToken
     }
-    categoryID
+    categories {
+      items {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     category {
       id
       title
@@ -78,12 +85,13 @@ query GetCategory($id: ID!) {
       jobs {
         nextToken
       }
-      categoryID
+      categories {
+        nextToken
+      }
       category {
         id
         title
         description
-        categoryID
         createdAt
         updatedAt
       }
@@ -107,12 +115,13 @@ query ListCategorys(
       jobs {
         nextToken
       }
-      categoryID
+      categories {
+        nextToken
+      }
       category {
         id
         title
         description
-        categoryID
         createdAt
         updatedAt
       }
@@ -133,13 +142,11 @@ query GetJob($id: ID!) {
       items {
         id
         title
-        jobID
         createdAt
         updatedAt
       }
       nextToken
     }
-    companyID
     company {
       id
       name
@@ -152,6 +159,26 @@ query GetJob($id: ID!) {
       image
       jobs {
         nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    category {
+      id
+      title
+      description
+      jobs {
+        nextToken
+      }
+      categories {
+        nextToken
+      }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
       }
       createdAt
       updatedAt
@@ -171,7 +198,6 @@ query ListJobs($filter: ModelJobFilterInput, $limit: Int, $nextToken: String) {
       applications {
         nextToken
       }
-      companyID
       company {
         id
         name
@@ -185,6 +211,13 @@ query ListJobs($filter: ModelJobFilterInput, $limit: Int, $nextToken: String) {
         createdAt
         updatedAt
       }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -195,7 +228,6 @@ query GetApplication($id: ID!) {
   getApplication(id: $id) {
     id
     title
-    jobID
     job {
       id
       title
@@ -205,7 +237,6 @@ query GetApplication($id: ID!) {
       applications {
         nextToken
       }
-      companyID
       company {
         id
         name
@@ -216,6 +247,13 @@ query GetApplication($id: ID!) {
         postcode
         city
         image
+        createdAt
+        updatedAt
+      }
+      category {
+        id
+        title
+        description
         createdAt
         updatedAt
       }
@@ -235,14 +273,12 @@ query ListApplications(
     items {
       id
       title
-      jobID
       job {
         id
         title
         description
         createDate
         expireDate
-        companyID
         createdAt
         updatedAt
       }

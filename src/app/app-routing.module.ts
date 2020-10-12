@@ -9,12 +9,29 @@ const routes: Routes = [
  },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
   },
   {
     path: 'search',
-    loadChildren: () => import('./search/search.module').then(m => m.SearchPageModule)
+    loadChildren: () => import('./pages/search/search.module').then(m => m.SearchPageModule)
   },
+  {
+    path: 'apprenticeships',
+    loadChildren: () => import('./pages/apprenticeships/apprenticeships.module').then( m => m.ApprenticeshipsPageModule)
+  },
+  {
+    path: 'companies',
+    loadChildren: () => import('./pages/companies/companies.module').then( m => m.CompaniesPageModule)
+  },
+  {
+    path: 'job',
+    loadChildren: () => import('./pages/job/job.module').then( m => m.JobPageModule)
+  },
+  {
+    path: 'account',
+    loadChildren: () => import('./pages/account/account.module').then( m => m.AccountPageModule)
+  },
+
 
 
 ];

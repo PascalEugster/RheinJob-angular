@@ -22,6 +22,36 @@ export class AppComponent implements OnInit {
       title: 'Suche',
       url: '/search',
       icon: 'search'
+    },
+    {
+      title: 'Lehrstellen',
+      url: '/apprenticeships',
+      icon: 'golf'
+    },
+    {
+      title: 'Unternehmen',
+      url: '/companies',
+      icon: 'business'
+    },
+    {
+      title: 'Account',
+      url: '/account',
+      icon: 'person'
+    },
+    {
+      title: 'Logout',
+      url: '/logout',
+      icon: 'close-circle'
+    },
+    {
+      title: 'Job',
+      url: '/job',
+      icon: 'close-circle'
+    },
+    {
+      title: 'Job erfassen',
+      url: '/job/create',
+      icon: 'close-circle'
     }
   ];
 

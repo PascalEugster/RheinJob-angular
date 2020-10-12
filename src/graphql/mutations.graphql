@@ -20,7 +20,6 @@ mutation CreateCompany(
         description
         createDate
         expireDate
-        companyID
         createdAt
         updatedAt
       }
@@ -51,7 +50,6 @@ mutation UpdateCompany(
         description
         createDate
         expireDate
-        companyID
         createdAt
         updatedAt
       }
@@ -82,7 +80,6 @@ mutation DeleteCompany(
         description
         createDate
         expireDate
-        companyID
         createdAt
         updatedAt
       }
@@ -107,13 +104,21 @@ mutation CreateCategory(
         description
         createDate
         expireDate
-        companyID
         createdAt
         updatedAt
       }
       nextToken
     }
-    categoryID
+    categories {
+      items {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     category {
       id
       title
@@ -121,12 +126,13 @@ mutation CreateCategory(
       jobs {
         nextToken
       }
-      categoryID
+      categories {
+        nextToken
+      }
       category {
         id
         title
         description
-        categoryID
         createdAt
         updatedAt
       }
@@ -152,13 +158,21 @@ mutation UpdateCategory(
         description
         createDate
         expireDate
-        companyID
         createdAt
         updatedAt
       }
       nextToken
     }
-    categoryID
+    categories {
+      items {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     category {
       id
       title
@@ -166,12 +180,13 @@ mutation UpdateCategory(
       jobs {
         nextToken
       }
-      categoryID
+      categories {
+        nextToken
+      }
       category {
         id
         title
         description
-        categoryID
         createdAt
         updatedAt
       }
@@ -197,13 +212,21 @@ mutation DeleteCategory(
         description
         createDate
         expireDate
-        companyID
         createdAt
         updatedAt
       }
       nextToken
     }
-    categoryID
+    categories {
+      items {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     category {
       id
       title
@@ -211,12 +234,13 @@ mutation DeleteCategory(
       jobs {
         nextToken
       }
-      categoryID
+      categories {
+        nextToken
+      }
       category {
         id
         title
         description
-        categoryID
         createdAt
         updatedAt
       }
@@ -241,13 +265,11 @@ mutation CreateJob(
       items {
         id
         title
-        jobID
         createdAt
         updatedAt
       }
       nextToken
     }
-    companyID
     company {
       id
       name
@@ -260,6 +282,26 @@ mutation CreateJob(
       image
       jobs {
         nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    category {
+      id
+      title
+      description
+      jobs {
+        nextToken
+      }
+      categories {
+        nextToken
+      }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
       }
       createdAt
       updatedAt
@@ -282,13 +324,11 @@ mutation UpdateJob(
       items {
         id
         title
-        jobID
         createdAt
         updatedAt
       }
       nextToken
     }
-    companyID
     company {
       id
       name
@@ -301,6 +341,26 @@ mutation UpdateJob(
       image
       jobs {
         nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    category {
+      id
+      title
+      description
+      jobs {
+        nextToken
+      }
+      categories {
+        nextToken
+      }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
       }
       createdAt
       updatedAt
@@ -323,13 +383,11 @@ mutation DeleteJob(
       items {
         id
         title
-        jobID
         createdAt
         updatedAt
       }
       nextToken
     }
-    companyID
     company {
       id
       name
@@ -346,6 +404,26 @@ mutation DeleteJob(
       createdAt
       updatedAt
     }
+    category {
+      id
+      title
+      description
+      jobs {
+        nextToken
+      }
+      categories {
+        nextToken
+      }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -357,7 +435,6 @@ mutation CreateApplication(
   createApplication(input: $input, condition: $condition) {
     id
     title
-    jobID
     job {
       id
       title
@@ -367,7 +444,6 @@ mutation CreateApplication(
       applications {
         nextToken
       }
-      companyID
       company {
         id
         name
@@ -378,6 +454,13 @@ mutation CreateApplication(
         postcode
         city
         image
+        createdAt
+        updatedAt
+      }
+      category {
+        id
+        title
+        description
         createdAt
         updatedAt
       }
@@ -395,7 +478,6 @@ mutation UpdateApplication(
   updateApplication(input: $input, condition: $condition) {
     id
     title
-    jobID
     job {
       id
       title
@@ -405,7 +487,6 @@ mutation UpdateApplication(
       applications {
         nextToken
       }
-      companyID
       company {
         id
         name
@@ -416,6 +497,13 @@ mutation UpdateApplication(
         postcode
         city
         image
+        createdAt
+        updatedAt
+      }
+      category {
+        id
+        title
+        description
         createdAt
         updatedAt
       }
@@ -433,7 +521,6 @@ mutation DeleteApplication(
   deleteApplication(input: $input, condition: $condition) {
     id
     title
-    jobID
     job {
       id
       title
@@ -443,7 +530,6 @@ mutation DeleteApplication(
       applications {
         nextToken
       }
-      companyID
       company {
         id
         name
@@ -454,6 +540,13 @@ mutation DeleteApplication(
         postcode
         city
         image
+        createdAt
+        updatedAt
+      }
+      category {
+        id
+        title
+        description
         createdAt
         updatedAt
       }

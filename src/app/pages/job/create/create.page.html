@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Neues Jobinserat erstellen</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="full" class="ion-no-margin">
+    <ion-list-header lines="full">
+      <ion-label>
+        Allgemeines
+      </ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label position="stacked">Titel</ion-label>
+      <ion-input placeholder="Bezeichnung der Stelle" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Beschreibung</ion-label>
+      <ion-textarea placeholder="Beschreiben sie die Stelle möglichst genau." type="text" auto-grow="true"></ion-textarea>
+    </ion-item>
+  </ion-list> 
+    <ion-list>
+      <ion-list-header lines="full">
+        <ion-label>
+          Lohn & Anstellung
+        </ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label position="stacked">Arbeitspensum</ion-label>
+        <ion-select value="03" >
+          <ion-select-option value="01">Stundenbasis</ion-select-option>
+          <ion-select-option value="02">Projektanstellung</ion-select-option>
+          <ion-select-option value="03">Teilzeit</ion-select-option>
+          <ion-select-option value="04">Vollzeit</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Lohn von</ion-label>
+        <ion-input type="number" placeholder="2700"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Lohn bis</ion-label>
+        <ion-input type="number" placeholder="20000"></ion-input>
+      </ion-item>
+    </ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Dateien Hochladen</ion-label>
+      <ion-input placeholder="Mehrere Dateien hinzufügen" type="text"></ion-input>
+    </ion-item>
+  </ion-list>
+</ion-content>
