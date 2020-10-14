@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
     {
       title: 'Job erfassen',
       url: '/job/create',
-      icon: 'close-circle'
+      icon: 'create'
     }
   ];
 
