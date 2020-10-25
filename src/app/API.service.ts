@@ -5,30 +5,18 @@ import { Injectable } from "@angular/core";
 import API, { graphqlOperation, GraphQLResult } from "@aws-amplify/api-graphql";
 import { Observable } from "zen-observable-ts";
 
-export type CreateCompanyInput = {
+export type CreateAccountInput = {
   id?: string | null;
-  name: string;
-  description: string;
-  website: string;
-  street: string;
-  houseNumber: string;
-  postcode: number;
-  city: string;
-  image: string;
+  type: string;
+  accountUserId?: string | null;
+  accountCompanyId?: string | null;
 };
 
-export type ModelCompanyConditionInput = {
-  name?: ModelStringInput | null;
-  description?: ModelStringInput | null;
-  website?: ModelStringInput | null;
-  street?: ModelStringInput | null;
-  houseNumber?: ModelStringInput | null;
-  postcode?: ModelIntInput | null;
-  city?: ModelStringInput | null;
-  image?: ModelStringInput | null;
-  and?: Array<ModelCompanyConditionInput | null> | null;
-  or?: Array<ModelCompanyConditionInput | null> | null;
-  not?: ModelCompanyConditionInput | null;
+export type ModelAccountConditionInput = {
+  type?: ModelStringInput | null;
+  and?: Array<ModelAccountConditionInput | null> | null;
+  or?: Array<ModelAccountConditionInput | null> | null;
+  not?: ModelAccountConditionInput | null;
 };
 
 export type ModelStringInput = {
@@ -70,6 +58,42 @@ export type ModelSizeInput = {
   between?: Array<number | null> | null;
 };
 
+export type UpdateAccountInput = {
+  id: string;
+  type?: string | null;
+  accountUserId?: string | null;
+  accountCompanyId?: string | null;
+};
+
+export type DeleteAccountInput = {
+  id?: string | null;
+};
+
+export type CreateUserInput = {
+  id?: string | null;
+  prename: string;
+  lastname: string;
+  street: string;
+  houseNumber: string;
+  postcode: number;
+  city: string;
+  image: string;
+  userAccountId: string;
+};
+
+export type ModelUserConditionInput = {
+  prename?: ModelStringInput | null;
+  lastname?: ModelStringInput | null;
+  street?: ModelStringInput | null;
+  houseNumber?: ModelStringInput | null;
+  postcode?: ModelIntInput | null;
+  city?: ModelStringInput | null;
+  image?: ModelStringInput | null;
+  and?: Array<ModelUserConditionInput | null> | null;
+  or?: Array<ModelUserConditionInput | null> | null;
+  not?: ModelUserConditionInput | null;
+};
+
 export type ModelIntInput = {
   ne?: number | null;
   eq?: number | null;
@@ -82,6 +106,49 @@ export type ModelIntInput = {
   attributeType?: ModelAttributeTypes | null;
 };
 
+export type UpdateUserInput = {
+  id: string;
+  prename?: string | null;
+  lastname?: string | null;
+  street?: string | null;
+  houseNumber?: string | null;
+  postcode?: number | null;
+  city?: string | null;
+  image?: string | null;
+  userAccountId?: string | null;
+};
+
+export type DeleteUserInput = {
+  id?: string | null;
+};
+
+export type CreateCompanyInput = {
+  id?: string | null;
+  name: string;
+  description: string;
+  website: string;
+  street: string;
+  houseNumber: string;
+  postcode: number;
+  city: string;
+  image: string;
+  companyAccountId: string;
+};
+
+export type ModelCompanyConditionInput = {
+  name?: ModelStringInput | null;
+  description?: ModelStringInput | null;
+  website?: ModelStringInput | null;
+  street?: ModelStringInput | null;
+  houseNumber?: ModelStringInput | null;
+  postcode?: ModelIntInput | null;
+  city?: ModelStringInput | null;
+  image?: ModelStringInput | null;
+  and?: Array<ModelCompanyConditionInput | null> | null;
+  or?: Array<ModelCompanyConditionInput | null> | null;
+  not?: ModelCompanyConditionInput | null;
+};
+
 export type UpdateCompanyInput = {
   id: string;
   name?: string | null;
@@ -92,6 +159,7 @@ export type UpdateCompanyInput = {
   postcode?: number | null;
   city?: string | null;
   image?: string | null;
+  companyAccountId?: string | null;
 };
 
 export type DeleteCompanyInput = {
@@ -130,8 +198,8 @@ export type CreateJobInput = {
   description: string;
   createDate: string;
   expireDate: string;
-  jobCompanyId?: string | null;
-  jobCategoryId?: string | null;
+  jobCompanyId: string;
+  jobCategoryId: string;
 };
 
 export type ModelJobConditionInput = {
@@ -161,7 +229,7 @@ export type DeleteJobInput = {
 export type CreateApplicationInput = {
   id?: string | null;
   title: string;
-  applicationJobId?: string | null;
+  applicationJobId: string;
 };
 
 export type ModelApplicationConditionInput = {
@@ -181,19 +249,12 @@ export type DeleteApplicationInput = {
   id?: string | null;
 };
 
-export type ModelCompanyFilterInput = {
+export type ModelAccountFilterInput = {
   id?: ModelIDInput | null;
-  name?: ModelStringInput | null;
-  description?: ModelStringInput | null;
-  website?: ModelStringInput | null;
-  street?: ModelStringInput | null;
-  houseNumber?: ModelStringInput | null;
-  postcode?: ModelIntInput | null;
-  city?: ModelStringInput | null;
-  image?: ModelStringInput | null;
-  and?: Array<ModelCompanyFilterInput | null> | null;
-  or?: Array<ModelCompanyFilterInput | null> | null;
-  not?: ModelCompanyFilterInput | null;
+  type?: ModelStringInput | null;
+  and?: Array<ModelAccountFilterInput | null> | null;
+  or?: Array<ModelAccountFilterInput | null> | null;
+  not?: ModelAccountFilterInput | null;
 };
 
 export type ModelIDInput = {
@@ -210,6 +271,35 @@ export type ModelIDInput = {
   attributeExists?: boolean | null;
   attributeType?: ModelAttributeTypes | null;
   size?: ModelSizeInput | null;
+};
+
+export type ModelUserFilterInput = {
+  id?: ModelIDInput | null;
+  prename?: ModelStringInput | null;
+  lastname?: ModelStringInput | null;
+  street?: ModelStringInput | null;
+  houseNumber?: ModelStringInput | null;
+  postcode?: ModelIntInput | null;
+  city?: ModelStringInput | null;
+  image?: ModelStringInput | null;
+  and?: Array<ModelUserFilterInput | null> | null;
+  or?: Array<ModelUserFilterInput | null> | null;
+  not?: ModelUserFilterInput | null;
+};
+
+export type ModelCompanyFilterInput = {
+  id?: ModelIDInput | null;
+  name?: ModelStringInput | null;
+  description?: ModelStringInput | null;
+  website?: ModelStringInput | null;
+  street?: ModelStringInput | null;
+  houseNumber?: ModelStringInput | null;
+  postcode?: ModelIntInput | null;
+  city?: ModelStringInput | null;
+  image?: ModelStringInput | null;
+  and?: Array<ModelCompanyFilterInput | null> | null;
+  or?: Array<ModelCompanyFilterInput | null> | null;
+  not?: ModelCompanyFilterInput | null;
 };
 
 export type ModelCategoryFilterInput = {
@@ -240,6 +330,174 @@ export type ModelApplicationFilterInput = {
   not?: ModelApplicationFilterInput | null;
 };
 
+export type CreateAccountMutation = {
+  __typename: "Account";
+  id: string;
+  type: string;
+  user: {
+    __typename: "User";
+    id: string;
+    prename: string;
+    lastname: string;
+    street: string;
+    houseNumber: string;
+    postcode: number;
+    city: string;
+    image: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    description: string;
+    website: string;
+    street: string;
+    houseNumber: string;
+    postcode: number;
+    city: string;
+    image: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateAccountMutation = {
+  __typename: "Account";
+  id: string;
+  type: string;
+  user: {
+    __typename: "User";
+    id: string;
+    prename: string;
+    lastname: string;
+    street: string;
+    houseNumber: string;
+    postcode: number;
+    city: string;
+    image: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    description: string;
+    website: string;
+    street: string;
+    houseNumber: string;
+    postcode: number;
+    city: string;
+    image: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteAccountMutation = {
+  __typename: "Account";
+  id: string;
+  type: string;
+  user: {
+    __typename: "User";
+    id: string;
+    prename: string;
+    lastname: string;
+    street: string;
+    houseNumber: string;
+    postcode: number;
+    city: string;
+    image: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    description: string;
+    website: string;
+    street: string;
+    houseNumber: string;
+    postcode: number;
+    city: string;
+    image: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateUserMutation = {
+  __typename: "User";
+  id: string;
+  prename: string;
+  lastname: string;
+  street: string;
+  houseNumber: string;
+  postcode: number;
+  city: string;
+  image: string;
+  account: {
+    __typename: "Account";
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateUserMutation = {
+  __typename: "User";
+  id: string;
+  prename: string;
+  lastname: string;
+  street: string;
+  houseNumber: string;
+  postcode: number;
+  city: string;
+  image: string;
+  account: {
+    __typename: "Account";
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteUserMutation = {
+  __typename: "User";
+  id: string;
+  prename: string;
+  lastname: string;
+  street: string;
+  houseNumber: string;
+  postcode: number;
+  city: string;
+  image: string;
+  account: {
+    __typename: "Account";
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type CreateCompanyMutation = {
   __typename: "Company";
   id: string;
@@ -251,18 +509,15 @@ export type CreateCompanyMutation = {
   postcode: number;
   city: string;
   image: string;
+  account: {
+    __typename: "Account";
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+  };
   jobs: {
     __typename: "ModelJobConnection";
-    items: Array<{
-      __typename: "Job";
-      id: string;
-      title: string;
-      description: string;
-      createDate: string;
-      expireDate: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -280,18 +535,15 @@ export type UpdateCompanyMutation = {
   postcode: number;
   city: string;
   image: string;
+  account: {
+    __typename: "Account";
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+  };
   jobs: {
     __typename: "ModelJobConnection";
-    items: Array<{
-      __typename: "Job";
-      id: string;
-      title: string;
-      description: string;
-      createDate: string;
-      expireDate: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -309,18 +561,15 @@ export type DeleteCompanyMutation = {
   postcode: number;
   city: string;
   image: string;
+  account: {
+    __typename: "Account";
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+  };
   jobs: {
     __typename: "ModelJobConnection";
-    items: Array<{
-      __typename: "Job";
-      id: string;
-      title: string;
-      description: string;
-      createDate: string;
-      expireDate: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -334,28 +583,10 @@ export type CreateCategoryMutation = {
   description: string;
   jobs: {
     __typename: "ModelJobConnection";
-    items: Array<{
-      __typename: "Job";
-      id: string;
-      title: string;
-      description: string;
-      createDate: string;
-      expireDate: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   categories: {
     __typename: "ModelCategoryConnection";
-    items: Array<{
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   category: {
@@ -363,22 +594,6 @@ export type CreateCategoryMutation = {
     id: string;
     title: string;
     description: string;
-    jobs: {
-      __typename: "ModelJobConnection";
-      nextToken: string | null;
-    } | null;
-    categories: {
-      __typename: "ModelCategoryConnection";
-      nextToken: string | null;
-    } | null;
-    category: {
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -393,28 +608,10 @@ export type UpdateCategoryMutation = {
   description: string;
   jobs: {
     __typename: "ModelJobConnection";
-    items: Array<{
-      __typename: "Job";
-      id: string;
-      title: string;
-      description: string;
-      createDate: string;
-      expireDate: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   categories: {
     __typename: "ModelCategoryConnection";
-    items: Array<{
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   category: {
@@ -422,22 +619,6 @@ export type UpdateCategoryMutation = {
     id: string;
     title: string;
     description: string;
-    jobs: {
-      __typename: "ModelJobConnection";
-      nextToken: string | null;
-    } | null;
-    categories: {
-      __typename: "ModelCategoryConnection";
-      nextToken: string | null;
-    } | null;
-    category: {
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -452,28 +633,10 @@ export type DeleteCategoryMutation = {
   description: string;
   jobs: {
     __typename: "ModelJobConnection";
-    items: Array<{
-      __typename: "Job";
-      id: string;
-      title: string;
-      description: string;
-      createDate: string;
-      expireDate: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   categories: {
     __typename: "ModelCategoryConnection";
-    items: Array<{
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   category: {
@@ -481,22 +644,6 @@ export type DeleteCategoryMutation = {
     id: string;
     title: string;
     description: string;
-    jobs: {
-      __typename: "ModelJobConnection";
-      nextToken: string | null;
-    } | null;
-    categories: {
-      __typename: "ModelCategoryConnection";
-      nextToken: string | null;
-    } | null;
-    category: {
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -513,13 +660,6 @@ export type CreateJobMutation = {
   expireDate: string;
   applications: {
     __typename: "ModelApplicationConnection";
-    items: Array<{
-      __typename: "Application";
-      id: string;
-      title: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   company: {
@@ -533,37 +673,17 @@ export type CreateJobMutation = {
     postcode: number;
     city: string;
     image: string;
-    jobs: {
-      __typename: "ModelJobConnection";
-      nextToken: string | null;
-    } | null;
     createdAt: string;
     updatedAt: string;
-  } | null;
+  };
   category: {
     __typename: "Category";
     id: string;
     title: string;
     description: string;
-    jobs: {
-      __typename: "ModelJobConnection";
-      nextToken: string | null;
-    } | null;
-    categories: {
-      __typename: "ModelCategoryConnection";
-      nextToken: string | null;
-    } | null;
-    category: {
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
     createdAt: string;
     updatedAt: string;
-  } | null;
+  };
   createdAt: string;
   updatedAt: string;
 };
@@ -577,13 +697,6 @@ export type UpdateJobMutation = {
   expireDate: string;
   applications: {
     __typename: "ModelApplicationConnection";
-    items: Array<{
-      __typename: "Application";
-      id: string;
-      title: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   company: {
@@ -597,37 +710,17 @@ export type UpdateJobMutation = {
     postcode: number;
     city: string;
     image: string;
-    jobs: {
-      __typename: "ModelJobConnection";
-      nextToken: string | null;
-    } | null;
     createdAt: string;
     updatedAt: string;
-  } | null;
+  };
   category: {
     __typename: "Category";
     id: string;
     title: string;
     description: string;
-    jobs: {
-      __typename: "ModelJobConnection";
-      nextToken: string | null;
-    } | null;
-    categories: {
-      __typename: "ModelCategoryConnection";
-      nextToken: string | null;
-    } | null;
-    category: {
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
     createdAt: string;
     updatedAt: string;
-  } | null;
+  };
   createdAt: string;
   updatedAt: string;
 };
@@ -641,13 +734,6 @@ export type DeleteJobMutation = {
   expireDate: string;
   applications: {
     __typename: "ModelApplicationConnection";
-    items: Array<{
-      __typename: "Application";
-      id: string;
-      title: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   company: {
@@ -661,37 +747,17 @@ export type DeleteJobMutation = {
     postcode: number;
     city: string;
     image: string;
-    jobs: {
-      __typename: "ModelJobConnection";
-      nextToken: string | null;
-    } | null;
     createdAt: string;
     updatedAt: string;
-  } | null;
+  };
   category: {
     __typename: "Category";
     id: string;
     title: string;
     description: string;
-    jobs: {
-      __typename: "ModelJobConnection";
-      nextToken: string | null;
-    } | null;
-    categories: {
-      __typename: "ModelCategoryConnection";
-      nextToken: string | null;
-    } | null;
-    category: {
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
     createdAt: string;
     updatedAt: string;
-  } | null;
+  };
   createdAt: string;
   updatedAt: string;
 };
@@ -707,35 +773,9 @@ export type CreateApplicationMutation = {
     description: string;
     createDate: string;
     expireDate: string;
-    applications: {
-      __typename: "ModelApplicationConnection";
-      nextToken: string | null;
-    } | null;
-    company: {
-      __typename: "Company";
-      id: string;
-      name: string;
-      description: string;
-      website: string;
-      street: string;
-      houseNumber: string;
-      postcode: number;
-      city: string;
-      image: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
-    category: {
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
     createdAt: string;
     updatedAt: string;
-  } | null;
+  };
   createdAt: string;
   updatedAt: string;
 };
@@ -751,35 +791,9 @@ export type UpdateApplicationMutation = {
     description: string;
     createDate: string;
     expireDate: string;
-    applications: {
-      __typename: "ModelApplicationConnection";
-      nextToken: string | null;
-    } | null;
-    company: {
-      __typename: "Company";
-      id: string;
-      name: string;
-      description: string;
-      website: string;
-      street: string;
-      houseNumber: string;
-      postcode: number;
-      city: string;
-      image: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
-    category: {
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
     createdAt: string;
     updatedAt: string;
-  } | null;
+  };
   createdAt: string;
   updatedAt: string;
 };
@@ -795,37 +809,97 @@ export type DeleteApplicationMutation = {
     description: string;
     createDate: string;
     expireDate: string;
-    applications: {
-      __typename: "ModelApplicationConnection";
-      nextToken: string | null;
-    } | null;
-    company: {
-      __typename: "Company";
-      id: string;
-      name: string;
-      description: string;
-      website: string;
-      street: string;
-      houseNumber: string;
-      postcode: number;
-      city: string;
-      image: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
-    category: {
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type GetAccountQuery = {
+  __typename: "Account";
+  id: string;
+  type: string;
+  user: {
+    __typename: "User";
+    id: string;
+    prename: string;
+    lastname: string;
+    street: string;
+    houseNumber: string;
+    postcode: number;
+    city: string;
+    image: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    description: string;
+    website: string;
+    street: string;
+    houseNumber: string;
+    postcode: number;
+    city: string;
+    image: string;
     createdAt: string;
     updatedAt: string;
   } | null;
   createdAt: string;
   updatedAt: string;
+};
+
+export type ListAccountsQuery = {
+  __typename: "ModelAccountConnection";
+  items: Array<{
+    __typename: "Account";
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetUserQuery = {
+  __typename: "User";
+  id: string;
+  prename: string;
+  lastname: string;
+  street: string;
+  houseNumber: string;
+  postcode: number;
+  city: string;
+  image: string;
+  account: {
+    __typename: "Account";
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListUsersQuery = {
+  __typename: "ModelUserConnection";
+  items: Array<{
+    __typename: "User";
+    id: string;
+    prename: string;
+    lastname: string;
+    street: string;
+    houseNumber: string;
+    postcode: number;
+    city: string;
+    image: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
 };
 
 export type GetCompanyQuery = {
@@ -839,18 +913,15 @@ export type GetCompanyQuery = {
   postcode: number;
   city: string;
   image: string;
+  account: {
+    __typename: "Account";
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+  };
   jobs: {
     __typename: "ModelJobConnection";
-    items: Array<{
-      __typename: "Job";
-      id: string;
-      title: string;
-      description: string;
-      createDate: string;
-      expireDate: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -870,10 +941,6 @@ export type ListCompanysQuery = {
     postcode: number;
     city: string;
     image: string;
-    jobs: {
-      __typename: "ModelJobConnection";
-      nextToken: string | null;
-    } | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -887,28 +954,10 @@ export type GetCategoryQuery = {
   description: string;
   jobs: {
     __typename: "ModelJobConnection";
-    items: Array<{
-      __typename: "Job";
-      id: string;
-      title: string;
-      description: string;
-      createDate: string;
-      expireDate: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   categories: {
     __typename: "ModelCategoryConnection";
-    items: Array<{
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   category: {
@@ -916,22 +965,6 @@ export type GetCategoryQuery = {
     id: string;
     title: string;
     description: string;
-    jobs: {
-      __typename: "ModelJobConnection";
-      nextToken: string | null;
-    } | null;
-    categories: {
-      __typename: "ModelCategoryConnection";
-      nextToken: string | null;
-    } | null;
-    category: {
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -946,22 +979,6 @@ export type ListCategorysQuery = {
     id: string;
     title: string;
     description: string;
-    jobs: {
-      __typename: "ModelJobConnection";
-      nextToken: string | null;
-    } | null;
-    categories: {
-      __typename: "ModelCategoryConnection";
-      nextToken: string | null;
-    } | null;
-    category: {
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -977,13 +994,6 @@ export type GetJobQuery = {
   expireDate: string;
   applications: {
     __typename: "ModelApplicationConnection";
-    items: Array<{
-      __typename: "Application";
-      id: string;
-      title: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   company: {
@@ -997,37 +1007,17 @@ export type GetJobQuery = {
     postcode: number;
     city: string;
     image: string;
-    jobs: {
-      __typename: "ModelJobConnection";
-      nextToken: string | null;
-    } | null;
     createdAt: string;
     updatedAt: string;
-  } | null;
+  };
   category: {
     __typename: "Category";
     id: string;
     title: string;
     description: string;
-    jobs: {
-      __typename: "ModelJobConnection";
-      nextToken: string | null;
-    } | null;
-    categories: {
-      __typename: "ModelCategoryConnection";
-      nextToken: string | null;
-    } | null;
-    category: {
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
     createdAt: string;
     updatedAt: string;
-  } | null;
+  };
   createdAt: string;
   updatedAt: string;
 };
@@ -1041,32 +1031,6 @@ export type ListJobsQuery = {
     description: string;
     createDate: string;
     expireDate: string;
-    applications: {
-      __typename: "ModelApplicationConnection";
-      nextToken: string | null;
-    } | null;
-    company: {
-      __typename: "Company";
-      id: string;
-      name: string;
-      description: string;
-      website: string;
-      street: string;
-      houseNumber: string;
-      postcode: number;
-      city: string;
-      image: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
-    category: {
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -1084,35 +1048,9 @@ export type GetApplicationQuery = {
     description: string;
     createDate: string;
     expireDate: string;
-    applications: {
-      __typename: "ModelApplicationConnection";
-      nextToken: string | null;
-    } | null;
-    company: {
-      __typename: "Company";
-      id: string;
-      name: string;
-      description: string;
-      website: string;
-      street: string;
-      houseNumber: string;
-      postcode: number;
-      city: string;
-      image: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
-    category: {
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
     createdAt: string;
     updatedAt: string;
-  } | null;
+  };
   createdAt: string;
   updatedAt: string;
 };
@@ -1123,20 +1061,178 @@ export type ListApplicationsQuery = {
     __typename: "Application";
     id: string;
     title: string;
-    job: {
-      __typename: "Job";
-      id: string;
-      title: string;
-      description: string;
-      createDate: string;
-      expireDate: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
   nextToken: string | null;
+};
+
+export type OnCreateAccountSubscription = {
+  __typename: "Account";
+  id: string;
+  type: string;
+  user: {
+    __typename: "User";
+    id: string;
+    prename: string;
+    lastname: string;
+    street: string;
+    houseNumber: string;
+    postcode: number;
+    city: string;
+    image: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    description: string;
+    website: string;
+    street: string;
+    houseNumber: string;
+    postcode: number;
+    city: string;
+    image: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateAccountSubscription = {
+  __typename: "Account";
+  id: string;
+  type: string;
+  user: {
+    __typename: "User";
+    id: string;
+    prename: string;
+    lastname: string;
+    street: string;
+    houseNumber: string;
+    postcode: number;
+    city: string;
+    image: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    description: string;
+    website: string;
+    street: string;
+    houseNumber: string;
+    postcode: number;
+    city: string;
+    image: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteAccountSubscription = {
+  __typename: "Account";
+  id: string;
+  type: string;
+  user: {
+    __typename: "User";
+    id: string;
+    prename: string;
+    lastname: string;
+    street: string;
+    houseNumber: string;
+    postcode: number;
+    city: string;
+    image: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    description: string;
+    website: string;
+    street: string;
+    houseNumber: string;
+    postcode: number;
+    city: string;
+    image: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateUserSubscription = {
+  __typename: "User";
+  id: string;
+  prename: string;
+  lastname: string;
+  street: string;
+  houseNumber: string;
+  postcode: number;
+  city: string;
+  image: string;
+  account: {
+    __typename: "Account";
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateUserSubscription = {
+  __typename: "User";
+  id: string;
+  prename: string;
+  lastname: string;
+  street: string;
+  houseNumber: string;
+  postcode: number;
+  city: string;
+  image: string;
+  account: {
+    __typename: "Account";
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteUserSubscription = {
+  __typename: "User";
+  id: string;
+  prename: string;
+  lastname: string;
+  street: string;
+  houseNumber: string;
+  postcode: number;
+  city: string;
+  image: string;
+  account: {
+    __typename: "Account";
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type OnCreateCompanySubscription = {
@@ -1150,18 +1246,15 @@ export type OnCreateCompanySubscription = {
   postcode: number;
   city: string;
   image: string;
+  account: {
+    __typename: "Account";
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+  };
   jobs: {
     __typename: "ModelJobConnection";
-    items: Array<{
-      __typename: "Job";
-      id: string;
-      title: string;
-      description: string;
-      createDate: string;
-      expireDate: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -1179,18 +1272,15 @@ export type OnUpdateCompanySubscription = {
   postcode: number;
   city: string;
   image: string;
+  account: {
+    __typename: "Account";
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+  };
   jobs: {
     __typename: "ModelJobConnection";
-    items: Array<{
-      __typename: "Job";
-      id: string;
-      title: string;
-      description: string;
-      createDate: string;
-      expireDate: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -1208,18 +1298,15 @@ export type OnDeleteCompanySubscription = {
   postcode: number;
   city: string;
   image: string;
+  account: {
+    __typename: "Account";
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+  };
   jobs: {
     __typename: "ModelJobConnection";
-    items: Array<{
-      __typename: "Job";
-      id: string;
-      title: string;
-      description: string;
-      createDate: string;
-      expireDate: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -1233,28 +1320,10 @@ export type OnCreateCategorySubscription = {
   description: string;
   jobs: {
     __typename: "ModelJobConnection";
-    items: Array<{
-      __typename: "Job";
-      id: string;
-      title: string;
-      description: string;
-      createDate: string;
-      expireDate: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   categories: {
     __typename: "ModelCategoryConnection";
-    items: Array<{
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   category: {
@@ -1262,22 +1331,6 @@ export type OnCreateCategorySubscription = {
     id: string;
     title: string;
     description: string;
-    jobs: {
-      __typename: "ModelJobConnection";
-      nextToken: string | null;
-    } | null;
-    categories: {
-      __typename: "ModelCategoryConnection";
-      nextToken: string | null;
-    } | null;
-    category: {
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1292,28 +1345,10 @@ export type OnUpdateCategorySubscription = {
   description: string;
   jobs: {
     __typename: "ModelJobConnection";
-    items: Array<{
-      __typename: "Job";
-      id: string;
-      title: string;
-      description: string;
-      createDate: string;
-      expireDate: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   categories: {
     __typename: "ModelCategoryConnection";
-    items: Array<{
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   category: {
@@ -1321,22 +1356,6 @@ export type OnUpdateCategorySubscription = {
     id: string;
     title: string;
     description: string;
-    jobs: {
-      __typename: "ModelJobConnection";
-      nextToken: string | null;
-    } | null;
-    categories: {
-      __typename: "ModelCategoryConnection";
-      nextToken: string | null;
-    } | null;
-    category: {
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1351,28 +1370,10 @@ export type OnDeleteCategorySubscription = {
   description: string;
   jobs: {
     __typename: "ModelJobConnection";
-    items: Array<{
-      __typename: "Job";
-      id: string;
-      title: string;
-      description: string;
-      createDate: string;
-      expireDate: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   categories: {
     __typename: "ModelCategoryConnection";
-    items: Array<{
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   category: {
@@ -1380,22 +1381,6 @@ export type OnDeleteCategorySubscription = {
     id: string;
     title: string;
     description: string;
-    jobs: {
-      __typename: "ModelJobConnection";
-      nextToken: string | null;
-    } | null;
-    categories: {
-      __typename: "ModelCategoryConnection";
-      nextToken: string | null;
-    } | null;
-    category: {
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1412,13 +1397,6 @@ export type OnCreateJobSubscription = {
   expireDate: string;
   applications: {
     __typename: "ModelApplicationConnection";
-    items: Array<{
-      __typename: "Application";
-      id: string;
-      title: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   company: {
@@ -1432,37 +1410,17 @@ export type OnCreateJobSubscription = {
     postcode: number;
     city: string;
     image: string;
-    jobs: {
-      __typename: "ModelJobConnection";
-      nextToken: string | null;
-    } | null;
     createdAt: string;
     updatedAt: string;
-  } | null;
+  };
   category: {
     __typename: "Category";
     id: string;
     title: string;
     description: string;
-    jobs: {
-      __typename: "ModelJobConnection";
-      nextToken: string | null;
-    } | null;
-    categories: {
-      __typename: "ModelCategoryConnection";
-      nextToken: string | null;
-    } | null;
-    category: {
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
     createdAt: string;
     updatedAt: string;
-  } | null;
+  };
   createdAt: string;
   updatedAt: string;
 };
@@ -1476,13 +1434,6 @@ export type OnUpdateJobSubscription = {
   expireDate: string;
   applications: {
     __typename: "ModelApplicationConnection";
-    items: Array<{
-      __typename: "Application";
-      id: string;
-      title: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   company: {
@@ -1496,37 +1447,17 @@ export type OnUpdateJobSubscription = {
     postcode: number;
     city: string;
     image: string;
-    jobs: {
-      __typename: "ModelJobConnection";
-      nextToken: string | null;
-    } | null;
     createdAt: string;
     updatedAt: string;
-  } | null;
+  };
   category: {
     __typename: "Category";
     id: string;
     title: string;
     description: string;
-    jobs: {
-      __typename: "ModelJobConnection";
-      nextToken: string | null;
-    } | null;
-    categories: {
-      __typename: "ModelCategoryConnection";
-      nextToken: string | null;
-    } | null;
-    category: {
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
     createdAt: string;
     updatedAt: string;
-  } | null;
+  };
   createdAt: string;
   updatedAt: string;
 };
@@ -1540,13 +1471,6 @@ export type OnDeleteJobSubscription = {
   expireDate: string;
   applications: {
     __typename: "ModelApplicationConnection";
-    items: Array<{
-      __typename: "Application";
-      id: string;
-      title: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   company: {
@@ -1560,37 +1484,17 @@ export type OnDeleteJobSubscription = {
     postcode: number;
     city: string;
     image: string;
-    jobs: {
-      __typename: "ModelJobConnection";
-      nextToken: string | null;
-    } | null;
     createdAt: string;
     updatedAt: string;
-  } | null;
+  };
   category: {
     __typename: "Category";
     id: string;
     title: string;
     description: string;
-    jobs: {
-      __typename: "ModelJobConnection";
-      nextToken: string | null;
-    } | null;
-    categories: {
-      __typename: "ModelCategoryConnection";
-      nextToken: string | null;
-    } | null;
-    category: {
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
     createdAt: string;
     updatedAt: string;
-  } | null;
+  };
   createdAt: string;
   updatedAt: string;
 };
@@ -1606,35 +1510,9 @@ export type OnCreateApplicationSubscription = {
     description: string;
     createDate: string;
     expireDate: string;
-    applications: {
-      __typename: "ModelApplicationConnection";
-      nextToken: string | null;
-    } | null;
-    company: {
-      __typename: "Company";
-      id: string;
-      name: string;
-      description: string;
-      website: string;
-      street: string;
-      houseNumber: string;
-      postcode: number;
-      city: string;
-      image: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
-    category: {
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
     createdAt: string;
     updatedAt: string;
-  } | null;
+  };
   createdAt: string;
   updatedAt: string;
 };
@@ -1650,35 +1528,9 @@ export type OnUpdateApplicationSubscription = {
     description: string;
     createDate: string;
     expireDate: string;
-    applications: {
-      __typename: "ModelApplicationConnection";
-      nextToken: string | null;
-    } | null;
-    company: {
-      __typename: "Company";
-      id: string;
-      name: string;
-      description: string;
-      website: string;
-      street: string;
-      houseNumber: string;
-      postcode: number;
-      city: string;
-      image: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
-    category: {
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
     createdAt: string;
     updatedAt: string;
-  } | null;
+  };
   createdAt: string;
   updatedAt: string;
 };
@@ -1694,35 +1546,9 @@ export type OnDeleteApplicationSubscription = {
     description: string;
     createDate: string;
     expireDate: string;
-    applications: {
-      __typename: "ModelApplicationConnection";
-      nextToken: string | null;
-    } | null;
-    company: {
-      __typename: "Company";
-      id: string;
-      name: string;
-      description: string;
-      website: string;
-      street: string;
-      houseNumber: string;
-      postcode: number;
-      city: string;
-      image: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
-    category: {
-      __typename: "Category";
-      id: string;
-      title: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
     createdAt: string;
     updatedAt: string;
-  } | null;
+  };
   createdAt: string;
   updatedAt: string;
 };
@@ -1731,6 +1557,270 @@ export type OnDeleteApplicationSubscription = {
   providedIn: "root"
 })
 export class APIService {
+  async CreateAccount(
+    input: CreateAccountInput,
+    condition?: ModelAccountConditionInput
+  ): Promise<CreateAccountMutation> {
+    const statement = `mutation CreateAccount($input: CreateAccountInput!, $condition: ModelAccountConditionInput) {
+        createAccount(input: $input, condition: $condition) {
+          __typename
+          id
+          type
+          user {
+            __typename
+            id
+            prename
+            lastname
+            street
+            houseNumber
+            postcode
+            city
+            image
+            createdAt
+            updatedAt
+          }
+          company {
+            __typename
+            id
+            name
+            description
+            website
+            street
+            houseNumber
+            postcode
+            city
+            image
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateAccountMutation>response.data.createAccount;
+  }
+  async UpdateAccount(
+    input: UpdateAccountInput,
+    condition?: ModelAccountConditionInput
+  ): Promise<UpdateAccountMutation> {
+    const statement = `mutation UpdateAccount($input: UpdateAccountInput!, $condition: ModelAccountConditionInput) {
+        updateAccount(input: $input, condition: $condition) {
+          __typename
+          id
+          type
+          user {
+            __typename
+            id
+            prename
+            lastname
+            street
+            houseNumber
+            postcode
+            city
+            image
+            createdAt
+            updatedAt
+          }
+          company {
+            __typename
+            id
+            name
+            description
+            website
+            street
+            houseNumber
+            postcode
+            city
+            image
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateAccountMutation>response.data.updateAccount;
+  }
+  async DeleteAccount(
+    input: DeleteAccountInput,
+    condition?: ModelAccountConditionInput
+  ): Promise<DeleteAccountMutation> {
+    const statement = `mutation DeleteAccount($input: DeleteAccountInput!, $condition: ModelAccountConditionInput) {
+        deleteAccount(input: $input, condition: $condition) {
+          __typename
+          id
+          type
+          user {
+            __typename
+            id
+            prename
+            lastname
+            street
+            houseNumber
+            postcode
+            city
+            image
+            createdAt
+            updatedAt
+          }
+          company {
+            __typename
+            id
+            name
+            description
+            website
+            street
+            houseNumber
+            postcode
+            city
+            image
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteAccountMutation>response.data.deleteAccount;
+  }
+  async CreateUser(
+    input: CreateUserInput,
+    condition?: ModelUserConditionInput
+  ): Promise<CreateUserMutation> {
+    const statement = `mutation CreateUser($input: CreateUserInput!, $condition: ModelUserConditionInput) {
+        createUser(input: $input, condition: $condition) {
+          __typename
+          id
+          prename
+          lastname
+          street
+          houseNumber
+          postcode
+          city
+          image
+          account {
+            __typename
+            id
+            type
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateUserMutation>response.data.createUser;
+  }
+  async UpdateUser(
+    input: UpdateUserInput,
+    condition?: ModelUserConditionInput
+  ): Promise<UpdateUserMutation> {
+    const statement = `mutation UpdateUser($input: UpdateUserInput!, $condition: ModelUserConditionInput) {
+        updateUser(input: $input, condition: $condition) {
+          __typename
+          id
+          prename
+          lastname
+          street
+          houseNumber
+          postcode
+          city
+          image
+          account {
+            __typename
+            id
+            type
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateUserMutation>response.data.updateUser;
+  }
+  async DeleteUser(
+    input: DeleteUserInput,
+    condition?: ModelUserConditionInput
+  ): Promise<DeleteUserMutation> {
+    const statement = `mutation DeleteUser($input: DeleteUserInput!, $condition: ModelUserConditionInput) {
+        deleteUser(input: $input, condition: $condition) {
+          __typename
+          id
+          prename
+          lastname
+          street
+          houseNumber
+          postcode
+          city
+          image
+          account {
+            __typename
+            id
+            type
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteUserMutation>response.data.deleteUser;
+  }
   async CreateCompany(
     input: CreateCompanyInput,
     condition?: ModelCompanyConditionInput
@@ -1747,18 +1837,15 @@ export class APIService {
           postcode
           city
           image
+          account {
+            __typename
+            id
+            type
+            createdAt
+            updatedAt
+          }
           jobs {
             __typename
-            items {
-              __typename
-              id
-              title
-              description
-              createDate
-              expireDate
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           createdAt
@@ -1792,18 +1879,15 @@ export class APIService {
           postcode
           city
           image
+          account {
+            __typename
+            id
+            type
+            createdAt
+            updatedAt
+          }
           jobs {
             __typename
-            items {
-              __typename
-              id
-              title
-              description
-              createDate
-              expireDate
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           createdAt
@@ -1837,18 +1921,15 @@ export class APIService {
           postcode
           city
           image
+          account {
+            __typename
+            id
+            type
+            createdAt
+            updatedAt
+          }
           jobs {
             __typename
-            items {
-              __typename
-              id
-              title
-              description
-              createDate
-              expireDate
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           createdAt
@@ -1878,28 +1959,10 @@ export class APIService {
           description
           jobs {
             __typename
-            items {
-              __typename
-              id
-              title
-              description
-              createDate
-              expireDate
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           categories {
             __typename
-            items {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           category {
@@ -1907,22 +1970,6 @@ export class APIService {
             id
             title
             description
-            jobs {
-              __typename
-              nextToken
-            }
-            categories {
-              __typename
-              nextToken
-            }
-            category {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             createdAt
             updatedAt
           }
@@ -1953,28 +2000,10 @@ export class APIService {
           description
           jobs {
             __typename
-            items {
-              __typename
-              id
-              title
-              description
-              createDate
-              expireDate
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           categories {
             __typename
-            items {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           category {
@@ -1982,22 +2011,6 @@ export class APIService {
             id
             title
             description
-            jobs {
-              __typename
-              nextToken
-            }
-            categories {
-              __typename
-              nextToken
-            }
-            category {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             createdAt
             updatedAt
           }
@@ -2028,28 +2041,10 @@ export class APIService {
           description
           jobs {
             __typename
-            items {
-              __typename
-              id
-              title
-              description
-              createDate
-              expireDate
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           categories {
             __typename
-            items {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           category {
@@ -2057,22 +2052,6 @@ export class APIService {
             id
             title
             description
-            jobs {
-              __typename
-              nextToken
-            }
-            categories {
-              __typename
-              nextToken
-            }
-            category {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             createdAt
             updatedAt
           }
@@ -2105,13 +2084,6 @@ export class APIService {
           expireDate
           applications {
             __typename
-            items {
-              __typename
-              id
-              title
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           company {
@@ -2125,10 +2097,6 @@ export class APIService {
             postcode
             city
             image
-            jobs {
-              __typename
-              nextToken
-            }
             createdAt
             updatedAt
           }
@@ -2137,22 +2105,6 @@ export class APIService {
             id
             title
             description
-            jobs {
-              __typename
-              nextToken
-            }
-            categories {
-              __typename
-              nextToken
-            }
-            category {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             createdAt
             updatedAt
           }
@@ -2185,13 +2137,6 @@ export class APIService {
           expireDate
           applications {
             __typename
-            items {
-              __typename
-              id
-              title
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           company {
@@ -2205,10 +2150,6 @@ export class APIService {
             postcode
             city
             image
-            jobs {
-              __typename
-              nextToken
-            }
             createdAt
             updatedAt
           }
@@ -2217,22 +2158,6 @@ export class APIService {
             id
             title
             description
-            jobs {
-              __typename
-              nextToken
-            }
-            categories {
-              __typename
-              nextToken
-            }
-            category {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             createdAt
             updatedAt
           }
@@ -2265,13 +2190,6 @@ export class APIService {
           expireDate
           applications {
             __typename
-            items {
-              __typename
-              id
-              title
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           company {
@@ -2285,10 +2203,6 @@ export class APIService {
             postcode
             city
             image
-            jobs {
-              __typename
-              nextToken
-            }
             createdAt
             updatedAt
           }
@@ -2297,22 +2211,6 @@ export class APIService {
             id
             title
             description
-            jobs {
-              __typename
-              nextToken
-            }
-            categories {
-              __typename
-              nextToken
-            }
-            category {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             createdAt
             updatedAt
           }
@@ -2347,32 +2245,6 @@ export class APIService {
             description
             createDate
             expireDate
-            applications {
-              __typename
-              nextToken
-            }
-            company {
-              __typename
-              id
-              name
-              description
-              website
-              street
-              houseNumber
-              postcode
-              city
-              image
-              createdAt
-              updatedAt
-            }
-            category {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             createdAt
             updatedAt
           }
@@ -2407,32 +2279,6 @@ export class APIService {
             description
             createDate
             expireDate
-            applications {
-              __typename
-              nextToken
-            }
-            company {
-              __typename
-              id
-              name
-              description
-              website
-              street
-              houseNumber
-              postcode
-              city
-              image
-              createdAt
-              updatedAt
-            }
-            category {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             createdAt
             updatedAt
           }
@@ -2467,32 +2313,6 @@ export class APIService {
             description
             createDate
             expireDate
-            applications {
-              __typename
-              nextToken
-            }
-            company {
-              __typename
-              id
-              name
-              description
-              website
-              street
-              houseNumber
-              postcode
-              city
-              image
-              createdAt
-              updatedAt
-            }
-            category {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             createdAt
             updatedAt
           }
@@ -2511,6 +2331,154 @@ export class APIService {
     )) as any;
     return <DeleteApplicationMutation>response.data.deleteApplication;
   }
+  async GetAccount(id: string): Promise<GetAccountQuery> {
+    const statement = `query GetAccount($id: ID!) {
+        getAccount(id: $id) {
+          __typename
+          id
+          type
+          user {
+            __typename
+            id
+            prename
+            lastname
+            street
+            houseNumber
+            postcode
+            city
+            image
+            createdAt
+            updatedAt
+          }
+          company {
+            __typename
+            id
+            name
+            description
+            website
+            street
+            houseNumber
+            postcode
+            city
+            image
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetAccountQuery>response.data.getAccount;
+  }
+  async ListAccounts(
+    filter?: ModelAccountFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListAccountsQuery> {
+    const statement = `query ListAccounts($filter: ModelAccountFilterInput, $limit: Int, $nextToken: String) {
+        listAccounts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            type
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListAccountsQuery>response.data.listAccounts;
+  }
+  async GetUser(id: string): Promise<GetUserQuery> {
+    const statement = `query GetUser($id: ID!) {
+        getUser(id: $id) {
+          __typename
+          id
+          prename
+          lastname
+          street
+          houseNumber
+          postcode
+          city
+          image
+          account {
+            __typename
+            id
+            type
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetUserQuery>response.data.getUser;
+  }
+  async ListUsers(
+    filter?: ModelUserFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListUsersQuery> {
+    const statement = `query ListUsers($filter: ModelUserFilterInput, $limit: Int, $nextToken: String) {
+        listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            prename
+            lastname
+            street
+            houseNumber
+            postcode
+            city
+            image
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListUsersQuery>response.data.listUsers;
+  }
   async GetCompany(id: string): Promise<GetCompanyQuery> {
     const statement = `query GetCompany($id: ID!) {
         getCompany(id: $id) {
@@ -2524,18 +2492,15 @@ export class APIService {
           postcode
           city
           image
+          account {
+            __typename
+            id
+            type
+            createdAt
+            updatedAt
+          }
           jobs {
             __typename
-            items {
-              __typename
-              id
-              title
-              description
-              createDate
-              expireDate
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           createdAt
@@ -2569,10 +2534,6 @@ export class APIService {
             postcode
             city
             image
-            jobs {
-              __typename
-              nextToken
-            }
             createdAt
             updatedAt
           }
@@ -2603,28 +2564,10 @@ export class APIService {
           description
           jobs {
             __typename
-            items {
-              __typename
-              id
-              title
-              description
-              createDate
-              expireDate
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           categories {
             __typename
-            items {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           category {
@@ -2632,22 +2575,6 @@ export class APIService {
             id
             title
             description
-            jobs {
-              __typename
-              nextToken
-            }
-            categories {
-              __typename
-              nextToken
-            }
-            category {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             createdAt
             updatedAt
           }
@@ -2676,22 +2603,6 @@ export class APIService {
             id
             title
             description
-            jobs {
-              __typename
-              nextToken
-            }
-            categories {
-              __typename
-              nextToken
-            }
-            category {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             createdAt
             updatedAt
           }
@@ -2724,13 +2635,6 @@ export class APIService {
           expireDate
           applications {
             __typename
-            items {
-              __typename
-              id
-              title
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           company {
@@ -2744,10 +2648,6 @@ export class APIService {
             postcode
             city
             image
-            jobs {
-              __typename
-              nextToken
-            }
             createdAt
             updatedAt
           }
@@ -2756,22 +2656,6 @@ export class APIService {
             id
             title
             description
-            jobs {
-              __typename
-              nextToken
-            }
-            categories {
-              __typename
-              nextToken
-            }
-            category {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             createdAt
             updatedAt
           }
@@ -2802,32 +2686,6 @@ export class APIService {
             description
             createDate
             expireDate
-            applications {
-              __typename
-              nextToken
-            }
-            company {
-              __typename
-              id
-              name
-              description
-              website
-              street
-              houseNumber
-              postcode
-              city
-              image
-              createdAt
-              updatedAt
-            }
-            category {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             createdAt
             updatedAt
           }
@@ -2862,32 +2720,6 @@ export class APIService {
             description
             createDate
             expireDate
-            applications {
-              __typename
-              nextToken
-            }
-            company {
-              __typename
-              id
-              name
-              description
-              website
-              street
-              houseNumber
-              postcode
-              city
-              image
-              createdAt
-              updatedAt
-            }
-            category {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             createdAt
             updatedAt
           }
@@ -2915,16 +2747,6 @@ export class APIService {
             __typename
             id
             title
-            job {
-              __typename
-              id
-              title
-              description
-              createDate
-              expireDate
-              createdAt
-              updatedAt
-            }
             createdAt
             updatedAt
           }
@@ -2946,6 +2768,216 @@ export class APIService {
     )) as any;
     return <ListApplicationsQuery>response.data.listApplications;
   }
+  OnCreateAccountListener: Observable<
+    OnCreateAccountSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateAccount {
+        onCreateAccount {
+          __typename
+          id
+          type
+          user {
+            __typename
+            id
+            prename
+            lastname
+            street
+            houseNumber
+            postcode
+            city
+            image
+            createdAt
+            updatedAt
+          }
+          company {
+            __typename
+            id
+            name
+            description
+            website
+            street
+            houseNumber
+            postcode
+            city
+            image
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateAccountSubscription>;
+
+  OnUpdateAccountListener: Observable<
+    OnUpdateAccountSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateAccount {
+        onUpdateAccount {
+          __typename
+          id
+          type
+          user {
+            __typename
+            id
+            prename
+            lastname
+            street
+            houseNumber
+            postcode
+            city
+            image
+            createdAt
+            updatedAt
+          }
+          company {
+            __typename
+            id
+            name
+            description
+            website
+            street
+            houseNumber
+            postcode
+            city
+            image
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateAccountSubscription>;
+
+  OnDeleteAccountListener: Observable<
+    OnDeleteAccountSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteAccount {
+        onDeleteAccount {
+          __typename
+          id
+          type
+          user {
+            __typename
+            id
+            prename
+            lastname
+            street
+            houseNumber
+            postcode
+            city
+            image
+            createdAt
+            updatedAt
+          }
+          company {
+            __typename
+            id
+            name
+            description
+            website
+            street
+            houseNumber
+            postcode
+            city
+            image
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteAccountSubscription>;
+
+  OnCreateUserListener: Observable<OnCreateUserSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateUser {
+        onCreateUser {
+          __typename
+          id
+          prename
+          lastname
+          street
+          houseNumber
+          postcode
+          city
+          image
+          account {
+            __typename
+            id
+            type
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateUserSubscription>;
+
+  OnUpdateUserListener: Observable<OnUpdateUserSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateUser {
+        onUpdateUser {
+          __typename
+          id
+          prename
+          lastname
+          street
+          houseNumber
+          postcode
+          city
+          image
+          account {
+            __typename
+            id
+            type
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateUserSubscription>;
+
+  OnDeleteUserListener: Observable<OnDeleteUserSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteUser {
+        onDeleteUser {
+          __typename
+          id
+          prename
+          lastname
+          street
+          houseNumber
+          postcode
+          city
+          image
+          account {
+            __typename
+            id
+            type
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteUserSubscription>;
+
   OnCreateCompanyListener: Observable<
     OnCreateCompanySubscription
   > = API.graphql(
@@ -2962,18 +2994,15 @@ export class APIService {
           postcode
           city
           image
+          account {
+            __typename
+            id
+            type
+            createdAt
+            updatedAt
+          }
           jobs {
             __typename
-            items {
-              __typename
-              id
-              title
-              description
-              createDate
-              expireDate
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           createdAt
@@ -2999,18 +3028,15 @@ export class APIService {
           postcode
           city
           image
+          account {
+            __typename
+            id
+            type
+            createdAt
+            updatedAt
+          }
           jobs {
             __typename
-            items {
-              __typename
-              id
-              title
-              description
-              createDate
-              expireDate
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           createdAt
@@ -3036,18 +3062,15 @@ export class APIService {
           postcode
           city
           image
+          account {
+            __typename
+            id
+            type
+            createdAt
+            updatedAt
+          }
           jobs {
             __typename
-            items {
-              __typename
-              id
-              title
-              description
-              createDate
-              expireDate
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           createdAt
@@ -3069,28 +3092,10 @@ export class APIService {
           description
           jobs {
             __typename
-            items {
-              __typename
-              id
-              title
-              description
-              createDate
-              expireDate
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           categories {
             __typename
-            items {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           category {
@@ -3098,22 +3103,6 @@ export class APIService {
             id
             title
             description
-            jobs {
-              __typename
-              nextToken
-            }
-            categories {
-              __typename
-              nextToken
-            }
-            category {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             createdAt
             updatedAt
           }
@@ -3136,28 +3125,10 @@ export class APIService {
           description
           jobs {
             __typename
-            items {
-              __typename
-              id
-              title
-              description
-              createDate
-              expireDate
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           categories {
             __typename
-            items {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           category {
@@ -3165,22 +3136,6 @@ export class APIService {
             id
             title
             description
-            jobs {
-              __typename
-              nextToken
-            }
-            categories {
-              __typename
-              nextToken
-            }
-            category {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             createdAt
             updatedAt
           }
@@ -3203,28 +3158,10 @@ export class APIService {
           description
           jobs {
             __typename
-            items {
-              __typename
-              id
-              title
-              description
-              createDate
-              expireDate
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           categories {
             __typename
-            items {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           category {
@@ -3232,22 +3169,6 @@ export class APIService {
             id
             title
             description
-            jobs {
-              __typename
-              nextToken
-            }
-            categories {
-              __typename
-              nextToken
-            }
-            category {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             createdAt
             updatedAt
           }
@@ -3270,13 +3191,6 @@ export class APIService {
           expireDate
           applications {
             __typename
-            items {
-              __typename
-              id
-              title
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           company {
@@ -3290,10 +3204,6 @@ export class APIService {
             postcode
             city
             image
-            jobs {
-              __typename
-              nextToken
-            }
             createdAt
             updatedAt
           }
@@ -3302,22 +3212,6 @@ export class APIService {
             id
             title
             description
-            jobs {
-              __typename
-              nextToken
-            }
-            categories {
-              __typename
-              nextToken
-            }
-            category {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             createdAt
             updatedAt
           }
@@ -3340,13 +3234,6 @@ export class APIService {
           expireDate
           applications {
             __typename
-            items {
-              __typename
-              id
-              title
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           company {
@@ -3360,10 +3247,6 @@ export class APIService {
             postcode
             city
             image
-            jobs {
-              __typename
-              nextToken
-            }
             createdAt
             updatedAt
           }
@@ -3372,22 +3255,6 @@ export class APIService {
             id
             title
             description
-            jobs {
-              __typename
-              nextToken
-            }
-            categories {
-              __typename
-              nextToken
-            }
-            category {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             createdAt
             updatedAt
           }
@@ -3410,13 +3277,6 @@ export class APIService {
           expireDate
           applications {
             __typename
-            items {
-              __typename
-              id
-              title
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           company {
@@ -3430,10 +3290,6 @@ export class APIService {
             postcode
             city
             image
-            jobs {
-              __typename
-              nextToken
-            }
             createdAt
             updatedAt
           }
@@ -3442,22 +3298,6 @@ export class APIService {
             id
             title
             description
-            jobs {
-              __typename
-              nextToken
-            }
-            categories {
-              __typename
-              nextToken
-            }
-            category {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             createdAt
             updatedAt
           }
@@ -3484,32 +3324,6 @@ export class APIService {
             description
             createDate
             expireDate
-            applications {
-              __typename
-              nextToken
-            }
-            company {
-              __typename
-              id
-              name
-              description
-              website
-              street
-              houseNumber
-              postcode
-              city
-              image
-              createdAt
-              updatedAt
-            }
-            category {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             createdAt
             updatedAt
           }
@@ -3536,32 +3350,6 @@ export class APIService {
             description
             createDate
             expireDate
-            applications {
-              __typename
-              nextToken
-            }
-            company {
-              __typename
-              id
-              name
-              description
-              website
-              street
-              houseNumber
-              postcode
-              city
-              image
-              createdAt
-              updatedAt
-            }
-            category {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             createdAt
             updatedAt
           }
@@ -3588,32 +3376,6 @@ export class APIService {
             description
             createDate
             expireDate
-            applications {
-              __typename
-              nextToken
-            }
-            company {
-              __typename
-              id
-              name
-              description
-              website
-              street
-              houseNumber
-              postcode
-              city
-              image
-              createdAt
-              updatedAt
-            }
-            category {
-              __typename
-              id
-              title
-              description
-              createdAt
-              updatedAt
-            }
             createdAt
             updatedAt
           }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { APIService, GetAccountQuery } from 'src/app/API.service';
 
 
 @Component({
@@ -7,11 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./account.page.scss'],
 })
 export class AccountPage implements OnInit {
+  account:Account;
 
-  constructor() {
+  constructor(private api: APIService) {
   }
 
   ngOnInit() {
+
   }
 
 }

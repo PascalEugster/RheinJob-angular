@@ -1,3 +1,22 @@
+type Account @model {
+  id: ID!
+  type: String!
+  user: User @connection(name: "AccountUser")
+  company: Company @connection(name: "AccountCompany")
+}
+
+type User @model {
+  id: ID!
+  prename: String!
+  lastname: String!
+  street: String!
+  houseNumber: String!
+  postcode: Int!
+  city: String!
+  image: String!
+  account: Account! @connection(name: "AccountUser")
+}
+
 type Company @model {
   id: ID!
   name: String!
@@ -8,7 +27,7 @@ type Company @model {
   postcode: Int!
   city: String!
   image: String!
-
+  account: Account! @connection(name: "AccountCompany")
   jobs: [Job] @connection(name: "CompanyJobs")
 }
 
@@ -31,15 +50,15 @@ type Job @model {
   createDate: AWSDate!
   expireDate: AWSDate!
   applications: [Application] @connection(name: "JobApplications")
-  company: Company @connection(name: "CompanyJobs")
-  category: Category @connection(name: "CategoryJobs")
+  company: Company! @connection(name: "CompanyJobs")
+  category: Category! @connection(name: "CategoryJobs")
 }
 
 
 type Application @model {
   id: ID!
   title: String!
-  job: Job @connection(name: "JobApplications")
+  job: Job! @connection(name: "JobApplications")
 }
 
 
