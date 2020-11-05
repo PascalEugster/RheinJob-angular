@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./account-form.component.scss'],
 })
 export class AccountFormComponent implements OnInit {
-
   data: any = { myToggle: false };
   constructor() { }
 

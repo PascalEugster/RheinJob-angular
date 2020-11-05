@@ -35,6 +35,34 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
+  {
+    path: 'account',
+    loadChildren: () => import('./pages/account/account.module').then( m => m.AccountPageModule)
+  },
+  {
+    path: 'apprenticeships',
+    loadChildren: () => import('./pages/apprenticeships/apprenticeships.module').then( m => m.ApprenticeshipsPageModule)
+  },
+  {
+    path: 'companies',
+    loadChildren: () => import('./pages/companies/companies.module').then( m => m.CompaniesPageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'job',
+    loadChildren: () => import('./pages/job/job.module').then( m => m.JobPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'search',
+    loadChildren: () => import('./pages/search/search.module').then( m => m.SearchPageModule)
+  },
 
 
 

@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+
 import { APIService } from './API.service';
-import { AmplifyService } from 'aws-amplify-angular';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,6 @@ import { AmplifyService } from 'aws-amplify-angular';
 })
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
-  amplifyService: AmplifyService;
   public appPages = [
     {
       title: 'Home',
@@ -61,43 +60,11 @@ export class AppComponent implements OnInit {
       icon: 'create'
     }
   ];
-
-  public signUpConfig = {
-    header: 'My Customized Sign Up',
-    hideAllDefaults: true,
-    defaultCountryCode: '41',
-    signUpFields: [
-      {
-        label: 'Email',
-        key: 'email',
-        required: true,
-        displayOrder: 1,
-        type: 'string',
-      },
-      {
-        label: 'Password',
-        key: 'password',
-        required: true,
-        displayOrder: 2,
-        type: 'password'
-      },
-      {
-        label: 'Unternehmens Account',
-        key: 'isCompany',
-        required: true,
-        displayOrder: 4,
-        type: 'boolean',
-        custom: true
-      }
-    ]
-  };
-
   constructor(
+    //private apiService: APIService,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    public amplify: AmplifyService,
-    private apiService: APIService
   ) {
     this.initializeApp();
   }
@@ -110,6 +77,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    // const path = window.location.pathname.split('folder/')[1];
+    // if (path !== undefined) {
+    //   this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
+    // }
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { APIService, GetAccountQuery } from 'src/app/API.service';
 import { FormFieldTypes } from '@aws-amplify/ui-components';
-import { AmplifyService }  from 'aws-amplify-angular';
+
 
 @Component({
   selector: 'app-account',

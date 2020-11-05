@@ -1,0 +1,84 @@
+<ion-list>
+  <ion-item>
+    <ion-label>Unternehmensaccount erstellen?</ion-label>
+    <ion-toggle (click)="isClicked(data.myToggle)" [(ngModel)]="data.myToggle" color="primary">
+    </ion-toggle>
+  </ion-item>
+</ion-list>
+
+
+<div *ngIf="data.myToggle; then company else user"></div>
+
+<ng-template #user>
+
+  <ion-list lines="full" class="ion-no-margin">
+  <ion-list-header>  
+      <ion-label>
+        Benutzer
+      </ion-label>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label position="stacked">Vorname</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Nachname</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Adresse</ion-label>
+      <ion-input placeholder="Strasse und Nummer"></ion-input>
+      <ion-input placeholder="Zusatzinformationen"></ion-input>
+      <ion-input placeholder="Stadt"></ion-input>
+      <ion-input placeholder="Kanton"></ion-input>
+      <ion-input placeholder="Postleitzahl"></ion-input>
+    </ion-item>
+    <ion-button (click)="onClick()" fill="solid" shape="round">
+      Benutzer speichern
+    </ion-button>
+  </ion-list>
+</ng-template>
+
+<ng-template #company>
+  <ion-list lines="full" class="ion-no-margin">
+    <ion-list-header lines="full">
+      <ion-label>
+        Unternehmensaccount
+      </ion-label>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label position="stacked">Name</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Rechtsform</ion-label>
+      <ion-select value="03">
+        <ion-select-option value="01">Gesellschaft mit beschränkter Haftung (GmbH)</ion-select-option>
+        <ion-select-option value="02">Aktiengesellschaft (AG)</ion-select-option>
+        <ion-select-option value="03">Kommanditgesellschaft</ion-select-option>
+        <ion-select-option value="04">Einzelfirma</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Anzahl Angestellte</ion-label>
+      <ion-input type="number" placeholder="2700"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Adresse</ion-label>
+      <ion-input placeholder="Strasse und Nummer"></ion-input>
+      <ion-input placeholder="Zusatzinformationen"></ion-input>
+      <ion-input placeholder="Stadt"></ion-input>
+      <ion-input placeholder="Kanton"></ion-input>
+      <ion-input placeholder="Postleitzahl"></ion-input>
+    </ion-item>
+    <ion-button (click)="onClick()" fill="solid" shape="round">
+      Unternehmen speichern
+    </ion-button>
+  </ion-list>
+</ng-template>

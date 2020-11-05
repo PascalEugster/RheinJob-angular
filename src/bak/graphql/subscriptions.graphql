@@ -1,0 +1,451 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateAccount {
+  onCreateAccount {
+    id
+    type
+    user {
+      id
+      prename
+      lastname
+      street
+      houseNumber
+      postcode
+      city
+      image
+      createdAt
+      updatedAt
+    }
+    company {
+      id
+      name
+      description
+      website
+      street
+      houseNumber
+      postcode
+      city
+      image
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateAccount {
+  onUpdateAccount {
+    id
+    type
+    user {
+      id
+      prename
+      lastname
+      street
+      houseNumber
+      postcode
+      city
+      image
+      createdAt
+      updatedAt
+    }
+    company {
+      id
+      name
+      description
+      website
+      street
+      houseNumber
+      postcode
+      city
+      image
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteAccount {
+  onDeleteAccount {
+    id
+    type
+    user {
+      id
+      prename
+      lastname
+      street
+      houseNumber
+      postcode
+      city
+      image
+      createdAt
+      updatedAt
+    }
+    company {
+      id
+      name
+      description
+      website
+      street
+      houseNumber
+      postcode
+      city
+      image
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateUser {
+  onCreateUser {
+    id
+    prename
+    lastname
+    street
+    houseNumber
+    postcode
+    city
+    image
+    account {
+      id
+      type
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateUser {
+  onUpdateUser {
+    id
+    prename
+    lastname
+    street
+    houseNumber
+    postcode
+    city
+    image
+    account {
+      id
+      type
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteUser {
+  onDeleteUser {
+    id
+    prename
+    lastname
+    street
+    houseNumber
+    postcode
+    city
+    image
+    account {
+      id
+      type
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateCompany {
+  onCreateCompany {
+    id
+    name
+    description
+    website
+    street
+    houseNumber
+    postcode
+    city
+    image
+    account {
+      id
+      type
+      createdAt
+      updatedAt
+    }
+    jobs {
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateCompany {
+  onUpdateCompany {
+    id
+    name
+    description
+    website
+    street
+    houseNumber
+    postcode
+    city
+    image
+    account {
+      id
+      type
+      createdAt
+      updatedAt
+    }
+    jobs {
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteCompany {
+  onDeleteCompany {
+    id
+    name
+    description
+    website
+    street
+    houseNumber
+    postcode
+    city
+    image
+    account {
+      id
+      type
+      createdAt
+      updatedAt
+    }
+    jobs {
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateCategory {
+  onCreateCategory {
+    id
+    title
+    description
+    jobs {
+      nextToken
+    }
+    categories {
+      nextToken
+    }
+    category {
+      id
+      title
+      description
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateCategory {
+  onUpdateCategory {
+    id
+    title
+    description
+    jobs {
+      nextToken
+    }
+    categories {
+      nextToken
+    }
+    category {
+      id
+      title
+      description
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteCategory {
+  onDeleteCategory {
+    id
+    title
+    description
+    jobs {
+      nextToken
+    }
+    categories {
+      nextToken
+    }
+    category {
+      id
+      title
+      description
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateJob {
+  onCreateJob {
+    id
+    title
+    description
+    createDate
+    expireDate
+    applications {
+      nextToken
+    }
+    company {
+      id
+      name
+      description
+      website
+      street
+      houseNumber
+      postcode
+      city
+      image
+      createdAt
+      updatedAt
+    }
+    category {
+      id
+      title
+      description
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateJob {
+  onUpdateJob {
+    id
+    title
+    description
+    createDate
+    expireDate
+    applications {
+      nextToken
+    }
+    company {
+      id
+      name
+      description
+      website
+      street
+      houseNumber
+      postcode
+      city
+      image
+      createdAt
+      updatedAt
+    }
+    category {
+      id
+      title
+      description
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteJob {
+  onDeleteJob {
+    id
+    title
+    description
+    createDate
+    expireDate
+    applications {
+      nextToken
+    }
+    company {
+      id
+      name
+      description
+      website
+      street
+      houseNumber
+      postcode
+      city
+      image
+      createdAt
+      updatedAt
+    }
+    category {
+      id
+      title
+      description
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateApplication {
+  onCreateApplication {
+    id
+    title
+    job {
+      id
+      title
+      description
+      createDate
+      expireDate
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateApplication {
+  onUpdateApplication {
+    id
+    title
+    job {
+      id
+      title
+      description
+      createDate
+      expireDate
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteApplication {
+  onDeleteApplication {
+    id
+    title
+    job {
+      id
+      title
+      description
+      createDate
+      expireDate
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
