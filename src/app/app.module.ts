@@ -13,7 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import Amplify from 'aws-amplify';
 import awsconfig from '../aws-exports';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AmplifyAngularModule, AmplifyIonicModule, AmplifyService } from 'aws-amplify-angular';
 
 
 /* Configure Amplify resources */
@@ -23,17 +23,18 @@ Amplify.configure(awsconfig);
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    AmplifyUIAngularModule,
+    IonicModule,
+    AmplifyAngularModule,
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    BrowserModule,
-    BrowserAnimationsModule
+    BrowserModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    AmplifyService
   ],
   bootstrap: [AppComponent]
 })

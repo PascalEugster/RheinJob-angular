@@ -4,6 +4,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { APIService } from './API.service';
+import { AmplifyService } from 'aws-amplify-angular';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ import { APIService } from './API.service';
 })
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
+  amplifyService: AmplifyService;
   public appPages = [
     {
       title: 'Home',
@@ -39,6 +41,11 @@ export class AppComponent implements OnInit {
       icon: 'person'
     },
     {
+      title: 'Login',
+      url: '/login',
+      icon: 'person'
+    },
+    {
       title: 'Logout',
       url: '/logout',
       icon: 'close-circle'
@@ -55,10 +62,41 @@ export class AppComponent implements OnInit {
     }
   ];
 
+  public signUpConfig = {
+    header: 'My Customized Sign Up',
+    hideAllDefaults: true,
+    defaultCountryCode: '41',
+    signUpFields: [
+      {
+        label: 'Email',
+        key: 'email',
+        required: true,
+        displayOrder: 1,
+        type: 'string',
+      },
+      {
+        label: 'Password',
+        key: 'password',
+        required: true,
+        displayOrder: 2,
+        type: 'password'
+      },
+      {
+        label: 'Unternehmens Account',
+        key: 'isCompany',
+        required: true,
+        displayOrder: 4,
+        type: 'boolean',
+        custom: true
+      }
+    ]
+  };
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
+    public amplify: AmplifyService,
     private apiService: APIService
   ) {
     this.initializeApp();

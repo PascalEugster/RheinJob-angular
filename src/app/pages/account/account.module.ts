@@ -8,6 +8,9 @@ import { AccountPageRoutingModule } from './account-routing.module';
 
 import { AccountPage } from './account.page';
 import { AccountFormComponent } from 'src/app/components/account-form/account-form.component';
+/* Add Amplify imports */
+import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
+import Amplify from 'aws-amplify';
 
 
 
@@ -16,7 +19,9 @@ import { AccountFormComponent } from 'src/app/components/account-form/account-fo
     CommonModule,
     FormsModule,
     IonicModule,
-    AccountPageRoutingModule
+    AccountPageRoutingModule,
+
+    AmplifyUIAngularModule /* Add Amplify module */
   ],
   entryComponents: [AccountFormComponent],
   declarations: [AccountPage, AccountFormComponent]

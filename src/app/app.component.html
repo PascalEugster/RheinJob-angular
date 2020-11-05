@@ -1,7 +1,9 @@
 <ion-app>
+  <amplify-authenticator >
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
-      <ion-content >
+
+      <ion-content>
         <ion-list id="menue-list">
           <ion-img src="./assets/images/rheinjob.png"></ion-img>
           <ion-note>Die einfache Jobvermittlung im Rheintal</ion-note>
@@ -12,10 +14,14 @@
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
-          <amplify-sign-out></amplify-sign-out>
+          
+
         </ion-list>
+
       </ion-content>
+
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
+  </amplify-authenticator>
 </ion-app>
