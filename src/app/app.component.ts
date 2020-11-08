@@ -1,10 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef  } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { APIService } from './API.service';
+import { FormFieldTypes } from '@aws-amplify/ui-components';
+import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components';
+import { API, Auth } from 'aws-amplify';
+
+
 
 @Component({
   selector: 'app-root',
@@ -60,13 +65,42 @@ export class AppComponent implements OnInit {
       icon: 'create'
     }
   ];
+
+  formFields: FormFieldTypes;
+  title = 'amplify-angular-auth';
+  user: CognitoUserInterface | undefined;
+  authState: AuthState;
+
   constructor(
     //private apiService: APIService,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
+    private ref: ChangeDetectorRef,
+    private api: APIService,
   ) {
     this.initializeApp();
+
+    this.formFields = [
+      {
+        type: "email",
+        label: "E-Mail",
+        placeholder: "E-Mail Adresse eingeben",
+        required: true,
+      },
+      {
+        type: "password",
+        label: "Passwort",
+        placeholder: "Passwort hier eingeben",
+        required: true,
+      },
+      {
+        type: "password",
+        label: "Passwort",
+        placeholder: "Passwort hier eingeben",
+        required: true,
+      },
+    ];
   }
 
   initializeApp() {
@@ -77,9 +111,33 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    // const path = window.location.pathname.split('folder/')[1];
-    // if (path !== undefined) {
-    //   this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
-    // }
+    onAuthUIStateChange((authState, authData) => {
+      this.authState = authState;
+      this.user = authData as CognitoUserInterface;
+      this.ref.detectChanges();
+
+      if(authState == 'signedin' && this.api.GetUser(this.user.username) == null)
+      {
+        this.api.CreateAccount().then(event => {
+          console.log('User Created')
+        })
+      }
+    })
+  }
+
+  
+  handleSignUpSubmit(event: any) {
+    //this.signUp(event);
+    console.log('HANDLE SUBMIT for Sign up!', event);
+  }
+
+  handleSignInSubmit(event: any) {
+    console.log('HANDLE SUBMIT for Sign In!', event);
+  }
+
+  
+
+  ngOnDestroy() {
+    return onAuthUIStateChange;
   }
 }

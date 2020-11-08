@@ -1,61 +1,4 @@
 # this is an auto generated file. This will be overwritten
-subscription OnCreateTask {
-  onCreateTask {
-    id
-    title
-    description
-    status
-    createdAt
-    updatedAt
-  }
-}
-subscription OnUpdateTask {
-  onUpdateTask {
-    id
-    title
-    description
-    status
-    createdAt
-    updatedAt
-  }
-}
-subscription OnDeleteTask {
-  onDeleteTask {
-    id
-    title
-    description
-    status
-    createdAt
-    updatedAt
-  }
-}
-subscription OnCreatePrivateNote($owner: String!) {
-  onCreatePrivateNote(owner: $owner) {
-    id
-    content
-    createdAt
-    updatedAt
-    owner
-  }
-}
-subscription OnUpdatePrivateNote($owner: String!) {
-  onUpdatePrivateNote(owner: $owner) {
-    id
-    content
-    createdAt
-    updatedAt
-    owner
-  }
-}
-subscription OnDeletePrivateNote($owner: String!) {
-  onDeletePrivateNote(owner: $owner) {
-    id
-    content
-    createdAt
-    updatedAt
-    owner
-  }
-}
 subscription OnCreateAccount {
   onCreateAccount {
     id
@@ -69,12 +12,6 @@ subscription OnCreateAccount {
       postcode
       city
       image
-      account {
-        id
-        type
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
@@ -88,15 +25,6 @@ subscription OnCreateAccount {
       postcode
       city
       image
-      account {
-        id
-        type
-        createdAt
-        updatedAt
-      }
-      jobs {
-        nextToken
-      }
       createdAt
       updatedAt
     }
@@ -117,12 +45,6 @@ subscription OnUpdateAccount {
       postcode
       city
       image
-      account {
-        id
-        type
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
@@ -136,15 +58,6 @@ subscription OnUpdateAccount {
       postcode
       city
       image
-      account {
-        id
-        type
-        createdAt
-        updatedAt
-      }
-      jobs {
-        nextToken
-      }
       createdAt
       updatedAt
     }
@@ -165,12 +78,6 @@ subscription OnDeleteAccount {
       postcode
       city
       image
-      account {
-        id
-        type
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
@@ -184,15 +91,6 @@ subscription OnDeleteAccount {
       postcode
       city
       image
-      account {
-        id
-        type
-        createdAt
-        updatedAt
-      }
-      jobs {
-        nextToken
-      }
       createdAt
       updatedAt
     }
@@ -213,31 +111,6 @@ subscription OnCreateUser {
     account {
       id
       type
-      user {
-        id
-        prename
-        lastname
-        street
-        houseNumber
-        postcode
-        city
-        image
-        createdAt
-        updatedAt
-      }
-      company {
-        id
-        name
-        description
-        website
-        street
-        houseNumber
-        postcode
-        city
-        image
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
@@ -258,31 +131,6 @@ subscription OnUpdateUser {
     account {
       id
       type
-      user {
-        id
-        prename
-        lastname
-        street
-        houseNumber
-        postcode
-        city
-        image
-        createdAt
-        updatedAt
-      }
-      company {
-        id
-        name
-        description
-        website
-        street
-        houseNumber
-        postcode
-        city
-        image
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
@@ -303,31 +151,6 @@ subscription OnDeleteUser {
     account {
       id
       type
-      user {
-        id
-        prename
-        lastname
-        street
-        houseNumber
-        postcode
-        city
-        image
-        createdAt
-        updatedAt
-      }
-      company {
-        id
-        name
-        description
-        website
-        street
-        houseNumber
-        postcode
-        city
-        image
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
@@ -349,44 +172,10 @@ subscription OnCreateCompany {
     account {
       id
       type
-      user {
-        id
-        prename
-        lastname
-        street
-        houseNumber
-        postcode
-        city
-        image
-        createdAt
-        updatedAt
-      }
-      company {
-        id
-        name
-        description
-        website
-        street
-        houseNumber
-        postcode
-        city
-        image
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
     jobs {
-      items {
-        id
-        title
-        description
-        createDate
-        expireDate
-        createdAt
-        updatedAt
-      }
       nextToken
     }
     createdAt
@@ -407,44 +196,10 @@ subscription OnUpdateCompany {
     account {
       id
       type
-      user {
-        id
-        prename
-        lastname
-        street
-        houseNumber
-        postcode
-        city
-        image
-        createdAt
-        updatedAt
-      }
-      company {
-        id
-        name
-        description
-        website
-        street
-        houseNumber
-        postcode
-        city
-        image
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
     jobs {
-      items {
-        id
-        title
-        description
-        createDate
-        expireDate
-        createdAt
-        updatedAt
-      }
       nextToken
     }
     createdAt
@@ -465,44 +220,10 @@ subscription OnDeleteCompany {
     account {
       id
       type
-      user {
-        id
-        prename
-        lastname
-        street
-        houseNumber
-        postcode
-        city
-        image
-        createdAt
-        updatedAt
-      }
-      company {
-        id
-        name
-        description
-        website
-        street
-        houseNumber
-        postcode
-        city
-        image
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
     jobs {
-      items {
-        id
-        title
-        description
-        createDate
-        expireDate
-        createdAt
-        updatedAt
-      }
       nextToken
     }
     createdAt
@@ -515,44 +236,15 @@ subscription OnCreateCategory {
     title
     description
     jobs {
-      items {
-        id
-        title
-        description
-        createDate
-        expireDate
-        createdAt
-        updatedAt
-      }
       nextToken
     }
     categories {
-      items {
-        id
-        title
-        description
-        createdAt
-        updatedAt
-      }
       nextToken
     }
     category {
       id
       title
       description
-      jobs {
-        nextToken
-      }
-      categories {
-        nextToken
-      }
-      category {
-        id
-        title
-        description
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
@@ -566,44 +258,15 @@ subscription OnUpdateCategory {
     title
     description
     jobs {
-      items {
-        id
-        title
-        description
-        createDate
-        expireDate
-        createdAt
-        updatedAt
-      }
       nextToken
     }
     categories {
-      items {
-        id
-        title
-        description
-        createdAt
-        updatedAt
-      }
       nextToken
     }
     category {
       id
       title
       description
-      jobs {
-        nextToken
-      }
-      categories {
-        nextToken
-      }
-      category {
-        id
-        title
-        description
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
@@ -617,44 +280,15 @@ subscription OnDeleteCategory {
     title
     description
     jobs {
-      items {
-        id
-        title
-        description
-        createDate
-        expireDate
-        createdAt
-        updatedAt
-      }
       nextToken
     }
     categories {
-      items {
-        id
-        title
-        description
-        createdAt
-        updatedAt
-      }
       nextToken
     }
     category {
       id
       title
       description
-      jobs {
-        nextToken
-      }
-      categories {
-        nextToken
-      }
-      category {
-        id
-        title
-        description
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
@@ -670,12 +304,6 @@ subscription OnCreateJob {
     createDate
     expireDate
     applications {
-      items {
-        id
-        title
-        createdAt
-        updatedAt
-      }
       nextToken
     }
     company {
@@ -688,15 +316,6 @@ subscription OnCreateJob {
       postcode
       city
       image
-      account {
-        id
-        type
-        createdAt
-        updatedAt
-      }
-      jobs {
-        nextToken
-      }
       createdAt
       updatedAt
     }
@@ -704,19 +323,6 @@ subscription OnCreateJob {
       id
       title
       description
-      jobs {
-        nextToken
-      }
-      categories {
-        nextToken
-      }
-      category {
-        id
-        title
-        description
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
@@ -732,12 +338,6 @@ subscription OnUpdateJob {
     createDate
     expireDate
     applications {
-      items {
-        id
-        title
-        createdAt
-        updatedAt
-      }
       nextToken
     }
     company {
@@ -750,15 +350,6 @@ subscription OnUpdateJob {
       postcode
       city
       image
-      account {
-        id
-        type
-        createdAt
-        updatedAt
-      }
-      jobs {
-        nextToken
-      }
       createdAt
       updatedAt
     }
@@ -766,19 +357,6 @@ subscription OnUpdateJob {
       id
       title
       description
-      jobs {
-        nextToken
-      }
-      categories {
-        nextToken
-      }
-      category {
-        id
-        title
-        description
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
@@ -794,12 +372,6 @@ subscription OnDeleteJob {
     createDate
     expireDate
     applications {
-      items {
-        id
-        title
-        createdAt
-        updatedAt
-      }
       nextToken
     }
     company {
@@ -812,15 +384,6 @@ subscription OnDeleteJob {
       postcode
       city
       image
-      account {
-        id
-        type
-        createdAt
-        updatedAt
-      }
-      jobs {
-        nextToken
-      }
       createdAt
       updatedAt
     }
@@ -828,19 +391,6 @@ subscription OnDeleteJob {
       id
       title
       description
-      jobs {
-        nextToken
-      }
-      categories {
-        nextToken
-      }
-      category {
-        id
-        title
-        description
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
@@ -858,29 +408,6 @@ subscription OnCreateApplication {
       description
       createDate
       expireDate
-      applications {
-        nextToken
-      }
-      company {
-        id
-        name
-        description
-        website
-        street
-        houseNumber
-        postcode
-        city
-        image
-        createdAt
-        updatedAt
-      }
-      category {
-        id
-        title
-        description
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
@@ -898,29 +425,6 @@ subscription OnUpdateApplication {
       description
       createDate
       expireDate
-      applications {
-        nextToken
-      }
-      company {
-        id
-        name
-        description
-        website
-        street
-        houseNumber
-        postcode
-        city
-        image
-        createdAt
-        updatedAt
-      }
-      category {
-        id
-        title
-        description
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
@@ -938,29 +442,6 @@ subscription OnDeleteApplication {
       description
       createDate
       expireDate
-      applications {
-        nextToken
-      }
-      company {
-        id
-        name
-        description
-        website
-        street
-        houseNumber
-        postcode
-        city
-        image
-        createdAt
-        updatedAt
-      }
-      category {
-        id
-        title
-        description
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }

@@ -1,56 +1,4 @@
 # this is an auto generated file. This will be overwritten
-query GetTask($id: ID!) {
-  getTask(id: $id) {
-    id
-    title
-    description
-    status
-    createdAt
-    updatedAt
-  }
-}
-query ListTasks(
-  $filter: ModelTaskFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listTasks(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      title
-      description
-      status
-      createdAt
-      updatedAt
-    }
-    nextToken
-  }
-}
-query GetPrivateNote($id: ID!) {
-  getPrivateNote(id: $id) {
-    id
-    content
-    createdAt
-    updatedAt
-    owner
-  }
-}
-query ListPrivateNotes(
-  $filter: ModelPrivateNoteFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listPrivateNotes(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      content
-      createdAt
-      updatedAt
-      owner
-    }
-    nextToken
-  }
-}
 query GetAccount($id: ID!) {
   getAccount(id: $id) {
     id
@@ -64,12 +12,6 @@ query GetAccount($id: ID!) {
       postcode
       city
       image
-      account {
-        id
-        type
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
@@ -83,15 +25,6 @@ query GetAccount($id: ID!) {
       postcode
       city
       image
-      account {
-        id
-        type
-        createdAt
-        updatedAt
-      }
-      jobs {
-        nextToken
-      }
       createdAt
       updatedAt
     }
@@ -108,31 +41,6 @@ query ListAccounts(
     items {
       id
       type
-      user {
-        id
-        prename
-        lastname
-        street
-        houseNumber
-        postcode
-        city
-        image
-        createdAt
-        updatedAt
-      }
-      company {
-        id
-        name
-        description
-        website
-        street
-        houseNumber
-        postcode
-        city
-        image
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
@@ -152,31 +60,6 @@ query GetUser($id: ID!) {
     account {
       id
       type
-      user {
-        id
-        prename
-        lastname
-        street
-        houseNumber
-        postcode
-        city
-        image
-        createdAt
-        updatedAt
-      }
-      company {
-        id
-        name
-        description
-        website
-        street
-        houseNumber
-        postcode
-        city
-        image
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
@@ -199,12 +82,6 @@ query ListUsers(
       postcode
       city
       image
-      account {
-        id
-        type
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
@@ -225,44 +102,10 @@ query GetCompany($id: ID!) {
     account {
       id
       type
-      user {
-        id
-        prename
-        lastname
-        street
-        houseNumber
-        postcode
-        city
-        image
-        createdAt
-        updatedAt
-      }
-      company {
-        id
-        name
-        description
-        website
-        street
-        houseNumber
-        postcode
-        city
-        image
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
     jobs {
-      items {
-        id
-        title
-        description
-        createDate
-        expireDate
-        createdAt
-        updatedAt
-      }
       nextToken
     }
     createdAt
@@ -285,15 +128,6 @@ query ListCompanys(
       postcode
       city
       image
-      account {
-        id
-        type
-        createdAt
-        updatedAt
-      }
-      jobs {
-        nextToken
-      }
       createdAt
       updatedAt
     }
@@ -306,44 +140,15 @@ query GetCategory($id: ID!) {
     title
     description
     jobs {
-      items {
-        id
-        title
-        description
-        createDate
-        expireDate
-        createdAt
-        updatedAt
-      }
       nextToken
     }
     categories {
-      items {
-        id
-        title
-        description
-        createdAt
-        updatedAt
-      }
       nextToken
     }
     category {
       id
       title
       description
-      jobs {
-        nextToken
-      }
-      categories {
-        nextToken
-      }
-      category {
-        id
-        title
-        description
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
@@ -361,19 +166,6 @@ query ListCategorys(
       id
       title
       description
-      jobs {
-        nextToken
-      }
-      categories {
-        nextToken
-      }
-      category {
-        id
-        title
-        description
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
@@ -388,12 +180,6 @@ query GetJob($id: ID!) {
     createDate
     expireDate
     applications {
-      items {
-        id
-        title
-        createdAt
-        updatedAt
-      }
       nextToken
     }
     company {
@@ -406,15 +192,6 @@ query GetJob($id: ID!) {
       postcode
       city
       image
-      account {
-        id
-        type
-        createdAt
-        updatedAt
-      }
-      jobs {
-        nextToken
-      }
       createdAt
       updatedAt
     }
@@ -422,19 +199,6 @@ query GetJob($id: ID!) {
       id
       title
       description
-      jobs {
-        nextToken
-      }
-      categories {
-        nextToken
-      }
-      category {
-        id
-        title
-        description
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
@@ -450,29 +214,6 @@ query ListJobs($filter: ModelJobFilterInput, $limit: Int, $nextToken: String) {
       description
       createDate
       expireDate
-      applications {
-        nextToken
-      }
-      company {
-        id
-        name
-        description
-        website
-        street
-        houseNumber
-        postcode
-        city
-        image
-        createdAt
-        updatedAt
-      }
-      category {
-        id
-        title
-        description
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
@@ -489,29 +230,6 @@ query GetApplication($id: ID!) {
       description
       createDate
       expireDate
-      applications {
-        nextToken
-      }
-      company {
-        id
-        name
-        description
-        website
-        street
-        houseNumber
-        postcode
-        city
-        image
-        createdAt
-        updatedAt
-      }
-      category {
-        id
-        title
-        description
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }
@@ -528,15 +246,6 @@ query ListApplications(
     items {
       id
       title
-      job {
-        id
-        title
-        description
-        createDate
-        expireDate
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }

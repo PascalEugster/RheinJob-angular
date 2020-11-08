@@ -1,5 +1,14 @@
 <ion-app>
-  <ion-split-pane contentId="main-content">
+  <amplify-authenticator usernameAlias="email" *ngIf="authState !== 'signedin'">
+    <amplify-sign-up
+      slot="sign-up"
+      usernameAlias="email"
+      [formFields]="formFields"
+    ></amplify-sign-up>
+    <amplify-sign-in slot="sign-in" usernameAlias="email"></amplify-sign-in>
+  </amplify-authenticator>
+  
+  <ion-split-pane contentId="main-content" *ngIf="authState === 'signedin'" >
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="menue-list">
@@ -11,6 +20,7 @@
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
+          <amplify-sign-out button-text="Abmelden" *ngIf="authState == 'signedin'" ></amplify-sign-out>
         </ion-list>
       </ion-content>
     </ion-menu>
