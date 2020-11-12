@@ -6,5 +6,135 @@
 
 <ion-content>
 
-    <app-account-form></app-account-form>
+  <ion-list>
+    <ion-item>
+      <ion-label>Unternehmensaccount erstellen?</ion-label>
+      <ion-toggle [(ngModel)]="data.myToggle" color="primary">
+      </ion-toggle>
+    </ion-item>
+  </ion-list>
+
+
+  <div *ngIf="data.myToggle; then company else user"></div>
+
+  <ng-template #user>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmitUser()">
+      <ion-list lines="full" class="ion-no-margin">
+        <ion-list-header>
+          <ion-label>
+            Benutzer
+          </ion-label>
+        </ion-list-header>
+
+        <ion-item>
+          <ion-label position="stacked">Vorname</ion-label>
+          <ion-input formControlName="prename"  type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Nachname</ion-label>
+          <ion-input formControlName="lastname"  type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Strasse</ion-label>
+          <ion-input formControlName="street" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Hausnummer</ion-label>
+          <ion-input formControlName="houseNumber" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Zusatzinformationen</ion-label>
+          <ion-input formControlName="information" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Stadt</ion-label>
+          <ion-input formControlName="city"  ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Kanton</ion-label>
+          <ion-input formControlName="canton" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Postleitzahl</ion-label>
+          <ion-input formControlName="postcode"  ></ion-input>
+        </ion-item>
+         
+        <ion-button type="submit" fill="solid" shape="round">
+          Benutzer speichern
+        </ion-button>
+      </ion-list>
+    </form>
+  </ng-template>
+
+  <ng-template #company>
+    <form [formGroup]="companyForm" (ngSubmit)="onSubmitCompany()">
+      <ion-list lines="full" class="ion-no-margin">
+        <ion-list-header lines="full">
+          <ion-label>
+            Unternehmensaccount
+          </ion-label>
+        </ion-list-header>
+
+        <ion-item>
+          <ion-label position="stacked">Name</ion-label>
+          <ion-input type="text" formControlName="name" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Beschreibung</ion-label>
+          <ion-textarea placeholder="Beschreiben sie Ihre Firma möglichst genau." formControlName="description" type="text" auto-grow="true">
+          </ion-textarea>
+        </ion-item> 
+
+        <ion-item>
+          <ion-label position="stacked">Webseite</ion-label>
+          <ion-input type="text" formControlName="website" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Rechtsform</ion-label>
+          <ion-select value="3" formControlName="legal" >
+            <ion-select-option value="1">Gesellschaft mit beschränkter Haftung (GmbH)</ion-select-option>
+            <ion-select-option value="2">Aktiengesellschaft (AG)</ion-select-option>
+            <ion-select-option value="3">Kommanditgesellschaft</ion-select-option>
+            <ion-select-option value="4">Einzelfirma</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Anzahl Angestellte</ion-label>
+          <ion-input type="number" formControlName="count" placeholder="28"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Strasse</ion-label>
+          <ion-input  formControlName="street" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Hausnummer</ion-label>
+          <ion-input formControlName="houseNumber" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Zusatzinformationen</ion-label>
+          <ion-input formControlName="information" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Stadt</ion-label>
+          <ion-input formControlName="city"  ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Kanton</ion-label>
+          <ion-input formControlName="canton" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Postleitzahl</ion-label>
+          <ion-input formControlName="postcode"  ></ion-input>
+        </ion-item>
+        <ion-button type="submit" fill="solid" shape="round">
+          Unternehmen speichern
+        </ion-button>
+      </ion-list>
+    </form>
+  </ng-template>
 </ion-content>

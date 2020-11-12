@@ -8,9 +8,11 @@ query GetAccount($id: ID!) {
       prename
       lastname
       street
+      information
       houseNumber
       postcode
       city
+      canton
       image
       createdAt
       updatedAt
@@ -22,8 +24,12 @@ query GetAccount($id: ID!) {
       website
       street
       houseNumber
+      information
       postcode
       city
+      canton
+      legal
+      count
       image
       createdAt
       updatedAt
@@ -53,9 +59,11 @@ query GetUser($id: ID!) {
     prename
     lastname
     street
+    information
     houseNumber
     postcode
     city
+    canton
     image
     account {
       id
@@ -78,9 +86,11 @@ query ListUsers(
       prename
       lastname
       street
+      information
       houseNumber
       postcode
       city
+      canton
       image
       createdAt
       updatedAt
@@ -96,8 +106,12 @@ query GetCompany($id: ID!) {
     website
     street
     houseNumber
+    information
     postcode
     city
+    canton
+    legal
+    count
     image
     account {
       id
@@ -125,8 +139,12 @@ query ListCompanys(
       website
       street
       houseNumber
+      information
       postcode
       city
+      canton
+      legal
+      count
       image
       createdAt
       updatedAt
@@ -189,8 +207,12 @@ query GetJob($id: ID!) {
       website
       street
       houseNumber
+      information
       postcode
       city
+      canton
+      legal
+      count
       image
       createdAt
       updatedAt

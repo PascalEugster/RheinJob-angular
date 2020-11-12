@@ -8,6 +8,7 @@ import { APIService } from './API.service';
 import { FormFieldTypes } from '@aws-amplify/ui-components';
 import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components';
 import { API, Auth } from 'aws-amplify';
+import { Router } from '@angular/router'; 
 
 
 
@@ -45,11 +46,6 @@ export class AppComponent implements OnInit {
       icon: 'person'
     },
     {
-      title: 'Login',
-      url: '/login',
-      icon: 'person'
-    },
-    {
       title: 'Logout',
       url: '/logout',
       icon: 'close-circle'
@@ -78,6 +74,7 @@ export class AppComponent implements OnInit {
     private statusBar: StatusBar,
     private ref: ChangeDetectorRef,
     private api: APIService,
+    private router: Router
   ) {
     this.initializeApp();
 
@@ -116,13 +113,15 @@ export class AppComponent implements OnInit {
       this.user = authData as CognitoUserInterface;
       this.ref.detectChanges();
 
-      if(authState == 'signedin' && this.api.GetUser(this.user.username) == null)
+      if(authState == 'signedin' )
       {
-        this.api.CreateAccount().then(event => {
-          console.log('User Created')
-        })
+        this.api.GetUser(this.user.username).then(user => {
+          if(user == null) {
+            this.router.navigate(['/account']);
+          }
+        });
       }
-    })
+    });
   }
 
   

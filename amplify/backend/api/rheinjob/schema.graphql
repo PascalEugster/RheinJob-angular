@@ -10,10 +10,12 @@ type User @model {
   prename: String!
   lastname: String!
   street: String!
+  information: String
   houseNumber: String!
   postcode: Int!
   city: String!
-  image: String!
+  canton: String!
+  image: String
   account: Account! @connection(name: "AccountUser")
 }
 
@@ -24,9 +26,13 @@ type Company @model {
   website:String!
   street: String!
   houseNumber: String!
+  information: String
   postcode: Int!
   city: String!
-  image: String!
+  canton: String!
+  legal: Int!
+  count: Int!
+  image: String
   account: Account! @connection(name: "AccountCompany")
   jobs: [Job] @connection(name: "CompanyJobs")
 }

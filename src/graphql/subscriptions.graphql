@@ -8,9 +8,11 @@ subscription OnCreateAccount {
       prename
       lastname
       street
+      information
       houseNumber
       postcode
       city
+      canton
       image
       createdAt
       updatedAt
@@ -22,8 +24,12 @@ subscription OnCreateAccount {
       website
       street
       houseNumber
+      information
       postcode
       city
+      canton
+      legal
+      count
       image
       createdAt
       updatedAt
@@ -41,9 +47,11 @@ subscription OnUpdateAccount {
       prename
       lastname
       street
+      information
       houseNumber
       postcode
       city
+      canton
       image
       createdAt
       updatedAt
@@ -55,8 +63,12 @@ subscription OnUpdateAccount {
       website
       street
       houseNumber
+      information
       postcode
       city
+      canton
+      legal
+      count
       image
       createdAt
       updatedAt
@@ -74,9 +86,11 @@ subscription OnDeleteAccount {
       prename
       lastname
       street
+      information
       houseNumber
       postcode
       city
+      canton
       image
       createdAt
       updatedAt
@@ -88,8 +102,12 @@ subscription OnDeleteAccount {
       website
       street
       houseNumber
+      information
       postcode
       city
+      canton
+      legal
+      count
       image
       createdAt
       updatedAt
@@ -104,9 +122,11 @@ subscription OnCreateUser {
     prename
     lastname
     street
+    information
     houseNumber
     postcode
     city
+    canton
     image
     account {
       id
@@ -124,9 +144,11 @@ subscription OnUpdateUser {
     prename
     lastname
     street
+    information
     houseNumber
     postcode
     city
+    canton
     image
     account {
       id
@@ -144,9 +166,11 @@ subscription OnDeleteUser {
     prename
     lastname
     street
+    information
     houseNumber
     postcode
     city
+    canton
     image
     account {
       id
@@ -166,8 +190,12 @@ subscription OnCreateCompany {
     website
     street
     houseNumber
+    information
     postcode
     city
+    canton
+    legal
+    count
     image
     account {
       id
@@ -190,8 +218,12 @@ subscription OnUpdateCompany {
     website
     street
     houseNumber
+    information
     postcode
     city
+    canton
+    legal
+    count
     image
     account {
       id
@@ -214,8 +246,12 @@ subscription OnDeleteCompany {
     website
     street
     houseNumber
+    information
     postcode
     city
+    canton
+    legal
+    count
     image
     account {
       id
@@ -313,8 +349,12 @@ subscription OnCreateJob {
       website
       street
       houseNumber
+      information
       postcode
       city
+      canton
+      legal
+      count
       image
       createdAt
       updatedAt
@@ -347,8 +387,12 @@ subscription OnUpdateJob {
       website
       street
       houseNumber
+      information
       postcode
       city
+      canton
+      legal
+      count
       image
       createdAt
       updatedAt
@@ -381,8 +425,12 @@ subscription OnDeleteJob {
       website
       street
       houseNumber
+      information
       postcode
       city
+      canton
+      legal
+      count
       image
       createdAt
       updatedAt

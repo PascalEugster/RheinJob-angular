@@ -78,10 +78,12 @@ export type CreateUserInput = {
   prename: string;
   lastname: string;
   street: string;
+  information?: string | null;
   houseNumber: string;
   postcode: number;
   city: string;
-  image: string;
+  canton: string;
+  image?: string | null;
   userAccountId: string;
 };
 
@@ -89,9 +91,11 @@ export type ModelUserConditionInput = {
   prename?: ModelStringInput | null;
   lastname?: ModelStringInput | null;
   street?: ModelStringInput | null;
+  information?: ModelStringInput | null;
   houseNumber?: ModelStringInput | null;
   postcode?: ModelIntInput | null;
   city?: ModelStringInput | null;
+  canton?: ModelStringInput | null;
   image?: ModelStringInput | null;
   and?: Array<ModelUserConditionInput | null> | null;
   or?: Array<ModelUserConditionInput | null> | null;
@@ -115,9 +119,11 @@ export type UpdateUserInput = {
   prename?: string | null;
   lastname?: string | null;
   street?: string | null;
+  information?: string | null;
   houseNumber?: string | null;
   postcode?: number | null;
   city?: string | null;
+  canton?: string | null;
   image?: string | null;
   userAccountId?: string | null;
 };
@@ -133,9 +139,13 @@ export type CreateCompanyInput = {
   website: string;
   street: string;
   houseNumber: string;
+  information?: string | null;
   postcode: number;
   city: string;
-  image: string;
+  canton: string;
+  legal: number;
+  count: number;
+  image?: string | null;
   companyAccountId: string;
 };
 
@@ -145,8 +155,12 @@ export type ModelCompanyConditionInput = {
   website?: ModelStringInput | null;
   street?: ModelStringInput | null;
   houseNumber?: ModelStringInput | null;
+  information?: ModelStringInput | null;
   postcode?: ModelIntInput | null;
   city?: ModelStringInput | null;
+  canton?: ModelStringInput | null;
+  legal?: ModelIntInput | null;
+  count?: ModelIntInput | null;
   image?: ModelStringInput | null;
   and?: Array<ModelCompanyConditionInput | null> | null;
   or?: Array<ModelCompanyConditionInput | null> | null;
@@ -160,8 +174,12 @@ export type UpdateCompanyInput = {
   website?: string | null;
   street?: string | null;
   houseNumber?: string | null;
+  information?: string | null;
   postcode?: number | null;
   city?: string | null;
+  canton?: string | null;
+  legal?: number | null;
+  count?: number | null;
   image?: string | null;
   companyAccountId?: string | null;
 };
@@ -282,9 +300,11 @@ export type ModelUserFilterInput = {
   prename?: ModelStringInput | null;
   lastname?: ModelStringInput | null;
   street?: ModelStringInput | null;
+  information?: ModelStringInput | null;
   houseNumber?: ModelStringInput | null;
   postcode?: ModelIntInput | null;
   city?: ModelStringInput | null;
+  canton?: ModelStringInput | null;
   image?: ModelStringInput | null;
   and?: Array<ModelUserFilterInput | null> | null;
   or?: Array<ModelUserFilterInput | null> | null;
@@ -298,8 +318,12 @@ export type ModelCompanyFilterInput = {
   website?: ModelStringInput | null;
   street?: ModelStringInput | null;
   houseNumber?: ModelStringInput | null;
+  information?: ModelStringInput | null;
   postcode?: ModelIntInput | null;
   city?: ModelStringInput | null;
+  canton?: ModelStringInput | null;
+  legal?: ModelIntInput | null;
+  count?: ModelIntInput | null;
   image?: ModelStringInput | null;
   and?: Array<ModelCompanyFilterInput | null> | null;
   or?: Array<ModelCompanyFilterInput | null> | null;
@@ -344,10 +368,12 @@ export type CreateAccountMutation = {
     prename: string;
     lastname: string;
     street: string;
+    information: string | null;
     houseNumber: string;
     postcode: number;
     city: string;
-    image: string;
+    canton: string;
+    image: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -359,9 +385,13 @@ export type CreateAccountMutation = {
     website: string;
     street: string;
     houseNumber: string;
+    information: string | null;
     postcode: number;
     city: string;
-    image: string;
+    canton: string;
+    legal: number;
+    count: number;
+    image: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -379,10 +409,12 @@ export type UpdateAccountMutation = {
     prename: string;
     lastname: string;
     street: string;
+    information: string | null;
     houseNumber: string;
     postcode: number;
     city: string;
-    image: string;
+    canton: string;
+    image: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -394,9 +426,13 @@ export type UpdateAccountMutation = {
     website: string;
     street: string;
     houseNumber: string;
+    information: string | null;
     postcode: number;
     city: string;
-    image: string;
+    canton: string;
+    legal: number;
+    count: number;
+    image: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -414,10 +450,12 @@ export type DeleteAccountMutation = {
     prename: string;
     lastname: string;
     street: string;
+    information: string | null;
     houseNumber: string;
     postcode: number;
     city: string;
-    image: string;
+    canton: string;
+    image: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -429,9 +467,13 @@ export type DeleteAccountMutation = {
     website: string;
     street: string;
     houseNumber: string;
+    information: string | null;
     postcode: number;
     city: string;
-    image: string;
+    canton: string;
+    legal: number;
+    count: number;
+    image: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -445,10 +487,12 @@ export type CreateUserMutation = {
   prename: string;
   lastname: string;
   street: string;
+  information: string | null;
   houseNumber: string;
   postcode: number;
   city: string;
-  image: string;
+  canton: string;
+  image: string | null;
   account: {
     __typename: "Account";
     id: string;
@@ -466,10 +510,12 @@ export type UpdateUserMutation = {
   prename: string;
   lastname: string;
   street: string;
+  information: string | null;
   houseNumber: string;
   postcode: number;
   city: string;
-  image: string;
+  canton: string;
+  image: string | null;
   account: {
     __typename: "Account";
     id: string;
@@ -487,10 +533,12 @@ export type DeleteUserMutation = {
   prename: string;
   lastname: string;
   street: string;
+  information: string | null;
   houseNumber: string;
   postcode: number;
   city: string;
-  image: string;
+  canton: string;
+  image: string | null;
   account: {
     __typename: "Account";
     id: string;
@@ -510,9 +558,13 @@ export type CreateCompanyMutation = {
   website: string;
   street: string;
   houseNumber: string;
+  information: string | null;
   postcode: number;
   city: string;
-  image: string;
+  canton: string;
+  legal: number;
+  count: number;
+  image: string | null;
   account: {
     __typename: "Account";
     id: string;
@@ -536,9 +588,13 @@ export type UpdateCompanyMutation = {
   website: string;
   street: string;
   houseNumber: string;
+  information: string | null;
   postcode: number;
   city: string;
-  image: string;
+  canton: string;
+  legal: number;
+  count: number;
+  image: string | null;
   account: {
     __typename: "Account";
     id: string;
@@ -562,9 +618,13 @@ export type DeleteCompanyMutation = {
   website: string;
   street: string;
   houseNumber: string;
+  information: string | null;
   postcode: number;
   city: string;
-  image: string;
+  canton: string;
+  legal: number;
+  count: number;
+  image: string | null;
   account: {
     __typename: "Account";
     id: string;
@@ -674,9 +734,13 @@ export type CreateJobMutation = {
     website: string;
     street: string;
     houseNumber: string;
+    information: string | null;
     postcode: number;
     city: string;
-    image: string;
+    canton: string;
+    legal: number;
+    count: number;
+    image: string | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -711,9 +775,13 @@ export type UpdateJobMutation = {
     website: string;
     street: string;
     houseNumber: string;
+    information: string | null;
     postcode: number;
     city: string;
-    image: string;
+    canton: string;
+    legal: number;
+    count: number;
+    image: string | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -748,9 +816,13 @@ export type DeleteJobMutation = {
     website: string;
     street: string;
     houseNumber: string;
+    information: string | null;
     postcode: number;
     city: string;
-    image: string;
+    canton: string;
+    legal: number;
+    count: number;
+    image: string | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -830,10 +902,12 @@ export type GetAccountQuery = {
     prename: string;
     lastname: string;
     street: string;
+    information: string | null;
     houseNumber: string;
     postcode: number;
     city: string;
-    image: string;
+    canton: string;
+    image: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -845,9 +919,13 @@ export type GetAccountQuery = {
     website: string;
     street: string;
     houseNumber: string;
+    information: string | null;
     postcode: number;
     city: string;
-    image: string;
+    canton: string;
+    legal: number;
+    count: number;
+    image: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -873,10 +951,12 @@ export type GetUserQuery = {
   prename: string;
   lastname: string;
   street: string;
+  information: string | null;
   houseNumber: string;
   postcode: number;
   city: string;
-  image: string;
+  canton: string;
+  image: string | null;
   account: {
     __typename: "Account";
     id: string;
@@ -896,10 +976,12 @@ export type ListUsersQuery = {
     prename: string;
     lastname: string;
     street: string;
+    information: string | null;
     houseNumber: string;
     postcode: number;
     city: string;
-    image: string;
+    canton: string;
+    image: string | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -914,9 +996,13 @@ export type GetCompanyQuery = {
   website: string;
   street: string;
   houseNumber: string;
+  information: string | null;
   postcode: number;
   city: string;
-  image: string;
+  canton: string;
+  legal: number;
+  count: number;
+  image: string | null;
   account: {
     __typename: "Account";
     id: string;
@@ -942,9 +1028,13 @@ export type ListCompanysQuery = {
     website: string;
     street: string;
     houseNumber: string;
+    information: string | null;
     postcode: number;
     city: string;
-    image: string;
+    canton: string;
+    legal: number;
+    count: number;
+    image: string | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -1008,9 +1098,13 @@ export type GetJobQuery = {
     website: string;
     street: string;
     houseNumber: string;
+    information: string | null;
     postcode: number;
     city: string;
-    image: string;
+    canton: string;
+    legal: number;
+    count: number;
+    image: string | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -1081,10 +1175,12 @@ export type OnCreateAccountSubscription = {
     prename: string;
     lastname: string;
     street: string;
+    information: string | null;
     houseNumber: string;
     postcode: number;
     city: string;
-    image: string;
+    canton: string;
+    image: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1096,9 +1192,13 @@ export type OnCreateAccountSubscription = {
     website: string;
     street: string;
     houseNumber: string;
+    information: string | null;
     postcode: number;
     city: string;
-    image: string;
+    canton: string;
+    legal: number;
+    count: number;
+    image: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1116,10 +1216,12 @@ export type OnUpdateAccountSubscription = {
     prename: string;
     lastname: string;
     street: string;
+    information: string | null;
     houseNumber: string;
     postcode: number;
     city: string;
-    image: string;
+    canton: string;
+    image: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1131,9 +1233,13 @@ export type OnUpdateAccountSubscription = {
     website: string;
     street: string;
     houseNumber: string;
+    information: string | null;
     postcode: number;
     city: string;
-    image: string;
+    canton: string;
+    legal: number;
+    count: number;
+    image: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1151,10 +1257,12 @@ export type OnDeleteAccountSubscription = {
     prename: string;
     lastname: string;
     street: string;
+    information: string | null;
     houseNumber: string;
     postcode: number;
     city: string;
-    image: string;
+    canton: string;
+    image: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1166,9 +1274,13 @@ export type OnDeleteAccountSubscription = {
     website: string;
     street: string;
     houseNumber: string;
+    information: string | null;
     postcode: number;
     city: string;
-    image: string;
+    canton: string;
+    legal: number;
+    count: number;
+    image: string | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1182,10 +1294,12 @@ export type OnCreateUserSubscription = {
   prename: string;
   lastname: string;
   street: string;
+  information: string | null;
   houseNumber: string;
   postcode: number;
   city: string;
-  image: string;
+  canton: string;
+  image: string | null;
   account: {
     __typename: "Account";
     id: string;
@@ -1203,10 +1317,12 @@ export type OnUpdateUserSubscription = {
   prename: string;
   lastname: string;
   street: string;
+  information: string | null;
   houseNumber: string;
   postcode: number;
   city: string;
-  image: string;
+  canton: string;
+  image: string | null;
   account: {
     __typename: "Account";
     id: string;
@@ -1224,10 +1340,12 @@ export type OnDeleteUserSubscription = {
   prename: string;
   lastname: string;
   street: string;
+  information: string | null;
   houseNumber: string;
   postcode: number;
   city: string;
-  image: string;
+  canton: string;
+  image: string | null;
   account: {
     __typename: "Account";
     id: string;
@@ -1247,9 +1365,13 @@ export type OnCreateCompanySubscription = {
   website: string;
   street: string;
   houseNumber: string;
+  information: string | null;
   postcode: number;
   city: string;
-  image: string;
+  canton: string;
+  legal: number;
+  count: number;
+  image: string | null;
   account: {
     __typename: "Account";
     id: string;
@@ -1273,9 +1395,13 @@ export type OnUpdateCompanySubscription = {
   website: string;
   street: string;
   houseNumber: string;
+  information: string | null;
   postcode: number;
   city: string;
-  image: string;
+  canton: string;
+  legal: number;
+  count: number;
+  image: string | null;
   account: {
     __typename: "Account";
     id: string;
@@ -1299,9 +1425,13 @@ export type OnDeleteCompanySubscription = {
   website: string;
   street: string;
   houseNumber: string;
+  information: string | null;
   postcode: number;
   city: string;
-  image: string;
+  canton: string;
+  legal: number;
+  count: number;
+  image: string | null;
   account: {
     __typename: "Account";
     id: string;
@@ -1411,9 +1541,13 @@ export type OnCreateJobSubscription = {
     website: string;
     street: string;
     houseNumber: string;
+    information: string | null;
     postcode: number;
     city: string;
-    image: string;
+    canton: string;
+    legal: number;
+    count: number;
+    image: string | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -1448,9 +1582,13 @@ export type OnUpdateJobSubscription = {
     website: string;
     street: string;
     houseNumber: string;
+    information: string | null;
     postcode: number;
     city: string;
-    image: string;
+    canton: string;
+    legal: number;
+    count: number;
+    image: string | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -1485,9 +1623,13 @@ export type OnDeleteJobSubscription = {
     website: string;
     street: string;
     houseNumber: string;
+    information: string | null;
     postcode: number;
     city: string;
-    image: string;
+    canton: string;
+    legal: number;
+    count: number;
+    image: string | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -1576,9 +1718,11 @@ export class APIService {
             prename
             lastname
             street
+            information
             houseNumber
             postcode
             city
+            canton
             image
             createdAt
             updatedAt
@@ -1591,8 +1735,12 @@ export class APIService {
             website
             street
             houseNumber
+            information
             postcode
             city
+            canton
+            legal
+            count
             image
             createdAt
             updatedAt
@@ -1627,9 +1775,11 @@ export class APIService {
             prename
             lastname
             street
+            information
             houseNumber
             postcode
             city
+            canton
             image
             createdAt
             updatedAt
@@ -1642,8 +1792,12 @@ export class APIService {
             website
             street
             houseNumber
+            information
             postcode
             city
+            canton
+            legal
+            count
             image
             createdAt
             updatedAt
@@ -1678,9 +1832,11 @@ export class APIService {
             prename
             lastname
             street
+            information
             houseNumber
             postcode
             city
+            canton
             image
             createdAt
             updatedAt
@@ -1693,8 +1849,12 @@ export class APIService {
             website
             street
             houseNumber
+            information
             postcode
             city
+            canton
+            legal
+            count
             image
             createdAt
             updatedAt
@@ -1725,9 +1885,11 @@ export class APIService {
           prename
           lastname
           street
+          information
           houseNumber
           postcode
           city
+          canton
           image
           account {
             __typename
@@ -1762,9 +1924,11 @@ export class APIService {
           prename
           lastname
           street
+          information
           houseNumber
           postcode
           city
+          canton
           image
           account {
             __typename
@@ -1799,9 +1963,11 @@ export class APIService {
           prename
           lastname
           street
+          information
           houseNumber
           postcode
           city
+          canton
           image
           account {
             __typename
@@ -1838,8 +2004,12 @@ export class APIService {
           website
           street
           houseNumber
+          information
           postcode
           city
+          canton
+          legal
+          count
           image
           account {
             __typename
@@ -1880,8 +2050,12 @@ export class APIService {
           website
           street
           houseNumber
+          information
           postcode
           city
+          canton
+          legal
+          count
           image
           account {
             __typename
@@ -1922,8 +2096,12 @@ export class APIService {
           website
           street
           houseNumber
+          information
           postcode
           city
+          canton
+          legal
+          count
           image
           account {
             __typename
@@ -2098,8 +2276,12 @@ export class APIService {
             website
             street
             houseNumber
+            information
             postcode
             city
+            canton
+            legal
+            count
             image
             createdAt
             updatedAt
@@ -2151,8 +2333,12 @@ export class APIService {
             website
             street
             houseNumber
+            information
             postcode
             city
+            canton
+            legal
+            count
             image
             createdAt
             updatedAt
@@ -2204,8 +2390,12 @@ export class APIService {
             website
             street
             houseNumber
+            information
             postcode
             city
+            canton
+            legal
+            count
             image
             createdAt
             updatedAt
@@ -2347,9 +2537,11 @@ export class APIService {
             prename
             lastname
             street
+            information
             houseNumber
             postcode
             city
+            canton
             image
             createdAt
             updatedAt
@@ -2362,8 +2554,12 @@ export class APIService {
             website
             street
             houseNumber
+            information
             postcode
             city
+            canton
+            legal
+            count
             image
             createdAt
             updatedAt
@@ -2421,9 +2617,11 @@ export class APIService {
           prename
           lastname
           street
+          information
           houseNumber
           postcode
           city
+          canton
           image
           account {
             __typename
@@ -2458,9 +2656,11 @@ export class APIService {
             prename
             lastname
             street
+            information
             houseNumber
             postcode
             city
+            canton
             image
             createdAt
             updatedAt
@@ -2493,8 +2693,12 @@ export class APIService {
           website
           street
           houseNumber
+          information
           postcode
           city
+          canton
+          legal
+          count
           image
           account {
             __typename
@@ -2535,8 +2739,12 @@ export class APIService {
             website
             street
             houseNumber
+            information
             postcode
             city
+            canton
+            legal
+            count
             image
             createdAt
             updatedAt
@@ -2649,8 +2857,12 @@ export class APIService {
             website
             street
             houseNumber
+            information
             postcode
             city
+            canton
+            legal
+            count
             image
             createdAt
             updatedAt
@@ -2787,9 +2999,11 @@ export class APIService {
             prename
             lastname
             street
+            information
             houseNumber
             postcode
             city
+            canton
             image
             createdAt
             updatedAt
@@ -2802,8 +3016,12 @@ export class APIService {
             website
             street
             houseNumber
+            information
             postcode
             city
+            canton
+            legal
+            count
             image
             createdAt
             updatedAt
@@ -2830,9 +3048,11 @@ export class APIService {
             prename
             lastname
             street
+            information
             houseNumber
             postcode
             city
+            canton
             image
             createdAt
             updatedAt
@@ -2845,8 +3065,12 @@ export class APIService {
             website
             street
             houseNumber
+            information
             postcode
             city
+            canton
+            legal
+            count
             image
             createdAt
             updatedAt
@@ -2873,9 +3097,11 @@ export class APIService {
             prename
             lastname
             street
+            information
             houseNumber
             postcode
             city
+            canton
             image
             createdAt
             updatedAt
@@ -2888,8 +3114,12 @@ export class APIService {
             website
             street
             houseNumber
+            information
             postcode
             city
+            canton
+            legal
+            count
             image
             createdAt
             updatedAt
@@ -2912,9 +3142,11 @@ export class APIService {
           prename
           lastname
           street
+          information
           houseNumber
           postcode
           city
+          canton
           image
           account {
             __typename
@@ -2941,9 +3173,11 @@ export class APIService {
           prename
           lastname
           street
+          information
           houseNumber
           postcode
           city
+          canton
           image
           account {
             __typename
@@ -2970,9 +3204,11 @@ export class APIService {
           prename
           lastname
           street
+          information
           houseNumber
           postcode
           city
+          canton
           image
           account {
             __typename
@@ -3001,8 +3237,12 @@ export class APIService {
           website
           street
           houseNumber
+          information
           postcode
           city
+          canton
+          legal
+          count
           image
           account {
             __typename
@@ -3035,8 +3275,12 @@ export class APIService {
           website
           street
           houseNumber
+          information
           postcode
           city
+          canton
+          legal
+          count
           image
           account {
             __typename
@@ -3069,8 +3313,12 @@ export class APIService {
           website
           street
           houseNumber
+          information
           postcode
           city
+          canton
+          legal
+          count
           image
           account {
             __typename
@@ -3213,8 +3461,12 @@ export class APIService {
             website
             street
             houseNumber
+            information
             postcode
             city
+            canton
+            legal
+            count
             image
             createdAt
             updatedAt
@@ -3258,8 +3510,12 @@ export class APIService {
             website
             street
             houseNumber
+            information
             postcode
             city
+            canton
+            legal
+            count
             image
             createdAt
             updatedAt
@@ -3303,8 +3559,12 @@ export class APIService {
             website
             street
             houseNumber
+            information
             postcode
             city
+            canton
+            legal
+            count
             image
             createdAt
             updatedAt

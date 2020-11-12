@@ -11,9 +11,11 @@ mutation CreateAccount(
       prename
       lastname
       street
+      information
       houseNumber
       postcode
       city
+      canton
       image
       createdAt
       updatedAt
@@ -25,8 +27,12 @@ mutation CreateAccount(
       website
       street
       houseNumber
+      information
       postcode
       city
+      canton
+      legal
+      count
       image
       createdAt
       updatedAt
@@ -47,9 +53,11 @@ mutation UpdateAccount(
       prename
       lastname
       street
+      information
       houseNumber
       postcode
       city
+      canton
       image
       createdAt
       updatedAt
@@ -61,8 +69,12 @@ mutation UpdateAccount(
       website
       street
       houseNumber
+      information
       postcode
       city
+      canton
+      legal
+      count
       image
       createdAt
       updatedAt
@@ -83,9 +95,11 @@ mutation DeleteAccount(
       prename
       lastname
       street
+      information
       houseNumber
       postcode
       city
+      canton
       image
       createdAt
       updatedAt
@@ -97,8 +111,12 @@ mutation DeleteAccount(
       website
       street
       houseNumber
+      information
       postcode
       city
+      canton
+      legal
+      count
       image
       createdAt
       updatedAt
@@ -116,9 +134,11 @@ mutation CreateUser(
     prename
     lastname
     street
+    information
     houseNumber
     postcode
     city
+    canton
     image
     account {
       id
@@ -139,9 +159,11 @@ mutation UpdateUser(
     prename
     lastname
     street
+    information
     houseNumber
     postcode
     city
+    canton
     image
     account {
       id
@@ -162,9 +184,11 @@ mutation DeleteUser(
     prename
     lastname
     street
+    information
     houseNumber
     postcode
     city
+    canton
     image
     account {
       id
@@ -187,8 +211,12 @@ mutation CreateCompany(
     website
     street
     houseNumber
+    information
     postcode
     city
+    canton
+    legal
+    count
     image
     account {
       id
@@ -214,8 +242,12 @@ mutation UpdateCompany(
     website
     street
     houseNumber
+    information
     postcode
     city
+    canton
+    legal
+    count
     image
     account {
       id
@@ -241,8 +273,12 @@ mutation DeleteCompany(
     website
     street
     houseNumber
+    information
     postcode
     city
+    canton
+    legal
+    count
     image
     account {
       id
@@ -352,8 +388,12 @@ mutation CreateJob(
       website
       street
       houseNumber
+      information
       postcode
       city
+      canton
+      legal
+      count
       image
       createdAt
       updatedAt
@@ -389,8 +429,12 @@ mutation UpdateJob(
       website
       street
       houseNumber
+      information
       postcode
       city
+      canton
+      legal
+      count
       image
       createdAt
       updatedAt
@@ -426,8 +470,12 @@ mutation DeleteJob(
       website
       street
       houseNumber
+      information
       postcode
       city
+      canton
+      legal
+      count
       image
       createdAt
       updatedAt

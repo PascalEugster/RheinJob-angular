@@ -43,6 +43,7 @@
 </ng-template>
 
 <ng-template #company>
+  <form [formGroup]="companyForm" (ngSubmit)="onSubmit()" >
   <ion-list lines="full" class="ion-no-margin">
     <ion-list-header lines="full">
       <ion-label>
@@ -81,4 +82,5 @@
       Unternehmen speichern
     </ion-button>
   </ion-list>
+</form>
 </ng-template>
