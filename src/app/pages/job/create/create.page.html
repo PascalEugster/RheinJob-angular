@@ -5,56 +5,65 @@
 </ion-header>
 
 <ion-content>
-  <ion-list lines="full" class="ion-no-margin">
-    <ion-list-header lines="full">
-      <ion-label>
-        Allgemeines
-      </ion-label>
-    </ion-list-header>
-    <ion-item>
-      <ion-label position="stacked">Titel</ion-label>
-      <ion-input placeholder="Bezeichnung der Stelle" type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Beschreibung</ion-label>
-      <ion-textarea placeholder="Beschreiben sie die Stelle möglichst genau." type="text" auto-grow="true">
-      </ion-textarea>
-    </ion-item>
-    <form [formGroup]="form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <ion-list lines="full" class="ion-no-margin">
+      <ion-list-header lines="full">
+        <ion-label>
+          Allgemeines
+        </ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label position="stacked">Titel</ion-label>
+        <ion-input placeholder="Bezeichnung der Stelle" type="text" formControlName="title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Beschreibung</ion-label>
+        <ion-textarea placeholder="Beschreiben sie die Stelle möglichst genau." formControlName="description" type="text" auto-grow="true">
+        </ion-textarea>
+      </ion-item>
+      <ion-item *ngIf="categories">
+        <ion-label position="stacked">Unterkategorie von</ion-label>
+        <ion-select  formControlName="category">
+          <ion-select-option *ngFor="let category of categories; let id = index" value="{{category.id}}">{{category.title}}</ion-select-option>
+        </ion-select>
+      </ion-item>
       <ion-item>
         <ion-label position="stacked">Benefits</ion-label>
-        <tag-input formControlName="tags" [separatorKeyCodes]="[32]" class="ion-no-padding"></tag-input>
+        <tag-input formControlName="benefits" [separatorKeyCodes]="[32]" class="ion-no-padding"></tag-input>
       </ion-item>
-    </form>
-  </ion-list>
-  <ion-list>
-    <ion-list-header lines="full">
-      <ion-label>
-        Lohn & Anstellung
-      </ion-label>
-    </ion-list-header>
-    <ion-item>
-      <ion-label position="stacked">Arbeitspensum</ion-label>
-      <ion-select value="3">
-        <ion-select-option value="1">Stundenbasis</ion-select-option>
-        <ion-select-option value="2">Projektanstellung</ion-select-option>
-        <ion-select-option value="3">Teilzeit</ion-select-option>
-        <ion-select-option value="4">Vollzeit</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Lohn von</ion-label>
-      <ion-input type="number" placeholder="2700"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Lohn bis</ion-label>
-      <ion-input type="number" placeholder="20000"></ion-input>
-    </ion-item>
-  </ion-list>
-  <ion-list>
-    <ion-item>
-      <ion-label position="stacked">Dateien Hochladen</ion-label>
-      <ion-input placeholder="Mehrere Dateien hinzufügen" type="text"></ion-input>
-    </ion-item>
-  </ion-list>
+    </ion-list>
+    <ion-list>
+      <ion-list-header lines="full">
+        <ion-label>
+          Lohn & Anstellung
+        </ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label position="stacked">Arbeitspensum</ion-label>
+        <ion-select value="3" formControlName="employment">
+          <ion-select-option value="1">Stundenbasis</ion-select-option>
+          <ion-select-option value="2">Projektanstellung</ion-select-option>
+          <ion-select-option value="3">Teilzeit</ion-select-option>
+          <ion-select-option value="4">Vollzeit</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Lohn von</ion-label>
+        <ion-input type="number" placeholder="2700" formControlName="payFrom"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked" >Lohn bis</ion-label>
+        <ion-input type="number" placeholder="20000" formControlName="payTo"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Dateien Hochladen</ion-label>
+        <ion-input placeholder="Mehrere Dateien hinzufügen" type="text" ></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button type="submit" fill="solid" shape="round">
+      Job speichern
+    </ion-button>
+  </form>
 </ion-content>

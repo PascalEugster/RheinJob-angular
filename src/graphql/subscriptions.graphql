@@ -337,6 +337,9 @@ subscription OnCreateJob {
     id
     title
     description
+    employment
+    payFrom
+    payTo
     createDate
     expireDate
     applications {
@@ -375,6 +378,9 @@ subscription OnUpdateJob {
     id
     title
     description
+    employment
+    payFrom
+    payTo
     createDate
     expireDate
     applications {
@@ -413,6 +419,9 @@ subscription OnDeleteJob {
     id
     title
     description
+    employment
+    payFrom
+    payTo
     createDate
     expireDate
     applications {
@@ -454,6 +463,9 @@ subscription OnCreateApplication {
       id
       title
       description
+      employment
+      payFrom
+      payTo
       createDate
       expireDate
       createdAt
@@ -471,6 +483,9 @@ subscription OnUpdateApplication {
       id
       title
       description
+      employment
+      payFrom
+      payTo
       createDate
       expireDate
       createdAt
@@ -488,6 +503,9 @@ subscription OnDeleteApplication {
       id
       title
       description
+      employment
+      payFrom
+      payTo
       createDate
       expireDate
       createdAt

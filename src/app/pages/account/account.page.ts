@@ -47,7 +47,7 @@ export class AccountPage implements OnInit {
       postcode: ['', [Validators.required, Validators.pattern('[0-9]+')]],
     });
     Auth.currentUserInfo().then(user => {
-      this.API.GetAccount(user.id).then(getAccount => {
+      this.API.GetAccount(user.username).then(getAccount => {
         if (getAccount.type === 'company') {
           this.data.myToggle = true;
         }
@@ -55,7 +55,7 @@ export class AccountPage implements OnInit {
           this.data.myToggle = false;
         }
       });
-      this.API.GetAccount(user.id).then(account => {
+      this.API.GetAccount(user.username).then(account => {
         if (account.user != null) {
           this.userForm.setValue({
             prename: account.user.prename,
@@ -71,7 +71,7 @@ export class AccountPage implements OnInit {
 
       });
 
-      this.API.GetAccount(user.id).then(account => {
+      this.API.GetAccount(user.username).then(account => {
         if (account.company != null) {
           this.companyForm.setValue({
             name: account.company.name,
@@ -105,7 +105,7 @@ export class AccountPage implements OnInit {
       let type = 'company';
       Auth.currentUserInfo().then(user => {
         const createCompanyInput: CreateCompanyInput = {
-          id: user.id,
+          id: user.username,
           city: companyForm.city,
           houseNumber: companyForm.houseNumber,
           postcode: companyForm.postcode,
@@ -117,11 +117,11 @@ export class AccountPage implements OnInit {
           legal: companyForm.legal,
           count: companyForm.count,
           information: companyForm.information,
-          companyAccountId: user.id,
+          companyAccountId: user.username,
         };
 
         let updateCompanyInput: UpdateCompanyInput = {
-          id: user.id,
+          id: user.username,
           city: companyForm.city,
           houseNumber: companyForm.houseNumber,
           postcode: companyForm.postcode,
@@ -135,17 +135,17 @@ export class AccountPage implements OnInit {
           legal: companyForm.legal,
         };
 
-        this.API.GetAccount(user.id).then(account => {
+        this.API.GetAccount(user.username).then(account => {
           if (account != null) {
             //Update
             let UpdateAccountInput: UpdateAccountInput = {
               id: account.id,
-              accountCompanyId: user.id,
+              accountCompanyId: user.username,
               type
             };
             this.API.UpdateAccount(UpdateAccountInput).then(updatedAccount => {
-              this.deleteUser(user.id, UpdateAccountInput);
-              this.API.GetCompany(user.id).then(getCompany => {
+              this.deleteUser(user.username, UpdateAccountInput);
+              this.API.GetCompany(user.username).then(getCompany => {
                 if (getCompany != null) {
                   this.API.UpdateCompany(updateCompanyInput).then(updatedCompany => {
                     console.log("Company Updated!");
@@ -160,9 +160,9 @@ export class AccountPage implements OnInit {
           } else {
             //Create
             const createAccountInput: CreateAccountInput = {
-              id: user.id,
+              id: user.username,
               type: type,
-              accountCompanyId: user.id,
+              accountCompanyId: user.username,
             };
 
             this.API.CreateAccount(createAccountInput).then(createdAccount => {
@@ -186,7 +186,7 @@ export class AccountPage implements OnInit {
       let type = 'user';
       Auth.currentUserInfo().then(user => {
         let updateUserInput: UpdateUserInput = {
-          id: user.id,
+          id: user.username,
           city: userForm.city,
           houseNumber: userForm.houseNumber,
           information: userForm.information,
@@ -198,7 +198,7 @@ export class AccountPage implements OnInit {
         };
 
         const createUserInput: CreateUserInput = {
-          id: user.id,
+          id: user.username,
           prename: userForm.prename,
           lastname: userForm.lastname,
           street: userForm.street,
@@ -207,16 +207,16 @@ export class AccountPage implements OnInit {
           city: userForm.city,
           postcode: userForm.postcode,
           canton: userForm.canton,
-          userAccountId: user.id,
+          userAccountId: user.username,
         };
 
         const createAccountInput: CreateAccountInput = {
-          id: user.id,
+          id: user.username,
           type: type,
-          accountUserId: user.id,
+          accountUserId: user.username,
         };
 
-        this.API.GetAccount(user.id).then(account => {
+        this.API.GetAccount(user.username).then(account => {
           if (account != null) {
             //Update
             let UpdateAccountInput: UpdateAccountInput = {
@@ -224,8 +224,8 @@ export class AccountPage implements OnInit {
               type
             };
             this.API.UpdateAccount(UpdateAccountInput).then(updatedAccount => {
-              this.deleteCompany(user.id, UpdateAccountInput);
-              this.API.GetUser(user.id).then(getUser => {
+              this.deleteCompany(user.username, UpdateAccountInput);
+              this.API.GetUser(user.username).then(getUser => {
                 if (getUser != null) {
                   this.API.UpdateUser(updateUserInput).then(updatedUser => {
                     console.log("User Updated!");

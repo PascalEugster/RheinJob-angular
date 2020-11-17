@@ -218,6 +218,9 @@ export type CreateJobInput = {
   id?: string | null;
   title: string;
   description: string;
+  employment: number;
+  payFrom?: number | null;
+  payTo?: number | null;
   createDate: string;
   expireDate: string;
   jobCompanyId: string;
@@ -227,6 +230,9 @@ export type CreateJobInput = {
 export type ModelJobConditionInput = {
   title?: ModelStringInput | null;
   description?: ModelStringInput | null;
+  employment?: ModelIntInput | null;
+  payFrom?: ModelIntInput | null;
+  payTo?: ModelIntInput | null;
   createDate?: ModelStringInput | null;
   expireDate?: ModelStringInput | null;
   and?: Array<ModelJobConditionInput | null> | null;
@@ -238,6 +244,9 @@ export type UpdateJobInput = {
   id: string;
   title?: string | null;
   description?: string | null;
+  employment?: number | null;
+  payFrom?: number | null;
+  payTo?: number | null;
   createDate?: string | null;
   expireDate?: string | null;
   jobCompanyId?: string | null;
@@ -343,6 +352,9 @@ export type ModelJobFilterInput = {
   id?: ModelIDInput | null;
   title?: ModelStringInput | null;
   description?: ModelStringInput | null;
+  employment?: ModelIntInput | null;
+  payFrom?: ModelIntInput | null;
+  payTo?: ModelIntInput | null;
   createDate?: ModelStringInput | null;
   expireDate?: ModelStringInput | null;
   and?: Array<ModelJobFilterInput | null> | null;
@@ -720,6 +732,9 @@ export type CreateJobMutation = {
   id: string;
   title: string;
   description: string;
+  employment: number;
+  payFrom: number | null;
+  payTo: number | null;
   createDate: string;
   expireDate: string;
   applications: {
@@ -761,6 +776,9 @@ export type UpdateJobMutation = {
   id: string;
   title: string;
   description: string;
+  employment: number;
+  payFrom: number | null;
+  payTo: number | null;
   createDate: string;
   expireDate: string;
   applications: {
@@ -802,6 +820,9 @@ export type DeleteJobMutation = {
   id: string;
   title: string;
   description: string;
+  employment: number;
+  payFrom: number | null;
+  payTo: number | null;
   createDate: string;
   expireDate: string;
   applications: {
@@ -847,6 +868,9 @@ export type CreateApplicationMutation = {
     id: string;
     title: string;
     description: string;
+    employment: number;
+    payFrom: number | null;
+    payTo: number | null;
     createDate: string;
     expireDate: string;
     createdAt: string;
@@ -865,6 +889,9 @@ export type UpdateApplicationMutation = {
     id: string;
     title: string;
     description: string;
+    employment: number;
+    payFrom: number | null;
+    payTo: number | null;
     createDate: string;
     expireDate: string;
     createdAt: string;
@@ -883,6 +910,9 @@ export type DeleteApplicationMutation = {
     id: string;
     title: string;
     description: string;
+    employment: number;
+    payFrom: number | null;
+    payTo: number | null;
     createDate: string;
     expireDate: string;
     createdAt: string;
@@ -1084,6 +1114,9 @@ export type GetJobQuery = {
   id: string;
   title: string;
   description: string;
+  employment: number;
+  payFrom: number | null;
+  payTo: number | null;
   createDate: string;
   expireDate: string;
   applications: {
@@ -1127,6 +1160,9 @@ export type ListJobsQuery = {
     id: string;
     title: string;
     description: string;
+    employment: number;
+    payFrom: number | null;
+    payTo: number | null;
     createDate: string;
     expireDate: string;
     createdAt: string;
@@ -1144,6 +1180,9 @@ export type GetApplicationQuery = {
     id: string;
     title: string;
     description: string;
+    employment: number;
+    payFrom: number | null;
+    payTo: number | null;
     createDate: string;
     expireDate: string;
     createdAt: string;
@@ -1527,6 +1566,9 @@ export type OnCreateJobSubscription = {
   id: string;
   title: string;
   description: string;
+  employment: number;
+  payFrom: number | null;
+  payTo: number | null;
   createDate: string;
   expireDate: string;
   applications: {
@@ -1568,6 +1610,9 @@ export type OnUpdateJobSubscription = {
   id: string;
   title: string;
   description: string;
+  employment: number;
+  payFrom: number | null;
+  payTo: number | null;
   createDate: string;
   expireDate: string;
   applications: {
@@ -1609,6 +1654,9 @@ export type OnDeleteJobSubscription = {
   id: string;
   title: string;
   description: string;
+  employment: number;
+  payFrom: number | null;
+  payTo: number | null;
   createDate: string;
   expireDate: string;
   applications: {
@@ -1654,6 +1702,9 @@ export type OnCreateApplicationSubscription = {
     id: string;
     title: string;
     description: string;
+    employment: number;
+    payFrom: number | null;
+    payTo: number | null;
     createDate: string;
     expireDate: string;
     createdAt: string;
@@ -1672,6 +1723,9 @@ export type OnUpdateApplicationSubscription = {
     id: string;
     title: string;
     description: string;
+    employment: number;
+    payFrom: number | null;
+    payTo: number | null;
     createDate: string;
     expireDate: string;
     createdAt: string;
@@ -1690,6 +1744,9 @@ export type OnDeleteApplicationSubscription = {
     id: string;
     title: string;
     description: string;
+    employment: number;
+    payFrom: number | null;
+    payTo: number | null;
     createDate: string;
     expireDate: string;
     createdAt: string;
@@ -2262,6 +2319,9 @@ export class APIService {
           id
           title
           description
+          employment
+          payFrom
+          payTo
           createDate
           expireDate
           applications {
@@ -2319,6 +2379,9 @@ export class APIService {
           id
           title
           description
+          employment
+          payFrom
+          payTo
           createDate
           expireDate
           applications {
@@ -2376,6 +2439,9 @@ export class APIService {
           id
           title
           description
+          employment
+          payFrom
+          payTo
           createDate
           expireDate
           applications {
@@ -2437,6 +2503,9 @@ export class APIService {
             id
             title
             description
+            employment
+            payFrom
+            payTo
             createDate
             expireDate
             createdAt
@@ -2471,6 +2540,9 @@ export class APIService {
             id
             title
             description
+            employment
+            payFrom
+            payTo
             createDate
             expireDate
             createdAt
@@ -2505,6 +2577,9 @@ export class APIService {
             id
             title
             description
+            employment
+            payFrom
+            payTo
             createDate
             expireDate
             createdAt
@@ -2843,6 +2918,9 @@ export class APIService {
           id
           title
           description
+          employment
+          payFrom
+          payTo
           createDate
           expireDate
           applications {
@@ -2900,6 +2978,9 @@ export class APIService {
             id
             title
             description
+            employment
+            payFrom
+            payTo
             createDate
             expireDate
             createdAt
@@ -2934,6 +3015,9 @@ export class APIService {
             id
             title
             description
+            employment
+            payFrom
+            payTo
             createDate
             expireDate
             createdAt
@@ -3447,6 +3531,9 @@ export class APIService {
           id
           title
           description
+          employment
+          payFrom
+          payTo
           createDate
           expireDate
           applications {
@@ -3496,6 +3583,9 @@ export class APIService {
           id
           title
           description
+          employment
+          payFrom
+          payTo
           createDate
           expireDate
           applications {
@@ -3545,6 +3635,9 @@ export class APIService {
           id
           title
           description
+          employment
+          payFrom
+          payTo
           createDate
           expireDate
           applications {
@@ -3598,6 +3691,9 @@ export class APIService {
             id
             title
             description
+            employment
+            payFrom
+            payTo
             createDate
             expireDate
             createdAt
@@ -3624,6 +3720,9 @@ export class APIService {
             id
             title
             description
+            employment
+            payFrom
+            payTo
             createDate
             expireDate
             createdAt
@@ -3650,6 +3749,9 @@ export class APIService {
             id
             title
             description
+            employment
+            payFrom
+            payTo
             createDate
             expireDate
             createdAt

@@ -195,6 +195,9 @@ query GetJob($id: ID!) {
     id
     title
     description
+    employment
+    payFrom
+    payTo
     createDate
     expireDate
     applications {
@@ -234,6 +237,9 @@ query ListJobs($filter: ModelJobFilterInput, $limit: Int, $nextToken: String) {
       id
       title
       description
+      employment
+      payFrom
+      payTo
       createDate
       expireDate
       createdAt
@@ -250,6 +256,9 @@ query GetApplication($id: ID!) {
       id
       title
       description
+      employment
+      payFrom
+      payTo
       createDate
       expireDate
       createdAt

@@ -51,10 +51,13 @@ type Category @model {
 
 type Job @model {
   id: ID!
-  title: String!
+  title: String! 
   description: String!
-  createDate: AWSDate!
-  expireDate: AWSDate!
+  employment: Int!
+  payFrom: Int
+  payTo: Int
+  createDate: String!
+  expireDate: String!
   applications: [Application] @connection(name: "JobApplications")
   company: Company! @connection(name: "CompanyJobs")
   category: Category! @connection(name: "CategoryJobs")

@@ -41,6 +41,11 @@ export class AppComponent implements OnInit {
       icon: 'business'
     },
     {
+      title: 'Kategorien',
+      url: '/categories',
+      icon: 'business'
+    },
+    {
       title: 'Account',
       url: '/account',
       icon: 'person'
@@ -59,6 +64,11 @@ export class AppComponent implements OnInit {
       title: 'Job erfassen',
       url: '/job/create',
       icon: 'create'
+    },
+    {
+      title: 'Kategorie erfassen',
+      url: '/categories/create',
+      icon: 'create'
     }
   ];
 
@@ -68,7 +78,6 @@ export class AppComponent implements OnInit {
   authState: AuthState;
 
   constructor(
-    //private apiService: APIService,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
@@ -80,21 +89,21 @@ export class AppComponent implements OnInit {
 
     this.formFields = [
       {
-        type: "email",
-        label: "E-Mail",
-        placeholder: "E-Mail Adresse eingeben",
+        type: 'email',
+        label: 'E-Mail',
+        placeholder: 'E-Mail Adresse eingeben',
         required: true,
       },
       {
-        type: "password",
-        label: "Passwort",
-        placeholder: "Passwort hier eingeben",
+        type: 'password',
+        label: 'Passwort',
+        placeholder: 'Passwort hier eingeben',
         required: true,
       },
       {
-        type: "password",
-        label: "Passwort",
-        placeholder: "Passwort hier eingeben",
+        type: 'password',
+        label: 'Passwort',
+        placeholder: 'Passwort hier eingeben',
         required: true,
       },
     ];
@@ -115,10 +124,15 @@ export class AppComponent implements OnInit {
 
       if(authState == 'signedin' )
       {
-        this.api.GetUser(this.user.username).then(user => {
-          if(user == null) {
-            this.router.navigate(['/account']);
-          }
+        Auth.currentUserInfo().then(user => { 
+          this.api.GetUser(user.username).then(user => {
+            if(user == null) {
+              this.router.navigate(['/account']);
+            }
+            else {
+              this.router.navigate(['/']);
+            }
+          });
         });
       }
     });
@@ -133,8 +147,6 @@ export class AppComponent implements OnInit {
   handleSignInSubmit(event: any) {
     console.log('HANDLE SUBMIT for Sign In!', event);
   }
-
-  
 
   ngOnDestroy() {
     return onAuthUIStateChange;

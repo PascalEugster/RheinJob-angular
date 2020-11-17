@@ -376,6 +376,9 @@ mutation CreateJob(
     id
     title
     description
+    employment
+    payFrom
+    payTo
     createDate
     expireDate
     applications {
@@ -417,6 +420,9 @@ mutation UpdateJob(
     id
     title
     description
+    employment
+    payFrom
+    payTo
     createDate
     expireDate
     applications {
@@ -458,6 +464,9 @@ mutation DeleteJob(
     id
     title
     description
+    employment
+    payFrom
+    payTo
     createDate
     expireDate
     applications {
@@ -502,6 +511,9 @@ mutation CreateApplication(
       id
       title
       description
+      employment
+      payFrom
+      payTo
       createDate
       expireDate
       createdAt
@@ -522,6 +534,9 @@ mutation UpdateApplication(
       id
       title
       description
+      employment
+      payFrom
+      payTo
       createDate
       expireDate
       createdAt
@@ -542,6 +557,9 @@ mutation DeleteApplication(
       id
       title
       description
+      employment
+      payFrom
+      payTo
       createDate
       expireDate
       createdAt
