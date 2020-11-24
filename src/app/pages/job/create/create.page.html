@@ -17,9 +17,14 @@
         <ion-input placeholder="Bezeichnung der Stelle" type="text" formControlName="title"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">Beschreibung</ion-label>
-        <ion-textarea placeholder="Beschreiben sie die Stelle möglichst genau." formControlName="description" type="text" auto-grow="true">
+        <ion-label position="stacked">Kurzbeschreibung</ion-label>
+        <ion-textarea placeholder="Beschreiben sie die Stelle und Ihr Unternehmen möglichst kurz." formControlName="shortDescription" type="text" auto-grow="true">
         </ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Beschreibung</ion-label>
+        
+
       </ion-item>
       <ion-item *ngIf="categories">
         <ion-label position="stacked">Kategorie</ion-label>

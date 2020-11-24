@@ -1,9 +1,29 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Jobdetails</ion-title>
+    <ion-title>Job Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-grid *ngIf="job">
+    <ion-row>
+      <h1>{{job.title}}</h1>
+    </ion-row>
+    <ion-row>
+      <p>{{job.description}}</p>
+    </ion-row>
+    <ion-row>
+      <ion-grid>
+        <ion-row>
+          <span>{{job.company.name}}</span>
+        </ion-row>
+        <ion-row>
+          <span>{{job.company.street}}  {{job.company.houseNumber}}</span>
+        </ion-row>
+        <ion-row>
+          <span>{{job.company.city}} - {{job.company.postcode}} {{job.company.canton}}</span>
+        </ion-row>
+      </ion-grid>
+    </ion-row>
+  </ion-grid>
 </ion-content>
