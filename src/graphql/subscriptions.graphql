@@ -14,6 +14,12 @@ subscription OnCreateAccount {
       city
       canton
       image
+      account {
+        id
+        type
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -31,6 +37,15 @@ subscription OnCreateAccount {
       legal
       count
       image
+      account {
+        id
+        type
+        createdAt
+        updatedAt
+      }
+      jobs {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -53,6 +68,12 @@ subscription OnUpdateAccount {
       city
       canton
       image
+      account {
+        id
+        type
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -70,6 +91,15 @@ subscription OnUpdateAccount {
       legal
       count
       image
+      account {
+        id
+        type
+        createdAt
+        updatedAt
+      }
+      jobs {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -92,6 +122,12 @@ subscription OnDeleteAccount {
       city
       canton
       image
+      account {
+        id
+        type
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -109,6 +145,15 @@ subscription OnDeleteAccount {
       legal
       count
       image
+      account {
+        id
+        type
+        createdAt
+        updatedAt
+      }
+      jobs {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -131,6 +176,37 @@ subscription OnCreateUser {
     account {
       id
       type
+      user {
+        id
+        prename
+        lastname
+        street
+        information
+        houseNumber
+        postcode
+        city
+        canton
+        image
+        createdAt
+        updatedAt
+      }
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        information
+        postcode
+        city
+        canton
+        legal
+        count
+        image
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -153,6 +229,37 @@ subscription OnUpdateUser {
     account {
       id
       type
+      user {
+        id
+        prename
+        lastname
+        street
+        information
+        houseNumber
+        postcode
+        city
+        canton
+        image
+        createdAt
+        updatedAt
+      }
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        information
+        postcode
+        city
+        canton
+        legal
+        count
+        image
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -175,6 +282,37 @@ subscription OnDeleteUser {
     account {
       id
       type
+      user {
+        id
+        prename
+        lastname
+        street
+        information
+        houseNumber
+        postcode
+        city
+        canton
+        image
+        createdAt
+        updatedAt
+      }
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        information
+        postcode
+        city
+        canton
+        legal
+        count
+        image
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -200,10 +338,53 @@ subscription OnCreateCompany {
     account {
       id
       type
+      user {
+        id
+        prename
+        lastname
+        street
+        information
+        houseNumber
+        postcode
+        city
+        canton
+        image
+        createdAt
+        updatedAt
+      }
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        information
+        postcode
+        city
+        canton
+        legal
+        count
+        image
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
     jobs {
+      items {
+        id
+        title
+        description
+        employment
+        payFrom
+        payTo
+        createDate
+        expireDate
+        createdAt
+        updatedAt
+      }
       nextToken
     }
     createdAt
@@ -228,10 +409,53 @@ subscription OnUpdateCompany {
     account {
       id
       type
+      user {
+        id
+        prename
+        lastname
+        street
+        information
+        houseNumber
+        postcode
+        city
+        canton
+        image
+        createdAt
+        updatedAt
+      }
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        information
+        postcode
+        city
+        canton
+        legal
+        count
+        image
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
     jobs {
+      items {
+        id
+        title
+        description
+        employment
+        payFrom
+        payTo
+        createDate
+        expireDate
+        createdAt
+        updatedAt
+      }
       nextToken
     }
     createdAt
@@ -256,10 +480,53 @@ subscription OnDeleteCompany {
     account {
       id
       type
+      user {
+        id
+        prename
+        lastname
+        street
+        information
+        houseNumber
+        postcode
+        city
+        canton
+        image
+        createdAt
+        updatedAt
+      }
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        information
+        postcode
+        city
+        canton
+        legal
+        count
+        image
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
     jobs {
+      items {
+        id
+        title
+        description
+        employment
+        payFrom
+        payTo
+        createDate
+        expireDate
+        createdAt
+        updatedAt
+      }
       nextToken
     }
     createdAt
@@ -272,15 +539,47 @@ subscription OnCreateCategory {
     title
     description
     jobs {
+      items {
+        id
+        title
+        description
+        employment
+        payFrom
+        payTo
+        createDate
+        expireDate
+        createdAt
+        updatedAt
+      }
       nextToken
     }
     categories {
+      items {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
       nextToken
     }
     category {
       id
       title
       description
+      jobs {
+        nextToken
+      }
+      categories {
+        nextToken
+      }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -294,15 +593,47 @@ subscription OnUpdateCategory {
     title
     description
     jobs {
+      items {
+        id
+        title
+        description
+        employment
+        payFrom
+        payTo
+        createDate
+        expireDate
+        createdAt
+        updatedAt
+      }
       nextToken
     }
     categories {
+      items {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
       nextToken
     }
     category {
       id
       title
       description
+      jobs {
+        nextToken
+      }
+      categories {
+        nextToken
+      }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -316,15 +647,47 @@ subscription OnDeleteCategory {
     title
     description
     jobs {
+      items {
+        id
+        title
+        description
+        employment
+        payFrom
+        payTo
+        createDate
+        expireDate
+        createdAt
+        updatedAt
+      }
       nextToken
     }
     categories {
+      items {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
       nextToken
     }
     category {
       id
       title
       description
+      jobs {
+        nextToken
+      }
+      categories {
+        nextToken
+      }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -343,6 +706,12 @@ subscription OnCreateJob {
     createDate
     expireDate
     applications {
+      items {
+        id
+        title
+        createdAt
+        updatedAt
+      }
       nextToken
     }
     company {
@@ -359,6 +728,15 @@ subscription OnCreateJob {
       legal
       count
       image
+      account {
+        id
+        type
+        createdAt
+        updatedAt
+      }
+      jobs {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -366,6 +744,19 @@ subscription OnCreateJob {
       id
       title
       description
+      jobs {
+        nextToken
+      }
+      categories {
+        nextToken
+      }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -384,6 +775,12 @@ subscription OnUpdateJob {
     createDate
     expireDate
     applications {
+      items {
+        id
+        title
+        createdAt
+        updatedAt
+      }
       nextToken
     }
     company {
@@ -400,6 +797,15 @@ subscription OnUpdateJob {
       legal
       count
       image
+      account {
+        id
+        type
+        createdAt
+        updatedAt
+      }
+      jobs {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -407,6 +813,19 @@ subscription OnUpdateJob {
       id
       title
       description
+      jobs {
+        nextToken
+      }
+      categories {
+        nextToken
+      }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -425,6 +844,12 @@ subscription OnDeleteJob {
     createDate
     expireDate
     applications {
+      items {
+        id
+        title
+        createdAt
+        updatedAt
+      }
       nextToken
     }
     company {
@@ -441,6 +866,15 @@ subscription OnDeleteJob {
       legal
       count
       image
+      account {
+        id
+        type
+        createdAt
+        updatedAt
+      }
+      jobs {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -448,6 +882,19 @@ subscription OnDeleteJob {
       id
       title
       description
+      jobs {
+        nextToken
+      }
+      categories {
+        nextToken
+      }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -468,6 +915,33 @@ subscription OnCreateApplication {
       payTo
       createDate
       expireDate
+      applications {
+        nextToken
+      }
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        information
+        postcode
+        city
+        canton
+        legal
+        count
+        image
+        createdAt
+        updatedAt
+      }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -488,6 +962,33 @@ subscription OnUpdateApplication {
       payTo
       createDate
       expireDate
+      applications {
+        nextToken
+      }
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        information
+        postcode
+        city
+        canton
+        legal
+        count
+        image
+        createdAt
+        updatedAt
+      }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -508,6 +1009,33 @@ subscription OnDeleteApplication {
       payTo
       createDate
       expireDate
+      applications {
+        nextToken
+      }
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        information
+        postcode
+        city
+        canton
+        legal
+        count
+        image
+        createdAt
+        updatedAt
+      }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }

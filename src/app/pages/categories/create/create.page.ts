@@ -39,10 +39,13 @@ export class CreatePage implements OnInit {
       const createCategoryInput: CreateCategoryInput = {
         description : form.description,
         title : form.title,
-        categoryCategoryId:  form.category,
       };
-      this.API.CreateCategory(createCategoryInput).then(category => {
+      if(form.category != '0' || form.category != ''){
+        createCategoryInput.categoryCategoryId = form.category;
+      }
 
+      this.API.CreateCategory(createCategoryInput).then(category => {
+        console.log('Neue Kategorie erstellt : ' + category.title);
       });
     }
   }

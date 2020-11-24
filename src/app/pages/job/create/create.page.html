@@ -22,7 +22,7 @@
         </ion-textarea>
       </ion-item>
       <ion-item *ngIf="categories">
-        <ion-label position="stacked">Unterkategorie von</ion-label>
+        <ion-label position="stacked">Kategorie</ion-label>
         <ion-select  formControlName="category">
           <ion-select-option *ngFor="let category of categories; let id = index" value="{{category.id}}">{{category.title}}</ion-select-option>
         </ion-select>

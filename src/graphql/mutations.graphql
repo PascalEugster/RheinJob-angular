@@ -17,6 +17,12 @@ mutation CreateAccount(
       city
       canton
       image
+      account {
+        id
+        type
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -34,6 +40,15 @@ mutation CreateAccount(
       legal
       count
       image
+      account {
+        id
+        type
+        createdAt
+        updatedAt
+      }
+      jobs {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -59,6 +74,12 @@ mutation UpdateAccount(
       city
       canton
       image
+      account {
+        id
+        type
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -76,6 +97,15 @@ mutation UpdateAccount(
       legal
       count
       image
+      account {
+        id
+        type
+        createdAt
+        updatedAt
+      }
+      jobs {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -101,6 +131,12 @@ mutation DeleteAccount(
       city
       canton
       image
+      account {
+        id
+        type
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -118,6 +154,15 @@ mutation DeleteAccount(
       legal
       count
       image
+      account {
+        id
+        type
+        createdAt
+        updatedAt
+      }
+      jobs {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -143,6 +188,37 @@ mutation CreateUser(
     account {
       id
       type
+      user {
+        id
+        prename
+        lastname
+        street
+        information
+        houseNumber
+        postcode
+        city
+        canton
+        image
+        createdAt
+        updatedAt
+      }
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        information
+        postcode
+        city
+        canton
+        legal
+        count
+        image
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -168,6 +244,37 @@ mutation UpdateUser(
     account {
       id
       type
+      user {
+        id
+        prename
+        lastname
+        street
+        information
+        houseNumber
+        postcode
+        city
+        canton
+        image
+        createdAt
+        updatedAt
+      }
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        information
+        postcode
+        city
+        canton
+        legal
+        count
+        image
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -193,6 +300,37 @@ mutation DeleteUser(
     account {
       id
       type
+      user {
+        id
+        prename
+        lastname
+        street
+        information
+        houseNumber
+        postcode
+        city
+        canton
+        image
+        createdAt
+        updatedAt
+      }
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        information
+        postcode
+        city
+        canton
+        legal
+        count
+        image
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -221,10 +359,53 @@ mutation CreateCompany(
     account {
       id
       type
+      user {
+        id
+        prename
+        lastname
+        street
+        information
+        houseNumber
+        postcode
+        city
+        canton
+        image
+        createdAt
+        updatedAt
+      }
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        information
+        postcode
+        city
+        canton
+        legal
+        count
+        image
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
     jobs {
+      items {
+        id
+        title
+        description
+        employment
+        payFrom
+        payTo
+        createDate
+        expireDate
+        createdAt
+        updatedAt
+      }
       nextToken
     }
     createdAt
@@ -252,10 +433,53 @@ mutation UpdateCompany(
     account {
       id
       type
+      user {
+        id
+        prename
+        lastname
+        street
+        information
+        houseNumber
+        postcode
+        city
+        canton
+        image
+        createdAt
+        updatedAt
+      }
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        information
+        postcode
+        city
+        canton
+        legal
+        count
+        image
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
     jobs {
+      items {
+        id
+        title
+        description
+        employment
+        payFrom
+        payTo
+        createDate
+        expireDate
+        createdAt
+        updatedAt
+      }
       nextToken
     }
     createdAt
@@ -283,10 +507,53 @@ mutation DeleteCompany(
     account {
       id
       type
+      user {
+        id
+        prename
+        lastname
+        street
+        information
+        houseNumber
+        postcode
+        city
+        canton
+        image
+        createdAt
+        updatedAt
+      }
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        information
+        postcode
+        city
+        canton
+        legal
+        count
+        image
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
     jobs {
+      items {
+        id
+        title
+        description
+        employment
+        payFrom
+        payTo
+        createDate
+        expireDate
+        createdAt
+        updatedAt
+      }
       nextToken
     }
     createdAt
@@ -302,15 +569,47 @@ mutation CreateCategory(
     title
     description
     jobs {
+      items {
+        id
+        title
+        description
+        employment
+        payFrom
+        payTo
+        createDate
+        expireDate
+        createdAt
+        updatedAt
+      }
       nextToken
     }
     categories {
+      items {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
       nextToken
     }
     category {
       id
       title
       description
+      jobs {
+        nextToken
+      }
+      categories {
+        nextToken
+      }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -327,15 +626,47 @@ mutation UpdateCategory(
     title
     description
     jobs {
+      items {
+        id
+        title
+        description
+        employment
+        payFrom
+        payTo
+        createDate
+        expireDate
+        createdAt
+        updatedAt
+      }
       nextToken
     }
     categories {
+      items {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
       nextToken
     }
     category {
       id
       title
       description
+      jobs {
+        nextToken
+      }
+      categories {
+        nextToken
+      }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -352,15 +683,47 @@ mutation DeleteCategory(
     title
     description
     jobs {
+      items {
+        id
+        title
+        description
+        employment
+        payFrom
+        payTo
+        createDate
+        expireDate
+        createdAt
+        updatedAt
+      }
       nextToken
     }
     categories {
+      items {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
       nextToken
     }
     category {
       id
       title
       description
+      jobs {
+        nextToken
+      }
+      categories {
+        nextToken
+      }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -382,6 +745,12 @@ mutation CreateJob(
     createDate
     expireDate
     applications {
+      items {
+        id
+        title
+        createdAt
+        updatedAt
+      }
       nextToken
     }
     company {
@@ -398,6 +767,15 @@ mutation CreateJob(
       legal
       count
       image
+      account {
+        id
+        type
+        createdAt
+        updatedAt
+      }
+      jobs {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -405,6 +783,19 @@ mutation CreateJob(
       id
       title
       description
+      jobs {
+        nextToken
+      }
+      categories {
+        nextToken
+      }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -426,6 +817,12 @@ mutation UpdateJob(
     createDate
     expireDate
     applications {
+      items {
+        id
+        title
+        createdAt
+        updatedAt
+      }
       nextToken
     }
     company {
@@ -442,6 +839,15 @@ mutation UpdateJob(
       legal
       count
       image
+      account {
+        id
+        type
+        createdAt
+        updatedAt
+      }
+      jobs {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -449,6 +855,19 @@ mutation UpdateJob(
       id
       title
       description
+      jobs {
+        nextToken
+      }
+      categories {
+        nextToken
+      }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -470,6 +889,12 @@ mutation DeleteJob(
     createDate
     expireDate
     applications {
+      items {
+        id
+        title
+        createdAt
+        updatedAt
+      }
       nextToken
     }
     company {
@@ -486,6 +911,15 @@ mutation DeleteJob(
       legal
       count
       image
+      account {
+        id
+        type
+        createdAt
+        updatedAt
+      }
+      jobs {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -493,6 +927,19 @@ mutation DeleteJob(
       id
       title
       description
+      jobs {
+        nextToken
+      }
+      categories {
+        nextToken
+      }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -516,6 +963,33 @@ mutation CreateApplication(
       payTo
       createDate
       expireDate
+      applications {
+        nextToken
+      }
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        information
+        postcode
+        city
+        canton
+        legal
+        count
+        image
+        createdAt
+        updatedAt
+      }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -539,6 +1013,33 @@ mutation UpdateApplication(
       payTo
       createDate
       expireDate
+      applications {
+        nextToken
+      }
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        information
+        postcode
+        city
+        canton
+        legal
+        count
+        image
+        createdAt
+        updatedAt
+      }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -562,6 +1063,33 @@ mutation DeleteApplication(
       payTo
       createDate
       expireDate
+      applications {
+        nextToken
+      }
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        information
+        postcode
+        city
+        canton
+        legal
+        count
+        image
+        createdAt
+        updatedAt
+      }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }

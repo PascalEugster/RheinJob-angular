@@ -44,20 +44,25 @@ export class CreatePage implements OnInit {
     } else {
       const form = this.form.value;
       Auth.currentUserInfo().then(user => {
-         const createJobInput: CreateJobInput = {
-           title : form.title,
-           description : form.description,
-           jobCompanyId : user.username,
-           jobCategoryId : form.category,
-           createDate : new Date().toISOString(),
-           expireDate : new Date().toISOString(),
-           employment : form.employment
-         };
-         this.API.CreateJob(createJobInput).then(createdJob => {
-          console.log('Job Created!');
-         });
+        this.API.GetAccount(user.username).then(getAccount => {
+          if(getAccount != null) {
+            if(getAccount.company != null) {
+              const createJobInput: CreateJobInput = {
+                title : form.title,
+                description : form.description,
+                jobCompanyId : getAccount.company.id,
+                jobCategoryId : form.category,
+                createDate : new Date().toISOString(),
+                expireDate : new Date().toISOString(),
+                employment : form.employment
+              };
+              this.API.CreateJob(createJobInput).then(createdJob => {
+               console.log('Job Created!');
+              });
+            }
+          }
+        });
       });
     }
   }
-
 }

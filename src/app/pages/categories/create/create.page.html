@@ -15,7 +15,7 @@
       <ion-item *ngIf="categories">
         <ion-label position="stacked">Unterkategorie von</ion-label>
         <ion-select  formControlName="category">
-          <ion-select-option value="">-Keine-</ion-select-option>
+          <ion-select-option value="0">-Keine-</ion-select-option>
           <ion-select-option *ngFor="let category of categories; let id = index" value="{{category.id}}">{{category.title}}</ion-select-option>
         </ion-select>
       </ion-item>

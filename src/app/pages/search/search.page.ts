@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { APIService } from 'src/app/API.service';
 
 @Component({
   selector: 'app-search',
@@ -7,9 +8,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchPage implements OnInit {
 
-  constructor() { }
+  public jobs;
+  public categories;
+
+  constructor(public API: APIService) { }
+
 
   ngOnInit() {
+    this.reload();
+
+    this.API.ListCategorys().then(categoriesList => {
+      if (categoriesList != null) {
+        this.categories = categoriesList.items;
+      }
+    });
   }
 
+  reload() {
+    this.API.ListJobs().then(listJobs => {
+      if(listJobs != null)
+      {
+        this.jobs = listJobs.items;
+        console.log(this.jobs);
+      }
+    });
+  }
 }

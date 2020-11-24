@@ -6,6 +6,20 @@
     ion-item {
         h3 {
             font-weight: 600;
+            font-size: 18px;
+            color: var(--ion-color-primary)
         }
+        h4 {
+            font-weight: 600;
+        }
+    }
+
+    
+    .description {
+        font-size: 13px;
+        color: #1f1f1f;
+        p {
+            margin: 0,0,0,10;
+        }  
     }
 }

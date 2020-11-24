@@ -386,6 +386,13 @@ export type CreateAccountMutation = {
     city: string;
     canton: string;
     image: string | null;
+    account: {
+      __typename: "Account";
+      id: string;
+      type: string;
+      createdAt: string;
+      updatedAt: string;
+    };
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -404,6 +411,17 @@ export type CreateAccountMutation = {
     legal: number;
     count: number;
     image: string | null;
+    account: {
+      __typename: "Account";
+      id: string;
+      type: string;
+      createdAt: string;
+      updatedAt: string;
+    };
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -427,6 +445,13 @@ export type UpdateAccountMutation = {
     city: string;
     canton: string;
     image: string | null;
+    account: {
+      __typename: "Account";
+      id: string;
+      type: string;
+      createdAt: string;
+      updatedAt: string;
+    };
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -445,6 +470,17 @@ export type UpdateAccountMutation = {
     legal: number;
     count: number;
     image: string | null;
+    account: {
+      __typename: "Account";
+      id: string;
+      type: string;
+      createdAt: string;
+      updatedAt: string;
+    };
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -468,6 +504,13 @@ export type DeleteAccountMutation = {
     city: string;
     canton: string;
     image: string | null;
+    account: {
+      __typename: "Account";
+      id: string;
+      type: string;
+      createdAt: string;
+      updatedAt: string;
+    };
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -486,6 +529,17 @@ export type DeleteAccountMutation = {
     legal: number;
     count: number;
     image: string | null;
+    account: {
+      __typename: "Account";
+      id: string;
+      type: string;
+      createdAt: string;
+      updatedAt: string;
+    };
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -509,6 +563,39 @@ export type CreateUserMutation = {
     __typename: "Account";
     id: string;
     type: string;
+    user: {
+      __typename: "User";
+      id: string;
+      prename: string;
+      lastname: string;
+      street: string;
+      information: string | null;
+      houseNumber: string;
+      postcode: number;
+      city: string;
+      canton: string;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      description: string;
+      website: string;
+      street: string;
+      houseNumber: string;
+      information: string | null;
+      postcode: number;
+      city: string;
+      canton: string;
+      legal: number;
+      count: number;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -532,6 +619,39 @@ export type UpdateUserMutation = {
     __typename: "Account";
     id: string;
     type: string;
+    user: {
+      __typename: "User";
+      id: string;
+      prename: string;
+      lastname: string;
+      street: string;
+      information: string | null;
+      houseNumber: string;
+      postcode: number;
+      city: string;
+      canton: string;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      description: string;
+      website: string;
+      street: string;
+      houseNumber: string;
+      information: string | null;
+      postcode: number;
+      city: string;
+      canton: string;
+      legal: number;
+      count: number;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -555,6 +675,39 @@ export type DeleteUserMutation = {
     __typename: "Account";
     id: string;
     type: string;
+    user: {
+      __typename: "User";
+      id: string;
+      prename: string;
+      lastname: string;
+      street: string;
+      information: string | null;
+      houseNumber: string;
+      postcode: number;
+      city: string;
+      canton: string;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      description: string;
+      website: string;
+      street: string;
+      houseNumber: string;
+      information: string | null;
+      postcode: number;
+      city: string;
+      canton: string;
+      legal: number;
+      count: number;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -581,11 +734,57 @@ export type CreateCompanyMutation = {
     __typename: "Account";
     id: string;
     type: string;
+    user: {
+      __typename: "User";
+      id: string;
+      prename: string;
+      lastname: string;
+      street: string;
+      information: string | null;
+      houseNumber: string;
+      postcode: number;
+      city: string;
+      canton: string;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      description: string;
+      website: string;
+      street: string;
+      houseNumber: string;
+      information: string | null;
+      postcode: number;
+      city: string;
+      canton: string;
+      legal: number;
+      count: number;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
   jobs: {
     __typename: "ModelJobConnection";
+    items: Array<{
+      __typename: "Job";
+      id: string;
+      title: string;
+      description: string;
+      employment: number;
+      payFrom: number | null;
+      payTo: number | null;
+      createDate: string;
+      expireDate: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -611,11 +810,57 @@ export type UpdateCompanyMutation = {
     __typename: "Account";
     id: string;
     type: string;
+    user: {
+      __typename: "User";
+      id: string;
+      prename: string;
+      lastname: string;
+      street: string;
+      information: string | null;
+      houseNumber: string;
+      postcode: number;
+      city: string;
+      canton: string;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      description: string;
+      website: string;
+      street: string;
+      houseNumber: string;
+      information: string | null;
+      postcode: number;
+      city: string;
+      canton: string;
+      legal: number;
+      count: number;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
   jobs: {
     __typename: "ModelJobConnection";
+    items: Array<{
+      __typename: "Job";
+      id: string;
+      title: string;
+      description: string;
+      employment: number;
+      payFrom: number | null;
+      payTo: number | null;
+      createDate: string;
+      expireDate: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -641,11 +886,57 @@ export type DeleteCompanyMutation = {
     __typename: "Account";
     id: string;
     type: string;
+    user: {
+      __typename: "User";
+      id: string;
+      prename: string;
+      lastname: string;
+      street: string;
+      information: string | null;
+      houseNumber: string;
+      postcode: number;
+      city: string;
+      canton: string;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      description: string;
+      website: string;
+      street: string;
+      houseNumber: string;
+      information: string | null;
+      postcode: number;
+      city: string;
+      canton: string;
+      legal: number;
+      count: number;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
   jobs: {
     __typename: "ModelJobConnection";
+    items: Array<{
+      __typename: "Job";
+      id: string;
+      title: string;
+      description: string;
+      employment: number;
+      payFrom: number | null;
+      payTo: number | null;
+      createDate: string;
+      expireDate: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -659,10 +950,31 @@ export type CreateCategoryMutation = {
   description: string;
   jobs: {
     __typename: "ModelJobConnection";
+    items: Array<{
+      __typename: "Job";
+      id: string;
+      title: string;
+      description: string;
+      employment: number;
+      payFrom: number | null;
+      payTo: number | null;
+      createDate: string;
+      expireDate: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   categories: {
     __typename: "ModelCategoryConnection";
+    items: Array<{
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   category: {
@@ -670,6 +982,22 @@ export type CreateCategoryMutation = {
     id: string;
     title: string;
     description: string;
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
+    categories: {
+      __typename: "ModelCategoryConnection";
+      nextToken: string | null;
+    } | null;
+    category: {
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -684,10 +1012,31 @@ export type UpdateCategoryMutation = {
   description: string;
   jobs: {
     __typename: "ModelJobConnection";
+    items: Array<{
+      __typename: "Job";
+      id: string;
+      title: string;
+      description: string;
+      employment: number;
+      payFrom: number | null;
+      payTo: number | null;
+      createDate: string;
+      expireDate: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   categories: {
     __typename: "ModelCategoryConnection";
+    items: Array<{
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   category: {
@@ -695,6 +1044,22 @@ export type UpdateCategoryMutation = {
     id: string;
     title: string;
     description: string;
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
+    categories: {
+      __typename: "ModelCategoryConnection";
+      nextToken: string | null;
+    } | null;
+    category: {
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -709,10 +1074,31 @@ export type DeleteCategoryMutation = {
   description: string;
   jobs: {
     __typename: "ModelJobConnection";
+    items: Array<{
+      __typename: "Job";
+      id: string;
+      title: string;
+      description: string;
+      employment: number;
+      payFrom: number | null;
+      payTo: number | null;
+      createDate: string;
+      expireDate: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   categories: {
     __typename: "ModelCategoryConnection";
+    items: Array<{
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   category: {
@@ -720,6 +1106,22 @@ export type DeleteCategoryMutation = {
     id: string;
     title: string;
     description: string;
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
+    categories: {
+      __typename: "ModelCategoryConnection";
+      nextToken: string | null;
+    } | null;
+    category: {
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -739,6 +1141,13 @@ export type CreateJobMutation = {
   expireDate: string;
   applications: {
     __typename: "ModelApplicationConnection";
+    items: Array<{
+      __typename: "Application";
+      id: string;
+      title: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   company: {
@@ -756,6 +1165,17 @@ export type CreateJobMutation = {
     legal: number;
     count: number;
     image: string | null;
+    account: {
+      __typename: "Account";
+      id: string;
+      type: string;
+      createdAt: string;
+      updatedAt: string;
+    };
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -764,6 +1184,22 @@ export type CreateJobMutation = {
     id: string;
     title: string;
     description: string;
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
+    categories: {
+      __typename: "ModelCategoryConnection";
+      nextToken: string | null;
+    } | null;
+    category: {
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -783,6 +1219,13 @@ export type UpdateJobMutation = {
   expireDate: string;
   applications: {
     __typename: "ModelApplicationConnection";
+    items: Array<{
+      __typename: "Application";
+      id: string;
+      title: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   company: {
@@ -800,6 +1243,17 @@ export type UpdateJobMutation = {
     legal: number;
     count: number;
     image: string | null;
+    account: {
+      __typename: "Account";
+      id: string;
+      type: string;
+      createdAt: string;
+      updatedAt: string;
+    };
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -808,6 +1262,22 @@ export type UpdateJobMutation = {
     id: string;
     title: string;
     description: string;
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
+    categories: {
+      __typename: "ModelCategoryConnection";
+      nextToken: string | null;
+    } | null;
+    category: {
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -827,6 +1297,13 @@ export type DeleteJobMutation = {
   expireDate: string;
   applications: {
     __typename: "ModelApplicationConnection";
+    items: Array<{
+      __typename: "Application";
+      id: string;
+      title: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   company: {
@@ -844,6 +1321,17 @@ export type DeleteJobMutation = {
     legal: number;
     count: number;
     image: string | null;
+    account: {
+      __typename: "Account";
+      id: string;
+      type: string;
+      createdAt: string;
+      updatedAt: string;
+    };
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -852,6 +1340,22 @@ export type DeleteJobMutation = {
     id: string;
     title: string;
     description: string;
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
+    categories: {
+      __typename: "ModelCategoryConnection";
+      nextToken: string | null;
+    } | null;
+    category: {
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -873,6 +1377,36 @@ export type CreateApplicationMutation = {
     payTo: number | null;
     createDate: string;
     expireDate: string;
+    applications: {
+      __typename: "ModelApplicationConnection";
+      nextToken: string | null;
+    } | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      description: string;
+      website: string;
+      street: string;
+      houseNumber: string;
+      information: string | null;
+      postcode: number;
+      city: string;
+      canton: string;
+      legal: number;
+      count: number;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
+    category: {
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    };
     createdAt: string;
     updatedAt: string;
   };
@@ -894,6 +1428,36 @@ export type UpdateApplicationMutation = {
     payTo: number | null;
     createDate: string;
     expireDate: string;
+    applications: {
+      __typename: "ModelApplicationConnection";
+      nextToken: string | null;
+    } | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      description: string;
+      website: string;
+      street: string;
+      houseNumber: string;
+      information: string | null;
+      postcode: number;
+      city: string;
+      canton: string;
+      legal: number;
+      count: number;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
+    category: {
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    };
     createdAt: string;
     updatedAt: string;
   };
@@ -915,6 +1479,36 @@ export type DeleteApplicationMutation = {
     payTo: number | null;
     createDate: string;
     expireDate: string;
+    applications: {
+      __typename: "ModelApplicationConnection";
+      nextToken: string | null;
+    } | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      description: string;
+      website: string;
+      street: string;
+      houseNumber: string;
+      information: string | null;
+      postcode: number;
+      city: string;
+      canton: string;
+      legal: number;
+      count: number;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
+    category: {
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    };
     createdAt: string;
     updatedAt: string;
   };
@@ -938,6 +1532,13 @@ export type GetAccountQuery = {
     city: string;
     canton: string;
     image: string | null;
+    account: {
+      __typename: "Account";
+      id: string;
+      type: string;
+      createdAt: string;
+      updatedAt: string;
+    };
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -956,6 +1557,17 @@ export type GetAccountQuery = {
     legal: number;
     count: number;
     image: string | null;
+    account: {
+      __typename: "Account";
+      id: string;
+      type: string;
+      createdAt: string;
+      updatedAt: string;
+    };
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -969,6 +1581,39 @@ export type ListAccountsQuery = {
     __typename: "Account";
     id: string;
     type: string;
+    user: {
+      __typename: "User";
+      id: string;
+      prename: string;
+      lastname: string;
+      street: string;
+      information: string | null;
+      houseNumber: string;
+      postcode: number;
+      city: string;
+      canton: string;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      description: string;
+      website: string;
+      street: string;
+      houseNumber: string;
+      information: string | null;
+      postcode: number;
+      city: string;
+      canton: string;
+      legal: number;
+      count: number;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -991,6 +1636,39 @@ export type GetUserQuery = {
     __typename: "Account";
     id: string;
     type: string;
+    user: {
+      __typename: "User";
+      id: string;
+      prename: string;
+      lastname: string;
+      street: string;
+      information: string | null;
+      houseNumber: string;
+      postcode: number;
+      city: string;
+      canton: string;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      description: string;
+      website: string;
+      street: string;
+      houseNumber: string;
+      information: string | null;
+      postcode: number;
+      city: string;
+      canton: string;
+      legal: number;
+      count: number;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -1012,6 +1690,13 @@ export type ListUsersQuery = {
     city: string;
     canton: string;
     image: string | null;
+    account: {
+      __typename: "Account";
+      id: string;
+      type: string;
+      createdAt: string;
+      updatedAt: string;
+    };
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -1037,11 +1722,57 @@ export type GetCompanyQuery = {
     __typename: "Account";
     id: string;
     type: string;
+    user: {
+      __typename: "User";
+      id: string;
+      prename: string;
+      lastname: string;
+      street: string;
+      information: string | null;
+      houseNumber: string;
+      postcode: number;
+      city: string;
+      canton: string;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      description: string;
+      website: string;
+      street: string;
+      houseNumber: string;
+      information: string | null;
+      postcode: number;
+      city: string;
+      canton: string;
+      legal: number;
+      count: number;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
   jobs: {
     __typename: "ModelJobConnection";
+    items: Array<{
+      __typename: "Job";
+      id: string;
+      title: string;
+      description: string;
+      employment: number;
+      payFrom: number | null;
+      payTo: number | null;
+      createDate: string;
+      expireDate: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -1065,6 +1796,17 @@ export type ListCompanysQuery = {
     legal: number;
     count: number;
     image: string | null;
+    account: {
+      __typename: "Account";
+      id: string;
+      type: string;
+      createdAt: string;
+      updatedAt: string;
+    };
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -1078,10 +1820,31 @@ export type GetCategoryQuery = {
   description: string;
   jobs: {
     __typename: "ModelJobConnection";
+    items: Array<{
+      __typename: "Job";
+      id: string;
+      title: string;
+      description: string;
+      employment: number;
+      payFrom: number | null;
+      payTo: number | null;
+      createDate: string;
+      expireDate: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   categories: {
     __typename: "ModelCategoryConnection";
+    items: Array<{
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   category: {
@@ -1089,6 +1852,22 @@ export type GetCategoryQuery = {
     id: string;
     title: string;
     description: string;
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
+    categories: {
+      __typename: "ModelCategoryConnection";
+      nextToken: string | null;
+    } | null;
+    category: {
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1103,6 +1882,22 @@ export type ListCategorysQuery = {
     id: string;
     title: string;
     description: string;
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
+    categories: {
+      __typename: "ModelCategoryConnection";
+      nextToken: string | null;
+    } | null;
+    category: {
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -1121,6 +1916,13 @@ export type GetJobQuery = {
   expireDate: string;
   applications: {
     __typename: "ModelApplicationConnection";
+    items: Array<{
+      __typename: "Application";
+      id: string;
+      title: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   company: {
@@ -1138,6 +1940,17 @@ export type GetJobQuery = {
     legal: number;
     count: number;
     image: string | null;
+    account: {
+      __typename: "Account";
+      id: string;
+      type: string;
+      createdAt: string;
+      updatedAt: string;
+    };
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -1146,6 +1959,22 @@ export type GetJobQuery = {
     id: string;
     title: string;
     description: string;
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
+    categories: {
+      __typename: "ModelCategoryConnection";
+      nextToken: string | null;
+    } | null;
+    category: {
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -1165,6 +1994,36 @@ export type ListJobsQuery = {
     payTo: number | null;
     createDate: string;
     expireDate: string;
+    applications: {
+      __typename: "ModelApplicationConnection";
+      nextToken: string | null;
+    } | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      description: string;
+      website: string;
+      street: string;
+      houseNumber: string;
+      information: string | null;
+      postcode: number;
+      city: string;
+      canton: string;
+      legal: number;
+      count: number;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
+    category: {
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    };
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -1185,6 +2044,36 @@ export type GetApplicationQuery = {
     payTo: number | null;
     createDate: string;
     expireDate: string;
+    applications: {
+      __typename: "ModelApplicationConnection";
+      nextToken: string | null;
+    } | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      description: string;
+      website: string;
+      street: string;
+      houseNumber: string;
+      information: string | null;
+      postcode: number;
+      city: string;
+      canton: string;
+      legal: number;
+      count: number;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
+    category: {
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    };
     createdAt: string;
     updatedAt: string;
   };
@@ -1198,6 +2087,19 @@ export type ListApplicationsQuery = {
     __typename: "Application";
     id: string;
     title: string;
+    job: {
+      __typename: "Job";
+      id: string;
+      title: string;
+      description: string;
+      employment: number;
+      payFrom: number | null;
+      payTo: number | null;
+      createDate: string;
+      expireDate: string;
+      createdAt: string;
+      updatedAt: string;
+    };
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -1220,6 +2122,13 @@ export type OnCreateAccountSubscription = {
     city: string;
     canton: string;
     image: string | null;
+    account: {
+      __typename: "Account";
+      id: string;
+      type: string;
+      createdAt: string;
+      updatedAt: string;
+    };
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1238,6 +2147,17 @@ export type OnCreateAccountSubscription = {
     legal: number;
     count: number;
     image: string | null;
+    account: {
+      __typename: "Account";
+      id: string;
+      type: string;
+      createdAt: string;
+      updatedAt: string;
+    };
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1261,6 +2181,13 @@ export type OnUpdateAccountSubscription = {
     city: string;
     canton: string;
     image: string | null;
+    account: {
+      __typename: "Account";
+      id: string;
+      type: string;
+      createdAt: string;
+      updatedAt: string;
+    };
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1279,6 +2206,17 @@ export type OnUpdateAccountSubscription = {
     legal: number;
     count: number;
     image: string | null;
+    account: {
+      __typename: "Account";
+      id: string;
+      type: string;
+      createdAt: string;
+      updatedAt: string;
+    };
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1302,6 +2240,13 @@ export type OnDeleteAccountSubscription = {
     city: string;
     canton: string;
     image: string | null;
+    account: {
+      __typename: "Account";
+      id: string;
+      type: string;
+      createdAt: string;
+      updatedAt: string;
+    };
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1320,6 +2265,17 @@ export type OnDeleteAccountSubscription = {
     legal: number;
     count: number;
     image: string | null;
+    account: {
+      __typename: "Account";
+      id: string;
+      type: string;
+      createdAt: string;
+      updatedAt: string;
+    };
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1343,6 +2299,39 @@ export type OnCreateUserSubscription = {
     __typename: "Account";
     id: string;
     type: string;
+    user: {
+      __typename: "User";
+      id: string;
+      prename: string;
+      lastname: string;
+      street: string;
+      information: string | null;
+      houseNumber: string;
+      postcode: number;
+      city: string;
+      canton: string;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      description: string;
+      website: string;
+      street: string;
+      houseNumber: string;
+      information: string | null;
+      postcode: number;
+      city: string;
+      canton: string;
+      legal: number;
+      count: number;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -1366,6 +2355,39 @@ export type OnUpdateUserSubscription = {
     __typename: "Account";
     id: string;
     type: string;
+    user: {
+      __typename: "User";
+      id: string;
+      prename: string;
+      lastname: string;
+      street: string;
+      information: string | null;
+      houseNumber: string;
+      postcode: number;
+      city: string;
+      canton: string;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      description: string;
+      website: string;
+      street: string;
+      houseNumber: string;
+      information: string | null;
+      postcode: number;
+      city: string;
+      canton: string;
+      legal: number;
+      count: number;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -1389,6 +2411,39 @@ export type OnDeleteUserSubscription = {
     __typename: "Account";
     id: string;
     type: string;
+    user: {
+      __typename: "User";
+      id: string;
+      prename: string;
+      lastname: string;
+      street: string;
+      information: string | null;
+      houseNumber: string;
+      postcode: number;
+      city: string;
+      canton: string;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      description: string;
+      website: string;
+      street: string;
+      houseNumber: string;
+      information: string | null;
+      postcode: number;
+      city: string;
+      canton: string;
+      legal: number;
+      count: number;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -1415,11 +2470,57 @@ export type OnCreateCompanySubscription = {
     __typename: "Account";
     id: string;
     type: string;
+    user: {
+      __typename: "User";
+      id: string;
+      prename: string;
+      lastname: string;
+      street: string;
+      information: string | null;
+      houseNumber: string;
+      postcode: number;
+      city: string;
+      canton: string;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      description: string;
+      website: string;
+      street: string;
+      houseNumber: string;
+      information: string | null;
+      postcode: number;
+      city: string;
+      canton: string;
+      legal: number;
+      count: number;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
   jobs: {
     __typename: "ModelJobConnection";
+    items: Array<{
+      __typename: "Job";
+      id: string;
+      title: string;
+      description: string;
+      employment: number;
+      payFrom: number | null;
+      payTo: number | null;
+      createDate: string;
+      expireDate: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -1445,11 +2546,57 @@ export type OnUpdateCompanySubscription = {
     __typename: "Account";
     id: string;
     type: string;
+    user: {
+      __typename: "User";
+      id: string;
+      prename: string;
+      lastname: string;
+      street: string;
+      information: string | null;
+      houseNumber: string;
+      postcode: number;
+      city: string;
+      canton: string;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      description: string;
+      website: string;
+      street: string;
+      houseNumber: string;
+      information: string | null;
+      postcode: number;
+      city: string;
+      canton: string;
+      legal: number;
+      count: number;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
   jobs: {
     __typename: "ModelJobConnection";
+    items: Array<{
+      __typename: "Job";
+      id: string;
+      title: string;
+      description: string;
+      employment: number;
+      payFrom: number | null;
+      payTo: number | null;
+      createDate: string;
+      expireDate: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -1475,11 +2622,57 @@ export type OnDeleteCompanySubscription = {
     __typename: "Account";
     id: string;
     type: string;
+    user: {
+      __typename: "User";
+      id: string;
+      prename: string;
+      lastname: string;
+      street: string;
+      information: string | null;
+      houseNumber: string;
+      postcode: number;
+      city: string;
+      canton: string;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      description: string;
+      website: string;
+      street: string;
+      houseNumber: string;
+      information: string | null;
+      postcode: number;
+      city: string;
+      canton: string;
+      legal: number;
+      count: number;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
   jobs: {
     __typename: "ModelJobConnection";
+    items: Array<{
+      __typename: "Job";
+      id: string;
+      title: string;
+      description: string;
+      employment: number;
+      payFrom: number | null;
+      payTo: number | null;
+      createDate: string;
+      expireDate: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -1493,10 +2686,31 @@ export type OnCreateCategorySubscription = {
   description: string;
   jobs: {
     __typename: "ModelJobConnection";
+    items: Array<{
+      __typename: "Job";
+      id: string;
+      title: string;
+      description: string;
+      employment: number;
+      payFrom: number | null;
+      payTo: number | null;
+      createDate: string;
+      expireDate: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   categories: {
     __typename: "ModelCategoryConnection";
+    items: Array<{
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   category: {
@@ -1504,6 +2718,22 @@ export type OnCreateCategorySubscription = {
     id: string;
     title: string;
     description: string;
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
+    categories: {
+      __typename: "ModelCategoryConnection";
+      nextToken: string | null;
+    } | null;
+    category: {
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1518,10 +2748,31 @@ export type OnUpdateCategorySubscription = {
   description: string;
   jobs: {
     __typename: "ModelJobConnection";
+    items: Array<{
+      __typename: "Job";
+      id: string;
+      title: string;
+      description: string;
+      employment: number;
+      payFrom: number | null;
+      payTo: number | null;
+      createDate: string;
+      expireDate: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   categories: {
     __typename: "ModelCategoryConnection";
+    items: Array<{
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   category: {
@@ -1529,6 +2780,22 @@ export type OnUpdateCategorySubscription = {
     id: string;
     title: string;
     description: string;
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
+    categories: {
+      __typename: "ModelCategoryConnection";
+      nextToken: string | null;
+    } | null;
+    category: {
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1543,10 +2810,31 @@ export type OnDeleteCategorySubscription = {
   description: string;
   jobs: {
     __typename: "ModelJobConnection";
+    items: Array<{
+      __typename: "Job";
+      id: string;
+      title: string;
+      description: string;
+      employment: number;
+      payFrom: number | null;
+      payTo: number | null;
+      createDate: string;
+      expireDate: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   categories: {
     __typename: "ModelCategoryConnection";
+    items: Array<{
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   category: {
@@ -1554,6 +2842,22 @@ export type OnDeleteCategorySubscription = {
     id: string;
     title: string;
     description: string;
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
+    categories: {
+      __typename: "ModelCategoryConnection";
+      nextToken: string | null;
+    } | null;
+    category: {
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1573,6 +2877,13 @@ export type OnCreateJobSubscription = {
   expireDate: string;
   applications: {
     __typename: "ModelApplicationConnection";
+    items: Array<{
+      __typename: "Application";
+      id: string;
+      title: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   company: {
@@ -1590,6 +2901,17 @@ export type OnCreateJobSubscription = {
     legal: number;
     count: number;
     image: string | null;
+    account: {
+      __typename: "Account";
+      id: string;
+      type: string;
+      createdAt: string;
+      updatedAt: string;
+    };
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -1598,6 +2920,22 @@ export type OnCreateJobSubscription = {
     id: string;
     title: string;
     description: string;
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
+    categories: {
+      __typename: "ModelCategoryConnection";
+      nextToken: string | null;
+    } | null;
+    category: {
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -1617,6 +2955,13 @@ export type OnUpdateJobSubscription = {
   expireDate: string;
   applications: {
     __typename: "ModelApplicationConnection";
+    items: Array<{
+      __typename: "Application";
+      id: string;
+      title: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   company: {
@@ -1634,6 +2979,17 @@ export type OnUpdateJobSubscription = {
     legal: number;
     count: number;
     image: string | null;
+    account: {
+      __typename: "Account";
+      id: string;
+      type: string;
+      createdAt: string;
+      updatedAt: string;
+    };
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -1642,6 +2998,22 @@ export type OnUpdateJobSubscription = {
     id: string;
     title: string;
     description: string;
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
+    categories: {
+      __typename: "ModelCategoryConnection";
+      nextToken: string | null;
+    } | null;
+    category: {
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -1661,6 +3033,13 @@ export type OnDeleteJobSubscription = {
   expireDate: string;
   applications: {
     __typename: "ModelApplicationConnection";
+    items: Array<{
+      __typename: "Application";
+      id: string;
+      title: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     nextToken: string | null;
   } | null;
   company: {
@@ -1678,6 +3057,17 @@ export type OnDeleteJobSubscription = {
     legal: number;
     count: number;
     image: string | null;
+    account: {
+      __typename: "Account";
+      id: string;
+      type: string;
+      createdAt: string;
+      updatedAt: string;
+    };
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -1686,6 +3076,22 @@ export type OnDeleteJobSubscription = {
     id: string;
     title: string;
     description: string;
+    jobs: {
+      __typename: "ModelJobConnection";
+      nextToken: string | null;
+    } | null;
+    categories: {
+      __typename: "ModelCategoryConnection";
+      nextToken: string | null;
+    } | null;
+    category: {
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -1707,6 +3113,36 @@ export type OnCreateApplicationSubscription = {
     payTo: number | null;
     createDate: string;
     expireDate: string;
+    applications: {
+      __typename: "ModelApplicationConnection";
+      nextToken: string | null;
+    } | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      description: string;
+      website: string;
+      street: string;
+      houseNumber: string;
+      information: string | null;
+      postcode: number;
+      city: string;
+      canton: string;
+      legal: number;
+      count: number;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
+    category: {
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    };
     createdAt: string;
     updatedAt: string;
   };
@@ -1728,6 +3164,36 @@ export type OnUpdateApplicationSubscription = {
     payTo: number | null;
     createDate: string;
     expireDate: string;
+    applications: {
+      __typename: "ModelApplicationConnection";
+      nextToken: string | null;
+    } | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      description: string;
+      website: string;
+      street: string;
+      houseNumber: string;
+      information: string | null;
+      postcode: number;
+      city: string;
+      canton: string;
+      legal: number;
+      count: number;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
+    category: {
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    };
     createdAt: string;
     updatedAt: string;
   };
@@ -1749,6 +3215,36 @@ export type OnDeleteApplicationSubscription = {
     payTo: number | null;
     createDate: string;
     expireDate: string;
+    applications: {
+      __typename: "ModelApplicationConnection";
+      nextToken: string | null;
+    } | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      description: string;
+      website: string;
+      street: string;
+      houseNumber: string;
+      information: string | null;
+      postcode: number;
+      city: string;
+      canton: string;
+      legal: number;
+      count: number;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
+    category: {
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    };
     createdAt: string;
     updatedAt: string;
   };
@@ -1781,6 +3277,13 @@ export class APIService {
             city
             canton
             image
+            account {
+              __typename
+              id
+              type
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -1799,6 +3302,17 @@ export class APIService {
             legal
             count
             image
+            account {
+              __typename
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            jobs {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -1838,6 +3352,13 @@ export class APIService {
             city
             canton
             image
+            account {
+              __typename
+              id
+              type
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -1856,6 +3377,17 @@ export class APIService {
             legal
             count
             image
+            account {
+              __typename
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            jobs {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -1895,6 +3427,13 @@ export class APIService {
             city
             canton
             image
+            account {
+              __typename
+              id
+              type
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -1913,6 +3452,17 @@ export class APIService {
             legal
             count
             image
+            account {
+              __typename
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            jobs {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -1952,6 +3502,39 @@ export class APIService {
             __typename
             id
             type
+            user {
+              __typename
+              id
+              prename
+              lastname
+              street
+              information
+              houseNumber
+              postcode
+              city
+              canton
+              image
+              createdAt
+              updatedAt
+            }
+            company {
+              __typename
+              id
+              name
+              description
+              website
+              street
+              houseNumber
+              information
+              postcode
+              city
+              canton
+              legal
+              count
+              image
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -1991,6 +3574,39 @@ export class APIService {
             __typename
             id
             type
+            user {
+              __typename
+              id
+              prename
+              lastname
+              street
+              information
+              houseNumber
+              postcode
+              city
+              canton
+              image
+              createdAt
+              updatedAt
+            }
+            company {
+              __typename
+              id
+              name
+              description
+              website
+              street
+              houseNumber
+              information
+              postcode
+              city
+              canton
+              legal
+              count
+              image
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -2030,6 +3646,39 @@ export class APIService {
             __typename
             id
             type
+            user {
+              __typename
+              id
+              prename
+              lastname
+              street
+              information
+              houseNumber
+              postcode
+              city
+              canton
+              image
+              createdAt
+              updatedAt
+            }
+            company {
+              __typename
+              id
+              name
+              description
+              website
+              street
+              houseNumber
+              information
+              postcode
+              city
+              canton
+              legal
+              count
+              image
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -2072,11 +3721,57 @@ export class APIService {
             __typename
             id
             type
+            user {
+              __typename
+              id
+              prename
+              lastname
+              street
+              information
+              houseNumber
+              postcode
+              city
+              canton
+              image
+              createdAt
+              updatedAt
+            }
+            company {
+              __typename
+              id
+              name
+              description
+              website
+              street
+              houseNumber
+              information
+              postcode
+              city
+              canton
+              legal
+              count
+              image
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
           jobs {
             __typename
+            items {
+              __typename
+              id
+              title
+              description
+              employment
+              payFrom
+              payTo
+              createDate
+              expireDate
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           createdAt
@@ -2118,11 +3813,57 @@ export class APIService {
             __typename
             id
             type
+            user {
+              __typename
+              id
+              prename
+              lastname
+              street
+              information
+              houseNumber
+              postcode
+              city
+              canton
+              image
+              createdAt
+              updatedAt
+            }
+            company {
+              __typename
+              id
+              name
+              description
+              website
+              street
+              houseNumber
+              information
+              postcode
+              city
+              canton
+              legal
+              count
+              image
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
           jobs {
             __typename
+            items {
+              __typename
+              id
+              title
+              description
+              employment
+              payFrom
+              payTo
+              createDate
+              expireDate
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           createdAt
@@ -2164,11 +3905,57 @@ export class APIService {
             __typename
             id
             type
+            user {
+              __typename
+              id
+              prename
+              lastname
+              street
+              information
+              houseNumber
+              postcode
+              city
+              canton
+              image
+              createdAt
+              updatedAt
+            }
+            company {
+              __typename
+              id
+              name
+              description
+              website
+              street
+              houseNumber
+              information
+              postcode
+              city
+              canton
+              legal
+              count
+              image
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
           jobs {
             __typename
+            items {
+              __typename
+              id
+              title
+              description
+              employment
+              payFrom
+              payTo
+              createDate
+              expireDate
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           createdAt
@@ -2198,10 +3985,31 @@ export class APIService {
           description
           jobs {
             __typename
+            items {
+              __typename
+              id
+              title
+              description
+              employment
+              payFrom
+              payTo
+              createDate
+              expireDate
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           categories {
             __typename
+            items {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           category {
@@ -2209,6 +4017,22 @@ export class APIService {
             id
             title
             description
+            jobs {
+              __typename
+              nextToken
+            }
+            categories {
+              __typename
+              nextToken
+            }
+            category {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -2239,10 +4063,31 @@ export class APIService {
           description
           jobs {
             __typename
+            items {
+              __typename
+              id
+              title
+              description
+              employment
+              payFrom
+              payTo
+              createDate
+              expireDate
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           categories {
             __typename
+            items {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           category {
@@ -2250,6 +4095,22 @@ export class APIService {
             id
             title
             description
+            jobs {
+              __typename
+              nextToken
+            }
+            categories {
+              __typename
+              nextToken
+            }
+            category {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -2280,10 +4141,31 @@ export class APIService {
           description
           jobs {
             __typename
+            items {
+              __typename
+              id
+              title
+              description
+              employment
+              payFrom
+              payTo
+              createDate
+              expireDate
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           categories {
             __typename
+            items {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           category {
@@ -2291,6 +4173,22 @@ export class APIService {
             id
             title
             description
+            jobs {
+              __typename
+              nextToken
+            }
+            categories {
+              __typename
+              nextToken
+            }
+            category {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -2326,6 +4224,13 @@ export class APIService {
           expireDate
           applications {
             __typename
+            items {
+              __typename
+              id
+              title
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           company {
@@ -2343,6 +4248,17 @@ export class APIService {
             legal
             count
             image
+            account {
+              __typename
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            jobs {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -2351,6 +4267,22 @@ export class APIService {
             id
             title
             description
+            jobs {
+              __typename
+              nextToken
+            }
+            categories {
+              __typename
+              nextToken
+            }
+            category {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -2386,6 +4318,13 @@ export class APIService {
           expireDate
           applications {
             __typename
+            items {
+              __typename
+              id
+              title
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           company {
@@ -2403,6 +4342,17 @@ export class APIService {
             legal
             count
             image
+            account {
+              __typename
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            jobs {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -2411,6 +4361,22 @@ export class APIService {
             id
             title
             description
+            jobs {
+              __typename
+              nextToken
+            }
+            categories {
+              __typename
+              nextToken
+            }
+            category {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -2446,6 +4412,13 @@ export class APIService {
           expireDate
           applications {
             __typename
+            items {
+              __typename
+              id
+              title
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           company {
@@ -2463,6 +4436,17 @@ export class APIService {
             legal
             count
             image
+            account {
+              __typename
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            jobs {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -2471,6 +4455,22 @@ export class APIService {
             id
             title
             description
+            jobs {
+              __typename
+              nextToken
+            }
+            categories {
+              __typename
+              nextToken
+            }
+            category {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -2508,6 +4508,36 @@ export class APIService {
             payTo
             createDate
             expireDate
+            applications {
+              __typename
+              nextToken
+            }
+            company {
+              __typename
+              id
+              name
+              description
+              website
+              street
+              houseNumber
+              information
+              postcode
+              city
+              canton
+              legal
+              count
+              image
+              createdAt
+              updatedAt
+            }
+            category {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -2545,6 +4575,36 @@ export class APIService {
             payTo
             createDate
             expireDate
+            applications {
+              __typename
+              nextToken
+            }
+            company {
+              __typename
+              id
+              name
+              description
+              website
+              street
+              houseNumber
+              information
+              postcode
+              city
+              canton
+              legal
+              count
+              image
+              createdAt
+              updatedAt
+            }
+            category {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -2582,6 +4642,36 @@ export class APIService {
             payTo
             createDate
             expireDate
+            applications {
+              __typename
+              nextToken
+            }
+            company {
+              __typename
+              id
+              name
+              description
+              website
+              street
+              houseNumber
+              information
+              postcode
+              city
+              canton
+              legal
+              count
+              image
+              createdAt
+              updatedAt
+            }
+            category {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -2618,6 +4708,13 @@ export class APIService {
             city
             canton
             image
+            account {
+              __typename
+              id
+              type
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -2636,6 +4733,17 @@ export class APIService {
             legal
             count
             image
+            account {
+              __typename
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            jobs {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -2663,6 +4771,39 @@ export class APIService {
             __typename
             id
             type
+            user {
+              __typename
+              id
+              prename
+              lastname
+              street
+              information
+              houseNumber
+              postcode
+              city
+              canton
+              image
+              createdAt
+              updatedAt
+            }
+            company {
+              __typename
+              id
+              name
+              description
+              website
+              street
+              houseNumber
+              information
+              postcode
+              city
+              canton
+              legal
+              count
+              image
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -2702,6 +4843,39 @@ export class APIService {
             __typename
             id
             type
+            user {
+              __typename
+              id
+              prename
+              lastname
+              street
+              information
+              houseNumber
+              postcode
+              city
+              canton
+              image
+              createdAt
+              updatedAt
+            }
+            company {
+              __typename
+              id
+              name
+              description
+              website
+              street
+              houseNumber
+              information
+              postcode
+              city
+              canton
+              legal
+              count
+              image
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -2737,6 +4911,13 @@ export class APIService {
             city
             canton
             image
+            account {
+              __typename
+              id
+              type
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -2779,11 +4960,57 @@ export class APIService {
             __typename
             id
             type
+            user {
+              __typename
+              id
+              prename
+              lastname
+              street
+              information
+              houseNumber
+              postcode
+              city
+              canton
+              image
+              createdAt
+              updatedAt
+            }
+            company {
+              __typename
+              id
+              name
+              description
+              website
+              street
+              houseNumber
+              information
+              postcode
+              city
+              canton
+              legal
+              count
+              image
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
           jobs {
             __typename
+            items {
+              __typename
+              id
+              title
+              description
+              employment
+              payFrom
+              payTo
+              createDate
+              expireDate
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           createdAt
@@ -2821,6 +5048,17 @@ export class APIService {
             legal
             count
             image
+            account {
+              __typename
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            jobs {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -2851,10 +5089,31 @@ export class APIService {
           description
           jobs {
             __typename
+            items {
+              __typename
+              id
+              title
+              description
+              employment
+              payFrom
+              payTo
+              createDate
+              expireDate
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           categories {
             __typename
+            items {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           category {
@@ -2862,6 +5121,22 @@ export class APIService {
             id
             title
             description
+            jobs {
+              __typename
+              nextToken
+            }
+            categories {
+              __typename
+              nextToken
+            }
+            category {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -2890,6 +5165,22 @@ export class APIService {
             id
             title
             description
+            jobs {
+              __typename
+              nextToken
+            }
+            categories {
+              __typename
+              nextToken
+            }
+            category {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -2925,6 +5216,13 @@ export class APIService {
           expireDate
           applications {
             __typename
+            items {
+              __typename
+              id
+              title
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           company {
@@ -2942,6 +5240,17 @@ export class APIService {
             legal
             count
             image
+            account {
+              __typename
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            jobs {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -2950,6 +5259,22 @@ export class APIService {
             id
             title
             description
+            jobs {
+              __typename
+              nextToken
+            }
+            categories {
+              __typename
+              nextToken
+            }
+            category {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -2983,6 +5308,36 @@ export class APIService {
             payTo
             createDate
             expireDate
+            applications {
+              __typename
+              nextToken
+            }
+            company {
+              __typename
+              id
+              name
+              description
+              website
+              street
+              houseNumber
+              information
+              postcode
+              city
+              canton
+              legal
+              count
+              image
+              createdAt
+              updatedAt
+            }
+            category {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -3020,6 +5375,36 @@ export class APIService {
             payTo
             createDate
             expireDate
+            applications {
+              __typename
+              nextToken
+            }
+            company {
+              __typename
+              id
+              name
+              description
+              website
+              street
+              houseNumber
+              information
+              postcode
+              city
+              canton
+              legal
+              count
+              image
+              createdAt
+              updatedAt
+            }
+            category {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -3047,6 +5432,19 @@ export class APIService {
             __typename
             id
             title
+            job {
+              __typename
+              id
+              title
+              description
+              employment
+              payFrom
+              payTo
+              createDate
+              expireDate
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -3089,6 +5487,13 @@ export class APIService {
             city
             canton
             image
+            account {
+              __typename
+              id
+              type
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -3107,6 +5512,17 @@ export class APIService {
             legal
             count
             image
+            account {
+              __typename
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            jobs {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -3138,6 +5554,13 @@ export class APIService {
             city
             canton
             image
+            account {
+              __typename
+              id
+              type
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -3156,6 +5579,17 @@ export class APIService {
             legal
             count
             image
+            account {
+              __typename
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            jobs {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -3187,6 +5621,13 @@ export class APIService {
             city
             canton
             image
+            account {
+              __typename
+              id
+              type
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -3205,6 +5646,17 @@ export class APIService {
             legal
             count
             image
+            account {
+              __typename
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            jobs {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -3236,6 +5688,39 @@ export class APIService {
             __typename
             id
             type
+            user {
+              __typename
+              id
+              prename
+              lastname
+              street
+              information
+              houseNumber
+              postcode
+              city
+              canton
+              image
+              createdAt
+              updatedAt
+            }
+            company {
+              __typename
+              id
+              name
+              description
+              website
+              street
+              houseNumber
+              information
+              postcode
+              city
+              canton
+              legal
+              count
+              image
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -3267,6 +5752,39 @@ export class APIService {
             __typename
             id
             type
+            user {
+              __typename
+              id
+              prename
+              lastname
+              street
+              information
+              houseNumber
+              postcode
+              city
+              canton
+              image
+              createdAt
+              updatedAt
+            }
+            company {
+              __typename
+              id
+              name
+              description
+              website
+              street
+              houseNumber
+              information
+              postcode
+              city
+              canton
+              legal
+              count
+              image
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -3298,6 +5816,39 @@ export class APIService {
             __typename
             id
             type
+            user {
+              __typename
+              id
+              prename
+              lastname
+              street
+              information
+              houseNumber
+              postcode
+              city
+              canton
+              image
+              createdAt
+              updatedAt
+            }
+            company {
+              __typename
+              id
+              name
+              description
+              website
+              street
+              houseNumber
+              information
+              postcode
+              city
+              canton
+              legal
+              count
+              image
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -3332,11 +5883,57 @@ export class APIService {
             __typename
             id
             type
+            user {
+              __typename
+              id
+              prename
+              lastname
+              street
+              information
+              houseNumber
+              postcode
+              city
+              canton
+              image
+              createdAt
+              updatedAt
+            }
+            company {
+              __typename
+              id
+              name
+              description
+              website
+              street
+              houseNumber
+              information
+              postcode
+              city
+              canton
+              legal
+              count
+              image
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
           jobs {
             __typename
+            items {
+              __typename
+              id
+              title
+              description
+              employment
+              payFrom
+              payTo
+              createDate
+              expireDate
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           createdAt
@@ -3370,11 +5967,57 @@ export class APIService {
             __typename
             id
             type
+            user {
+              __typename
+              id
+              prename
+              lastname
+              street
+              information
+              houseNumber
+              postcode
+              city
+              canton
+              image
+              createdAt
+              updatedAt
+            }
+            company {
+              __typename
+              id
+              name
+              description
+              website
+              street
+              houseNumber
+              information
+              postcode
+              city
+              canton
+              legal
+              count
+              image
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
           jobs {
             __typename
+            items {
+              __typename
+              id
+              title
+              description
+              employment
+              payFrom
+              payTo
+              createDate
+              expireDate
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           createdAt
@@ -3408,11 +6051,57 @@ export class APIService {
             __typename
             id
             type
+            user {
+              __typename
+              id
+              prename
+              lastname
+              street
+              information
+              houseNumber
+              postcode
+              city
+              canton
+              image
+              createdAt
+              updatedAt
+            }
+            company {
+              __typename
+              id
+              name
+              description
+              website
+              street
+              houseNumber
+              information
+              postcode
+              city
+              canton
+              legal
+              count
+              image
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
           jobs {
             __typename
+            items {
+              __typename
+              id
+              title
+              description
+              employment
+              payFrom
+              payTo
+              createDate
+              expireDate
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           createdAt
@@ -3434,10 +6123,31 @@ export class APIService {
           description
           jobs {
             __typename
+            items {
+              __typename
+              id
+              title
+              description
+              employment
+              payFrom
+              payTo
+              createDate
+              expireDate
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           categories {
             __typename
+            items {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           category {
@@ -3445,6 +6155,22 @@ export class APIService {
             id
             title
             description
+            jobs {
+              __typename
+              nextToken
+            }
+            categories {
+              __typename
+              nextToken
+            }
+            category {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -3467,10 +6193,31 @@ export class APIService {
           description
           jobs {
             __typename
+            items {
+              __typename
+              id
+              title
+              description
+              employment
+              payFrom
+              payTo
+              createDate
+              expireDate
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           categories {
             __typename
+            items {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           category {
@@ -3478,6 +6225,22 @@ export class APIService {
             id
             title
             description
+            jobs {
+              __typename
+              nextToken
+            }
+            categories {
+              __typename
+              nextToken
+            }
+            category {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -3500,10 +6263,31 @@ export class APIService {
           description
           jobs {
             __typename
+            items {
+              __typename
+              id
+              title
+              description
+              employment
+              payFrom
+              payTo
+              createDate
+              expireDate
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           categories {
             __typename
+            items {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           category {
@@ -3511,6 +6295,22 @@ export class APIService {
             id
             title
             description
+            jobs {
+              __typename
+              nextToken
+            }
+            categories {
+              __typename
+              nextToken
+            }
+            category {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -3538,6 +6338,13 @@ export class APIService {
           expireDate
           applications {
             __typename
+            items {
+              __typename
+              id
+              title
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           company {
@@ -3555,6 +6362,17 @@ export class APIService {
             legal
             count
             image
+            account {
+              __typename
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            jobs {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -3563,6 +6381,22 @@ export class APIService {
             id
             title
             description
+            jobs {
+              __typename
+              nextToken
+            }
+            categories {
+              __typename
+              nextToken
+            }
+            category {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -3590,6 +6424,13 @@ export class APIService {
           expireDate
           applications {
             __typename
+            items {
+              __typename
+              id
+              title
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           company {
@@ -3607,6 +6448,17 @@ export class APIService {
             legal
             count
             image
+            account {
+              __typename
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            jobs {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -3615,6 +6467,22 @@ export class APIService {
             id
             title
             description
+            jobs {
+              __typename
+              nextToken
+            }
+            categories {
+              __typename
+              nextToken
+            }
+            category {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -3642,6 +6510,13 @@ export class APIService {
           expireDate
           applications {
             __typename
+            items {
+              __typename
+              id
+              title
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           company {
@@ -3659,6 +6534,17 @@ export class APIService {
             legal
             count
             image
+            account {
+              __typename
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            jobs {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -3667,6 +6553,22 @@ export class APIService {
             id
             title
             description
+            jobs {
+              __typename
+              nextToken
+            }
+            categories {
+              __typename
+              nextToken
+            }
+            category {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -3696,6 +6598,36 @@ export class APIService {
             payTo
             createDate
             expireDate
+            applications {
+              __typename
+              nextToken
+            }
+            company {
+              __typename
+              id
+              name
+              description
+              website
+              street
+              houseNumber
+              information
+              postcode
+              city
+              canton
+              legal
+              count
+              image
+              createdAt
+              updatedAt
+            }
+            category {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -3725,6 +6657,36 @@ export class APIService {
             payTo
             createDate
             expireDate
+            applications {
+              __typename
+              nextToken
+            }
+            company {
+              __typename
+              id
+              name
+              description
+              website
+              street
+              houseNumber
+              information
+              postcode
+              city
+              canton
+              legal
+              count
+              image
+              createdAt
+              updatedAt
+            }
+            category {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -3754,6 +6716,36 @@ export class APIService {
             payTo
             createDate
             expireDate
+            applications {
+              __typename
+              nextToken
+            }
+            company {
+              __typename
+              id
+              name
+              description
+              website
+              street
+              houseNumber
+              information
+              postcode
+              city
+              canton
+              legal
+              count
+              image
+              createdAt
+              updatedAt
+            }
+            category {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }

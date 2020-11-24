@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { APIService, CreateAccountInput, CreateCompanyInput, CreateUserInput, DeleteCompanyInput, DeleteUserInput, GetAccountQuery, UpdateAccountInput, UpdateCompanyInput, UpdateUserInput } from 'src/app/API.service';
 import { FormFieldTypes } from '@aws-amplify/ui-components';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Auth, Amplify } from 'aws-amplify';
-import { appInitialize } from '@ionic/angular/app-initialize';
-import { CommaExpr } from '@angular/compiler';
-
+import { Auth } from 'aws-amplify';
 
 @Component({
   selector: 'app-account',
@@ -23,6 +20,7 @@ export class AccountPage implements OnInit {
 
   ngOnInit() {
     this.companyForm = this.formBuilder.group({
+      id: [''],
       name: ['', [Validators.required, Validators.minLength(1)]],
       description: ['', [Validators.required, Validators.minLength(1)]],
       website: ['', [Validators.required, Validators.minLength(1)]],
@@ -37,6 +35,7 @@ export class AccountPage implements OnInit {
     });
 
     this.userForm = this.formBuilder.group({
+      id: [''],
       prename: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
       lastname: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
       street: ['', [Validators.required, Validators.minLength(3)]],
@@ -47,47 +46,51 @@ export class AccountPage implements OnInit {
       postcode: ['', [Validators.required, Validators.pattern('[0-9]+')]],
     });
     Auth.currentUserInfo().then(user => {
-      this.API.GetAccount(user.username).then(getAccount => {
-        if (getAccount.type === 'company') {
-          this.data.myToggle = true;
-        }
-        else {
-          this.data.myToggle = false;
-        }
-      });
+      let username: string = user.username;
       this.API.GetAccount(user.username).then(account => {
-        if (account.user != null) {
-          this.userForm.setValue({
-            prename: account.user.prename,
-            lastname: account.user.lastname,
-            street: account.user.street,
-            houseNumber: account.user.houseNumber,
-            information: account.user.information,
-            city: account.user.city,
-            canton: account.user.canton,
-            postcode: account.user.postcode,
-          });
-        }
+        if (account != null) {
+          if (account.type === 'company') {
+            this.data.myToggle = true;
+          }
+          else {
+            this.data.myToggle = false;
+          }
 
+          if (account.user != null) {
+            this.userForm.setValue({
+              id: account.user.id,
+              prename: account.user.prename,
+              lastname: account.user.lastname,
+              street: account.user.street,
+              houseNumber: account.user.houseNumber,
+              information: account.user.information,
+              city: account.user.city,
+              canton: account.user.canton,
+              postcode: account.user.postcode,
+            });
+          }
+
+
+          if (account.company != null) {
+            this.companyForm.setValue({
+              id: account.company.id,
+              name: account.company.name,
+              description: account.company.description,
+              website: account.company.website,
+              count: account.company.count,
+              legal: account.company.legal,
+              street: account.company.street,
+              houseNumber: account.company.houseNumber,
+              information: account.company.information,
+              city: account.company.city,
+              canton: account.company.canton,
+              postcode: account.company.postcode,
+            });
+          }
+        }
       });
 
-      this.API.GetAccount(user.username).then(account => {
-        if (account.company != null) {
-          this.companyForm.setValue({
-            name: account.company.name,
-            description: account.company.description,
-            website: account.company.website,
-            count: account.company.count,
-            legal: account.company.legal,
-            street: account.company.street,
-            houseNumber: account.company.houseNumber,
-            information: account.company.information,
-            city: account.company.city,
-            canton: account.company.canton,
-            postcode: account.company.postcode,
-          });
-        }
-      });
+
     });
   }
 
@@ -105,7 +108,6 @@ export class AccountPage implements OnInit {
       let type = 'company';
       Auth.currentUserInfo().then(user => {
         const createCompanyInput: CreateCompanyInput = {
-          id: user.username,
           city: companyForm.city,
           houseNumber: companyForm.houseNumber,
           postcode: companyForm.postcode,
@@ -121,7 +123,7 @@ export class AccountPage implements OnInit {
         };
 
         let updateCompanyInput: UpdateCompanyInput = {
-          id: user.username,
+          id: companyForm.id,
           city: companyForm.city,
           houseNumber: companyForm.houseNumber,
           postcode: companyForm.postcode,
@@ -137,32 +139,28 @@ export class AccountPage implements OnInit {
 
         this.API.GetAccount(user.username).then(account => {
           if (account != null) {
-            //Update
-            let UpdateAccountInput: UpdateAccountInput = {
-              id: account.id,
-              accountCompanyId: user.username,
-              type
-            };
-            this.API.UpdateAccount(UpdateAccountInput).then(updatedAccount => {
-              this.deleteUser(user.username, UpdateAccountInput);
-              this.API.GetCompany(user.username).then(getCompany => {
-                if (getCompany != null) {
-                  this.API.UpdateCompany(updateCompanyInput).then(updatedCompany => {
-                    console.log("Company Updated!");
-                  });
-                } else {
-                  this.API.CreateCompany(createCompanyInput).then(createdCompany => {
-                    console.log("Company Created!");
-                  });
-                }
+            this.deleteUser(user.username);
+            if (account.company != null) {
+              this.API.UpdateCompany(updateCompanyInput).then(updatedCompany => {
+                console.log("Company Updated!");
               });
-            });
+            } else {
+              this.API.CreateCompany(createCompanyInput).then(createdCompany => {
+                console.log("Company Created!");
+                //Update
+                let UpdateAccountInput: UpdateAccountInput = {
+                  id: account.id,
+                  accountCompanyId: createdCompany.id,
+                  type
+                };
+                this.API.UpdateAccount(UpdateAccountInput);
+              });
+            }
           } else {
             //Create
             const createAccountInput: CreateAccountInput = {
               id: user.username,
               type: type,
-              accountCompanyId: user.username,
             };
 
             this.API.CreateAccount(createAccountInput).then(createdAccount => {
@@ -177,7 +175,6 @@ export class AccountPage implements OnInit {
   }
 
   onSubmitUser() {
-    console.log('User submit');
     if (!this.userForm.valid) {
       console.log('All fields are required.');
       return false;
@@ -186,7 +183,7 @@ export class AccountPage implements OnInit {
       let type = 'user';
       Auth.currentUserInfo().then(user => {
         let updateUserInput: UpdateUserInput = {
-          id: user.username,
+          id: userForm.id,
           city: userForm.city,
           houseNumber: userForm.houseNumber,
           information: userForm.information,
@@ -212,54 +209,76 @@ export class AccountPage implements OnInit {
 
         const createAccountInput: CreateAccountInput = {
           id: user.username,
-          type: type,
-          accountUserId: user.username,
+          type: type
         };
-
-        this.API.GetAccount(user.username).then(account => {
+        const username = user.username;
+        this.API.GetAccount(username).then(account => {
           if (account != null) {
-            //Update
-            let UpdateAccountInput: UpdateAccountInput = {
-              id: account.id,
-              type
-            };
-            this.API.UpdateAccount(UpdateAccountInput).then(updatedAccount => {
-              this.deleteCompany(user.username, UpdateAccountInput);
-              this.API.GetUser(user.username).then(getUser => {
-                if (getUser != null) {
-                  this.API.UpdateUser(updateUserInput).then(updatedUser => {
-                    console.log("User Updated!");
-                  });
-                } else {
-                  this.API.CreateUser(createUserInput).then(createdUser => {
-                    console.log("User Created!");
-                  });
-                }
+            if (account.user != null) {
+              //Update
+              let UpdateAccountInput: UpdateAccountInput = {
+                id: account.id,
+                type
+              };
+              this.API.UpdateAccount(UpdateAccountInput).then(updatedAccount => {
+                this.API.UpdateUser(updateUserInput).then(updatedUser => {
+                  console.log("User Updated!");
+                });
               });
-            });
+            } else {
+              this.deleteCompany(user.username);
+              this.API.CreateUser(createUserInput).then(createdUser => {
+                console.log("User Created!");
+                let updateAccountInput: UpdateAccountInput = {
+                  id: createdUser.id,
+                  accountUserId: createdUser.id,
+                  type: type
+                }
+                this.API.UpdateAccount(updateAccountInput).then(updatedAccount => {
+                  console.log("New user Created!");
+                });
+              });
+            }
           } else {
             //Create
             this.API.CreateAccount(createAccountInput).then(createdAccount => {
               this.API.CreateUser(createUserInput).then(createdUser => {
-                console.log("User Created!");
+                let updateAccountInput: UpdateAccountInput = {
+                  id: createdAccount.id,
+                  accountUserId: createdUser.id,
+                  type: type
+                }
+                this.API.UpdateAccount(updateAccountInput).then(updatedAccount => {
+                  console.log("New user Created!");
+                });
               });
             });
           }
-        });
+        })
       });
     };
   }
 
-  deleteCompany(user: string, updateAccountInput: UpdateAccountInput) {
+  deleteCompany(user: string) {
+    let updateAccountInput: UpdateAccountInput = {
+      id: user,
+      accountCompanyId: '',
+    };
+    this.API.UpdateAccount(updateAccountInput);
+
     let deleteCompanyInput: DeleteCompanyInput = { id: user };
-    updateAccountInput.accountCompanyId = null;
     this.companyForm.reset();
     this.API.DeleteCompany(deleteCompanyInput);
   }
 
-  deleteUser(user: string, updateAccountInput: UpdateAccountInput) {
+  deleteUser(user: string) {
+    let updateAccountInput: UpdateAccountInput = {
+      id: user,
+      accountUserId: ''
+    };
+    this.API.UpdateAccount(updateAccountInput);
+
     let deleteUserInput: DeleteUserInput = { id: user };
-    updateAccountInput.accountUserId = null;
     this.userForm.reset();
     this.API.DeleteUser(deleteUserInput);
   }

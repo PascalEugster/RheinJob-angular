@@ -49,11 +49,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'job',
-    loadChildren: () => import('./pages/job/job.module').then( m => m.JobPageModule)
-  },
-
-  {
     path: 'search',
     loadChildren: () => import('./pages/search/search.module').then( m => m.SearchPageModule)
   },
@@ -61,7 +56,9 @@ const routes: Routes = [
     path: 'categories',
     loadChildren: () => import('./pages/categories/categories.module').then( m => m.CategoriesPageModule)
   },
-
+  { 
+    path: 'job/:id', loadChildren: () => import('./pages/job/job.module').then( m => m.JobPageModule)
+  }
 
 
 ];
