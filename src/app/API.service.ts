@@ -217,6 +217,7 @@ export type DeleteCategoryInput = {
 export type CreateJobInput = {
   id?: string | null;
   title: string;
+  shortDescription: string;
   description: string;
   employment: number;
   payFrom?: number | null;
@@ -229,6 +230,7 @@ export type CreateJobInput = {
 
 export type ModelJobConditionInput = {
   title?: ModelStringInput | null;
+  shortDescription?: ModelStringInput | null;
   description?: ModelStringInput | null;
   employment?: ModelIntInput | null;
   payFrom?: ModelIntInput | null;
@@ -243,6 +245,7 @@ export type ModelJobConditionInput = {
 export type UpdateJobInput = {
   id: string;
   title?: string | null;
+  shortDescription?: string | null;
   description?: string | null;
   employment?: number | null;
   payFrom?: number | null;
@@ -351,6 +354,7 @@ export type ModelCategoryFilterInput = {
 export type ModelJobFilterInput = {
   id?: ModelIDInput | null;
   title?: ModelStringInput | null;
+  shortDescription?: ModelStringInput | null;
   description?: ModelStringInput | null;
   employment?: ModelIntInput | null;
   payFrom?: ModelIntInput | null;
@@ -776,6 +780,7 @@ export type CreateCompanyMutation = {
       __typename: "Job";
       id: string;
       title: string;
+      shortDescription: string;
       description: string;
       employment: number;
       payFrom: number | null;
@@ -852,6 +857,7 @@ export type UpdateCompanyMutation = {
       __typename: "Job";
       id: string;
       title: string;
+      shortDescription: string;
       description: string;
       employment: number;
       payFrom: number | null;
@@ -928,6 +934,7 @@ export type DeleteCompanyMutation = {
       __typename: "Job";
       id: string;
       title: string;
+      shortDescription: string;
       description: string;
       employment: number;
       payFrom: number | null;
@@ -954,6 +961,7 @@ export type CreateCategoryMutation = {
       __typename: "Job";
       id: string;
       title: string;
+      shortDescription: string;
       description: string;
       employment: number;
       payFrom: number | null;
@@ -1016,6 +1024,7 @@ export type UpdateCategoryMutation = {
       __typename: "Job";
       id: string;
       title: string;
+      shortDescription: string;
       description: string;
       employment: number;
       payFrom: number | null;
@@ -1078,6 +1087,7 @@ export type DeleteCategoryMutation = {
       __typename: "Job";
       id: string;
       title: string;
+      shortDescription: string;
       description: string;
       employment: number;
       payFrom: number | null;
@@ -1133,6 +1143,7 @@ export type CreateJobMutation = {
   __typename: "Job";
   id: string;
   title: string;
+  shortDescription: string;
   description: string;
   employment: number;
   payFrom: number | null;
@@ -1211,6 +1222,7 @@ export type UpdateJobMutation = {
   __typename: "Job";
   id: string;
   title: string;
+  shortDescription: string;
   description: string;
   employment: number;
   payFrom: number | null;
@@ -1289,6 +1301,7 @@ export type DeleteJobMutation = {
   __typename: "Job";
   id: string;
   title: string;
+  shortDescription: string;
   description: string;
   employment: number;
   payFrom: number | null;
@@ -1371,6 +1384,7 @@ export type CreateApplicationMutation = {
     __typename: "Job";
     id: string;
     title: string;
+    shortDescription: string;
     description: string;
     employment: number;
     payFrom: number | null;
@@ -1422,6 +1436,7 @@ export type UpdateApplicationMutation = {
     __typename: "Job";
     id: string;
     title: string;
+    shortDescription: string;
     description: string;
     employment: number;
     payFrom: number | null;
@@ -1473,6 +1488,7 @@ export type DeleteApplicationMutation = {
     __typename: "Job";
     id: string;
     title: string;
+    shortDescription: string;
     description: string;
     employment: number;
     payFrom: number | null;
@@ -1764,6 +1780,7 @@ export type GetCompanyQuery = {
       __typename: "Job";
       id: string;
       title: string;
+      shortDescription: string;
       description: string;
       employment: number;
       payFrom: number | null;
@@ -1824,6 +1841,7 @@ export type GetCategoryQuery = {
       __typename: "Job";
       id: string;
       title: string;
+      shortDescription: string;
       description: string;
       employment: number;
       payFrom: number | null;
@@ -1908,6 +1926,7 @@ export type GetJobQuery = {
   __typename: "Job";
   id: string;
   title: string;
+  shortDescription: string;
   description: string;
   employment: number;
   payFrom: number | null;
@@ -1988,6 +2007,7 @@ export type ListJobsQuery = {
     __typename: "Job";
     id: string;
     title: string;
+    shortDescription: string;
     description: string;
     employment: number;
     payFrom: number | null;
@@ -2038,6 +2058,7 @@ export type GetApplicationQuery = {
     __typename: "Job";
     id: string;
     title: string;
+    shortDescription: string;
     description: string;
     employment: number;
     payFrom: number | null;
@@ -2091,6 +2112,7 @@ export type ListApplicationsQuery = {
       __typename: "Job";
       id: string;
       title: string;
+      shortDescription: string;
       description: string;
       employment: number;
       payFrom: number | null;
@@ -2512,6 +2534,7 @@ export type OnCreateCompanySubscription = {
       __typename: "Job";
       id: string;
       title: string;
+      shortDescription: string;
       description: string;
       employment: number;
       payFrom: number | null;
@@ -2588,6 +2611,7 @@ export type OnUpdateCompanySubscription = {
       __typename: "Job";
       id: string;
       title: string;
+      shortDescription: string;
       description: string;
       employment: number;
       payFrom: number | null;
@@ -2664,6 +2688,7 @@ export type OnDeleteCompanySubscription = {
       __typename: "Job";
       id: string;
       title: string;
+      shortDescription: string;
       description: string;
       employment: number;
       payFrom: number | null;
@@ -2690,6 +2715,7 @@ export type OnCreateCategorySubscription = {
       __typename: "Job";
       id: string;
       title: string;
+      shortDescription: string;
       description: string;
       employment: number;
       payFrom: number | null;
@@ -2752,6 +2778,7 @@ export type OnUpdateCategorySubscription = {
       __typename: "Job";
       id: string;
       title: string;
+      shortDescription: string;
       description: string;
       employment: number;
       payFrom: number | null;
@@ -2814,6 +2841,7 @@ export type OnDeleteCategorySubscription = {
       __typename: "Job";
       id: string;
       title: string;
+      shortDescription: string;
       description: string;
       employment: number;
       payFrom: number | null;
@@ -2869,6 +2897,7 @@ export type OnCreateJobSubscription = {
   __typename: "Job";
   id: string;
   title: string;
+  shortDescription: string;
   description: string;
   employment: number;
   payFrom: number | null;
@@ -2947,6 +2976,7 @@ export type OnUpdateJobSubscription = {
   __typename: "Job";
   id: string;
   title: string;
+  shortDescription: string;
   description: string;
   employment: number;
   payFrom: number | null;
@@ -3025,6 +3055,7 @@ export type OnDeleteJobSubscription = {
   __typename: "Job";
   id: string;
   title: string;
+  shortDescription: string;
   description: string;
   employment: number;
   payFrom: number | null;
@@ -3107,6 +3138,7 @@ export type OnCreateApplicationSubscription = {
     __typename: "Job";
     id: string;
     title: string;
+    shortDescription: string;
     description: string;
     employment: number;
     payFrom: number | null;
@@ -3158,6 +3190,7 @@ export type OnUpdateApplicationSubscription = {
     __typename: "Job";
     id: string;
     title: string;
+    shortDescription: string;
     description: string;
     employment: number;
     payFrom: number | null;
@@ -3209,6 +3242,7 @@ export type OnDeleteApplicationSubscription = {
     __typename: "Job";
     id: string;
     title: string;
+    shortDescription: string;
     description: string;
     employment: number;
     payFrom: number | null;
@@ -3763,6 +3797,7 @@ export class APIService {
               __typename
               id
               title
+              shortDescription
               description
               employment
               payFrom
@@ -3855,6 +3890,7 @@ export class APIService {
               __typename
               id
               title
+              shortDescription
               description
               employment
               payFrom
@@ -3947,6 +3983,7 @@ export class APIService {
               __typename
               id
               title
+              shortDescription
               description
               employment
               payFrom
@@ -3989,6 +4026,7 @@ export class APIService {
               __typename
               id
               title
+              shortDescription
               description
               employment
               payFrom
@@ -4067,6 +4105,7 @@ export class APIService {
               __typename
               id
               title
+              shortDescription
               description
               employment
               payFrom
@@ -4145,6 +4184,7 @@ export class APIService {
               __typename
               id
               title
+              shortDescription
               description
               employment
               payFrom
@@ -4216,6 +4256,7 @@ export class APIService {
           __typename
           id
           title
+          shortDescription
           description
           employment
           payFrom
@@ -4310,6 +4351,7 @@ export class APIService {
           __typename
           id
           title
+          shortDescription
           description
           employment
           payFrom
@@ -4404,6 +4446,7 @@ export class APIService {
           __typename
           id
           title
+          shortDescription
           description
           employment
           payFrom
@@ -4502,6 +4545,7 @@ export class APIService {
             __typename
             id
             title
+            shortDescription
             description
             employment
             payFrom
@@ -4569,6 +4613,7 @@ export class APIService {
             __typename
             id
             title
+            shortDescription
             description
             employment
             payFrom
@@ -4636,6 +4681,7 @@ export class APIService {
             __typename
             id
             title
+            shortDescription
             description
             employment
             payFrom
@@ -5002,6 +5048,7 @@ export class APIService {
               __typename
               id
               title
+              shortDescription
               description
               employment
               payFrom
@@ -5093,6 +5140,7 @@ export class APIService {
               __typename
               id
               title
+              shortDescription
               description
               employment
               payFrom
@@ -5208,6 +5256,7 @@ export class APIService {
           __typename
           id
           title
+          shortDescription
           description
           employment
           payFrom
@@ -5302,6 +5351,7 @@ export class APIService {
             __typename
             id
             title
+            shortDescription
             description
             employment
             payFrom
@@ -5369,6 +5419,7 @@ export class APIService {
             __typename
             id
             title
+            shortDescription
             description
             employment
             payFrom
@@ -5436,6 +5487,7 @@ export class APIService {
               __typename
               id
               title
+              shortDescription
               description
               employment
               payFrom
@@ -5925,6 +5977,7 @@ export class APIService {
               __typename
               id
               title
+              shortDescription
               description
               employment
               payFrom
@@ -6009,6 +6062,7 @@ export class APIService {
               __typename
               id
               title
+              shortDescription
               description
               employment
               payFrom
@@ -6093,6 +6147,7 @@ export class APIService {
               __typename
               id
               title
+              shortDescription
               description
               employment
               payFrom
@@ -6127,6 +6182,7 @@ export class APIService {
               __typename
               id
               title
+              shortDescription
               description
               employment
               payFrom
@@ -6197,6 +6253,7 @@ export class APIService {
               __typename
               id
               title
+              shortDescription
               description
               employment
               payFrom
@@ -6267,6 +6324,7 @@ export class APIService {
               __typename
               id
               title
+              shortDescription
               description
               employment
               payFrom
@@ -6330,6 +6388,7 @@ export class APIService {
           __typename
           id
           title
+          shortDescription
           description
           employment
           payFrom
@@ -6416,6 +6475,7 @@ export class APIService {
           __typename
           id
           title
+          shortDescription
           description
           employment
           payFrom
@@ -6502,6 +6562,7 @@ export class APIService {
           __typename
           id
           title
+          shortDescription
           description
           employment
           payFrom
@@ -6592,6 +6653,7 @@ export class APIService {
             __typename
             id
             title
+            shortDescription
             description
             employment
             payFrom
@@ -6651,6 +6713,7 @@ export class APIService {
             __typename
             id
             title
+            shortDescription
             description
             employment
             payFrom
@@ -6710,6 +6773,7 @@ export class APIService {
             __typename
             id
             title
+            shortDescription
             description
             employment
             payFrom

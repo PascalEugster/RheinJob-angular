@@ -52,6 +52,7 @@ type Category @model {
 type Job @model {
   id: ID!
   title: String! 
+  shortDescription: String!
   description: String!
   employment: Int!
   payFrom: Int
@@ -69,71 +70,3 @@ type Application @model {
   title: String!
   job: Job! @connection(name: "JobApplications")
 }
-
-
-
-
-# type Blog @model {
-#   id: ID!
-#   name: String!
-#   posts: [Post] @connection(keyName: "byBlog", fields: ["id"])
-# }
-
-# type Post @model @key(name: "byBlog", fields: ["blogID"]) {
-#   id: ID!
-#   title: String!
-#   blogID: ID!
-#   blog: Blog @connection(fields: ["blogID"])
-#   comments: [Comment] @connection(keyName: "byPost", fields: ["id"])
-# }
-
-# type Comment @model @key(name: "byPost", fields: ["postID", "content"]) {
-#   id: ID!
-#   postID: ID!
-#    s: ["postID"])
-#   content: String!
-# }
-# type Company @model {
-#   id: ID!
-#   name: String!
-#   description: String!
-#   website:String!
-#   street: String!
-#   houseNumber: String!
-#   postcode: Int!
-#   city: String!
-#   image: String!
-
-#   jobs: [Job] @connection(keyName: "byCompany", fields: ["id"])
-# }
-
-
-# type Category @model @key(name: "byCategory", fields: ["categoryID"]) {
-#   id: ID!
-#   title: String!
-#   description: String!
-#   jobs: [Job] @connection(keyName: "byCompany")
-#   # TODO: Anschauen ob dies die korrekte Implementierung ist
-#   categoryID: ID!
-#   category: Category @connection(fields: ["categoryID"])
-# }
-
-
-# type Job @model @key(name: "byCompany", fields: ["companyID"]) {
-#   id: ID!
-#   title: String!
-#   description: String!
-#   createDate: AWSDate!
-#   expireDate: AWSDate!
-#   applications: [Application] @connection(name: JobApplications)
-#   companyID: ID!
-#   company: Company @connection(fields: ["companyID"])
-# }
-
-
-# type Application @model @key(name: "byJob", fields: ["jobID"]) {
-#   id: ID!
-#   title: String!
-#   jobID: ID!
-#   job: Job @connection(name: JobApplications)
-# }

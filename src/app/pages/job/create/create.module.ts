@@ -20,6 +20,11 @@ import { QuillModule } from 'ngx-quill';
     CreatePageRoutingModule,
     TagInputModule,
     ReactiveFormsModule,
+    QuillModule.forRoot({
+      modules: {
+        syntax: true
+      }
+    })
   ],
   providers: [DatePipe],
   declarations: [CreatePage]

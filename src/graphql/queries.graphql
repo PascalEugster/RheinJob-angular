@@ -237,6 +237,7 @@ query GetCompany($id: ID!) {
       items {
         id
         title
+        shortDescription
         description
         employment
         payFrom
@@ -296,6 +297,7 @@ query GetCategory($id: ID!) {
       items {
         id
         title
+        shortDescription
         description
         employment
         payFrom
@@ -374,6 +376,7 @@ query GetJob($id: ID!) {
   getJob(id: $id) {
     id
     title
+    shortDescription
     description
     employment
     payFrom
@@ -444,6 +447,7 @@ query ListJobs($filter: ModelJobFilterInput, $limit: Int, $nextToken: String) {
     items {
       id
       title
+      shortDescription
       description
       employment
       payFrom
@@ -490,6 +494,7 @@ query GetApplication($id: ID!) {
     job {
       id
       title
+      shortDescription
       description
       employment
       payFrom
@@ -542,6 +547,7 @@ query ListApplications(
       job {
         id
         title
+        shortDescription
         description
         employment
         payFrom

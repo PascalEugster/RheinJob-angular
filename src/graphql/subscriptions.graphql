@@ -376,6 +376,7 @@ subscription OnCreateCompany {
       items {
         id
         title
+        shortDescription
         description
         employment
         payFrom
@@ -447,6 +448,7 @@ subscription OnUpdateCompany {
       items {
         id
         title
+        shortDescription
         description
         employment
         payFrom
@@ -518,6 +520,7 @@ subscription OnDeleteCompany {
       items {
         id
         title
+        shortDescription
         description
         employment
         payFrom
@@ -542,6 +545,7 @@ subscription OnCreateCategory {
       items {
         id
         title
+        shortDescription
         description
         employment
         payFrom
@@ -596,6 +600,7 @@ subscription OnUpdateCategory {
       items {
         id
         title
+        shortDescription
         description
         employment
         payFrom
@@ -650,6 +655,7 @@ subscription OnDeleteCategory {
       items {
         id
         title
+        shortDescription
         description
         employment
         payFrom
@@ -699,6 +705,7 @@ subscription OnCreateJob {
   onCreateJob {
     id
     title
+    shortDescription
     description
     employment
     payFrom
@@ -768,6 +775,7 @@ subscription OnUpdateJob {
   onUpdateJob {
     id
     title
+    shortDescription
     description
     employment
     payFrom
@@ -837,6 +845,7 @@ subscription OnDeleteJob {
   onDeleteJob {
     id
     title
+    shortDescription
     description
     employment
     payFrom
@@ -909,6 +918,7 @@ subscription OnCreateApplication {
     job {
       id
       title
+      shortDescription
       description
       employment
       payFrom
@@ -956,6 +966,7 @@ subscription OnUpdateApplication {
     job {
       id
       title
+      shortDescription
       description
       employment
       payFrom
@@ -1003,6 +1014,7 @@ subscription OnDeleteApplication {
     job {
       id
       title
+      shortDescription
       description
       employment
       payFrom

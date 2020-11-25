@@ -397,6 +397,7 @@ mutation CreateCompany(
       items {
         id
         title
+        shortDescription
         description
         employment
         payFrom
@@ -471,6 +472,7 @@ mutation UpdateCompany(
       items {
         id
         title
+        shortDescription
         description
         employment
         payFrom
@@ -545,6 +547,7 @@ mutation DeleteCompany(
       items {
         id
         title
+        shortDescription
         description
         employment
         payFrom
@@ -572,6 +575,7 @@ mutation CreateCategory(
       items {
         id
         title
+        shortDescription
         description
         employment
         payFrom
@@ -629,6 +633,7 @@ mutation UpdateCategory(
       items {
         id
         title
+        shortDescription
         description
         employment
         payFrom
@@ -686,6 +691,7 @@ mutation DeleteCategory(
       items {
         id
         title
+        shortDescription
         description
         employment
         payFrom
@@ -738,6 +744,7 @@ mutation CreateJob(
   createJob(input: $input, condition: $condition) {
     id
     title
+    shortDescription
     description
     employment
     payFrom
@@ -810,6 +817,7 @@ mutation UpdateJob(
   updateJob(input: $input, condition: $condition) {
     id
     title
+    shortDescription
     description
     employment
     payFrom
@@ -882,6 +890,7 @@ mutation DeleteJob(
   deleteJob(input: $input, condition: $condition) {
     id
     title
+    shortDescription
     description
     employment
     payFrom
@@ -957,6 +966,7 @@ mutation CreateApplication(
     job {
       id
       title
+      shortDescription
       description
       employment
       payFrom
@@ -1007,6 +1017,7 @@ mutation UpdateApplication(
     job {
       id
       title
+      shortDescription
       description
       employment
       payFrom
@@ -1057,6 +1068,7 @@ mutation DeleteApplication(
     job {
       id
       title
+      shortDescription
       description
       employment
       payFrom

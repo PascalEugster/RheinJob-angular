@@ -21,6 +21,7 @@ export class CreatePage implements OnInit {
   ngOnInit() {
     this.form = this.formBuilder.group({
       title: ['', [Validators.required, Validators.minLength(1)]],
+      shortDescription: ['', [Validators.required, Validators.minLength(1)]],
       description: ['', [Validators.required, Validators.minLength(1)]],
       employment: ['', [Validators.required, Validators.minLength(1)]],
       benefits: [''],
@@ -49,6 +50,7 @@ export class CreatePage implements OnInit {
             if(getAccount.company != null) {
               const createJobInput: CreateJobInput = {
                 title : form.title,
+                shortDescription : form.shortDescription,
                 description : form.description,
                 jobCompanyId : getAccount.company.id,
                 jobCategoryId : form.category,
