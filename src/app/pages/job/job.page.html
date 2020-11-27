@@ -10,7 +10,7 @@
       <h1>{{job.title}}</h1>
     </ion-row>
     <ion-row>
-      <p>{{job.description}}</p>
+      <p [innerHTML]="job.description"></p>
     </ion-row>
     <ion-row>
       <ion-card>

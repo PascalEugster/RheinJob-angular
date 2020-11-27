@@ -14,16 +14,16 @@
       </ion-list-header>
       <ion-item>
         <ion-label position="stacked">Titel</ion-label>
-        <ion-input placeholder="Bezeichnung der Stelle" type="text" formControlName="title"></ion-input>
+        <ion-input placeholder="Bezeichnung der Stelle" type="text" formControlName="title" [(ngModel)]="title"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="stacked">Kurzbeschreibung</ion-label>
-        <ion-textarea placeholder="Beschreiben sie die Stelle und Ihr Unternehmen möglichst kurz." formControlName="shortDescription" type="text" auto-grow="true">
+        <ion-textarea placeholder="Beschreiben sie die Stelle und Ihr Unternehmen möglichst kurz." formControlName="shortDescription" [(ngModel)]="shortDescription" type="text" auto-grow="true">
         </ion-textarea>
       </ion-item>
       <ion-item>
         <ion-label position="stacked">Beschreibung</ion-label>
-        <quill-editor formControlName="description"></quill-editor>
+        <angular-editor formControlName="description" [(ngModel)]="description" [config]="editorConfig"></angular-editor>
 
       </ion-item>
       <ion-item *ngIf="categories">
@@ -34,7 +34,7 @@
       </ion-item>
       <ion-item>
         <ion-label position="stacked">Benefits</ion-label>
-        <tag-input formControlName="benefits" [separatorKeyCodes]="[32]" class="ion-no-padding"></tag-input>
+        <tag-input formControlName="benefits" [separatorKeyCodes]="[32]" class="ion-no-padding" ></tag-input>
       </ion-item>
     </ion-list>
     <ion-list>
@@ -54,11 +54,11 @@
       </ion-item>
       <ion-item>
         <ion-label position="stacked">Lohn von</ion-label>
-        <ion-input type="number" placeholder="2700" formControlName="payFrom"></ion-input>
+        <ion-input type="number" placeholder="2700" formControlName="payFrom" [(ngModel)]="payFrom"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="stacked" >Lohn bis</ion-label>
-        <ion-input type="number" placeholder="20000" formControlName="payTo"></ion-input>
+        <ion-input type="number" placeholder="20000" formControlName="payTo" [(ngModel)]="payTo"></ion-input>
       </ion-item>
     </ion-list>
     <ion-list>
@@ -71,4 +71,10 @@
       Job speichern
     </ion-button>
   </form>
+
+  <div>
+    <h2>Vorschau</h2>
+    <h3 >{{title}}</h3>
+    <div [innerHTML]="description"></div>
+  </div>
 </ion-content>

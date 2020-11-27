@@ -6,10 +6,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { CreatePageRoutingModule } from './create-routing.module';
+import { HttpClientModule} from '@angular/common/http';
 
 import { CreatePage } from './create.page';
 import { TagInputModule } from 'ngx-chips';
-import { QuillModule } from 'ngx-quill';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 
 @NgModule({
@@ -20,11 +21,8 @@ import { QuillModule } from 'ngx-quill';
     CreatePageRoutingModule,
     TagInputModule,
     ReactiveFormsModule,
-    QuillModule.forRoot({
-      modules: {
-        syntax: true
-      }
-    })
+    AngularEditorModule,
+    HttpClientModule,
   ],
   providers: [DatePipe],
   declarations: [CreatePage]
