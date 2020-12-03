@@ -5,46 +5,48 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid *ngIf="job">
-    <ion-row>
-      <h1>{{job.title}}</h1>
-    </ion-row>
-    <ion-row>
-      <p [innerHTML]="job.description"></p>
-    </ion-row>
-    <ion-row>
-      <ion-card>
-        <ion-card-header color="primary">
-          <ion-card-subtitle>
-            Unternehmen
-          </ion-card-subtitle>
-          <ion-card-title>{{job.company.name}}</ion-card-title>
+  <div class="wrapper-content">
+    <ion-grid *ngIf="job">
+      <ion-row>
+        <h1>{{job.title}}</h1>
+      </ion-row>
+      <ion-row>
+        <p [innerHTML]="job.description"></p>
+      </ion-row>
+      <ion-row>
+        <ion-card>
+          <ion-card-header color="primary">
+            <ion-card-subtitle>
+              Unternehmen
+            </ion-card-subtitle>
+            <ion-card-title>{{job.company.name}}</ion-card-title>
 
-        </ion-card-header>
+          </ion-card-header>
 
-        <ion-card-content>
-          <ion-item>
-            <ion-label position="stacked">Beschreibung</ion-label>
-            <p>{{job.company.description}}</p>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Adresse</ion-label>
-            <p>{{job.company.street}} {{job.company.houseNumber}}</p>
-            <p>{{job.company.city}} - {{job.company.postcode}} {{job.company.canton}}</p>
-          </ion-item>
-        </ion-card-content>
-        <ion-grid>
-          <ion-row>
-            <span></span>
-          </ion-row>
-          <ion-row>
-            <span></span>
-          </ion-row>
-          <ion-row>
-            <span></span>
-          </ion-row>
-        </ion-grid>
-      </ion-card>
-    </ion-row>
-  </ion-grid>
+          <ion-card-content>
+            <ion-item>
+              <ion-label position="stacked">Beschreibung</ion-label>
+              <p>{{job.company.description}}</p>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Adresse</ion-label>
+              <p>{{job.company.street}} {{job.company.houseNumber}}</p>
+              <p>{{job.company.city}} - {{job.company.postcode}} {{job.company.canton}}</p>
+            </ion-item>
+          </ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <span></span>
+            </ion-row>
+            <ion-row>
+              <span></span>
+            </ion-row>
+            <ion-row>
+              <span></span>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>
