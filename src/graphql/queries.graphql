@@ -563,3 +563,61 @@ query ListApplications(
     nextToken
   }
 }
+query SearchJobs(
+  $filter: SearchableJobFilterInput
+  $sort: SearchableJobSortInput
+  $limit: Int
+  $nextToken: String
+  $from: Int
+) {
+  searchJobs(
+    filter: $filter
+    sort: $sort
+    limit: $limit
+    nextToken: $nextToken
+    from: $from
+  ) {
+    items {
+      id
+      title
+      shortDescription
+      description
+      employment
+      payFrom
+      payTo
+      createDate
+      expireDate
+      applications {
+        nextToken
+      }
+      company {
+        id
+        name
+        description
+        website
+        street
+        houseNumber
+        information
+        postcode
+        city
+        canton
+        legal
+        count
+        image
+        createdAt
+        updatedAt
+      }
+      category {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+    total
+  }
+}

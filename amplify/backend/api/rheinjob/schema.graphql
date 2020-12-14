@@ -1,12 +1,19 @@
-type Account @model {
+type Account
+  @model
+  @auth(rules: [{ allow: owner }, { allow: groups, groups: ["Admins"] }]) {
   id: ID!
   type: String!
-  user: User @connection(name: "AccountUser")
-  company: Company @connection(name: "AccountCompany")
+  user: User @connection(keyName: "byAccount", fields: ["id"])
+  company: Company @connection(keyName: "byAccount", fields: ["id"])
 }
 
-type User @model {
+type User
+  @model
+  @auth(rules: [{ allow: owner }, { allow: groups, groups: ["Admins"] }])
+  @key(name: "byAccount", fields: ["accountID"])
+   {
   id: ID!
+  accountID: ID!
   prename: String!
   lastname: String!
   street: String!
@@ -16,14 +23,19 @@ type User @model {
   city: String!
   canton: String!
   image: String
-  account: Account! @connection(name: "AccountUser")
+  account: Account! @connection(fields: ["accountID"])
 }
 
-type Company @model {
+type Company
+  @model
+  @auth(rules: [{ allow: owner }, { allow: groups, groups: ["Admins"] }]) 
+  @key(name: "byAccount", fields: ["accountID"])
+  {
   id: ID!
+  accountID: ID!
   name: String!
   description: String!
-  website:String!
+  website: String!
   street: String!
   houseNumber: String!
   information: String
@@ -33,40 +45,54 @@ type Company @model {
   legal: Int!
   count: Int!
   image: String
-  account: Account! @connection(name: "AccountCompany")
-  jobs: [Job] @connection(name: "CompanyJobs")
+  account: Account! @connection(fields: ["accountID"])
+  jobs: [Job] @connection(keyName: "byCompany", fields: ["id"])
 }
 
-
-type Category @model {
+type Category
+  @model
+  @auth(rules: [{ allow: owner }, { allow: groups, groups: ["Admins"] }])
+  @key(name: "byCategory", fields: ["categoryID"]) {
   id: ID!
+  categoryID: ID!
   title: String!
   description: String!
-  jobs: [Job] @connection(name: "CategoryJobs")
+  jobs: [Job] @connection(keyName: "byCategory", fields: ["id"])
   # TODO: Anschauen ob dies die korrekte Implementierung ist
-  categories: [Category] @connection(name: "CategoryCategory")
-  category: Category @connection(name: "CategoryCategory")
+  categories: [Category] @connection(keyName: "byCategory", fields: ["id"])
+  category: Category @connection(fields: ["categoryID"])
 }
 
-
-type Job @model {
+type Job
+  @model
+  @searchable
+  @auth(rules: [{ allow: owner }, { allow: groups, groups: ["Admins"] }])
+  @key(name: "byCategory", fields: ["categoryID"])
+  @key(name: "byCompany", fields: ["companyID"])
+    {
   id: ID!
-  title: String! 
+  categoryID: ID!
+  companyID: ID!
+  title: String!
   shortDescription: String!
   description: String!
-  employment: Int!
+  employment: String!
   payFrom: Int
   payTo: Int
   createDate: String!
   expireDate: String!
-  applications: [Application] @connection(name: "JobApplications")
-  company: Company! @connection(name: "CompanyJobs")
-  category: Category! @connection(name: "CategoryJobs")
+  applications: [Application] @connection(keyName: "byJob", fields: ["id"])
+  company: Company! @connection(fields: ["companyID"])
+  category: Category! @connection(fields: ["categoryID"])
 }
 
-
-type Application @model {
+type Application
+  @model
+  @auth(rules: [{ allow: owner }, { allow: groups, groups: ["Admins"] }]) 
+   @key(name: "byJob", fields: ["jobID"])
+  {
   id: ID!
+  jobID: ID!
   title: String!
-  job: Job! @connection(name: "JobApplications")
+  job: Job! @connection(fields: ["jobID"])
 }

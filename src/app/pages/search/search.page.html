@@ -6,40 +6,30 @@
 
 <ion-content>
   <ion-grid id="settings">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <ion-row>
       <ion-col>
         <ion-item>
           <ion-label position="stacked">Stellenbezeichnung <ion-text color="danger">*</ion-text>
           </ion-label>
-          <ion-input required type="text"></ion-input>
+          <ion-input required type="text" formControlName="title"></ion-input>
         </ion-item>
       </ion-col>
       <ion-col>
         <ion-item>
           <ion-label position="stacked">Arbeitsort <ion-text color="danger">*</ion-text>
           </ion-label>
-          <ion-input required type="text"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col>
-        <ion-item>
-          <ion-label position="stacked">Arbeitspensum</ion-label>
-          <ion-select value="03" >
-            <ion-select-option value="01">Stundenbasis</ion-select-option>
-            <ion-select-option value="02">Projektanstellung</ion-select-option>
-            <ion-select-option value="03">Teilzeit</ion-select-option>
-            <ion-select-option value="04">Vollzeit</ion-select-option>
-          </ion-select>
+          <ion-input required type="text" formControlName="location" ></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
         <ion-item>
-          <ion-label position="stacked" >Entfernung</ion-label>
-          <ion-range min="5" max="200" pin color="secondary">
-            <ion-icon slot="start" size="medium" name="location-outline"></ion-icon>
-          </ion-range>
+          <ion-label position="stacked">Arbeitspensum</ion-label>
+          <ion-select  formControlName="employment">
+            <ion-select-option *ngFor="let employment of employmentEnum | keyvalue;" value="{{employment.key}}">{{employment.value}}</ion-select-option> 
+          </ion-select>
         </ion-item>
       </ion-col>
       <ion-col>
@@ -51,6 +41,9 @@
         </ion-item>
       </ion-col>
     </ion-row>
+    <ion-button type="submit" fill="solid" shape="round">Suchen</ion-button>
+    
+  </form>
   </ion-grid>
   <ion-list id="searchresults">
     <ion-list-header>

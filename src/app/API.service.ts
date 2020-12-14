@@ -219,7 +219,7 @@ export type CreateJobInput = {
   title: string;
   shortDescription: string;
   description: string;
-  employment: number;
+  employment: string;
   payFrom?: number | null;
   payTo?: number | null;
   createDate: string;
@@ -232,7 +232,7 @@ export type ModelJobConditionInput = {
   title?: ModelStringInput | null;
   shortDescription?: ModelStringInput | null;
   description?: ModelStringInput | null;
-  employment?: ModelIntInput | null;
+  employment?: ModelStringInput | null;
   payFrom?: ModelIntInput | null;
   payTo?: ModelIntInput | null;
   createDate?: ModelStringInput | null;
@@ -247,7 +247,7 @@ export type UpdateJobInput = {
   title?: string | null;
   shortDescription?: string | null;
   description?: string | null;
-  employment?: number | null;
+  employment?: string | null;
   payFrom?: number | null;
   payTo?: number | null;
   createDate?: string | null;
@@ -356,7 +356,7 @@ export type ModelJobFilterInput = {
   title?: ModelStringInput | null;
   shortDescription?: ModelStringInput | null;
   description?: ModelStringInput | null;
-  employment?: ModelIntInput | null;
+  employment?: ModelStringInput | null;
   payFrom?: ModelIntInput | null;
   payTo?: ModelIntInput | null;
   createDate?: ModelStringInput | null;
@@ -373,6 +373,87 @@ export type ModelApplicationFilterInput = {
   or?: Array<ModelApplicationFilterInput | null> | null;
   not?: ModelApplicationFilterInput | null;
 };
+
+export type SearchableJobFilterInput = {
+  id?: SearchableIDFilterInput | null;
+  title?: SearchableStringFilterInput | null;
+  shortDescription?: SearchableStringFilterInput | null;
+  description?: SearchableStringFilterInput | null;
+  employment?: SearchableStringFilterInput | null;
+  payFrom?: SearchableIntFilterInput | null;
+  payTo?: SearchableIntFilterInput | null;
+  createDate?: SearchableStringFilterInput | null;
+  expireDate?: SearchableStringFilterInput | null;
+  and?: Array<SearchableJobFilterInput | null> | null;
+  or?: Array<SearchableJobFilterInput | null> | null;
+  not?: SearchableJobFilterInput | null;
+};
+
+export type SearchableIDFilterInput = {
+  ne?: string | null;
+  gt?: string | null;
+  lt?: string | null;
+  gte?: string | null;
+  lte?: string | null;
+  eq?: string | null;
+  match?: string | null;
+  matchPhrase?: string | null;
+  matchPhrasePrefix?: string | null;
+  multiMatch?: string | null;
+  exists?: boolean | null;
+  wildcard?: string | null;
+  regexp?: string | null;
+  range?: Array<string | null> | null;
+};
+
+export type SearchableStringFilterInput = {
+  ne?: string | null;
+  gt?: string | null;
+  lt?: string | null;
+  gte?: string | null;
+  lte?: string | null;
+  eq?: string | null;
+  match?: string | null;
+  matchPhrase?: string | null;
+  matchPhrasePrefix?: string | null;
+  multiMatch?: string | null;
+  exists?: boolean | null;
+  wildcard?: string | null;
+  regexp?: string | null;
+  range?: Array<string | null> | null;
+};
+
+export type SearchableIntFilterInput = {
+  ne?: number | null;
+  gt?: number | null;
+  lt?: number | null;
+  gte?: number | null;
+  lte?: number | null;
+  eq?: number | null;
+  range?: Array<number | null> | null;
+};
+
+export type SearchableJobSortInput = {
+  field?: SearchableJobSortableFields | null;
+  direction?: SearchableSortDirection | null;
+};
+
+export enum SearchableJobSortableFields {
+  id = "id",
+  title = "title",
+  shortDescription = "shortDescription",
+  description = "description",
+  employment = "employment",
+  payFrom = "payFrom",
+  payTo = "payTo",
+  createDate = "createDate",
+  expireDate = "expireDate"
+}
+
+export enum SearchableSortDirection {
+  asc = "asc",
+  desc = "desc"
+}
 
 export type CreateAccountMutation = {
   __typename: "Account";
@@ -782,7 +863,7 @@ export type CreateCompanyMutation = {
       title: string;
       shortDescription: string;
       description: string;
-      employment: number;
+      employment: string;
       payFrom: number | null;
       payTo: number | null;
       createDate: string;
@@ -859,7 +940,7 @@ export type UpdateCompanyMutation = {
       title: string;
       shortDescription: string;
       description: string;
-      employment: number;
+      employment: string;
       payFrom: number | null;
       payTo: number | null;
       createDate: string;
@@ -936,7 +1017,7 @@ export type DeleteCompanyMutation = {
       title: string;
       shortDescription: string;
       description: string;
-      employment: number;
+      employment: string;
       payFrom: number | null;
       payTo: number | null;
       createDate: string;
@@ -963,7 +1044,7 @@ export type CreateCategoryMutation = {
       title: string;
       shortDescription: string;
       description: string;
-      employment: number;
+      employment: string;
       payFrom: number | null;
       payTo: number | null;
       createDate: string;
@@ -1026,7 +1107,7 @@ export type UpdateCategoryMutation = {
       title: string;
       shortDescription: string;
       description: string;
-      employment: number;
+      employment: string;
       payFrom: number | null;
       payTo: number | null;
       createDate: string;
@@ -1089,7 +1170,7 @@ export type DeleteCategoryMutation = {
       title: string;
       shortDescription: string;
       description: string;
-      employment: number;
+      employment: string;
       payFrom: number | null;
       payTo: number | null;
       createDate: string;
@@ -1145,7 +1226,7 @@ export type CreateJobMutation = {
   title: string;
   shortDescription: string;
   description: string;
-  employment: number;
+  employment: string;
   payFrom: number | null;
   payTo: number | null;
   createDate: string;
@@ -1224,7 +1305,7 @@ export type UpdateJobMutation = {
   title: string;
   shortDescription: string;
   description: string;
-  employment: number;
+  employment: string;
   payFrom: number | null;
   payTo: number | null;
   createDate: string;
@@ -1303,7 +1384,7 @@ export type DeleteJobMutation = {
   title: string;
   shortDescription: string;
   description: string;
-  employment: number;
+  employment: string;
   payFrom: number | null;
   payTo: number | null;
   createDate: string;
@@ -1386,7 +1467,7 @@ export type CreateApplicationMutation = {
     title: string;
     shortDescription: string;
     description: string;
-    employment: number;
+    employment: string;
     payFrom: number | null;
     payTo: number | null;
     createDate: string;
@@ -1438,7 +1519,7 @@ export type UpdateApplicationMutation = {
     title: string;
     shortDescription: string;
     description: string;
-    employment: number;
+    employment: string;
     payFrom: number | null;
     payTo: number | null;
     createDate: string;
@@ -1490,7 +1571,7 @@ export type DeleteApplicationMutation = {
     title: string;
     shortDescription: string;
     description: string;
-    employment: number;
+    employment: string;
     payFrom: number | null;
     payTo: number | null;
     createDate: string;
@@ -1782,7 +1863,7 @@ export type GetCompanyQuery = {
       title: string;
       shortDescription: string;
       description: string;
-      employment: number;
+      employment: string;
       payFrom: number | null;
       payTo: number | null;
       createDate: string;
@@ -1843,7 +1924,7 @@ export type GetCategoryQuery = {
       title: string;
       shortDescription: string;
       description: string;
-      employment: number;
+      employment: string;
       payFrom: number | null;
       payTo: number | null;
       createDate: string;
@@ -1928,7 +2009,7 @@ export type GetJobQuery = {
   title: string;
   shortDescription: string;
   description: string;
-  employment: number;
+  employment: string;
   payFrom: number | null;
   payTo: number | null;
   createDate: string;
@@ -2009,7 +2090,7 @@ export type ListJobsQuery = {
     title: string;
     shortDescription: string;
     description: string;
-    employment: number;
+    employment: string;
     payFrom: number | null;
     payTo: number | null;
     createDate: string;
@@ -2060,7 +2141,7 @@ export type GetApplicationQuery = {
     title: string;
     shortDescription: string;
     description: string;
-    employment: number;
+    employment: string;
     payFrom: number | null;
     payTo: number | null;
     createDate: string;
@@ -2114,7 +2195,7 @@ export type ListApplicationsQuery = {
       title: string;
       shortDescription: string;
       description: string;
-      employment: number;
+      employment: string;
       payFrom: number | null;
       payTo: number | null;
       createDate: string;
@@ -2126,6 +2207,56 @@ export type ListApplicationsQuery = {
     updatedAt: string;
   } | null> | null;
   nextToken: string | null;
+};
+
+export type SearchJobsQuery = {
+  __typename: "SearchableJobConnection";
+  items: Array<{
+    __typename: "Job";
+    id: string;
+    title: string;
+    shortDescription: string;
+    description: string;
+    employment: string;
+    payFrom: number | null;
+    payTo: number | null;
+    createDate: string;
+    expireDate: string;
+    applications: {
+      __typename: "ModelApplicationConnection";
+      nextToken: string | null;
+    } | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      description: string;
+      website: string;
+      street: string;
+      houseNumber: string;
+      information: string | null;
+      postcode: number;
+      city: string;
+      canton: string;
+      legal: number;
+      count: number;
+      image: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
+    category: {
+      __typename: "Category";
+      id: string;
+      title: string;
+      description: string;
+      createdAt: string;
+      updatedAt: string;
+    };
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+  total: number | null;
 };
 
 export type OnCreateAccountSubscription = {
@@ -2536,7 +2667,7 @@ export type OnCreateCompanySubscription = {
       title: string;
       shortDescription: string;
       description: string;
-      employment: number;
+      employment: string;
       payFrom: number | null;
       payTo: number | null;
       createDate: string;
@@ -2613,7 +2744,7 @@ export type OnUpdateCompanySubscription = {
       title: string;
       shortDescription: string;
       description: string;
-      employment: number;
+      employment: string;
       payFrom: number | null;
       payTo: number | null;
       createDate: string;
@@ -2690,7 +2821,7 @@ export type OnDeleteCompanySubscription = {
       title: string;
       shortDescription: string;
       description: string;
-      employment: number;
+      employment: string;
       payFrom: number | null;
       payTo: number | null;
       createDate: string;
@@ -2717,7 +2848,7 @@ export type OnCreateCategorySubscription = {
       title: string;
       shortDescription: string;
       description: string;
-      employment: number;
+      employment: string;
       payFrom: number | null;
       payTo: number | null;
       createDate: string;
@@ -2780,7 +2911,7 @@ export type OnUpdateCategorySubscription = {
       title: string;
       shortDescription: string;
       description: string;
-      employment: number;
+      employment: string;
       payFrom: number | null;
       payTo: number | null;
       createDate: string;
@@ -2843,7 +2974,7 @@ export type OnDeleteCategorySubscription = {
       title: string;
       shortDescription: string;
       description: string;
-      employment: number;
+      employment: string;
       payFrom: number | null;
       payTo: number | null;
       createDate: string;
@@ -2899,7 +3030,7 @@ export type OnCreateJobSubscription = {
   title: string;
   shortDescription: string;
   description: string;
-  employment: number;
+  employment: string;
   payFrom: number | null;
   payTo: number | null;
   createDate: string;
@@ -2978,7 +3109,7 @@ export type OnUpdateJobSubscription = {
   title: string;
   shortDescription: string;
   description: string;
-  employment: number;
+  employment: string;
   payFrom: number | null;
   payTo: number | null;
   createDate: string;
@@ -3057,7 +3188,7 @@ export type OnDeleteJobSubscription = {
   title: string;
   shortDescription: string;
   description: string;
-  employment: number;
+  employment: string;
   payFrom: number | null;
   payTo: number | null;
   createDate: string;
@@ -3140,7 +3271,7 @@ export type OnCreateApplicationSubscription = {
     title: string;
     shortDescription: string;
     description: string;
-    employment: number;
+    employment: string;
     payFrom: number | null;
     payTo: number | null;
     createDate: string;
@@ -3192,7 +3323,7 @@ export type OnUpdateApplicationSubscription = {
     title: string;
     shortDescription: string;
     description: string;
-    employment: number;
+    employment: string;
     payFrom: number | null;
     payTo: number | null;
     createDate: string;
@@ -3244,7 +3375,7 @@ export type OnDeleteApplicationSubscription = {
     title: string;
     shortDescription: string;
     description: string;
-    employment: number;
+    employment: string;
     payFrom: number | null;
     payTo: number | null;
     createDate: string;
@@ -5517,6 +5648,85 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <ListApplicationsQuery>response.data.listApplications;
+  }
+  async SearchJobs(
+    filter?: SearchableJobFilterInput,
+    sort?: SearchableJobSortInput,
+    limit?: number,
+    nextToken?: string,
+    from?: number
+  ): Promise<SearchJobsQuery> {
+    const statement = `query SearchJobs($filter: SearchableJobFilterInput, $sort: SearchableJobSortInput, $limit: Int, $nextToken: String, $from: Int) {
+        searchJobs(filter: $filter, sort: $sort, limit: $limit, nextToken: $nextToken, from: $from) {
+          __typename
+          items {
+            __typename
+            id
+            title
+            shortDescription
+            description
+            employment
+            payFrom
+            payTo
+            createDate
+            expireDate
+            applications {
+              __typename
+              nextToken
+            }
+            company {
+              __typename
+              id
+              name
+              description
+              website
+              street
+              houseNumber
+              information
+              postcode
+              city
+              canton
+              legal
+              count
+              image
+              createdAt
+              updatedAt
+            }
+            category {
+              __typename
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+          total
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (sort) {
+      gqlAPIServiceArguments.sort = sort;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (from) {
+      gqlAPIServiceArguments.from = from;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SearchJobsQuery>response.data.searchJobs;
   }
   OnCreateAccountListener: Observable<
     SubscriptionResponse<OnCreateAccountSubscription>

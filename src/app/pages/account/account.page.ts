@@ -134,7 +134,7 @@ export class AccountPage implements OnInit {
           description: companyForm.description,
           count: companyForm.count,
           information: companyForm.information,
-          legal: companyForm.legal,
+          legal: companyForm.legal, 
         };
 
         this.API.GetAccount(user.username).then(account => {

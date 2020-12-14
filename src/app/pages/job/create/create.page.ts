@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Auth } from 'aws-amplify';
 import { APIService, CreateJobInput } from 'src/app/API.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { Employment } from 'src/app/enums/employment.enum';
 
 @Component({
   selector: 'app-create',
@@ -22,7 +23,7 @@ export class CreatePage implements OnInit {
   public payFrom;
   public payTo;
   public category;
-
+  public employmentEnum;
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
@@ -66,6 +67,8 @@ export class CreatePage implements OnInit {
   }
 
   ngOnInit() {
+    this.employmentEnum = Employment;
+
     this.form = this.formBuilder.group({
       title: ['', [Validators.required, Validators.minLength(1)]],
       shortDescription: ['', [Validators.required, Validators.minLength(1)]],

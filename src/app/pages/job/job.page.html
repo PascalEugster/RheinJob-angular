@@ -16,13 +16,32 @@
       <ion-row>
         <ion-card>
           <ion-card-header color="primary">
+            <ion-card-title>Allgemeine Informationen</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item>
+              <ion-label position="stacked">Arbeitspensum</ion-label>
+              <p>{{selectedEmployment}}</p>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Lohn</ion-label>
+              <p>{{job.payFrom}} - {{job.payTo}}</p>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Kategorie</ion-label>
+              <p>{{job.category.title}}</p>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-row>
+      <ion-row>
+        <ion-card>
+          <ion-card-header color="primary">
             <ion-card-subtitle>
               Unternehmen
             </ion-card-subtitle>
             <ion-card-title>{{job.company.name}}</ion-card-title>
-
           </ion-card-header>
-
           <ion-card-content>
             <ion-item>
               <ion-label position="stacked">Beschreibung</ion-label>
@@ -34,17 +53,6 @@
               <p>{{job.company.city}} - {{job.company.postcode}} {{job.company.canton}}</p>
             </ion-item>
           </ion-card-content>
-          <ion-grid>
-            <ion-row>
-              <span></span>
-            </ion-row>
-            <ion-row>
-              <span></span>
-            </ion-row>
-            <ion-row>
-              <span></span>
-            </ion-row>
-          </ion-grid>
         </ion-card>
       </ion-row>
     </ion-grid>

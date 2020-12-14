@@ -51,16 +51,6 @@ export class AppComponent implements OnInit {
       icon: 'person'
     },
     {
-      title: 'Logout',
-      url: '/logout',
-      icon: 'close-circle'
-    },
-    {
-      title: 'Job',
-      url: '/job',
-      icon: 'close-circle'
-    },
-    {
       title: 'Job erfassen',
       url: '/job/create',
       icon: 'create'
@@ -121,20 +111,20 @@ export class AppComponent implements OnInit {
       this.authState = authState;
       this.user = authData as CognitoUserInterface;
       this.ref.detectChanges();
-
-      if(authState == 'signedin' )
-      {
-        Auth.currentUserInfo().then(user => { 
-          this.api.GetUser(user.username).then(user => {
-            if(user == null) {
-              this.router.navigate(['/account']);
-            }
-            else {
-              this.router.navigate(['/']);
-            }
-          });
-        });
-      }
+ 
+      // if(authState == 'signedin' ) 
+      // {
+      //   Auth.currentUserInfo().then(user => { 
+      //     this.api.GetUser(user.username).then(user => {
+      //       if(user == null) {
+      //         this.router.navigate(['/account']);
+      //       }
+      //       else {
+      //         this.router.navigate(['/']); 
+      //       }
+      //     });
+      //   });
+      // }
     });
   }
 

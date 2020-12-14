@@ -45,11 +45,9 @@
       </ion-list-header>
       <ion-item>
         <ion-label position="stacked">Arbeitspensum</ion-label>
-        <ion-select value="3" formControlName="employment">
-          <ion-select-option value="1">Stundenbasis</ion-select-option>
-          <ion-select-option value="2">Projektanstellung</ion-select-option>
-          <ion-select-option value="3">Teilzeit</ion-select-option>
-          <ion-select-option value="4">Vollzeit</ion-select-option>
+        <ion-select formControlName="employment">
+          <ion-select-option *ngFor="let employment of employmentEnum | keyvalue;" value="{{employment.key}}">{{employment.value}}</ion-select-option>
+
         </ion-select>
       </ion-item>
       <ion-item>
@@ -75,6 +73,7 @@
   <div>
     <h2>Vorschau</h2>
     <h3 >{{title}}</h3>
+    <h3 >{{shortDescription}}</h3>
     <div [innerHTML]="description"></div>
   </div>
 </ion-content>
