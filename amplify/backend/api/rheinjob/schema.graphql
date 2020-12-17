@@ -2,9 +2,11 @@ type Account
   @model
   @auth(rules: [{ allow: owner }, { allow: groups, groups: ["Admins"] }]) {
   id: ID!
+  userID: ID!
+  companyID:ID!
   type: String!
-  user: User @connection(keyName: "byAccount", fields: ["id"])
-  company: Company @connection(keyName: "byAccount", fields: ["id"])
+  user: User @connection(fields: ["userID"])
+  company: Company @connection(fields: ["companyID"])
 }
 
 type User
