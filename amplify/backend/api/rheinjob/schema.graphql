@@ -30,7 +30,7 @@ type User
 
 type Company
   @model
-  @auth(rules: [{ allow: owner }, { allow: groups, groups: ["Admins"] }]) 
+  @auth(rules: [{ allow: owner }, { allow: groups, groups: ["Admins"] }])
   @key(name: "byAccount", fields: ["accountID"])
   {
   id: ID!
@@ -90,7 +90,7 @@ type Job
 
 type Application
   @model
-  @auth(rules: [{ allow: owner }, { allow: groups, groups: ["Admins"] }]) 
+  @auth(rules: [{ allow: owner }, { allow: groups, groups: ["Admins"] }])
    @key(name: "byJob", fields: ["jobID"])
   {
   id: ID!

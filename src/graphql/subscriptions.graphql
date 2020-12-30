@@ -1,10 +1,13 @@
 # this is an auto generated file. This will be overwritten
-subscription OnCreateAccount {
-  onCreateAccount {
+subscription OnCreateAccount($owner: String) {
+  onCreateAccount(owner: $owner) {
     id
+    userID
+    companyID
     type
     user {
       id
+      accountID
       prename
       lastname
       street
@@ -16,15 +19,20 @@ subscription OnCreateAccount {
       image
       account {
         id
+        userID
+        companyID
         type
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     company {
       id
+      accountID
       name
       description
       website
@@ -39,26 +47,34 @@ subscription OnCreateAccount {
       image
       account {
         id
+        userID
+        companyID
         type
         createdAt
         updatedAt
+        owner
       }
       jobs {
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
     createdAt
     updatedAt
+    owner
   }
 }
-subscription OnUpdateAccount {
-  onUpdateAccount {
+subscription OnUpdateAccount($owner: String) {
+  onUpdateAccount(owner: $owner) {
     id
+    userID
+    companyID
     type
     user {
       id
+      accountID
       prename
       lastname
       street
@@ -70,15 +86,20 @@ subscription OnUpdateAccount {
       image
       account {
         id
+        userID
+        companyID
         type
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     company {
       id
+      accountID
       name
       description
       website
@@ -93,26 +114,34 @@ subscription OnUpdateAccount {
       image
       account {
         id
+        userID
+        companyID
         type
         createdAt
         updatedAt
+        owner
       }
       jobs {
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
     createdAt
     updatedAt
+    owner
   }
 }
-subscription OnDeleteAccount {
-  onDeleteAccount {
+subscription OnDeleteAccount($owner: String) {
+  onDeleteAccount(owner: $owner) {
     id
+    userID
+    companyID
     type
     user {
       id
+      accountID
       prename
       lastname
       street
@@ -124,15 +153,20 @@ subscription OnDeleteAccount {
       image
       account {
         id
+        userID
+        companyID
         type
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     company {
       id
+      accountID
       name
       description
       website
@@ -147,23 +181,29 @@ subscription OnDeleteAccount {
       image
       account {
         id
+        userID
+        companyID
         type
         createdAt
         updatedAt
+        owner
       }
       jobs {
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
     createdAt
     updatedAt
+    owner
   }
 }
-subscription OnCreateUser {
-  onCreateUser {
+subscription OnCreateUser($owner: String) {
+  onCreateUser(owner: $owner) {
     id
+    accountID
     prename
     lastname
     street
@@ -175,9 +215,12 @@ subscription OnCreateUser {
     image
     account {
       id
+      userID
+      companyID
       type
       user {
         id
+        accountID
         prename
         lastname
         street
@@ -189,9 +232,11 @@ subscription OnCreateUser {
         image
         createdAt
         updatedAt
+        owner
       }
       company {
         id
+        accountID
         name
         description
         website
@@ -206,17 +251,21 @@ subscription OnCreateUser {
         image
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     createdAt
     updatedAt
+    owner
   }
 }
-subscription OnUpdateUser {
-  onUpdateUser {
+subscription OnUpdateUser($owner: String) {
+  onUpdateUser(owner: $owner) {
     id
+    accountID
     prename
     lastname
     street
@@ -228,9 +277,12 @@ subscription OnUpdateUser {
     image
     account {
       id
+      userID
+      companyID
       type
       user {
         id
+        accountID
         prename
         lastname
         street
@@ -242,9 +294,11 @@ subscription OnUpdateUser {
         image
         createdAt
         updatedAt
+        owner
       }
       company {
         id
+        accountID
         name
         description
         website
@@ -259,17 +313,21 @@ subscription OnUpdateUser {
         image
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     createdAt
     updatedAt
+    owner
   }
 }
-subscription OnDeleteUser {
-  onDeleteUser {
+subscription OnDeleteUser($owner: String) {
+  onDeleteUser(owner: $owner) {
     id
+    accountID
     prename
     lastname
     street
@@ -281,9 +339,12 @@ subscription OnDeleteUser {
     image
     account {
       id
+      userID
+      companyID
       type
       user {
         id
+        accountID
         prename
         lastname
         street
@@ -295,9 +356,11 @@ subscription OnDeleteUser {
         image
         createdAt
         updatedAt
+        owner
       }
       company {
         id
+        accountID
         name
         description
         website
@@ -312,17 +375,21 @@ subscription OnDeleteUser {
         image
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     createdAt
     updatedAt
+    owner
   }
 }
-subscription OnCreateCompany {
-  onCreateCompany {
+subscription OnCreateCompany($owner: String) {
+  onCreateCompany(owner: $owner) {
     id
+    accountID
     name
     description
     website
@@ -337,9 +404,12 @@ subscription OnCreateCompany {
     image
     account {
       id
+      userID
+      companyID
       type
       user {
         id
+        accountID
         prename
         lastname
         street
@@ -351,9 +421,11 @@ subscription OnCreateCompany {
         image
         createdAt
         updatedAt
+        owner
       }
       company {
         id
+        accountID
         name
         description
         website
@@ -368,13 +440,17 @@ subscription OnCreateCompany {
         image
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     jobs {
       items {
         id
+        categoryID
+        companyID
         title
         shortDescription
         description
@@ -385,16 +461,19 @@ subscription OnCreateCompany {
         expireDate
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
     createdAt
     updatedAt
+    owner
   }
 }
-subscription OnUpdateCompany {
-  onUpdateCompany {
+subscription OnUpdateCompany($owner: String) {
+  onUpdateCompany(owner: $owner) {
     id
+    accountID
     name
     description
     website
@@ -409,9 +488,12 @@ subscription OnUpdateCompany {
     image
     account {
       id
+      userID
+      companyID
       type
       user {
         id
+        accountID
         prename
         lastname
         street
@@ -423,9 +505,11 @@ subscription OnUpdateCompany {
         image
         createdAt
         updatedAt
+        owner
       }
       company {
         id
+        accountID
         name
         description
         website
@@ -440,13 +524,17 @@ subscription OnUpdateCompany {
         image
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     jobs {
       items {
         id
+        categoryID
+        companyID
         title
         shortDescription
         description
@@ -457,16 +545,19 @@ subscription OnUpdateCompany {
         expireDate
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
     createdAt
     updatedAt
+    owner
   }
 }
-subscription OnDeleteCompany {
-  onDeleteCompany {
+subscription OnDeleteCompany($owner: String) {
+  onDeleteCompany(owner: $owner) {
     id
+    accountID
     name
     description
     website
@@ -481,9 +572,12 @@ subscription OnDeleteCompany {
     image
     account {
       id
+      userID
+      companyID
       type
       user {
         id
+        accountID
         prename
         lastname
         street
@@ -495,9 +589,11 @@ subscription OnDeleteCompany {
         image
         createdAt
         updatedAt
+        owner
       }
       company {
         id
+        accountID
         name
         description
         website
@@ -512,13 +608,17 @@ subscription OnDeleteCompany {
         image
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     jobs {
       items {
         id
+        categoryID
+        companyID
         title
         shortDescription
         description
@@ -529,21 +629,26 @@ subscription OnDeleteCompany {
         expireDate
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
     createdAt
     updatedAt
+    owner
   }
 }
-subscription OnCreateCategory {
-  onCreateCategory {
+subscription OnCreateCategory($owner: String) {
+  onCreateCategory(owner: $owner) {
     id
+    categoryID
     title
     description
     jobs {
       items {
         id
+        categoryID
+        companyID
         title
         shortDescription
         description
@@ -554,21 +659,25 @@ subscription OnCreateCategory {
         expireDate
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
     categories {
       items {
         id
+        categoryID
         title
         description
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
     category {
       id
+      categoryID
       title
       description
       jobs {
@@ -579,26 +688,33 @@ subscription OnCreateCategory {
       }
       category {
         id
+        categoryID
         title
         description
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     createdAt
     updatedAt
+    owner
   }
 }
-subscription OnUpdateCategory {
-  onUpdateCategory {
+subscription OnUpdateCategory($owner: String) {
+  onUpdateCategory(owner: $owner) {
     id
+    categoryID
     title
     description
     jobs {
       items {
         id
+        categoryID
+        companyID
         title
         shortDescription
         description
@@ -609,21 +725,25 @@ subscription OnUpdateCategory {
         expireDate
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
     categories {
       items {
         id
+        categoryID
         title
         description
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
     category {
       id
+      categoryID
       title
       description
       jobs {
@@ -634,26 +754,33 @@ subscription OnUpdateCategory {
       }
       category {
         id
+        categoryID
         title
         description
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     createdAt
     updatedAt
+    owner
   }
 }
-subscription OnDeleteCategory {
-  onDeleteCategory {
+subscription OnDeleteCategory($owner: String) {
+  onDeleteCategory(owner: $owner) {
     id
+    categoryID
     title
     description
     jobs {
       items {
         id
+        categoryID
+        companyID
         title
         shortDescription
         description
@@ -664,21 +791,25 @@ subscription OnDeleteCategory {
         expireDate
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
     categories {
       items {
         id
+        categoryID
         title
         description
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
     category {
       id
+      categoryID
       title
       description
       jobs {
@@ -689,21 +820,27 @@ subscription OnDeleteCategory {
       }
       category {
         id
+        categoryID
         title
         description
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     createdAt
     updatedAt
+    owner
   }
 }
-subscription OnCreateJob {
-  onCreateJob {
+subscription OnCreateJob($owner: String) {
+  onCreateJob(owner: $owner) {
     id
+    categoryID
+    companyID
     title
     shortDescription
     description
@@ -715,14 +852,17 @@ subscription OnCreateJob {
     applications {
       items {
         id
+        jobID
         title
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
     company {
       id
+      accountID
       name
       description
       website
@@ -737,18 +877,23 @@ subscription OnCreateJob {
       image
       account {
         id
+        userID
+        companyID
         type
         createdAt
         updatedAt
+        owner
       }
       jobs {
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
     category {
       id
+      categoryID
       title
       description
       jobs {
@@ -759,21 +904,27 @@ subscription OnCreateJob {
       }
       category {
         id
+        categoryID
         title
         description
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     createdAt
     updatedAt
+    owner
   }
 }
-subscription OnUpdateJob {
-  onUpdateJob {
+subscription OnUpdateJob($owner: String) {
+  onUpdateJob(owner: $owner) {
     id
+    categoryID
+    companyID
     title
     shortDescription
     description
@@ -785,14 +936,17 @@ subscription OnUpdateJob {
     applications {
       items {
         id
+        jobID
         title
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
     company {
       id
+      accountID
       name
       description
       website
@@ -807,18 +961,23 @@ subscription OnUpdateJob {
       image
       account {
         id
+        userID
+        companyID
         type
         createdAt
         updatedAt
+        owner
       }
       jobs {
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
     category {
       id
+      categoryID
       title
       description
       jobs {
@@ -829,21 +988,27 @@ subscription OnUpdateJob {
       }
       category {
         id
+        categoryID
         title
         description
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     createdAt
     updatedAt
+    owner
   }
 }
-subscription OnDeleteJob {
-  onDeleteJob {
+subscription OnDeleteJob($owner: String) {
+  onDeleteJob(owner: $owner) {
     id
+    categoryID
+    companyID
     title
     shortDescription
     description
@@ -855,14 +1020,17 @@ subscription OnDeleteJob {
     applications {
       items {
         id
+        jobID
         title
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
     company {
       id
+      accountID
       name
       description
       website
@@ -877,18 +1045,23 @@ subscription OnDeleteJob {
       image
       account {
         id
+        userID
+        companyID
         type
         createdAt
         updatedAt
+        owner
       }
       jobs {
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
     category {
       id
+      categoryID
       title
       description
       jobs {
@@ -899,24 +1072,31 @@ subscription OnDeleteJob {
       }
       category {
         id
+        categoryID
         title
         description
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     createdAt
     updatedAt
+    owner
   }
 }
-subscription OnCreateApplication {
-  onCreateApplication {
+subscription OnCreateApplication($owner: String) {
+  onCreateApplication(owner: $owner) {
     id
+    jobID
     title
     job {
       id
+      categoryID
+      companyID
       title
       shortDescription
       description
@@ -930,6 +1110,7 @@ subscription OnCreateApplication {
       }
       company {
         id
+        accountID
         name
         description
         website
@@ -944,27 +1125,35 @@ subscription OnCreateApplication {
         image
         createdAt
         updatedAt
+        owner
       }
       category {
         id
+        categoryID
         title
         description
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     createdAt
     updatedAt
+    owner
   }
 }
-subscription OnUpdateApplication {
-  onUpdateApplication {
+subscription OnUpdateApplication($owner: String) {
+  onUpdateApplication(owner: $owner) {
     id
+    jobID
     title
     job {
       id
+      categoryID
+      companyID
       title
       shortDescription
       description
@@ -978,6 +1167,7 @@ subscription OnUpdateApplication {
       }
       company {
         id
+        accountID
         name
         description
         website
@@ -992,27 +1182,35 @@ subscription OnUpdateApplication {
         image
         createdAt
         updatedAt
+        owner
       }
       category {
         id
+        categoryID
         title
         description
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     createdAt
     updatedAt
+    owner
   }
 }
-subscription OnDeleteApplication {
-  onDeleteApplication {
+subscription OnDeleteApplication($owner: String) {
+  onDeleteApplication(owner: $owner) {
     id
+    jobID
     title
     job {
       id
+      categoryID
+      companyID
       title
       shortDescription
       description
@@ -1026,6 +1224,7 @@ subscription OnDeleteApplication {
       }
       company {
         id
+        accountID
         name
         description
         website
@@ -1040,18 +1239,23 @@ subscription OnDeleteApplication {
         image
         createdAt
         updatedAt
+        owner
       }
       category {
         id
+        categoryID
         title
         description
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     createdAt
     updatedAt
+    owner
   }
 }

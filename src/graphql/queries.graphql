@@ -2,9 +2,12 @@
 query GetAccount($id: ID!) {
   getAccount(id: $id) {
     id
+    userID
+    companyID
     type
     user {
       id
+      accountID
       prename
       lastname
       street
@@ -16,15 +19,20 @@ query GetAccount($id: ID!) {
       image
       account {
         id
+        userID
+        companyID
         type
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     company {
       id
+      accountID
       name
       description
       website
@@ -39,18 +47,23 @@ query GetAccount($id: ID!) {
       image
       account {
         id
+        userID
+        companyID
         type
         createdAt
         updatedAt
+        owner
       }
       jobs {
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
     createdAt
     updatedAt
+    owner
   }
 }
 query ListAccounts(
@@ -61,9 +74,12 @@ query ListAccounts(
   listAccounts(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
+      userID
+      companyID
       type
       user {
         id
+        accountID
         prename
         lastname
         street
@@ -75,9 +91,11 @@ query ListAccounts(
         image
         createdAt
         updatedAt
+        owner
       }
       company {
         id
+        accountID
         name
         description
         website
@@ -92,9 +110,11 @@ query ListAccounts(
         image
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     nextToken
   }
@@ -102,6 +122,7 @@ query ListAccounts(
 query GetUser($id: ID!) {
   getUser(id: $id) {
     id
+    accountID
     prename
     lastname
     street
@@ -113,9 +134,12 @@ query GetUser($id: ID!) {
     image
     account {
       id
+      userID
+      companyID
       type
       user {
         id
+        accountID
         prename
         lastname
         street
@@ -127,9 +151,11 @@ query GetUser($id: ID!) {
         image
         createdAt
         updatedAt
+        owner
       }
       company {
         id
+        accountID
         name
         description
         website
@@ -144,12 +170,15 @@ query GetUser($id: ID!) {
         image
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     createdAt
     updatedAt
+    owner
   }
 }
 query ListUsers(
@@ -160,6 +189,7 @@ query ListUsers(
   listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
+      accountID
       prename
       lastname
       street
@@ -171,12 +201,16 @@ query ListUsers(
       image
       account {
         id
+        userID
+        companyID
         type
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     nextToken
   }
@@ -184,6 +218,7 @@ query ListUsers(
 query GetCompany($id: ID!) {
   getCompany(id: $id) {
     id
+    accountID
     name
     description
     website
@@ -198,9 +233,12 @@ query GetCompany($id: ID!) {
     image
     account {
       id
+      userID
+      companyID
       type
       user {
         id
+        accountID
         prename
         lastname
         street
@@ -212,9 +250,11 @@ query GetCompany($id: ID!) {
         image
         createdAt
         updatedAt
+        owner
       }
       company {
         id
+        accountID
         name
         description
         website
@@ -229,13 +269,17 @@ query GetCompany($id: ID!) {
         image
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     jobs {
       items {
         id
+        categoryID
+        companyID
         title
         shortDescription
         description
@@ -246,11 +290,13 @@ query GetCompany($id: ID!) {
         expireDate
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
     createdAt
     updatedAt
+    owner
   }
 }
 query ListCompanys(
@@ -261,6 +307,7 @@ query ListCompanys(
   listCompanys(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
+      accountID
       name
       description
       website
@@ -275,15 +322,19 @@ query ListCompanys(
       image
       account {
         id
+        userID
+        companyID
         type
         createdAt
         updatedAt
+        owner
       }
       jobs {
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
     nextToken
   }
@@ -291,11 +342,14 @@ query ListCompanys(
 query GetCategory($id: ID!) {
   getCategory(id: $id) {
     id
+    categoryID
     title
     description
     jobs {
       items {
         id
+        categoryID
+        companyID
         title
         shortDescription
         description
@@ -306,21 +360,25 @@ query GetCategory($id: ID!) {
         expireDate
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
     categories {
       items {
         id
+        categoryID
         title
         description
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
     category {
       id
+      categoryID
       title
       description
       jobs {
@@ -331,16 +389,20 @@ query GetCategory($id: ID!) {
       }
       category {
         id
+        categoryID
         title
         description
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     createdAt
     updatedAt
+    owner
   }
 }
 query ListCategorys(
@@ -351,6 +413,7 @@ query ListCategorys(
   listCategorys(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
+      categoryID
       title
       description
       jobs {
@@ -361,13 +424,16 @@ query ListCategorys(
       }
       category {
         id
+        categoryID
         title
         description
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     nextToken
   }
@@ -375,6 +441,8 @@ query ListCategorys(
 query GetJob($id: ID!) {
   getJob(id: $id) {
     id
+    categoryID
+    companyID
     title
     shortDescription
     description
@@ -386,14 +454,17 @@ query GetJob($id: ID!) {
     applications {
       items {
         id
+        jobID
         title
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
     company {
       id
+      accountID
       name
       description
       website
@@ -408,18 +479,23 @@ query GetJob($id: ID!) {
       image
       account {
         id
+        userID
+        companyID
         type
         createdAt
         updatedAt
+        owner
       }
       jobs {
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
     category {
       id
+      categoryID
       title
       description
       jobs {
@@ -430,22 +506,28 @@ query GetJob($id: ID!) {
       }
       category {
         id
+        categoryID
         title
         description
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     createdAt
     updatedAt
+    owner
   }
 }
 query ListJobs($filter: ModelJobFilterInput, $limit: Int, $nextToken: String) {
   listJobs(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
+      categoryID
+      companyID
       title
       shortDescription
       description
@@ -459,6 +541,7 @@ query ListJobs($filter: ModelJobFilterInput, $limit: Int, $nextToken: String) {
       }
       company {
         id
+        accountID
         name
         description
         website
@@ -473,16 +556,20 @@ query ListJobs($filter: ModelJobFilterInput, $limit: Int, $nextToken: String) {
         image
         createdAt
         updatedAt
+        owner
       }
       category {
         id
+        categoryID
         title
         description
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     nextToken
   }
@@ -490,9 +577,12 @@ query ListJobs($filter: ModelJobFilterInput, $limit: Int, $nextToken: String) {
 query GetApplication($id: ID!) {
   getApplication(id: $id) {
     id
+    jobID
     title
     job {
       id
+      categoryID
+      companyID
       title
       shortDescription
       description
@@ -506,6 +596,7 @@ query GetApplication($id: ID!) {
       }
       company {
         id
+        accountID
         name
         description
         website
@@ -520,19 +611,24 @@ query GetApplication($id: ID!) {
         image
         createdAt
         updatedAt
+        owner
       }
       category {
         id
+        categoryID
         title
         description
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     createdAt
     updatedAt
+    owner
   }
 }
 query ListApplications(
@@ -543,9 +639,12 @@ query ListApplications(
   listApplications(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
+      jobID
       title
       job {
         id
+        categoryID
+        companyID
         title
         shortDescription
         description
@@ -556,9 +655,11 @@ query ListApplications(
         expireDate
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     nextToken
   }
@@ -579,6 +680,8 @@ query SearchJobs(
   ) {
     items {
       id
+      categoryID
+      companyID
       title
       shortDescription
       description
@@ -592,6 +695,7 @@ query SearchJobs(
       }
       company {
         id
+        accountID
         name
         description
         website
@@ -606,16 +710,20 @@ query SearchJobs(
         image
         createdAt
         updatedAt
+        owner
       }
       category {
         id
+        categoryID
         title
         description
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
     nextToken
     total
