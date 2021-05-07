@@ -11,21 +11,19 @@ export interface SubscriptionResponse<T> {
 
 export type CreateAccountInput = {
   id?: string | null;
-  userID: string;
-  companyID: string;
   type: string;
+  accountUserId?: string | null;
+  accountCompanyId?: string | null;
 };
 
 export type ModelAccountConditionInput = {
-  userID?: ModelIDInput | null;
-  companyID?: ModelIDInput | null;
   type?: ModelStringInput | null;
   and?: Array<ModelAccountConditionInput | null> | null;
   or?: Array<ModelAccountConditionInput | null> | null;
   not?: ModelAccountConditionInput | null;
 };
 
-export type ModelIDInput = {
+export type ModelStringInput = {
   ne?: string | null;
   eq?: string | null;
   le?: string | null;
@@ -64,27 +62,11 @@ export type ModelSizeInput = {
   between?: Array<number | null> | null;
 };
 
-export type ModelStringInput = {
-  ne?: string | null;
-  eq?: string | null;
-  le?: string | null;
-  lt?: string | null;
-  ge?: string | null;
-  gt?: string | null;
-  contains?: string | null;
-  notContains?: string | null;
-  between?: Array<string | null> | null;
-  beginsWith?: string | null;
-  attributeExists?: boolean | null;
-  attributeType?: ModelAttributeTypes | null;
-  size?: ModelSizeInput | null;
-};
-
 export type UpdateAccountInput = {
   id: string;
-  userID?: string | null;
-  companyID?: string | null;
   type?: string | null;
+  accountUserId?: string | null;
+  accountCompanyId?: string | null;
 };
 
 export type DeleteAccountInput = {
@@ -93,7 +75,6 @@ export type DeleteAccountInput = {
 
 export type CreateUserInput = {
   id?: string | null;
-  accountID: string;
   prename: string;
   lastname: string;
   street: string;
@@ -103,10 +84,10 @@ export type CreateUserInput = {
   city: string;
   canton: string;
   image?: string | null;
+  userAccountId: string;
 };
 
 export type ModelUserConditionInput = {
-  accountID?: ModelIDInput | null;
   prename?: ModelStringInput | null;
   lastname?: ModelStringInput | null;
   street?: ModelStringInput | null;
@@ -135,7 +116,6 @@ export type ModelIntInput = {
 
 export type UpdateUserInput = {
   id: string;
-  accountID?: string | null;
   prename?: string | null;
   lastname?: string | null;
   street?: string | null;
@@ -145,6 +125,7 @@ export type UpdateUserInput = {
   city?: string | null;
   canton?: string | null;
   image?: string | null;
+  userAccountId?: string | null;
 };
 
 export type DeleteUserInput = {
@@ -153,7 +134,6 @@ export type DeleteUserInput = {
 
 export type CreateCompanyInput = {
   id?: string | null;
-  accountID: string;
   name: string;
   description: string;
   website: string;
@@ -166,10 +146,10 @@ export type CreateCompanyInput = {
   legal: number;
   count: number;
   image?: string | null;
+  companyAccountId: string;
 };
 
 export type ModelCompanyConditionInput = {
-  accountID?: ModelIDInput | null;
   name?: ModelStringInput | null;
   description?: ModelStringInput | null;
   website?: ModelStringInput | null;
@@ -189,7 +169,6 @@ export type ModelCompanyConditionInput = {
 
 export type UpdateCompanyInput = {
   id: string;
-  accountID?: string | null;
   name?: string | null;
   description?: string | null;
   website?: string | null;
@@ -202,6 +181,7 @@ export type UpdateCompanyInput = {
   legal?: number | null;
   count?: number | null;
   image?: string | null;
+  companyAccountId?: string | null;
 };
 
 export type DeleteCompanyInput = {
@@ -210,13 +190,12 @@ export type DeleteCompanyInput = {
 
 export type CreateCategoryInput = {
   id?: string | null;
-  categoryID: string;
   title: string;
   description: string;
+  categoryCategoryId?: string | null;
 };
 
 export type ModelCategoryConditionInput = {
-  categoryID?: ModelIDInput | null;
   title?: ModelStringInput | null;
   description?: ModelStringInput | null;
   and?: Array<ModelCategoryConditionInput | null> | null;
@@ -226,9 +205,9 @@ export type ModelCategoryConditionInput = {
 
 export type UpdateCategoryInput = {
   id: string;
-  categoryID?: string | null;
   title?: string | null;
   description?: string | null;
+  categoryCategoryId?: string | null;
 };
 
 export type DeleteCategoryInput = {
@@ -238,7 +217,6 @@ export type DeleteCategoryInput = {
 export type CreateJobInput = {
   id?: string | null;
   categoryID: string;
-  companyID: string;
   title: string;
   shortDescription: string;
   description: string;
@@ -247,11 +225,11 @@ export type CreateJobInput = {
   payTo?: number | null;
   createDate: string;
   expireDate: string;
+  jobCompanyId: string;
 };
 
 export type ModelJobConditionInput = {
   categoryID?: ModelIDInput | null;
-  companyID?: ModelIDInput | null;
   title?: ModelStringInput | null;
   shortDescription?: ModelStringInput | null;
   description?: ModelStringInput | null;
@@ -265,10 +243,25 @@ export type ModelJobConditionInput = {
   not?: ModelJobConditionInput | null;
 };
 
+export type ModelIDInput = {
+  ne?: string | null;
+  eq?: string | null;
+  le?: string | null;
+  lt?: string | null;
+  ge?: string | null;
+  gt?: string | null;
+  contains?: string | null;
+  notContains?: string | null;
+  between?: Array<string | null> | null;
+  beginsWith?: string | null;
+  attributeExists?: boolean | null;
+  attributeType?: ModelAttributeTypes | null;
+  size?: ModelSizeInput | null;
+};
+
 export type UpdateJobInput = {
   id: string;
   categoryID?: string | null;
-  companyID?: string | null;
   title?: string | null;
   shortDescription?: string | null;
   description?: string | null;
@@ -277,6 +270,7 @@ export type UpdateJobInput = {
   payTo?: number | null;
   createDate?: string | null;
   expireDate?: string | null;
+  jobCompanyId?: string | null;
 };
 
 export type DeleteJobInput = {
@@ -285,12 +279,11 @@ export type DeleteJobInput = {
 
 export type CreateApplicationInput = {
   id?: string | null;
-  jobID: string;
   title: string;
+  applicationJobId: string;
 };
 
 export type ModelApplicationConditionInput = {
-  jobID?: ModelIDInput | null;
   title?: ModelStringInput | null;
   and?: Array<ModelApplicationConditionInput | null> | null;
   or?: Array<ModelApplicationConditionInput | null> | null;
@@ -299,8 +292,8 @@ export type ModelApplicationConditionInput = {
 
 export type UpdateApplicationInput = {
   id: string;
-  jobID?: string | null;
   title?: string | null;
+  applicationJobId?: string | null;
 };
 
 export type DeleteApplicationInput = {
@@ -309,8 +302,6 @@ export type DeleteApplicationInput = {
 
 export type ModelAccountFilterInput = {
   id?: ModelIDInput | null;
-  userID?: ModelIDInput | null;
-  companyID?: ModelIDInput | null;
   type?: ModelStringInput | null;
   and?: Array<ModelAccountFilterInput | null> | null;
   or?: Array<ModelAccountFilterInput | null> | null;
@@ -319,7 +310,6 @@ export type ModelAccountFilterInput = {
 
 export type ModelUserFilterInput = {
   id?: ModelIDInput | null;
-  accountID?: ModelIDInput | null;
   prename?: ModelStringInput | null;
   lastname?: ModelStringInput | null;
   street?: ModelStringInput | null;
@@ -336,7 +326,6 @@ export type ModelUserFilterInput = {
 
 export type ModelCompanyFilterInput = {
   id?: ModelIDInput | null;
-  accountID?: ModelIDInput | null;
   name?: ModelStringInput | null;
   description?: ModelStringInput | null;
   website?: ModelStringInput | null;
@@ -356,7 +345,6 @@ export type ModelCompanyFilterInput = {
 
 export type ModelCategoryFilterInput = {
   id?: ModelIDInput | null;
-  categoryID?: ModelIDInput | null;
   title?: ModelStringInput | null;
   description?: ModelStringInput | null;
   and?: Array<ModelCategoryFilterInput | null> | null;
@@ -367,7 +355,6 @@ export type ModelCategoryFilterInput = {
 export type ModelJobFilterInput = {
   id?: ModelIDInput | null;
   categoryID?: ModelIDInput | null;
-  companyID?: ModelIDInput | null;
   title?: ModelStringInput | null;
   shortDescription?: ModelStringInput | null;
   description?: ModelStringInput | null;
@@ -383,7 +370,6 @@ export type ModelJobFilterInput = {
 
 export type ModelApplicationFilterInput = {
   id?: ModelIDInput | null;
-  jobID?: ModelIDInput | null;
   title?: ModelStringInput | null;
   and?: Array<ModelApplicationFilterInput | null> | null;
   or?: Array<ModelApplicationFilterInput | null> | null;
@@ -393,7 +379,6 @@ export type ModelApplicationFilterInput = {
 export type SearchableJobFilterInput = {
   id?: SearchableIDFilterInput | null;
   categoryID?: SearchableIDFilterInput | null;
-  companyID?: SearchableIDFilterInput | null;
   title?: SearchableStringFilterInput | null;
   shortDescription?: SearchableStringFilterInput | null;
   description?: SearchableStringFilterInput | null;
@@ -459,7 +444,6 @@ export type SearchableJobSortInput = {
 export enum SearchableJobSortableFields {
   id = "id",
   categoryID = "categoryID",
-  companyID = "companyID",
   title = "title",
   shortDescription = "shortDescription",
   description = "description",
@@ -478,13 +462,10 @@ export enum SearchableSortDirection {
 export type CreateAccountMutation = {
   __typename: "Account";
   id: string;
-  userID: string;
-  companyID: string;
   type: string;
   user: {
     __typename: "User";
     id: string;
-    accountID: string;
     prename: string;
     lastname: string;
     street: string;
@@ -497,8 +478,6 @@ export type CreateAccountMutation = {
     account: {
       __typename: "Account";
       id: string;
-      userID: string;
-      companyID: string;
       type: string;
       createdAt: string;
       updatedAt: string;
@@ -511,7 +490,6 @@ export type CreateAccountMutation = {
   company: {
     __typename: "Company";
     id: string;
-    accountID: string;
     name: string;
     description: string;
     website: string;
@@ -527,8 +505,6 @@ export type CreateAccountMutation = {
     account: {
       __typename: "Account";
       id: string;
-      userID: string;
-      companyID: string;
       type: string;
       createdAt: string;
       updatedAt: string;
@@ -550,13 +526,10 @@ export type CreateAccountMutation = {
 export type UpdateAccountMutation = {
   __typename: "Account";
   id: string;
-  userID: string;
-  companyID: string;
   type: string;
   user: {
     __typename: "User";
     id: string;
-    accountID: string;
     prename: string;
     lastname: string;
     street: string;
@@ -569,8 +542,6 @@ export type UpdateAccountMutation = {
     account: {
       __typename: "Account";
       id: string;
-      userID: string;
-      companyID: string;
       type: string;
       createdAt: string;
       updatedAt: string;
@@ -583,7 +554,6 @@ export type UpdateAccountMutation = {
   company: {
     __typename: "Company";
     id: string;
-    accountID: string;
     name: string;
     description: string;
     website: string;
@@ -599,8 +569,6 @@ export type UpdateAccountMutation = {
     account: {
       __typename: "Account";
       id: string;
-      userID: string;
-      companyID: string;
       type: string;
       createdAt: string;
       updatedAt: string;
@@ -622,13 +590,10 @@ export type UpdateAccountMutation = {
 export type DeleteAccountMutation = {
   __typename: "Account";
   id: string;
-  userID: string;
-  companyID: string;
   type: string;
   user: {
     __typename: "User";
     id: string;
-    accountID: string;
     prename: string;
     lastname: string;
     street: string;
@@ -641,8 +606,6 @@ export type DeleteAccountMutation = {
     account: {
       __typename: "Account";
       id: string;
-      userID: string;
-      companyID: string;
       type: string;
       createdAt: string;
       updatedAt: string;
@@ -655,7 +618,6 @@ export type DeleteAccountMutation = {
   company: {
     __typename: "Company";
     id: string;
-    accountID: string;
     name: string;
     description: string;
     website: string;
@@ -671,8 +633,6 @@ export type DeleteAccountMutation = {
     account: {
       __typename: "Account";
       id: string;
-      userID: string;
-      companyID: string;
       type: string;
       createdAt: string;
       updatedAt: string;
@@ -694,7 +654,6 @@ export type DeleteAccountMutation = {
 export type CreateUserMutation = {
   __typename: "User";
   id: string;
-  accountID: string;
   prename: string;
   lastname: string;
   street: string;
@@ -707,13 +666,10 @@ export type CreateUserMutation = {
   account: {
     __typename: "Account";
     id: string;
-    userID: string;
-    companyID: string;
     type: string;
     user: {
       __typename: "User";
       id: string;
-      accountID: string;
       prename: string;
       lastname: string;
       street: string;
@@ -730,7 +686,6 @@ export type CreateUserMutation = {
     company: {
       __typename: "Company";
       id: string;
-      accountID: string;
       name: string;
       description: string;
       website: string;
@@ -759,7 +714,6 @@ export type CreateUserMutation = {
 export type UpdateUserMutation = {
   __typename: "User";
   id: string;
-  accountID: string;
   prename: string;
   lastname: string;
   street: string;
@@ -772,13 +726,10 @@ export type UpdateUserMutation = {
   account: {
     __typename: "Account";
     id: string;
-    userID: string;
-    companyID: string;
     type: string;
     user: {
       __typename: "User";
       id: string;
-      accountID: string;
       prename: string;
       lastname: string;
       street: string;
@@ -795,7 +746,6 @@ export type UpdateUserMutation = {
     company: {
       __typename: "Company";
       id: string;
-      accountID: string;
       name: string;
       description: string;
       website: string;
@@ -824,7 +774,6 @@ export type UpdateUserMutation = {
 export type DeleteUserMutation = {
   __typename: "User";
   id: string;
-  accountID: string;
   prename: string;
   lastname: string;
   street: string;
@@ -837,13 +786,10 @@ export type DeleteUserMutation = {
   account: {
     __typename: "Account";
     id: string;
-    userID: string;
-    companyID: string;
     type: string;
     user: {
       __typename: "User";
       id: string;
-      accountID: string;
       prename: string;
       lastname: string;
       street: string;
@@ -860,7 +806,6 @@ export type DeleteUserMutation = {
     company: {
       __typename: "Company";
       id: string;
-      accountID: string;
       name: string;
       description: string;
       website: string;
@@ -889,7 +834,6 @@ export type DeleteUserMutation = {
 export type CreateCompanyMutation = {
   __typename: "Company";
   id: string;
-  accountID: string;
   name: string;
   description: string;
   website: string;
@@ -905,13 +849,10 @@ export type CreateCompanyMutation = {
   account: {
     __typename: "Account";
     id: string;
-    userID: string;
-    companyID: string;
     type: string;
     user: {
       __typename: "User";
       id: string;
-      accountID: string;
       prename: string;
       lastname: string;
       street: string;
@@ -928,7 +869,6 @@ export type CreateCompanyMutation = {
     company: {
       __typename: "Company";
       id: string;
-      accountID: string;
       name: string;
       description: string;
       website: string;
@@ -955,7 +895,6 @@ export type CreateCompanyMutation = {
       __typename: "Job";
       id: string;
       categoryID: string;
-      companyID: string;
       title: string;
       shortDescription: string;
       description: string;
@@ -978,7 +917,6 @@ export type CreateCompanyMutation = {
 export type UpdateCompanyMutation = {
   __typename: "Company";
   id: string;
-  accountID: string;
   name: string;
   description: string;
   website: string;
@@ -994,13 +932,10 @@ export type UpdateCompanyMutation = {
   account: {
     __typename: "Account";
     id: string;
-    userID: string;
-    companyID: string;
     type: string;
     user: {
       __typename: "User";
       id: string;
-      accountID: string;
       prename: string;
       lastname: string;
       street: string;
@@ -1017,7 +952,6 @@ export type UpdateCompanyMutation = {
     company: {
       __typename: "Company";
       id: string;
-      accountID: string;
       name: string;
       description: string;
       website: string;
@@ -1044,7 +978,6 @@ export type UpdateCompanyMutation = {
       __typename: "Job";
       id: string;
       categoryID: string;
-      companyID: string;
       title: string;
       shortDescription: string;
       description: string;
@@ -1067,7 +1000,6 @@ export type UpdateCompanyMutation = {
 export type DeleteCompanyMutation = {
   __typename: "Company";
   id: string;
-  accountID: string;
   name: string;
   description: string;
   website: string;
@@ -1083,13 +1015,10 @@ export type DeleteCompanyMutation = {
   account: {
     __typename: "Account";
     id: string;
-    userID: string;
-    companyID: string;
     type: string;
     user: {
       __typename: "User";
       id: string;
-      accountID: string;
       prename: string;
       lastname: string;
       street: string;
@@ -1106,7 +1035,6 @@ export type DeleteCompanyMutation = {
     company: {
       __typename: "Company";
       id: string;
-      accountID: string;
       name: string;
       description: string;
       website: string;
@@ -1133,7 +1061,6 @@ export type DeleteCompanyMutation = {
       __typename: "Job";
       id: string;
       categoryID: string;
-      companyID: string;
       title: string;
       shortDescription: string;
       description: string;
@@ -1156,7 +1083,6 @@ export type DeleteCompanyMutation = {
 export type CreateCategoryMutation = {
   __typename: "Category";
   id: string;
-  categoryID: string;
   title: string;
   description: string;
   jobs: {
@@ -1165,7 +1091,6 @@ export type CreateCategoryMutation = {
       __typename: "Job";
       id: string;
       categoryID: string;
-      companyID: string;
       title: string;
       shortDescription: string;
       description: string;
@@ -1185,7 +1110,6 @@ export type CreateCategoryMutation = {
     items: Array<{
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -1197,7 +1121,6 @@ export type CreateCategoryMutation = {
   category: {
     __typename: "Category";
     id: string;
-    categoryID: string;
     title: string;
     description: string;
     jobs: {
@@ -1211,7 +1134,6 @@ export type CreateCategoryMutation = {
     category: {
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -1230,7 +1152,6 @@ export type CreateCategoryMutation = {
 export type UpdateCategoryMutation = {
   __typename: "Category";
   id: string;
-  categoryID: string;
   title: string;
   description: string;
   jobs: {
@@ -1239,7 +1160,6 @@ export type UpdateCategoryMutation = {
       __typename: "Job";
       id: string;
       categoryID: string;
-      companyID: string;
       title: string;
       shortDescription: string;
       description: string;
@@ -1259,7 +1179,6 @@ export type UpdateCategoryMutation = {
     items: Array<{
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -1271,7 +1190,6 @@ export type UpdateCategoryMutation = {
   category: {
     __typename: "Category";
     id: string;
-    categoryID: string;
     title: string;
     description: string;
     jobs: {
@@ -1285,7 +1203,6 @@ export type UpdateCategoryMutation = {
     category: {
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -1304,7 +1221,6 @@ export type UpdateCategoryMutation = {
 export type DeleteCategoryMutation = {
   __typename: "Category";
   id: string;
-  categoryID: string;
   title: string;
   description: string;
   jobs: {
@@ -1313,7 +1229,6 @@ export type DeleteCategoryMutation = {
       __typename: "Job";
       id: string;
       categoryID: string;
-      companyID: string;
       title: string;
       shortDescription: string;
       description: string;
@@ -1333,7 +1248,6 @@ export type DeleteCategoryMutation = {
     items: Array<{
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -1345,7 +1259,6 @@ export type DeleteCategoryMutation = {
   category: {
     __typename: "Category";
     id: string;
-    categoryID: string;
     title: string;
     description: string;
     jobs: {
@@ -1359,7 +1272,6 @@ export type DeleteCategoryMutation = {
     category: {
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -1379,7 +1291,6 @@ export type CreateJobMutation = {
   __typename: "Job";
   id: string;
   categoryID: string;
-  companyID: string;
   title: string;
   shortDescription: string;
   description: string;
@@ -1393,7 +1304,6 @@ export type CreateJobMutation = {
     items: Array<{
       __typename: "Application";
       id: string;
-      jobID: string;
       title: string;
       createdAt: string;
       updatedAt: string;
@@ -1404,7 +1314,6 @@ export type CreateJobMutation = {
   company: {
     __typename: "Company";
     id: string;
-    accountID: string;
     name: string;
     description: string;
     website: string;
@@ -1420,8 +1329,6 @@ export type CreateJobMutation = {
     account: {
       __typename: "Account";
       id: string;
-      userID: string;
-      companyID: string;
       type: string;
       createdAt: string;
       updatedAt: string;
@@ -1438,7 +1345,6 @@ export type CreateJobMutation = {
   category: {
     __typename: "Category";
     id: string;
-    categoryID: string;
     title: string;
     description: string;
     jobs: {
@@ -1452,7 +1358,6 @@ export type CreateJobMutation = {
     category: {
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -1472,7 +1377,6 @@ export type UpdateJobMutation = {
   __typename: "Job";
   id: string;
   categoryID: string;
-  companyID: string;
   title: string;
   shortDescription: string;
   description: string;
@@ -1486,7 +1390,6 @@ export type UpdateJobMutation = {
     items: Array<{
       __typename: "Application";
       id: string;
-      jobID: string;
       title: string;
       createdAt: string;
       updatedAt: string;
@@ -1497,7 +1400,6 @@ export type UpdateJobMutation = {
   company: {
     __typename: "Company";
     id: string;
-    accountID: string;
     name: string;
     description: string;
     website: string;
@@ -1513,8 +1415,6 @@ export type UpdateJobMutation = {
     account: {
       __typename: "Account";
       id: string;
-      userID: string;
-      companyID: string;
       type: string;
       createdAt: string;
       updatedAt: string;
@@ -1531,7 +1431,6 @@ export type UpdateJobMutation = {
   category: {
     __typename: "Category";
     id: string;
-    categoryID: string;
     title: string;
     description: string;
     jobs: {
@@ -1545,7 +1444,6 @@ export type UpdateJobMutation = {
     category: {
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -1565,7 +1463,6 @@ export type DeleteJobMutation = {
   __typename: "Job";
   id: string;
   categoryID: string;
-  companyID: string;
   title: string;
   shortDescription: string;
   description: string;
@@ -1579,7 +1476,6 @@ export type DeleteJobMutation = {
     items: Array<{
       __typename: "Application";
       id: string;
-      jobID: string;
       title: string;
       createdAt: string;
       updatedAt: string;
@@ -1590,7 +1486,6 @@ export type DeleteJobMutation = {
   company: {
     __typename: "Company";
     id: string;
-    accountID: string;
     name: string;
     description: string;
     website: string;
@@ -1606,8 +1501,6 @@ export type DeleteJobMutation = {
     account: {
       __typename: "Account";
       id: string;
-      userID: string;
-      companyID: string;
       type: string;
       createdAt: string;
       updatedAt: string;
@@ -1624,7 +1517,6 @@ export type DeleteJobMutation = {
   category: {
     __typename: "Category";
     id: string;
-    categoryID: string;
     title: string;
     description: string;
     jobs: {
@@ -1638,7 +1530,6 @@ export type DeleteJobMutation = {
     category: {
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -1657,13 +1548,11 @@ export type DeleteJobMutation = {
 export type CreateApplicationMutation = {
   __typename: "Application";
   id: string;
-  jobID: string;
   title: string;
   job: {
     __typename: "Job";
     id: string;
     categoryID: string;
-    companyID: string;
     title: string;
     shortDescription: string;
     description: string;
@@ -1679,7 +1568,6 @@ export type CreateApplicationMutation = {
     company: {
       __typename: "Company";
       id: string;
-      accountID: string;
       name: string;
       description: string;
       website: string;
@@ -1699,7 +1587,6 @@ export type CreateApplicationMutation = {
     category: {
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -1718,13 +1605,11 @@ export type CreateApplicationMutation = {
 export type UpdateApplicationMutation = {
   __typename: "Application";
   id: string;
-  jobID: string;
   title: string;
   job: {
     __typename: "Job";
     id: string;
     categoryID: string;
-    companyID: string;
     title: string;
     shortDescription: string;
     description: string;
@@ -1740,7 +1625,6 @@ export type UpdateApplicationMutation = {
     company: {
       __typename: "Company";
       id: string;
-      accountID: string;
       name: string;
       description: string;
       website: string;
@@ -1760,7 +1644,6 @@ export type UpdateApplicationMutation = {
     category: {
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -1779,13 +1662,11 @@ export type UpdateApplicationMutation = {
 export type DeleteApplicationMutation = {
   __typename: "Application";
   id: string;
-  jobID: string;
   title: string;
   job: {
     __typename: "Job";
     id: string;
     categoryID: string;
-    companyID: string;
     title: string;
     shortDescription: string;
     description: string;
@@ -1801,7 +1682,6 @@ export type DeleteApplicationMutation = {
     company: {
       __typename: "Company";
       id: string;
-      accountID: string;
       name: string;
       description: string;
       website: string;
@@ -1821,7 +1701,6 @@ export type DeleteApplicationMutation = {
     category: {
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -1840,13 +1719,10 @@ export type DeleteApplicationMutation = {
 export type GetAccountQuery = {
   __typename: "Account";
   id: string;
-  userID: string;
-  companyID: string;
   type: string;
   user: {
     __typename: "User";
     id: string;
-    accountID: string;
     prename: string;
     lastname: string;
     street: string;
@@ -1859,8 +1735,6 @@ export type GetAccountQuery = {
     account: {
       __typename: "Account";
       id: string;
-      userID: string;
-      companyID: string;
       type: string;
       createdAt: string;
       updatedAt: string;
@@ -1873,7 +1747,6 @@ export type GetAccountQuery = {
   company: {
     __typename: "Company";
     id: string;
-    accountID: string;
     name: string;
     description: string;
     website: string;
@@ -1889,8 +1762,6 @@ export type GetAccountQuery = {
     account: {
       __typename: "Account";
       id: string;
-      userID: string;
-      companyID: string;
       type: string;
       createdAt: string;
       updatedAt: string;
@@ -1914,13 +1785,10 @@ export type ListAccountsQuery = {
   items: Array<{
     __typename: "Account";
     id: string;
-    userID: string;
-    companyID: string;
     type: string;
     user: {
       __typename: "User";
       id: string;
-      accountID: string;
       prename: string;
       lastname: string;
       street: string;
@@ -1937,7 +1805,6 @@ export type ListAccountsQuery = {
     company: {
       __typename: "Company";
       id: string;
-      accountID: string;
       name: string;
       description: string;
       website: string;
@@ -1964,7 +1831,6 @@ export type ListAccountsQuery = {
 export type GetUserQuery = {
   __typename: "User";
   id: string;
-  accountID: string;
   prename: string;
   lastname: string;
   street: string;
@@ -1977,13 +1843,10 @@ export type GetUserQuery = {
   account: {
     __typename: "Account";
     id: string;
-    userID: string;
-    companyID: string;
     type: string;
     user: {
       __typename: "User";
       id: string;
-      accountID: string;
       prename: string;
       lastname: string;
       street: string;
@@ -2000,7 +1863,6 @@ export type GetUserQuery = {
     company: {
       __typename: "Company";
       id: string;
-      accountID: string;
       name: string;
       description: string;
       website: string;
@@ -2031,7 +1893,6 @@ export type ListUsersQuery = {
   items: Array<{
     __typename: "User";
     id: string;
-    accountID: string;
     prename: string;
     lastname: string;
     street: string;
@@ -2044,8 +1905,6 @@ export type ListUsersQuery = {
     account: {
       __typename: "Account";
       id: string;
-      userID: string;
-      companyID: string;
       type: string;
       createdAt: string;
       updatedAt: string;
@@ -2061,7 +1920,6 @@ export type ListUsersQuery = {
 export type GetCompanyQuery = {
   __typename: "Company";
   id: string;
-  accountID: string;
   name: string;
   description: string;
   website: string;
@@ -2077,13 +1935,10 @@ export type GetCompanyQuery = {
   account: {
     __typename: "Account";
     id: string;
-    userID: string;
-    companyID: string;
     type: string;
     user: {
       __typename: "User";
       id: string;
-      accountID: string;
       prename: string;
       lastname: string;
       street: string;
@@ -2100,7 +1955,6 @@ export type GetCompanyQuery = {
     company: {
       __typename: "Company";
       id: string;
-      accountID: string;
       name: string;
       description: string;
       website: string;
@@ -2127,7 +1981,6 @@ export type GetCompanyQuery = {
       __typename: "Job";
       id: string;
       categoryID: string;
-      companyID: string;
       title: string;
       shortDescription: string;
       description: string;
@@ -2152,7 +2005,6 @@ export type ListCompanysQuery = {
   items: Array<{
     __typename: "Company";
     id: string;
-    accountID: string;
     name: string;
     description: string;
     website: string;
@@ -2168,8 +2020,6 @@ export type ListCompanysQuery = {
     account: {
       __typename: "Account";
       id: string;
-      userID: string;
-      companyID: string;
       type: string;
       createdAt: string;
       updatedAt: string;
@@ -2189,7 +2039,6 @@ export type ListCompanysQuery = {
 export type GetCategoryQuery = {
   __typename: "Category";
   id: string;
-  categoryID: string;
   title: string;
   description: string;
   jobs: {
@@ -2198,7 +2047,6 @@ export type GetCategoryQuery = {
       __typename: "Job";
       id: string;
       categoryID: string;
-      companyID: string;
       title: string;
       shortDescription: string;
       description: string;
@@ -2218,7 +2066,6 @@ export type GetCategoryQuery = {
     items: Array<{
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -2230,7 +2077,6 @@ export type GetCategoryQuery = {
   category: {
     __typename: "Category";
     id: string;
-    categoryID: string;
     title: string;
     description: string;
     jobs: {
@@ -2244,7 +2090,6 @@ export type GetCategoryQuery = {
     category: {
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -2265,7 +2110,6 @@ export type ListCategorysQuery = {
   items: Array<{
     __typename: "Category";
     id: string;
-    categoryID: string;
     title: string;
     description: string;
     jobs: {
@@ -2279,7 +2123,6 @@ export type ListCategorysQuery = {
     category: {
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -2297,7 +2140,6 @@ export type GetJobQuery = {
   __typename: "Job";
   id: string;
   categoryID: string;
-  companyID: string;
   title: string;
   shortDescription: string;
   description: string;
@@ -2311,7 +2153,6 @@ export type GetJobQuery = {
     items: Array<{
       __typename: "Application";
       id: string;
-      jobID: string;
       title: string;
       createdAt: string;
       updatedAt: string;
@@ -2322,7 +2163,6 @@ export type GetJobQuery = {
   company: {
     __typename: "Company";
     id: string;
-    accountID: string;
     name: string;
     description: string;
     website: string;
@@ -2338,8 +2178,6 @@ export type GetJobQuery = {
     account: {
       __typename: "Account";
       id: string;
-      userID: string;
-      companyID: string;
       type: string;
       createdAt: string;
       updatedAt: string;
@@ -2356,7 +2194,6 @@ export type GetJobQuery = {
   category: {
     __typename: "Category";
     id: string;
-    categoryID: string;
     title: string;
     description: string;
     jobs: {
@@ -2370,7 +2207,6 @@ export type GetJobQuery = {
     category: {
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -2392,7 +2228,6 @@ export type ListJobsQuery = {
     __typename: "Job";
     id: string;
     categoryID: string;
-    companyID: string;
     title: string;
     shortDescription: string;
     description: string;
@@ -2408,7 +2243,6 @@ export type ListJobsQuery = {
     company: {
       __typename: "Company";
       id: string;
-      accountID: string;
       name: string;
       description: string;
       website: string;
@@ -2428,7 +2262,6 @@ export type ListJobsQuery = {
     category: {
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -2445,13 +2278,11 @@ export type ListJobsQuery = {
 export type GetApplicationQuery = {
   __typename: "Application";
   id: string;
-  jobID: string;
   title: string;
   job: {
     __typename: "Job";
     id: string;
     categoryID: string;
-    companyID: string;
     title: string;
     shortDescription: string;
     description: string;
@@ -2467,7 +2298,6 @@ export type GetApplicationQuery = {
     company: {
       __typename: "Company";
       id: string;
-      accountID: string;
       name: string;
       description: string;
       website: string;
@@ -2487,7 +2317,6 @@ export type GetApplicationQuery = {
     category: {
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -2508,13 +2337,11 @@ export type ListApplicationsQuery = {
   items: Array<{
     __typename: "Application";
     id: string;
-    jobID: string;
     title: string;
     job: {
       __typename: "Job";
       id: string;
       categoryID: string;
-      companyID: string;
       title: string;
       shortDescription: string;
       description: string;
@@ -2540,7 +2367,6 @@ export type SearchJobsQuery = {
     __typename: "Job";
     id: string;
     categoryID: string;
-    companyID: string;
     title: string;
     shortDescription: string;
     description: string;
@@ -2556,7 +2382,6 @@ export type SearchJobsQuery = {
     company: {
       __typename: "Company";
       id: string;
-      accountID: string;
       name: string;
       description: string;
       website: string;
@@ -2576,7 +2401,6 @@ export type SearchJobsQuery = {
     category: {
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -2594,13 +2418,10 @@ export type SearchJobsQuery = {
 export type OnCreateAccountSubscription = {
   __typename: "Account";
   id: string;
-  userID: string;
-  companyID: string;
   type: string;
   user: {
     __typename: "User";
     id: string;
-    accountID: string;
     prename: string;
     lastname: string;
     street: string;
@@ -2613,8 +2434,6 @@ export type OnCreateAccountSubscription = {
     account: {
       __typename: "Account";
       id: string;
-      userID: string;
-      companyID: string;
       type: string;
       createdAt: string;
       updatedAt: string;
@@ -2627,7 +2446,6 @@ export type OnCreateAccountSubscription = {
   company: {
     __typename: "Company";
     id: string;
-    accountID: string;
     name: string;
     description: string;
     website: string;
@@ -2643,8 +2461,6 @@ export type OnCreateAccountSubscription = {
     account: {
       __typename: "Account";
       id: string;
-      userID: string;
-      companyID: string;
       type: string;
       createdAt: string;
       updatedAt: string;
@@ -2666,13 +2482,10 @@ export type OnCreateAccountSubscription = {
 export type OnUpdateAccountSubscription = {
   __typename: "Account";
   id: string;
-  userID: string;
-  companyID: string;
   type: string;
   user: {
     __typename: "User";
     id: string;
-    accountID: string;
     prename: string;
     lastname: string;
     street: string;
@@ -2685,8 +2498,6 @@ export type OnUpdateAccountSubscription = {
     account: {
       __typename: "Account";
       id: string;
-      userID: string;
-      companyID: string;
       type: string;
       createdAt: string;
       updatedAt: string;
@@ -2699,7 +2510,6 @@ export type OnUpdateAccountSubscription = {
   company: {
     __typename: "Company";
     id: string;
-    accountID: string;
     name: string;
     description: string;
     website: string;
@@ -2715,8 +2525,6 @@ export type OnUpdateAccountSubscription = {
     account: {
       __typename: "Account";
       id: string;
-      userID: string;
-      companyID: string;
       type: string;
       createdAt: string;
       updatedAt: string;
@@ -2738,13 +2546,10 @@ export type OnUpdateAccountSubscription = {
 export type OnDeleteAccountSubscription = {
   __typename: "Account";
   id: string;
-  userID: string;
-  companyID: string;
   type: string;
   user: {
     __typename: "User";
     id: string;
-    accountID: string;
     prename: string;
     lastname: string;
     street: string;
@@ -2757,8 +2562,6 @@ export type OnDeleteAccountSubscription = {
     account: {
       __typename: "Account";
       id: string;
-      userID: string;
-      companyID: string;
       type: string;
       createdAt: string;
       updatedAt: string;
@@ -2771,7 +2574,6 @@ export type OnDeleteAccountSubscription = {
   company: {
     __typename: "Company";
     id: string;
-    accountID: string;
     name: string;
     description: string;
     website: string;
@@ -2787,8 +2589,6 @@ export type OnDeleteAccountSubscription = {
     account: {
       __typename: "Account";
       id: string;
-      userID: string;
-      companyID: string;
       type: string;
       createdAt: string;
       updatedAt: string;
@@ -2810,7 +2610,6 @@ export type OnDeleteAccountSubscription = {
 export type OnCreateUserSubscription = {
   __typename: "User";
   id: string;
-  accountID: string;
   prename: string;
   lastname: string;
   street: string;
@@ -2823,13 +2622,10 @@ export type OnCreateUserSubscription = {
   account: {
     __typename: "Account";
     id: string;
-    userID: string;
-    companyID: string;
     type: string;
     user: {
       __typename: "User";
       id: string;
-      accountID: string;
       prename: string;
       lastname: string;
       street: string;
@@ -2846,7 +2642,6 @@ export type OnCreateUserSubscription = {
     company: {
       __typename: "Company";
       id: string;
-      accountID: string;
       name: string;
       description: string;
       website: string;
@@ -2875,7 +2670,6 @@ export type OnCreateUserSubscription = {
 export type OnUpdateUserSubscription = {
   __typename: "User";
   id: string;
-  accountID: string;
   prename: string;
   lastname: string;
   street: string;
@@ -2888,13 +2682,10 @@ export type OnUpdateUserSubscription = {
   account: {
     __typename: "Account";
     id: string;
-    userID: string;
-    companyID: string;
     type: string;
     user: {
       __typename: "User";
       id: string;
-      accountID: string;
       prename: string;
       lastname: string;
       street: string;
@@ -2911,7 +2702,6 @@ export type OnUpdateUserSubscription = {
     company: {
       __typename: "Company";
       id: string;
-      accountID: string;
       name: string;
       description: string;
       website: string;
@@ -2940,7 +2730,6 @@ export type OnUpdateUserSubscription = {
 export type OnDeleteUserSubscription = {
   __typename: "User";
   id: string;
-  accountID: string;
   prename: string;
   lastname: string;
   street: string;
@@ -2953,13 +2742,10 @@ export type OnDeleteUserSubscription = {
   account: {
     __typename: "Account";
     id: string;
-    userID: string;
-    companyID: string;
     type: string;
     user: {
       __typename: "User";
       id: string;
-      accountID: string;
       prename: string;
       lastname: string;
       street: string;
@@ -2976,7 +2762,6 @@ export type OnDeleteUserSubscription = {
     company: {
       __typename: "Company";
       id: string;
-      accountID: string;
       name: string;
       description: string;
       website: string;
@@ -3005,7 +2790,6 @@ export type OnDeleteUserSubscription = {
 export type OnCreateCompanySubscription = {
   __typename: "Company";
   id: string;
-  accountID: string;
   name: string;
   description: string;
   website: string;
@@ -3021,13 +2805,10 @@ export type OnCreateCompanySubscription = {
   account: {
     __typename: "Account";
     id: string;
-    userID: string;
-    companyID: string;
     type: string;
     user: {
       __typename: "User";
       id: string;
-      accountID: string;
       prename: string;
       lastname: string;
       street: string;
@@ -3044,7 +2825,6 @@ export type OnCreateCompanySubscription = {
     company: {
       __typename: "Company";
       id: string;
-      accountID: string;
       name: string;
       description: string;
       website: string;
@@ -3071,7 +2851,6 @@ export type OnCreateCompanySubscription = {
       __typename: "Job";
       id: string;
       categoryID: string;
-      companyID: string;
       title: string;
       shortDescription: string;
       description: string;
@@ -3094,7 +2873,6 @@ export type OnCreateCompanySubscription = {
 export type OnUpdateCompanySubscription = {
   __typename: "Company";
   id: string;
-  accountID: string;
   name: string;
   description: string;
   website: string;
@@ -3110,13 +2888,10 @@ export type OnUpdateCompanySubscription = {
   account: {
     __typename: "Account";
     id: string;
-    userID: string;
-    companyID: string;
     type: string;
     user: {
       __typename: "User";
       id: string;
-      accountID: string;
       prename: string;
       lastname: string;
       street: string;
@@ -3133,7 +2908,6 @@ export type OnUpdateCompanySubscription = {
     company: {
       __typename: "Company";
       id: string;
-      accountID: string;
       name: string;
       description: string;
       website: string;
@@ -3160,7 +2934,6 @@ export type OnUpdateCompanySubscription = {
       __typename: "Job";
       id: string;
       categoryID: string;
-      companyID: string;
       title: string;
       shortDescription: string;
       description: string;
@@ -3183,7 +2956,6 @@ export type OnUpdateCompanySubscription = {
 export type OnDeleteCompanySubscription = {
   __typename: "Company";
   id: string;
-  accountID: string;
   name: string;
   description: string;
   website: string;
@@ -3199,13 +2971,10 @@ export type OnDeleteCompanySubscription = {
   account: {
     __typename: "Account";
     id: string;
-    userID: string;
-    companyID: string;
     type: string;
     user: {
       __typename: "User";
       id: string;
-      accountID: string;
       prename: string;
       lastname: string;
       street: string;
@@ -3222,7 +2991,6 @@ export type OnDeleteCompanySubscription = {
     company: {
       __typename: "Company";
       id: string;
-      accountID: string;
       name: string;
       description: string;
       website: string;
@@ -3249,7 +3017,6 @@ export type OnDeleteCompanySubscription = {
       __typename: "Job";
       id: string;
       categoryID: string;
-      companyID: string;
       title: string;
       shortDescription: string;
       description: string;
@@ -3272,7 +3039,6 @@ export type OnDeleteCompanySubscription = {
 export type OnCreateCategorySubscription = {
   __typename: "Category";
   id: string;
-  categoryID: string;
   title: string;
   description: string;
   jobs: {
@@ -3281,7 +3047,6 @@ export type OnCreateCategorySubscription = {
       __typename: "Job";
       id: string;
       categoryID: string;
-      companyID: string;
       title: string;
       shortDescription: string;
       description: string;
@@ -3301,7 +3066,6 @@ export type OnCreateCategorySubscription = {
     items: Array<{
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -3313,7 +3077,6 @@ export type OnCreateCategorySubscription = {
   category: {
     __typename: "Category";
     id: string;
-    categoryID: string;
     title: string;
     description: string;
     jobs: {
@@ -3327,7 +3090,6 @@ export type OnCreateCategorySubscription = {
     category: {
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -3346,7 +3108,6 @@ export type OnCreateCategorySubscription = {
 export type OnUpdateCategorySubscription = {
   __typename: "Category";
   id: string;
-  categoryID: string;
   title: string;
   description: string;
   jobs: {
@@ -3355,7 +3116,6 @@ export type OnUpdateCategorySubscription = {
       __typename: "Job";
       id: string;
       categoryID: string;
-      companyID: string;
       title: string;
       shortDescription: string;
       description: string;
@@ -3375,7 +3135,6 @@ export type OnUpdateCategorySubscription = {
     items: Array<{
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -3387,7 +3146,6 @@ export type OnUpdateCategorySubscription = {
   category: {
     __typename: "Category";
     id: string;
-    categoryID: string;
     title: string;
     description: string;
     jobs: {
@@ -3401,7 +3159,6 @@ export type OnUpdateCategorySubscription = {
     category: {
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -3420,7 +3177,6 @@ export type OnUpdateCategorySubscription = {
 export type OnDeleteCategorySubscription = {
   __typename: "Category";
   id: string;
-  categoryID: string;
   title: string;
   description: string;
   jobs: {
@@ -3429,7 +3185,6 @@ export type OnDeleteCategorySubscription = {
       __typename: "Job";
       id: string;
       categoryID: string;
-      companyID: string;
       title: string;
       shortDescription: string;
       description: string;
@@ -3449,7 +3204,6 @@ export type OnDeleteCategorySubscription = {
     items: Array<{
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -3461,7 +3215,6 @@ export type OnDeleteCategorySubscription = {
   category: {
     __typename: "Category";
     id: string;
-    categoryID: string;
     title: string;
     description: string;
     jobs: {
@@ -3475,7 +3228,6 @@ export type OnDeleteCategorySubscription = {
     category: {
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -3495,7 +3247,6 @@ export type OnCreateJobSubscription = {
   __typename: "Job";
   id: string;
   categoryID: string;
-  companyID: string;
   title: string;
   shortDescription: string;
   description: string;
@@ -3509,7 +3260,6 @@ export type OnCreateJobSubscription = {
     items: Array<{
       __typename: "Application";
       id: string;
-      jobID: string;
       title: string;
       createdAt: string;
       updatedAt: string;
@@ -3520,7 +3270,6 @@ export type OnCreateJobSubscription = {
   company: {
     __typename: "Company";
     id: string;
-    accountID: string;
     name: string;
     description: string;
     website: string;
@@ -3536,8 +3285,6 @@ export type OnCreateJobSubscription = {
     account: {
       __typename: "Account";
       id: string;
-      userID: string;
-      companyID: string;
       type: string;
       createdAt: string;
       updatedAt: string;
@@ -3554,7 +3301,6 @@ export type OnCreateJobSubscription = {
   category: {
     __typename: "Category";
     id: string;
-    categoryID: string;
     title: string;
     description: string;
     jobs: {
@@ -3568,7 +3314,6 @@ export type OnCreateJobSubscription = {
     category: {
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -3588,7 +3333,6 @@ export type OnUpdateJobSubscription = {
   __typename: "Job";
   id: string;
   categoryID: string;
-  companyID: string;
   title: string;
   shortDescription: string;
   description: string;
@@ -3602,7 +3346,6 @@ export type OnUpdateJobSubscription = {
     items: Array<{
       __typename: "Application";
       id: string;
-      jobID: string;
       title: string;
       createdAt: string;
       updatedAt: string;
@@ -3613,7 +3356,6 @@ export type OnUpdateJobSubscription = {
   company: {
     __typename: "Company";
     id: string;
-    accountID: string;
     name: string;
     description: string;
     website: string;
@@ -3629,8 +3371,6 @@ export type OnUpdateJobSubscription = {
     account: {
       __typename: "Account";
       id: string;
-      userID: string;
-      companyID: string;
       type: string;
       createdAt: string;
       updatedAt: string;
@@ -3647,7 +3387,6 @@ export type OnUpdateJobSubscription = {
   category: {
     __typename: "Category";
     id: string;
-    categoryID: string;
     title: string;
     description: string;
     jobs: {
@@ -3661,7 +3400,6 @@ export type OnUpdateJobSubscription = {
     category: {
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -3681,7 +3419,6 @@ export type OnDeleteJobSubscription = {
   __typename: "Job";
   id: string;
   categoryID: string;
-  companyID: string;
   title: string;
   shortDescription: string;
   description: string;
@@ -3695,7 +3432,6 @@ export type OnDeleteJobSubscription = {
     items: Array<{
       __typename: "Application";
       id: string;
-      jobID: string;
       title: string;
       createdAt: string;
       updatedAt: string;
@@ -3706,7 +3442,6 @@ export type OnDeleteJobSubscription = {
   company: {
     __typename: "Company";
     id: string;
-    accountID: string;
     name: string;
     description: string;
     website: string;
@@ -3722,8 +3457,6 @@ export type OnDeleteJobSubscription = {
     account: {
       __typename: "Account";
       id: string;
-      userID: string;
-      companyID: string;
       type: string;
       createdAt: string;
       updatedAt: string;
@@ -3740,7 +3473,6 @@ export type OnDeleteJobSubscription = {
   category: {
     __typename: "Category";
     id: string;
-    categoryID: string;
     title: string;
     description: string;
     jobs: {
@@ -3754,7 +3486,6 @@ export type OnDeleteJobSubscription = {
     category: {
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -3773,13 +3504,11 @@ export type OnDeleteJobSubscription = {
 export type OnCreateApplicationSubscription = {
   __typename: "Application";
   id: string;
-  jobID: string;
   title: string;
   job: {
     __typename: "Job";
     id: string;
     categoryID: string;
-    companyID: string;
     title: string;
     shortDescription: string;
     description: string;
@@ -3795,7 +3524,6 @@ export type OnCreateApplicationSubscription = {
     company: {
       __typename: "Company";
       id: string;
-      accountID: string;
       name: string;
       description: string;
       website: string;
@@ -3815,7 +3543,6 @@ export type OnCreateApplicationSubscription = {
     category: {
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -3834,13 +3561,11 @@ export type OnCreateApplicationSubscription = {
 export type OnUpdateApplicationSubscription = {
   __typename: "Application";
   id: string;
-  jobID: string;
   title: string;
   job: {
     __typename: "Job";
     id: string;
     categoryID: string;
-    companyID: string;
     title: string;
     shortDescription: string;
     description: string;
@@ -3856,7 +3581,6 @@ export type OnUpdateApplicationSubscription = {
     company: {
       __typename: "Company";
       id: string;
-      accountID: string;
       name: string;
       description: string;
       website: string;
@@ -3876,7 +3600,6 @@ export type OnUpdateApplicationSubscription = {
     category: {
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -3895,13 +3618,11 @@ export type OnUpdateApplicationSubscription = {
 export type OnDeleteApplicationSubscription = {
   __typename: "Application";
   id: string;
-  jobID: string;
   title: string;
   job: {
     __typename: "Job";
     id: string;
     categoryID: string;
-    companyID: string;
     title: string;
     shortDescription: string;
     description: string;
@@ -3917,7 +3638,6 @@ export type OnDeleteApplicationSubscription = {
     company: {
       __typename: "Company";
       id: string;
-      accountID: string;
       name: string;
       description: string;
       website: string;
@@ -3937,7 +3657,6 @@ export type OnDeleteApplicationSubscription = {
     category: {
       __typename: "Category";
       id: string;
-      categoryID: string;
       title: string;
       description: string;
       createdAt: string;
@@ -3965,13 +3684,10 @@ export class APIService {
         createAccount(input: $input, condition: $condition) {
           __typename
           id
-          userID
-          companyID
           type
           user {
             __typename
             id
-            accountID
             prename
             lastname
             street
@@ -3984,8 +3700,6 @@ export class APIService {
             account {
               __typename
               id
-              userID
-              companyID
               type
               createdAt
               updatedAt
@@ -3998,7 +3712,6 @@ export class APIService {
           company {
             __typename
             id
-            accountID
             name
             description
             website
@@ -4014,8 +3727,6 @@ export class APIService {
             account {
               __typename
               id
-              userID
-              companyID
               type
               createdAt
               updatedAt
@@ -4053,13 +3764,10 @@ export class APIService {
         updateAccount(input: $input, condition: $condition) {
           __typename
           id
-          userID
-          companyID
           type
           user {
             __typename
             id
-            accountID
             prename
             lastname
             street
@@ -4072,8 +3780,6 @@ export class APIService {
             account {
               __typename
               id
-              userID
-              companyID
               type
               createdAt
               updatedAt
@@ -4086,7 +3792,6 @@ export class APIService {
           company {
             __typename
             id
-            accountID
             name
             description
             website
@@ -4102,8 +3807,6 @@ export class APIService {
             account {
               __typename
               id
-              userID
-              companyID
               type
               createdAt
               updatedAt
@@ -4141,13 +3844,10 @@ export class APIService {
         deleteAccount(input: $input, condition: $condition) {
           __typename
           id
-          userID
-          companyID
           type
           user {
             __typename
             id
-            accountID
             prename
             lastname
             street
@@ -4160,8 +3860,6 @@ export class APIService {
             account {
               __typename
               id
-              userID
-              companyID
               type
               createdAt
               updatedAt
@@ -4174,7 +3872,6 @@ export class APIService {
           company {
             __typename
             id
-            accountID
             name
             description
             website
@@ -4190,8 +3887,6 @@ export class APIService {
             account {
               __typename
               id
-              userID
-              companyID
               type
               createdAt
               updatedAt
@@ -4229,7 +3924,6 @@ export class APIService {
         createUser(input: $input, condition: $condition) {
           __typename
           id
-          accountID
           prename
           lastname
           street
@@ -4242,13 +3936,10 @@ export class APIService {
           account {
             __typename
             id
-            userID
-            companyID
             type
             user {
               __typename
               id
-              accountID
               prename
               lastname
               street
@@ -4265,7 +3956,6 @@ export class APIService {
             company {
               __typename
               id
-              accountID
               name
               description
               website
@@ -4310,7 +4000,6 @@ export class APIService {
         updateUser(input: $input, condition: $condition) {
           __typename
           id
-          accountID
           prename
           lastname
           street
@@ -4323,13 +4012,10 @@ export class APIService {
           account {
             __typename
             id
-            userID
-            companyID
             type
             user {
               __typename
               id
-              accountID
               prename
               lastname
               street
@@ -4346,7 +4032,6 @@ export class APIService {
             company {
               __typename
               id
-              accountID
               name
               description
               website
@@ -4391,7 +4076,6 @@ export class APIService {
         deleteUser(input: $input, condition: $condition) {
           __typename
           id
-          accountID
           prename
           lastname
           street
@@ -4404,13 +4088,10 @@ export class APIService {
           account {
             __typename
             id
-            userID
-            companyID
             type
             user {
               __typename
               id
-              accountID
               prename
               lastname
               street
@@ -4427,7 +4108,6 @@ export class APIService {
             company {
               __typename
               id
-              accountID
               name
               description
               website
@@ -4472,7 +4152,6 @@ export class APIService {
         createCompany(input: $input, condition: $condition) {
           __typename
           id
-          accountID
           name
           description
           website
@@ -4488,13 +4167,10 @@ export class APIService {
           account {
             __typename
             id
-            userID
-            companyID
             type
             user {
               __typename
               id
-              accountID
               prename
               lastname
               street
@@ -4511,7 +4187,6 @@ export class APIService {
             company {
               __typename
               id
-              accountID
               name
               description
               website
@@ -4538,7 +4213,6 @@ export class APIService {
               __typename
               id
               categoryID
-              companyID
               title
               shortDescription
               description
@@ -4577,7 +4251,6 @@ export class APIService {
         updateCompany(input: $input, condition: $condition) {
           __typename
           id
-          accountID
           name
           description
           website
@@ -4593,13 +4266,10 @@ export class APIService {
           account {
             __typename
             id
-            userID
-            companyID
             type
             user {
               __typename
               id
-              accountID
               prename
               lastname
               street
@@ -4616,7 +4286,6 @@ export class APIService {
             company {
               __typename
               id
-              accountID
               name
               description
               website
@@ -4643,7 +4312,6 @@ export class APIService {
               __typename
               id
               categoryID
-              companyID
               title
               shortDescription
               description
@@ -4682,7 +4350,6 @@ export class APIService {
         deleteCompany(input: $input, condition: $condition) {
           __typename
           id
-          accountID
           name
           description
           website
@@ -4698,13 +4365,10 @@ export class APIService {
           account {
             __typename
             id
-            userID
-            companyID
             type
             user {
               __typename
               id
-              accountID
               prename
               lastname
               street
@@ -4721,7 +4385,6 @@ export class APIService {
             company {
               __typename
               id
-              accountID
               name
               description
               website
@@ -4748,7 +4411,6 @@ export class APIService {
               __typename
               id
               categoryID
-              companyID
               title
               shortDescription
               description
@@ -4787,7 +4449,6 @@ export class APIService {
         createCategory(input: $input, condition: $condition) {
           __typename
           id
-          categoryID
           title
           description
           jobs {
@@ -4796,7 +4457,6 @@ export class APIService {
               __typename
               id
               categoryID
-              companyID
               title
               shortDescription
               description
@@ -4816,7 +4476,6 @@ export class APIService {
             items {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -4828,7 +4487,6 @@ export class APIService {
           category {
             __typename
             id
-            categoryID
             title
             description
             jobs {
@@ -4842,7 +4500,6 @@ export class APIService {
             category {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -4877,7 +4534,6 @@ export class APIService {
         updateCategory(input: $input, condition: $condition) {
           __typename
           id
-          categoryID
           title
           description
           jobs {
@@ -4886,7 +4542,6 @@ export class APIService {
               __typename
               id
               categoryID
-              companyID
               title
               shortDescription
               description
@@ -4906,7 +4561,6 @@ export class APIService {
             items {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -4918,7 +4572,6 @@ export class APIService {
           category {
             __typename
             id
-            categoryID
             title
             description
             jobs {
@@ -4932,7 +4585,6 @@ export class APIService {
             category {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -4967,7 +4619,6 @@ export class APIService {
         deleteCategory(input: $input, condition: $condition) {
           __typename
           id
-          categoryID
           title
           description
           jobs {
@@ -4976,7 +4627,6 @@ export class APIService {
               __typename
               id
               categoryID
-              companyID
               title
               shortDescription
               description
@@ -4996,7 +4646,6 @@ export class APIService {
             items {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -5008,7 +4657,6 @@ export class APIService {
           category {
             __typename
             id
-            categoryID
             title
             description
             jobs {
@@ -5022,7 +4670,6 @@ export class APIService {
             category {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -5058,7 +4705,6 @@ export class APIService {
           __typename
           id
           categoryID
-          companyID
           title
           shortDescription
           description
@@ -5072,7 +4718,6 @@ export class APIService {
             items {
               __typename
               id
-              jobID
               title
               createdAt
               updatedAt
@@ -5083,7 +4728,6 @@ export class APIService {
           company {
             __typename
             id
-            accountID
             name
             description
             website
@@ -5099,8 +4743,6 @@ export class APIService {
             account {
               __typename
               id
-              userID
-              companyID
               type
               createdAt
               updatedAt
@@ -5117,7 +4759,6 @@ export class APIService {
           category {
             __typename
             id
-            categoryID
             title
             description
             jobs {
@@ -5131,7 +4772,6 @@ export class APIService {
             category {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -5167,7 +4807,6 @@ export class APIService {
           __typename
           id
           categoryID
-          companyID
           title
           shortDescription
           description
@@ -5181,7 +4820,6 @@ export class APIService {
             items {
               __typename
               id
-              jobID
               title
               createdAt
               updatedAt
@@ -5192,7 +4830,6 @@ export class APIService {
           company {
             __typename
             id
-            accountID
             name
             description
             website
@@ -5208,8 +4845,6 @@ export class APIService {
             account {
               __typename
               id
-              userID
-              companyID
               type
               createdAt
               updatedAt
@@ -5226,7 +4861,6 @@ export class APIService {
           category {
             __typename
             id
-            categoryID
             title
             description
             jobs {
@@ -5240,7 +4874,6 @@ export class APIService {
             category {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -5276,7 +4909,6 @@ export class APIService {
           __typename
           id
           categoryID
-          companyID
           title
           shortDescription
           description
@@ -5290,7 +4922,6 @@ export class APIService {
             items {
               __typename
               id
-              jobID
               title
               createdAt
               updatedAt
@@ -5301,7 +4932,6 @@ export class APIService {
           company {
             __typename
             id
-            accountID
             name
             description
             website
@@ -5317,8 +4947,6 @@ export class APIService {
             account {
               __typename
               id
-              userID
-              companyID
               type
               createdAt
               updatedAt
@@ -5335,7 +4963,6 @@ export class APIService {
           category {
             __typename
             id
-            categoryID
             title
             description
             jobs {
@@ -5349,7 +4976,6 @@ export class APIService {
             category {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -5384,13 +5010,11 @@ export class APIService {
         createApplication(input: $input, condition: $condition) {
           __typename
           id
-          jobID
           title
           job {
             __typename
             id
             categoryID
-            companyID
             title
             shortDescription
             description
@@ -5406,7 +5030,6 @@ export class APIService {
             company {
               __typename
               id
-              accountID
               name
               description
               website
@@ -5426,7 +5049,6 @@ export class APIService {
             category {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -5461,13 +5083,11 @@ export class APIService {
         updateApplication(input: $input, condition: $condition) {
           __typename
           id
-          jobID
           title
           job {
             __typename
             id
             categoryID
-            companyID
             title
             shortDescription
             description
@@ -5483,7 +5103,6 @@ export class APIService {
             company {
               __typename
               id
-              accountID
               name
               description
               website
@@ -5503,7 +5122,6 @@ export class APIService {
             category {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -5538,13 +5156,11 @@ export class APIService {
         deleteApplication(input: $input, condition: $condition) {
           __typename
           id
-          jobID
           title
           job {
             __typename
             id
             categoryID
-            companyID
             title
             shortDescription
             description
@@ -5560,7 +5176,6 @@ export class APIService {
             company {
               __typename
               id
-              accountID
               name
               description
               website
@@ -5580,7 +5195,6 @@ export class APIService {
             category {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -5612,13 +5226,10 @@ export class APIService {
         getAccount(id: $id) {
           __typename
           id
-          userID
-          companyID
           type
           user {
             __typename
             id
-            accountID
             prename
             lastname
             street
@@ -5631,8 +5242,6 @@ export class APIService {
             account {
               __typename
               id
-              userID
-              companyID
               type
               createdAt
               updatedAt
@@ -5645,7 +5254,6 @@ export class APIService {
           company {
             __typename
             id
-            accountID
             name
             description
             website
@@ -5661,8 +5269,6 @@ export class APIService {
             account {
               __typename
               id
-              userID
-              companyID
               type
               createdAt
               updatedAt
@@ -5700,13 +5306,10 @@ export class APIService {
           items {
             __typename
             id
-            userID
-            companyID
             type
             user {
               __typename
               id
-              accountID
               prename
               lastname
               street
@@ -5723,7 +5326,6 @@ export class APIService {
             company {
               __typename
               id
-              accountID
               name
               description
               website
@@ -5767,7 +5369,6 @@ export class APIService {
         getUser(id: $id) {
           __typename
           id
-          accountID
           prename
           lastname
           street
@@ -5780,13 +5381,10 @@ export class APIService {
           account {
             __typename
             id
-            userID
-            companyID
             type
             user {
               __typename
               id
-              accountID
               prename
               lastname
               street
@@ -5803,7 +5401,6 @@ export class APIService {
             company {
               __typename
               id
-              accountID
               name
               description
               website
@@ -5848,7 +5445,6 @@ export class APIService {
           items {
             __typename
             id
-            accountID
             prename
             lastname
             street
@@ -5861,8 +5457,6 @@ export class APIService {
             account {
               __typename
               id
-              userID
-              companyID
               type
               createdAt
               updatedAt
@@ -5895,7 +5489,6 @@ export class APIService {
         getCompany(id: $id) {
           __typename
           id
-          accountID
           name
           description
           website
@@ -5911,13 +5504,10 @@ export class APIService {
           account {
             __typename
             id
-            userID
-            companyID
             type
             user {
               __typename
               id
-              accountID
               prename
               lastname
               street
@@ -5934,7 +5524,6 @@ export class APIService {
             company {
               __typename
               id
-              accountID
               name
               description
               website
@@ -5961,7 +5550,6 @@ export class APIService {
               __typename
               id
               categoryID
-              companyID
               title
               shortDescription
               description
@@ -6000,7 +5588,6 @@ export class APIService {
           items {
             __typename
             id
-            accountID
             name
             description
             website
@@ -6016,8 +5603,6 @@ export class APIService {
             account {
               __typename
               id
-              userID
-              companyID
               type
               createdAt
               updatedAt
@@ -6054,7 +5639,6 @@ export class APIService {
         getCategory(id: $id) {
           __typename
           id
-          categoryID
           title
           description
           jobs {
@@ -6063,7 +5647,6 @@ export class APIService {
               __typename
               id
               categoryID
-              companyID
               title
               shortDescription
               description
@@ -6083,7 +5666,6 @@ export class APIService {
             items {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -6095,7 +5677,6 @@ export class APIService {
           category {
             __typename
             id
-            categoryID
             title
             description
             jobs {
@@ -6109,7 +5690,6 @@ export class APIService {
             category {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -6144,7 +5724,6 @@ export class APIService {
           items {
             __typename
             id
-            categoryID
             title
             description
             jobs {
@@ -6158,7 +5737,6 @@ export class APIService {
             category {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -6193,7 +5771,6 @@ export class APIService {
           __typename
           id
           categoryID
-          companyID
           title
           shortDescription
           description
@@ -6207,7 +5784,6 @@ export class APIService {
             items {
               __typename
               id
-              jobID
               title
               createdAt
               updatedAt
@@ -6218,7 +5794,6 @@ export class APIService {
           company {
             __typename
             id
-            accountID
             name
             description
             website
@@ -6234,8 +5809,6 @@ export class APIService {
             account {
               __typename
               id
-              userID
-              companyID
               type
               createdAt
               updatedAt
@@ -6252,7 +5825,6 @@ export class APIService {
           category {
             __typename
             id
-            categoryID
             title
             description
             jobs {
@@ -6266,7 +5838,6 @@ export class APIService {
             category {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -6302,7 +5873,6 @@ export class APIService {
             __typename
             id
             categoryID
-            companyID
             title
             shortDescription
             description
@@ -6318,7 +5888,6 @@ export class APIService {
             company {
               __typename
               id
-              accountID
               name
               description
               website
@@ -6338,7 +5907,6 @@ export class APIService {
             category {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -6372,13 +5940,11 @@ export class APIService {
         getApplication(id: $id) {
           __typename
           id
-          jobID
           title
           job {
             __typename
             id
             categoryID
-            companyID
             title
             shortDescription
             description
@@ -6394,7 +5960,6 @@ export class APIService {
             company {
               __typename
               id
-              accountID
               name
               description
               website
@@ -6414,7 +5979,6 @@ export class APIService {
             category {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -6449,13 +6013,11 @@ export class APIService {
           items {
             __typename
             id
-            jobID
             title
             job {
               __typename
               id
               categoryID
-              companyID
               title
               shortDescription
               description
@@ -6504,7 +6066,6 @@ export class APIService {
             __typename
             id
             categoryID
-            companyID
             title
             shortDescription
             description
@@ -6520,7 +6081,6 @@ export class APIService {
             company {
               __typename
               id
-              accountID
               name
               description
               website
@@ -6540,7 +6100,6 @@ export class APIService {
             category {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -6584,13 +6143,10 @@ export class APIService {
         onCreateAccount(owner: $owner) {
           __typename
           id
-          userID
-          companyID
           type
           user {
             __typename
             id
-            accountID
             prename
             lastname
             street
@@ -6603,8 +6159,6 @@ export class APIService {
             account {
               __typename
               id
-              userID
-              companyID
               type
               createdAt
               updatedAt
@@ -6617,7 +6171,6 @@ export class APIService {
           company {
             __typename
             id
-            accountID
             name
             description
             website
@@ -6633,8 +6186,6 @@ export class APIService {
             account {
               __typename
               id
-              userID
-              companyID
               type
               createdAt
               updatedAt
@@ -6664,13 +6215,10 @@ export class APIService {
         onUpdateAccount(owner: $owner) {
           __typename
           id
-          userID
-          companyID
           type
           user {
             __typename
             id
-            accountID
             prename
             lastname
             street
@@ -6683,8 +6231,6 @@ export class APIService {
             account {
               __typename
               id
-              userID
-              companyID
               type
               createdAt
               updatedAt
@@ -6697,7 +6243,6 @@ export class APIService {
           company {
             __typename
             id
-            accountID
             name
             description
             website
@@ -6713,8 +6258,6 @@ export class APIService {
             account {
               __typename
               id
-              userID
-              companyID
               type
               createdAt
               updatedAt
@@ -6744,13 +6287,10 @@ export class APIService {
         onDeleteAccount(owner: $owner) {
           __typename
           id
-          userID
-          companyID
           type
           user {
             __typename
             id
-            accountID
             prename
             lastname
             street
@@ -6763,8 +6303,6 @@ export class APIService {
             account {
               __typename
               id
-              userID
-              companyID
               type
               createdAt
               updatedAt
@@ -6777,7 +6315,6 @@ export class APIService {
           company {
             __typename
             id
-            accountID
             name
             description
             website
@@ -6793,8 +6330,6 @@ export class APIService {
             account {
               __typename
               id
-              userID
-              companyID
               type
               createdAt
               updatedAt
@@ -6824,7 +6359,6 @@ export class APIService {
         onCreateUser(owner: $owner) {
           __typename
           id
-          accountID
           prename
           lastname
           street
@@ -6837,13 +6371,10 @@ export class APIService {
           account {
             __typename
             id
-            userID
-            companyID
             type
             user {
               __typename
               id
-              accountID
               prename
               lastname
               street
@@ -6860,7 +6391,6 @@ export class APIService {
             company {
               __typename
               id
-              accountID
               name
               description
               website
@@ -6897,7 +6427,6 @@ export class APIService {
         onUpdateUser(owner: $owner) {
           __typename
           id
-          accountID
           prename
           lastname
           street
@@ -6910,13 +6439,10 @@ export class APIService {
           account {
             __typename
             id
-            userID
-            companyID
             type
             user {
               __typename
               id
-              accountID
               prename
               lastname
               street
@@ -6933,7 +6459,6 @@ export class APIService {
             company {
               __typename
               id
-              accountID
               name
               description
               website
@@ -6970,7 +6495,6 @@ export class APIService {
         onDeleteUser(owner: $owner) {
           __typename
           id
-          accountID
           prename
           lastname
           street
@@ -6983,13 +6507,10 @@ export class APIService {
           account {
             __typename
             id
-            userID
-            companyID
             type
             user {
               __typename
               id
-              accountID
               prename
               lastname
               street
@@ -7006,7 +6527,6 @@ export class APIService {
             company {
               __typename
               id
-              accountID
               name
               description
               website
@@ -7043,7 +6563,6 @@ export class APIService {
         onCreateCompany(owner: $owner) {
           __typename
           id
-          accountID
           name
           description
           website
@@ -7059,13 +6578,10 @@ export class APIService {
           account {
             __typename
             id
-            userID
-            companyID
             type
             user {
               __typename
               id
-              accountID
               prename
               lastname
               street
@@ -7082,7 +6598,6 @@ export class APIService {
             company {
               __typename
               id
-              accountID
               name
               description
               website
@@ -7109,7 +6624,6 @@ export class APIService {
               __typename
               id
               categoryID
-              companyID
               title
               shortDescription
               description
@@ -7140,7 +6654,6 @@ export class APIService {
         onUpdateCompany(owner: $owner) {
           __typename
           id
-          accountID
           name
           description
           website
@@ -7156,13 +6669,10 @@ export class APIService {
           account {
             __typename
             id
-            userID
-            companyID
             type
             user {
               __typename
               id
-              accountID
               prename
               lastname
               street
@@ -7179,7 +6689,6 @@ export class APIService {
             company {
               __typename
               id
-              accountID
               name
               description
               website
@@ -7206,7 +6715,6 @@ export class APIService {
               __typename
               id
               categoryID
-              companyID
               title
               shortDescription
               description
@@ -7237,7 +6745,6 @@ export class APIService {
         onDeleteCompany(owner: $owner) {
           __typename
           id
-          accountID
           name
           description
           website
@@ -7253,13 +6760,10 @@ export class APIService {
           account {
             __typename
             id
-            userID
-            companyID
             type
             user {
               __typename
               id
-              accountID
               prename
               lastname
               street
@@ -7276,7 +6780,6 @@ export class APIService {
             company {
               __typename
               id
-              accountID
               name
               description
               website
@@ -7303,7 +6806,6 @@ export class APIService {
               __typename
               id
               categoryID
-              companyID
               title
               shortDescription
               description
@@ -7334,7 +6836,6 @@ export class APIService {
         onCreateCategory(owner: $owner) {
           __typename
           id
-          categoryID
           title
           description
           jobs {
@@ -7343,7 +6844,6 @@ export class APIService {
               __typename
               id
               categoryID
-              companyID
               title
               shortDescription
               description
@@ -7363,7 +6863,6 @@ export class APIService {
             items {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -7375,7 +6874,6 @@ export class APIService {
           category {
             __typename
             id
-            categoryID
             title
             description
             jobs {
@@ -7389,7 +6887,6 @@ export class APIService {
             category {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -7416,7 +6913,6 @@ export class APIService {
         onUpdateCategory(owner: $owner) {
           __typename
           id
-          categoryID
           title
           description
           jobs {
@@ -7425,7 +6921,6 @@ export class APIService {
               __typename
               id
               categoryID
-              companyID
               title
               shortDescription
               description
@@ -7445,7 +6940,6 @@ export class APIService {
             items {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -7457,7 +6951,6 @@ export class APIService {
           category {
             __typename
             id
-            categoryID
             title
             description
             jobs {
@@ -7471,7 +6964,6 @@ export class APIService {
             category {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -7498,7 +6990,6 @@ export class APIService {
         onDeleteCategory(owner: $owner) {
           __typename
           id
-          categoryID
           title
           description
           jobs {
@@ -7507,7 +6998,6 @@ export class APIService {
               __typename
               id
               categoryID
-              companyID
               title
               shortDescription
               description
@@ -7527,7 +7017,6 @@ export class APIService {
             items {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -7539,7 +7028,6 @@ export class APIService {
           category {
             __typename
             id
-            categoryID
             title
             description
             jobs {
@@ -7553,7 +7041,6 @@ export class APIService {
             category {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -7581,7 +7068,6 @@ export class APIService {
           __typename
           id
           categoryID
-          companyID
           title
           shortDescription
           description
@@ -7595,7 +7081,6 @@ export class APIService {
             items {
               __typename
               id
-              jobID
               title
               createdAt
               updatedAt
@@ -7606,7 +7091,6 @@ export class APIService {
           company {
             __typename
             id
-            accountID
             name
             description
             website
@@ -7622,8 +7106,6 @@ export class APIService {
             account {
               __typename
               id
-              userID
-              companyID
               type
               createdAt
               updatedAt
@@ -7640,7 +7122,6 @@ export class APIService {
           category {
             __typename
             id
-            categoryID
             title
             description
             jobs {
@@ -7654,7 +7135,6 @@ export class APIService {
             category {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -7682,7 +7162,6 @@ export class APIService {
           __typename
           id
           categoryID
-          companyID
           title
           shortDescription
           description
@@ -7696,7 +7175,6 @@ export class APIService {
             items {
               __typename
               id
-              jobID
               title
               createdAt
               updatedAt
@@ -7707,7 +7185,6 @@ export class APIService {
           company {
             __typename
             id
-            accountID
             name
             description
             website
@@ -7723,8 +7200,6 @@ export class APIService {
             account {
               __typename
               id
-              userID
-              companyID
               type
               createdAt
               updatedAt
@@ -7741,7 +7216,6 @@ export class APIService {
           category {
             __typename
             id
-            categoryID
             title
             description
             jobs {
@@ -7755,7 +7229,6 @@ export class APIService {
             category {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -7783,7 +7256,6 @@ export class APIService {
           __typename
           id
           categoryID
-          companyID
           title
           shortDescription
           description
@@ -7797,7 +7269,6 @@ export class APIService {
             items {
               __typename
               id
-              jobID
               title
               createdAt
               updatedAt
@@ -7808,7 +7279,6 @@ export class APIService {
           company {
             __typename
             id
-            accountID
             name
             description
             website
@@ -7824,8 +7294,6 @@ export class APIService {
             account {
               __typename
               id
-              userID
-              companyID
               type
               createdAt
               updatedAt
@@ -7842,7 +7310,6 @@ export class APIService {
           category {
             __typename
             id
-            categoryID
             title
             description
             jobs {
@@ -7856,7 +7323,6 @@ export class APIService {
             category {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -7883,13 +7349,11 @@ export class APIService {
         onCreateApplication(owner: $owner) {
           __typename
           id
-          jobID
           title
           job {
             __typename
             id
             categoryID
-            companyID
             title
             shortDescription
             description
@@ -7905,7 +7369,6 @@ export class APIService {
             company {
               __typename
               id
-              accountID
               name
               description
               website
@@ -7925,7 +7388,6 @@ export class APIService {
             category {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -7952,13 +7414,11 @@ export class APIService {
         onUpdateApplication(owner: $owner) {
           __typename
           id
-          jobID
           title
           job {
             __typename
             id
             categoryID
-            companyID
             title
             shortDescription
             description
@@ -7974,7 +7434,6 @@ export class APIService {
             company {
               __typename
               id
-              accountID
               name
               description
               website
@@ -7994,7 +7453,6 @@ export class APIService {
             category {
               __typename
               id
-              categoryID
               title
               description
               createdAt
@@ -8021,13 +7479,11 @@ export class APIService {
         onDeleteApplication(owner: $owner) {
           __typename
           id
-          jobID
           title
           job {
             __typename
             id
             categoryID
-            companyID
             title
             shortDescription
             description
@@ -8043,7 +7499,6 @@ export class APIService {
             company {
               __typename
               id
-              accountID
               name
               description
               website
@@ -8063,7 +7518,6 @@ export class APIService {
             category {
               __typename
               id
-              categoryID
               title
               description
               createdAt

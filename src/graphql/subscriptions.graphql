@@ -2,12 +2,9 @@
 subscription OnCreateAccount($owner: String) {
   onCreateAccount(owner: $owner) {
     id
-    userID
-    companyID
     type
     user {
       id
-      accountID
       prename
       lastname
       street
@@ -19,8 +16,6 @@ subscription OnCreateAccount($owner: String) {
       image
       account {
         id
-        userID
-        companyID
         type
         createdAt
         updatedAt
@@ -32,7 +27,6 @@ subscription OnCreateAccount($owner: String) {
     }
     company {
       id
-      accountID
       name
       description
       website
@@ -47,8 +41,6 @@ subscription OnCreateAccount($owner: String) {
       image
       account {
         id
-        userID
-        companyID
         type
         createdAt
         updatedAt
@@ -69,12 +61,9 @@ subscription OnCreateAccount($owner: String) {
 subscription OnUpdateAccount($owner: String) {
   onUpdateAccount(owner: $owner) {
     id
-    userID
-    companyID
     type
     user {
       id
-      accountID
       prename
       lastname
       street
@@ -86,8 +75,6 @@ subscription OnUpdateAccount($owner: String) {
       image
       account {
         id
-        userID
-        companyID
         type
         createdAt
         updatedAt
@@ -99,7 +86,6 @@ subscription OnUpdateAccount($owner: String) {
     }
     company {
       id
-      accountID
       name
       description
       website
@@ -114,8 +100,6 @@ subscription OnUpdateAccount($owner: String) {
       image
       account {
         id
-        userID
-        companyID
         type
         createdAt
         updatedAt
@@ -136,12 +120,9 @@ subscription OnUpdateAccount($owner: String) {
 subscription OnDeleteAccount($owner: String) {
   onDeleteAccount(owner: $owner) {
     id
-    userID
-    companyID
     type
     user {
       id
-      accountID
       prename
       lastname
       street
@@ -153,8 +134,6 @@ subscription OnDeleteAccount($owner: String) {
       image
       account {
         id
-        userID
-        companyID
         type
         createdAt
         updatedAt
@@ -166,7 +145,6 @@ subscription OnDeleteAccount($owner: String) {
     }
     company {
       id
-      accountID
       name
       description
       website
@@ -181,8 +159,6 @@ subscription OnDeleteAccount($owner: String) {
       image
       account {
         id
-        userID
-        companyID
         type
         createdAt
         updatedAt
@@ -203,7 +179,6 @@ subscription OnDeleteAccount($owner: String) {
 subscription OnCreateUser($owner: String) {
   onCreateUser(owner: $owner) {
     id
-    accountID
     prename
     lastname
     street
@@ -215,12 +190,9 @@ subscription OnCreateUser($owner: String) {
     image
     account {
       id
-      userID
-      companyID
       type
       user {
         id
-        accountID
         prename
         lastname
         street
@@ -236,7 +208,6 @@ subscription OnCreateUser($owner: String) {
       }
       company {
         id
-        accountID
         name
         description
         website
@@ -265,7 +236,6 @@ subscription OnCreateUser($owner: String) {
 subscription OnUpdateUser($owner: String) {
   onUpdateUser(owner: $owner) {
     id
-    accountID
     prename
     lastname
     street
@@ -277,12 +247,9 @@ subscription OnUpdateUser($owner: String) {
     image
     account {
       id
-      userID
-      companyID
       type
       user {
         id
-        accountID
         prename
         lastname
         street
@@ -298,7 +265,6 @@ subscription OnUpdateUser($owner: String) {
       }
       company {
         id
-        accountID
         name
         description
         website
@@ -327,7 +293,6 @@ subscription OnUpdateUser($owner: String) {
 subscription OnDeleteUser($owner: String) {
   onDeleteUser(owner: $owner) {
     id
-    accountID
     prename
     lastname
     street
@@ -339,12 +304,9 @@ subscription OnDeleteUser($owner: String) {
     image
     account {
       id
-      userID
-      companyID
       type
       user {
         id
-        accountID
         prename
         lastname
         street
@@ -360,7 +322,6 @@ subscription OnDeleteUser($owner: String) {
       }
       company {
         id
-        accountID
         name
         description
         website
@@ -389,7 +350,6 @@ subscription OnDeleteUser($owner: String) {
 subscription OnCreateCompany($owner: String) {
   onCreateCompany(owner: $owner) {
     id
-    accountID
     name
     description
     website
@@ -404,12 +364,9 @@ subscription OnCreateCompany($owner: String) {
     image
     account {
       id
-      userID
-      companyID
       type
       user {
         id
-        accountID
         prename
         lastname
         street
@@ -425,7 +382,6 @@ subscription OnCreateCompany($owner: String) {
       }
       company {
         id
-        accountID
         name
         description
         website
@@ -450,7 +406,6 @@ subscription OnCreateCompany($owner: String) {
       items {
         id
         categoryID
-        companyID
         title
         shortDescription
         description
@@ -473,7 +428,6 @@ subscription OnCreateCompany($owner: String) {
 subscription OnUpdateCompany($owner: String) {
   onUpdateCompany(owner: $owner) {
     id
-    accountID
     name
     description
     website
@@ -488,12 +442,9 @@ subscription OnUpdateCompany($owner: String) {
     image
     account {
       id
-      userID
-      companyID
       type
       user {
         id
-        accountID
         prename
         lastname
         street
@@ -509,7 +460,6 @@ subscription OnUpdateCompany($owner: String) {
       }
       company {
         id
-        accountID
         name
         description
         website
@@ -534,7 +484,6 @@ subscription OnUpdateCompany($owner: String) {
       items {
         id
         categoryID
-        companyID
         title
         shortDescription
         description
@@ -557,7 +506,6 @@ subscription OnUpdateCompany($owner: String) {
 subscription OnDeleteCompany($owner: String) {
   onDeleteCompany(owner: $owner) {
     id
-    accountID
     name
     description
     website
@@ -572,12 +520,9 @@ subscription OnDeleteCompany($owner: String) {
     image
     account {
       id
-      userID
-      companyID
       type
       user {
         id
-        accountID
         prename
         lastname
         street
@@ -593,7 +538,6 @@ subscription OnDeleteCompany($owner: String) {
       }
       company {
         id
-        accountID
         name
         description
         website
@@ -618,7 +562,6 @@ subscription OnDeleteCompany($owner: String) {
       items {
         id
         categoryID
-        companyID
         title
         shortDescription
         description
@@ -641,14 +584,12 @@ subscription OnDeleteCompany($owner: String) {
 subscription OnCreateCategory($owner: String) {
   onCreateCategory(owner: $owner) {
     id
-    categoryID
     title
     description
     jobs {
       items {
         id
         categoryID
-        companyID
         title
         shortDescription
         description
@@ -666,7 +607,6 @@ subscription OnCreateCategory($owner: String) {
     categories {
       items {
         id
-        categoryID
         title
         description
         createdAt
@@ -677,7 +617,6 @@ subscription OnCreateCategory($owner: String) {
     }
     category {
       id
-      categoryID
       title
       description
       jobs {
@@ -688,7 +627,6 @@ subscription OnCreateCategory($owner: String) {
       }
       category {
         id
-        categoryID
         title
         description
         createdAt
@@ -707,14 +645,12 @@ subscription OnCreateCategory($owner: String) {
 subscription OnUpdateCategory($owner: String) {
   onUpdateCategory(owner: $owner) {
     id
-    categoryID
     title
     description
     jobs {
       items {
         id
         categoryID
-        companyID
         title
         shortDescription
         description
@@ -732,7 +668,6 @@ subscription OnUpdateCategory($owner: String) {
     categories {
       items {
         id
-        categoryID
         title
         description
         createdAt
@@ -743,7 +678,6 @@ subscription OnUpdateCategory($owner: String) {
     }
     category {
       id
-      categoryID
       title
       description
       jobs {
@@ -754,7 +688,6 @@ subscription OnUpdateCategory($owner: String) {
       }
       category {
         id
-        categoryID
         title
         description
         createdAt
@@ -773,14 +706,12 @@ subscription OnUpdateCategory($owner: String) {
 subscription OnDeleteCategory($owner: String) {
   onDeleteCategory(owner: $owner) {
     id
-    categoryID
     title
     description
     jobs {
       items {
         id
         categoryID
-        companyID
         title
         shortDescription
         description
@@ -798,7 +729,6 @@ subscription OnDeleteCategory($owner: String) {
     categories {
       items {
         id
-        categoryID
         title
         description
         createdAt
@@ -809,7 +739,6 @@ subscription OnDeleteCategory($owner: String) {
     }
     category {
       id
-      categoryID
       title
       description
       jobs {
@@ -820,7 +749,6 @@ subscription OnDeleteCategory($owner: String) {
       }
       category {
         id
-        categoryID
         title
         description
         createdAt
@@ -840,7 +768,6 @@ subscription OnCreateJob($owner: String) {
   onCreateJob(owner: $owner) {
     id
     categoryID
-    companyID
     title
     shortDescription
     description
@@ -852,7 +779,6 @@ subscription OnCreateJob($owner: String) {
     applications {
       items {
         id
-        jobID
         title
         createdAt
         updatedAt
@@ -862,7 +788,6 @@ subscription OnCreateJob($owner: String) {
     }
     company {
       id
-      accountID
       name
       description
       website
@@ -877,8 +802,6 @@ subscription OnCreateJob($owner: String) {
       image
       account {
         id
-        userID
-        companyID
         type
         createdAt
         updatedAt
@@ -893,7 +816,6 @@ subscription OnCreateJob($owner: String) {
     }
     category {
       id
-      categoryID
       title
       description
       jobs {
@@ -904,7 +826,6 @@ subscription OnCreateJob($owner: String) {
       }
       category {
         id
-        categoryID
         title
         description
         createdAt
@@ -924,7 +845,6 @@ subscription OnUpdateJob($owner: String) {
   onUpdateJob(owner: $owner) {
     id
     categoryID
-    companyID
     title
     shortDescription
     description
@@ -936,7 +856,6 @@ subscription OnUpdateJob($owner: String) {
     applications {
       items {
         id
-        jobID
         title
         createdAt
         updatedAt
@@ -946,7 +865,6 @@ subscription OnUpdateJob($owner: String) {
     }
     company {
       id
-      accountID
       name
       description
       website
@@ -961,8 +879,6 @@ subscription OnUpdateJob($owner: String) {
       image
       account {
         id
-        userID
-        companyID
         type
         createdAt
         updatedAt
@@ -977,7 +893,6 @@ subscription OnUpdateJob($owner: String) {
     }
     category {
       id
-      categoryID
       title
       description
       jobs {
@@ -988,7 +903,6 @@ subscription OnUpdateJob($owner: String) {
       }
       category {
         id
-        categoryID
         title
         description
         createdAt
@@ -1008,7 +922,6 @@ subscription OnDeleteJob($owner: String) {
   onDeleteJob(owner: $owner) {
     id
     categoryID
-    companyID
     title
     shortDescription
     description
@@ -1020,7 +933,6 @@ subscription OnDeleteJob($owner: String) {
     applications {
       items {
         id
-        jobID
         title
         createdAt
         updatedAt
@@ -1030,7 +942,6 @@ subscription OnDeleteJob($owner: String) {
     }
     company {
       id
-      accountID
       name
       description
       website
@@ -1045,8 +956,6 @@ subscription OnDeleteJob($owner: String) {
       image
       account {
         id
-        userID
-        companyID
         type
         createdAt
         updatedAt
@@ -1061,7 +970,6 @@ subscription OnDeleteJob($owner: String) {
     }
     category {
       id
-      categoryID
       title
       description
       jobs {
@@ -1072,7 +980,6 @@ subscription OnDeleteJob($owner: String) {
       }
       category {
         id
-        categoryID
         title
         description
         createdAt
@@ -1091,12 +998,10 @@ subscription OnDeleteJob($owner: String) {
 subscription OnCreateApplication($owner: String) {
   onCreateApplication(owner: $owner) {
     id
-    jobID
     title
     job {
       id
       categoryID
-      companyID
       title
       shortDescription
       description
@@ -1110,7 +1015,6 @@ subscription OnCreateApplication($owner: String) {
       }
       company {
         id
-        accountID
         name
         description
         website
@@ -1129,7 +1033,6 @@ subscription OnCreateApplication($owner: String) {
       }
       category {
         id
-        categoryID
         title
         description
         createdAt
@@ -1148,12 +1051,10 @@ subscription OnCreateApplication($owner: String) {
 subscription OnUpdateApplication($owner: String) {
   onUpdateApplication(owner: $owner) {
     id
-    jobID
     title
     job {
       id
       categoryID
-      companyID
       title
       shortDescription
       description
@@ -1167,7 +1068,6 @@ subscription OnUpdateApplication($owner: String) {
       }
       company {
         id
-        accountID
         name
         description
         website
@@ -1186,7 +1086,6 @@ subscription OnUpdateApplication($owner: String) {
       }
       category {
         id
-        categoryID
         title
         description
         createdAt
@@ -1205,12 +1104,10 @@ subscription OnUpdateApplication($owner: String) {
 subscription OnDeleteApplication($owner: String) {
   onDeleteApplication(owner: $owner) {
     id
-    jobID
     title
     job {
       id
       categoryID
-      companyID
       title
       shortDescription
       description
@@ -1224,7 +1121,6 @@ subscription OnDeleteApplication($owner: String) {
       }
       company {
         id
-        accountID
         name
         description
         website
@@ -1243,7 +1139,6 @@ subscription OnDeleteApplication($owner: String) {
       }
       category {
         id
-        categoryID
         title
         description
         createdAt

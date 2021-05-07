@@ -5,12 +5,9 @@ mutation CreateAccount(
 ) {
   createAccount(input: $input, condition: $condition) {
     id
-    userID
-    companyID
     type
     user {
       id
-      accountID
       prename
       lastname
       street
@@ -22,8 +19,6 @@ mutation CreateAccount(
       image
       account {
         id
-        userID
-        companyID
         type
         createdAt
         updatedAt
@@ -35,7 +30,6 @@ mutation CreateAccount(
     }
     company {
       id
-      accountID
       name
       description
       website
@@ -50,8 +44,6 @@ mutation CreateAccount(
       image
       account {
         id
-        userID
-        companyID
         type
         createdAt
         updatedAt
@@ -75,12 +67,9 @@ mutation UpdateAccount(
 ) {
   updateAccount(input: $input, condition: $condition) {
     id
-    userID
-    companyID
     type
     user {
       id
-      accountID
       prename
       lastname
       street
@@ -92,8 +81,6 @@ mutation UpdateAccount(
       image
       account {
         id
-        userID
-        companyID
         type
         createdAt
         updatedAt
@@ -105,7 +92,6 @@ mutation UpdateAccount(
     }
     company {
       id
-      accountID
       name
       description
       website
@@ -120,8 +106,6 @@ mutation UpdateAccount(
       image
       account {
         id
-        userID
-        companyID
         type
         createdAt
         updatedAt
@@ -145,12 +129,9 @@ mutation DeleteAccount(
 ) {
   deleteAccount(input: $input, condition: $condition) {
     id
-    userID
-    companyID
     type
     user {
       id
-      accountID
       prename
       lastname
       street
@@ -162,8 +143,6 @@ mutation DeleteAccount(
       image
       account {
         id
-        userID
-        companyID
         type
         createdAt
         updatedAt
@@ -175,7 +154,6 @@ mutation DeleteAccount(
     }
     company {
       id
-      accountID
       name
       description
       website
@@ -190,8 +168,6 @@ mutation DeleteAccount(
       image
       account {
         id
-        userID
-        companyID
         type
         createdAt
         updatedAt
@@ -215,7 +191,6 @@ mutation CreateUser(
 ) {
   createUser(input: $input, condition: $condition) {
     id
-    accountID
     prename
     lastname
     street
@@ -227,12 +202,9 @@ mutation CreateUser(
     image
     account {
       id
-      userID
-      companyID
       type
       user {
         id
-        accountID
         prename
         lastname
         street
@@ -248,7 +220,6 @@ mutation CreateUser(
       }
       company {
         id
-        accountID
         name
         description
         website
@@ -280,7 +251,6 @@ mutation UpdateUser(
 ) {
   updateUser(input: $input, condition: $condition) {
     id
-    accountID
     prename
     lastname
     street
@@ -292,12 +262,9 @@ mutation UpdateUser(
     image
     account {
       id
-      userID
-      companyID
       type
       user {
         id
-        accountID
         prename
         lastname
         street
@@ -313,7 +280,6 @@ mutation UpdateUser(
       }
       company {
         id
-        accountID
         name
         description
         website
@@ -345,7 +311,6 @@ mutation DeleteUser(
 ) {
   deleteUser(input: $input, condition: $condition) {
     id
-    accountID
     prename
     lastname
     street
@@ -357,12 +322,9 @@ mutation DeleteUser(
     image
     account {
       id
-      userID
-      companyID
       type
       user {
         id
-        accountID
         prename
         lastname
         street
@@ -378,7 +340,6 @@ mutation DeleteUser(
       }
       company {
         id
-        accountID
         name
         description
         website
@@ -410,7 +371,6 @@ mutation CreateCompany(
 ) {
   createCompany(input: $input, condition: $condition) {
     id
-    accountID
     name
     description
     website
@@ -425,12 +385,9 @@ mutation CreateCompany(
     image
     account {
       id
-      userID
-      companyID
       type
       user {
         id
-        accountID
         prename
         lastname
         street
@@ -446,7 +403,6 @@ mutation CreateCompany(
       }
       company {
         id
-        accountID
         name
         description
         website
@@ -471,7 +427,6 @@ mutation CreateCompany(
       items {
         id
         categoryID
-        companyID
         title
         shortDescription
         description
@@ -497,7 +452,6 @@ mutation UpdateCompany(
 ) {
   updateCompany(input: $input, condition: $condition) {
     id
-    accountID
     name
     description
     website
@@ -512,12 +466,9 @@ mutation UpdateCompany(
     image
     account {
       id
-      userID
-      companyID
       type
       user {
         id
-        accountID
         prename
         lastname
         street
@@ -533,7 +484,6 @@ mutation UpdateCompany(
       }
       company {
         id
-        accountID
         name
         description
         website
@@ -558,7 +508,6 @@ mutation UpdateCompany(
       items {
         id
         categoryID
-        companyID
         title
         shortDescription
         description
@@ -584,7 +533,6 @@ mutation DeleteCompany(
 ) {
   deleteCompany(input: $input, condition: $condition) {
     id
-    accountID
     name
     description
     website
@@ -599,12 +547,9 @@ mutation DeleteCompany(
     image
     account {
       id
-      userID
-      companyID
       type
       user {
         id
-        accountID
         prename
         lastname
         street
@@ -620,7 +565,6 @@ mutation DeleteCompany(
       }
       company {
         id
-        accountID
         name
         description
         website
@@ -645,7 +589,6 @@ mutation DeleteCompany(
       items {
         id
         categoryID
-        companyID
         title
         shortDescription
         description
@@ -671,14 +614,12 @@ mutation CreateCategory(
 ) {
   createCategory(input: $input, condition: $condition) {
     id
-    categoryID
     title
     description
     jobs {
       items {
         id
         categoryID
-        companyID
         title
         shortDescription
         description
@@ -696,7 +637,6 @@ mutation CreateCategory(
     categories {
       items {
         id
-        categoryID
         title
         description
         createdAt
@@ -707,7 +647,6 @@ mutation CreateCategory(
     }
     category {
       id
-      categoryID
       title
       description
       jobs {
@@ -718,7 +657,6 @@ mutation CreateCategory(
       }
       category {
         id
-        categoryID
         title
         description
         createdAt
@@ -740,14 +678,12 @@ mutation UpdateCategory(
 ) {
   updateCategory(input: $input, condition: $condition) {
     id
-    categoryID
     title
     description
     jobs {
       items {
         id
         categoryID
-        companyID
         title
         shortDescription
         description
@@ -765,7 +701,6 @@ mutation UpdateCategory(
     categories {
       items {
         id
-        categoryID
         title
         description
         createdAt
@@ -776,7 +711,6 @@ mutation UpdateCategory(
     }
     category {
       id
-      categoryID
       title
       description
       jobs {
@@ -787,7 +721,6 @@ mutation UpdateCategory(
       }
       category {
         id
-        categoryID
         title
         description
         createdAt
@@ -809,14 +742,12 @@ mutation DeleteCategory(
 ) {
   deleteCategory(input: $input, condition: $condition) {
     id
-    categoryID
     title
     description
     jobs {
       items {
         id
         categoryID
-        companyID
         title
         shortDescription
         description
@@ -834,7 +765,6 @@ mutation DeleteCategory(
     categories {
       items {
         id
-        categoryID
         title
         description
         createdAt
@@ -845,7 +775,6 @@ mutation DeleteCategory(
     }
     category {
       id
-      categoryID
       title
       description
       jobs {
@@ -856,7 +785,6 @@ mutation DeleteCategory(
       }
       category {
         id
-        categoryID
         title
         description
         createdAt
@@ -879,7 +807,6 @@ mutation CreateJob(
   createJob(input: $input, condition: $condition) {
     id
     categoryID
-    companyID
     title
     shortDescription
     description
@@ -891,7 +818,6 @@ mutation CreateJob(
     applications {
       items {
         id
-        jobID
         title
         createdAt
         updatedAt
@@ -901,7 +827,6 @@ mutation CreateJob(
     }
     company {
       id
-      accountID
       name
       description
       website
@@ -916,8 +841,6 @@ mutation CreateJob(
       image
       account {
         id
-        userID
-        companyID
         type
         createdAt
         updatedAt
@@ -932,7 +855,6 @@ mutation CreateJob(
     }
     category {
       id
-      categoryID
       title
       description
       jobs {
@@ -943,7 +865,6 @@ mutation CreateJob(
       }
       category {
         id
-        categoryID
         title
         description
         createdAt
@@ -966,7 +887,6 @@ mutation UpdateJob(
   updateJob(input: $input, condition: $condition) {
     id
     categoryID
-    companyID
     title
     shortDescription
     description
@@ -978,7 +898,6 @@ mutation UpdateJob(
     applications {
       items {
         id
-        jobID
         title
         createdAt
         updatedAt
@@ -988,7 +907,6 @@ mutation UpdateJob(
     }
     company {
       id
-      accountID
       name
       description
       website
@@ -1003,8 +921,6 @@ mutation UpdateJob(
       image
       account {
         id
-        userID
-        companyID
         type
         createdAt
         updatedAt
@@ -1019,7 +935,6 @@ mutation UpdateJob(
     }
     category {
       id
-      categoryID
       title
       description
       jobs {
@@ -1030,7 +945,6 @@ mutation UpdateJob(
       }
       category {
         id
-        categoryID
         title
         description
         createdAt
@@ -1053,7 +967,6 @@ mutation DeleteJob(
   deleteJob(input: $input, condition: $condition) {
     id
     categoryID
-    companyID
     title
     shortDescription
     description
@@ -1065,7 +978,6 @@ mutation DeleteJob(
     applications {
       items {
         id
-        jobID
         title
         createdAt
         updatedAt
@@ -1075,7 +987,6 @@ mutation DeleteJob(
     }
     company {
       id
-      accountID
       name
       description
       website
@@ -1090,8 +1001,6 @@ mutation DeleteJob(
       image
       account {
         id
-        userID
-        companyID
         type
         createdAt
         updatedAt
@@ -1106,7 +1015,6 @@ mutation DeleteJob(
     }
     category {
       id
-      categoryID
       title
       description
       jobs {
@@ -1117,7 +1025,6 @@ mutation DeleteJob(
       }
       category {
         id
-        categoryID
         title
         description
         createdAt
@@ -1139,12 +1046,10 @@ mutation CreateApplication(
 ) {
   createApplication(input: $input, condition: $condition) {
     id
-    jobID
     title
     job {
       id
       categoryID
-      companyID
       title
       shortDescription
       description
@@ -1158,7 +1063,6 @@ mutation CreateApplication(
       }
       company {
         id
-        accountID
         name
         description
         website
@@ -1177,7 +1081,6 @@ mutation CreateApplication(
       }
       category {
         id
-        categoryID
         title
         description
         createdAt
@@ -1199,12 +1102,10 @@ mutation UpdateApplication(
 ) {
   updateApplication(input: $input, condition: $condition) {
     id
-    jobID
     title
     job {
       id
       categoryID
-      companyID
       title
       shortDescription
       description
@@ -1218,7 +1119,6 @@ mutation UpdateApplication(
       }
       company {
         id
-        accountID
         name
         description
         website
@@ -1237,7 +1137,6 @@ mutation UpdateApplication(
       }
       category {
         id
-        categoryID
         title
         description
         createdAt
@@ -1259,12 +1158,10 @@ mutation DeleteApplication(
 ) {
   deleteApplication(input: $input, condition: $condition) {
     id
-    jobID
     title
     job {
       id
       categoryID
-      companyID
       title
       shortDescription
       description
@@ -1278,7 +1175,6 @@ mutation DeleteApplication(
       }
       company {
         id
-        accountID
         name
         description
         website
@@ -1297,7 +1193,6 @@ mutation DeleteApplication(
       }
       category {
         id
-        categoryID
         title
         description
         createdAt

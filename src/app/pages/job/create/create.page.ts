@@ -103,7 +103,7 @@ export class CreatePage implements OnInit {
                 shortDescription: form.shortDescription,
                 description: form.description,
                 jobCompanyId: getAccount.company.id,
-                jobCategoryId: form.category,
+                categoryID: form.category,
                 createDate: new Date().toISOString(),
                 expireDate: new Date().toISOString(),
                 employment: form.employment
