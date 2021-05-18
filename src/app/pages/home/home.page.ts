@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { APIService } from 'src/app/API.service';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-
-  constructor() { }
+  public companys;
+  constructor(public API: APIService) { }
 
   ngOnInit() {
-  }
+    this.API.ListCompanys().then(companys => {
+      this.companys = companys.items;
+    });
+  } 
 
 }

@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { SearchPageRoutingModule } from './search-routing.module';
 
 import { SearchPage } from './search.page';
+import { JobListItemComponent } from 'src/app/components/job-list-item/job-list-item.component';
 
 @NgModule({
   imports: [
@@ -14,8 +15,10 @@ import { SearchPage } from './search.page';
     FormsModule,
     IonicModule,
     SearchPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
-  declarations: [SearchPage]
+  entryComponents: [JobListItemComponent],
+  declarations: [SearchPage, JobListItemComponent]
 })
 export class SearchPageModule {}

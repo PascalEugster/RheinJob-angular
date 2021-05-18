@@ -1,0 +1,19 @@
+  <ion-card>
+      <ion-row>
+        <ion-col size="2">
+          <ion-img src="../assets/images/sfs.png"></ion-img>
+        </ion-col>
+        <ion-col size="10">
+          <ion-card-header>
+            <ion-card-title>{{job.title}}</ion-card-title>
+            <ion-card-subtitle>{{job.category.title}}</ion-card-subtitle>
+            <ion-card-subtitle>{{job.company.name}} - {{job.company.postcode}} {{job.company.city}}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content class="description">
+            <p>{{job.shortDescription}}</p>
+            <ion-button shape="round" [routerLink]="['/job/', job.id]" routerDirection="forward">Mehr Informationen
+            </ion-button>
+          </ion-card-content>
+        </ion-col>
+      </ion-row>
+  </ion-card>

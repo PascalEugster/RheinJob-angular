@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastController } from '@ionic/angular';
 import { APIService, CreateCategoryInput } from 'src/app/API.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-create',
@@ -12,7 +14,7 @@ export class CreatePage implements OnInit {
   form: FormGroup;
   public categories;
 
-  constructor(public formBuilder:FormBuilder, public API: APIService) { }
+  constructor(public formBuilder:FormBuilder, public API: APIService, public toastService: ToastService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -30,7 +32,6 @@ export class CreatePage implements OnInit {
   }
  
   onSubmit() {
-    console.log('Company submit');
     if (!this.form.valid) {
       console.log('Alle felder müssen ausgefüllt werden!');
       return false;
@@ -45,6 +46,7 @@ export class CreatePage implements OnInit {
       }
 
       this.API.CreateCategory(createCategoryInput).then(category => {
+        this.toastService.show();
         console.log('Neue Kategorie erstellt : ' + category.title);
       });
     }
