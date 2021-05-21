@@ -1,0 +1,19 @@
+query listCategorysWithChildren {
+  listCategorys {
+    items {
+      categories {
+        nextToken
+        items {
+          id
+          title
+          description
+        }
+      }
+      description
+      id
+      owner
+      title
+      updatedAt
+    }
+  }
+}

@@ -5,6 +5,7 @@ import { Auth } from 'aws-amplify';
 import { APIService, CreateJobInput } from 'src/app/API.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { Employment } from 'src/app/enums/employment.enum';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-create',
@@ -62,7 +63,7 @@ export class CreatePage implements OnInit {
     ]
   };
 
-  constructor(private formBuilder: FormBuilder, private API: APIService, public datepipe: DatePipe) {
+  constructor(private formBuilder: FormBuilder, private API: APIService, public datepipe: DatePipe, public toastService: ToastService) {
 
   }
 
@@ -109,6 +110,7 @@ export class CreatePage implements OnInit {
                 employment: form.employment
               };
               this.API.CreateJob(createJobInput).then(createdJob => {
+                this.toastService.show("Job wurde erstellt!")
                 console.log('Job Created!');
               });
             }

@@ -1,14 +1,16 @@
-#providers {
-  .title {
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-      max-width: 70%;
+.title {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  max-width: 70%;
 
-      h2 {
-        font-weight: 600;
-      }
+  h2 {
+    font-weight: 600;
   }
+}
+
+#providers {
+
   ion-card {
     width: 200px;
     text-align: center;
@@ -25,3 +27,4 @@
     }
   }
 }
+

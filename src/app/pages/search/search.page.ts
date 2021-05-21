@@ -57,31 +57,17 @@ export class SearchPage implements OnInit {
     } else {
       const form = this.form.value;
 
-      // let searchFilter:SearchableJobFilterInput = {
-  
-      //   categoryID: {
-      //     matchPhrasePrefix: form.category
-      //   },
-      //   and : [
-      //     {title: {matchPhrasePrefix: form.title}}
-      //   ]
-
-      // };
-
       let searchFilter:SearchableJobFilterInput = {
-        or: [
-          {
-            categoryID: {
-              matchPhrasePrefix: form.category
-            },
-            title : {
-              matchPhrasePrefix: form.title
-            }
-          }
-        ],
+  
+        categoryID: {
+          matchPhrasePrefix: form.category
+        },
+        and : [
+          {title: {matchPhrasePrefix: form.title}}
+        ]
 
-        
       };
+
 
 
       this.API.SearchJobs(searchFilter).then((searchedJobs: SearchJobsQuery) => {

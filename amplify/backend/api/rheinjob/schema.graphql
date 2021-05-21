@@ -9,8 +9,7 @@ type Account
 
 type User
   @model
-  @auth(rules: [{ allow: owner }, { allow: groups, groups: ["Admins"] }])
-   {
+  @auth(rules: [{ allow: owner }, { allow: groups, groups: ["Admins"] }]) {
   id: ID!
   prename: String!
   lastname: String!
@@ -26,8 +25,7 @@ type User
 
 type Company
   @model
-  @auth(rules: [{ allow: owner }, { allow: groups, groups: ["Admins"] }])
-  {
+  @auth(rules: [{ allow: owner }, { allow: groups, groups: ["Admins"] }]) {
   id: ID!
   name: String!
   description: String!
@@ -60,8 +58,7 @@ type Job
   @model
   @searchable
   @auth(rules: [{ allow: owner }, { allow: groups, groups: ["Admins"] }])
-  @key(name: "byCategory", fields: ["categoryID"])
-    {
+  @key(name: "byCategory", fields: ["categoryID"]) {
   id: ID!
   categoryID: ID!
   title: String!
@@ -79,8 +76,28 @@ type Job
 
 type Application
   @model
-  @auth(rules: [{ allow: owner }, { allow: groups, groups: ["Admins"] }])  {
+  @auth(rules: [{ allow: owner }, { allow: groups, groups: ["Admins"] }]) {
   id: ID!
   title: String!
   job: Job! @connection(name: "JobApplications")
 }
+
+# query listCategorysWithChildren {
+#   listCategorys {
+#     items {
+#       categories {
+#         nextToken
+#         items {
+#           id
+#           title
+#           description
+#         }
+#       }
+#       description
+#       id
+#       owner
+#       title
+#       updatedAt
+#     }
+#   }
+# }

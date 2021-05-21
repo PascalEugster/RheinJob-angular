@@ -9,6 +9,118 @@ export interface SubscriptionResponse<T> {
   value: GraphQLResult<T>;
 }
 
+export type ModelCategoryConnection = {
+  __typename: "ModelCategoryConnection";
+  items?: Array<Category | null> | null;
+  nextToken?: string | null;
+};
+
+export type Category = {
+  __typename: "Category";
+  id?: string;
+  title?: string;
+  description?: string;
+  jobs?: ModelJobConnection;
+  categories?: ModelCategoryConnection;
+  category?: Category;
+  createdAt?: string;
+  updatedAt?: string;
+  owner?: string | null;
+};
+
+export type ModelJobConnection = {
+  __typename: "ModelJobConnection";
+  items?: Array<Job | null> | null;
+  nextToken?: string | null;
+};
+
+export type Job = {
+  __typename: "Job";
+  id?: string;
+  categoryID?: string;
+  title?: string;
+  shortDescription?: string;
+  description?: string;
+  employment?: string;
+  payFrom?: number | null;
+  payTo?: number | null;
+  createDate?: string;
+  expireDate?: string;
+  applications?: ModelApplicationConnection;
+  company?: Company;
+  category?: Category;
+  createdAt?: string;
+  updatedAt?: string;
+  owner?: string | null;
+};
+
+export type ModelApplicationConnection = {
+  __typename: "ModelApplicationConnection";
+  items?: Array<Application | null> | null;
+  nextToken?: string | null;
+};
+
+export type Application = {
+  __typename: "Application";
+  id?: string;
+  title?: string;
+  job?: Job;
+  createdAt?: string;
+  updatedAt?: string;
+  owner?: string | null;
+};
+
+export type Company = {
+  __typename: "Company";
+  id?: string;
+  name?: string;
+  description?: string;
+  website?: string;
+  street?: string;
+  houseNumber?: string;
+  information?: string | null;
+  postcode?: number;
+  city?: string;
+  canton?: string;
+  legal?: number;
+  count?: number;
+  image?: string | null;
+  account?: Account;
+  jobs?: ModelJobConnection;
+  createdAt?: string;
+  updatedAt?: string;
+  owner?: string | null;
+};
+
+export type Account = {
+  __typename: "Account";
+  id?: string;
+  type?: string;
+  user?: User;
+  company?: Company;
+  createdAt?: string;
+  updatedAt?: string;
+  owner?: string | null;
+};
+
+export type User = {
+  __typename: "User";
+  id?: string;
+  prename?: string;
+  lastname?: string;
+  street?: string;
+  information?: string | null;
+  houseNumber?: string;
+  postcode?: number;
+  city?: string;
+  canton?: string;
+  image?: string | null;
+  account?: Account;
+  createdAt?: string;
+  updatedAt?: string;
+  owner?: string | null;
+};
+
 export type CreateAccountInput = {
   id?: string | null;
   type: string;
@@ -70,7 +182,7 @@ export type UpdateAccountInput = {
 };
 
 export type DeleteAccountInput = {
-  id?: string | null;
+  id: string;
 };
 
 export type CreateUserInput = {
@@ -129,7 +241,7 @@ export type UpdateUserInput = {
 };
 
 export type DeleteUserInput = {
-  id?: string | null;
+  id: string;
 };
 
 export type CreateCompanyInput = {
@@ -185,7 +297,7 @@ export type UpdateCompanyInput = {
 };
 
 export type DeleteCompanyInput = {
-  id?: string | null;
+  id: string;
 };
 
 export type CreateCategoryInput = {
@@ -211,7 +323,7 @@ export type UpdateCategoryInput = {
 };
 
 export type DeleteCategoryInput = {
-  id?: string | null;
+  id: string;
 };
 
 export type CreateJobInput = {
@@ -274,7 +386,7 @@ export type UpdateJobInput = {
 };
 
 export type DeleteJobInput = {
-  id?: string | null;
+  id: string;
 };
 
 export type CreateApplicationInput = {
@@ -297,7 +409,7 @@ export type UpdateApplicationInput = {
 };
 
 export type DeleteApplicationInput = {
-  id?: string | null;
+  id: string;
 };
 
 export type ModelAccountFilterInput = {
@@ -306,6 +418,12 @@ export type ModelAccountFilterInput = {
   and?: Array<ModelAccountFilterInput | null> | null;
   or?: Array<ModelAccountFilterInput | null> | null;
   not?: ModelAccountFilterInput | null;
+};
+
+export type ModelAccountConnection = {
+  __typename: "ModelAccountConnection";
+  items?: Array<Account | null> | null;
+  nextToken?: string | null;
 };
 
 export type ModelUserFilterInput = {
@@ -322,6 +440,12 @@ export type ModelUserFilterInput = {
   and?: Array<ModelUserFilterInput | null> | null;
   or?: Array<ModelUserFilterInput | null> | null;
   not?: ModelUserFilterInput | null;
+};
+
+export type ModelUserConnection = {
+  __typename: "ModelUserConnection";
+  items?: Array<User | null> | null;
+  nextToken?: string | null;
 };
 
 export type ModelCompanyFilterInput = {
@@ -341,6 +465,12 @@ export type ModelCompanyFilterInput = {
   and?: Array<ModelCompanyFilterInput | null> | null;
   or?: Array<ModelCompanyFilterInput | null> | null;
   not?: ModelCompanyFilterInput | null;
+};
+
+export type ModelCompanyConnection = {
+  __typename: "ModelCompanyConnection";
+  items?: Array<Company | null> | null;
+  nextToken?: string | null;
 };
 
 export type ModelCategoryFilterInput = {
@@ -459,35 +589,64 @@ export enum SearchableSortDirection {
   desc = "desc"
 }
 
+export type SearchableJobConnection = {
+  __typename: "SearchableJobConnection";
+  items?: Array<Job | null> | null;
+  nextToken?: string | null;
+  total?: number | null;
+};
+
+export type listCategorysWithChildrenQuery = {
+  __typename: "ModelCategoryConnection";
+  items?: Array<{
+    __typename: "Category";
+    categories?: {
+      __typename: "ModelCategoryConnection";
+      nextToken?: string | null;
+      items?: Array<{
+        __typename: "Category";
+        id: string;
+        title: string;
+        description: string;
+      } | null> | null;
+    } | null;
+    description: string;
+    id: string;
+    owner?: string | null;
+    title: string;
+    updatedAt: string;
+  } | null> | null;
+};
+
 export type CreateAccountMutation = {
   __typename: "Account";
   id: string;
   type: string;
-  user: {
+  user?: {
     __typename: "User";
     id: string;
     prename: string;
     lastname: string;
     street: string;
-    information: string | null;
+    information?: string | null;
     houseNumber: string;
     postcode: number;
     city: string;
     canton: string;
-    image: string | null;
+    image?: string | null;
     account: {
       __typename: "Account";
       id: string;
       type: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null;
-  company: {
+  company?: {
     __typename: "Company";
     id: string;
     name: string;
@@ -495,63 +654,63 @@ export type CreateAccountMutation = {
     website: string;
     street: string;
     houseNumber: string;
-    information: string | null;
+    information?: string | null;
     postcode: number;
     city: string;
     canton: string;
     legal: number;
     count: number;
-    image: string | null;
+    image?: string | null;
     account: {
       __typename: "Account";
       id: string;
       type: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type UpdateAccountMutation = {
   __typename: "Account";
   id: string;
   type: string;
-  user: {
+  user?: {
     __typename: "User";
     id: string;
     prename: string;
     lastname: string;
     street: string;
-    information: string | null;
+    information?: string | null;
     houseNumber: string;
     postcode: number;
     city: string;
     canton: string;
-    image: string | null;
+    image?: string | null;
     account: {
       __typename: "Account";
       id: string;
       type: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null;
-  company: {
+  company?: {
     __typename: "Company";
     id: string;
     name: string;
@@ -559,63 +718,63 @@ export type UpdateAccountMutation = {
     website: string;
     street: string;
     houseNumber: string;
-    information: string | null;
+    information?: string | null;
     postcode: number;
     city: string;
     canton: string;
     legal: number;
     count: number;
-    image: string | null;
+    image?: string | null;
     account: {
       __typename: "Account";
       id: string;
       type: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type DeleteAccountMutation = {
   __typename: "Account";
   id: string;
   type: string;
-  user: {
+  user?: {
     __typename: "User";
     id: string;
     prename: string;
     lastname: string;
     street: string;
-    information: string | null;
+    information?: string | null;
     houseNumber: string;
     postcode: number;
     city: string;
     canton: string;
-    image: string | null;
+    image?: string | null;
     account: {
       __typename: "Account";
       id: string;
       type: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null;
-  company: {
+  company?: {
     __typename: "Company";
     id: string;
     name: string;
@@ -623,32 +782,32 @@ export type DeleteAccountMutation = {
     website: string;
     street: string;
     houseNumber: string;
-    information: string | null;
+    information?: string | null;
     postcode: number;
     city: string;
     canton: string;
     legal: number;
     count: number;
-    image: string | null;
+    image?: string | null;
     account: {
       __typename: "Account";
       id: string;
       type: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type CreateUserMutation = {
@@ -657,33 +816,33 @@ export type CreateUserMutation = {
   prename: string;
   lastname: string;
   street: string;
-  information: string | null;
+  information?: string | null;
   houseNumber: string;
   postcode: number;
   city: string;
   canton: string;
-  image: string | null;
+  image?: string | null;
   account: {
     __typename: "Account";
     id: string;
     type: string;
-    user: {
+    user?: {
       __typename: "User";
       id: string;
       prename: string;
       lastname: string;
       street: string;
-      information: string | null;
+      information?: string | null;
       houseNumber: string;
       postcode: number;
       city: string;
       canton: string;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
-    company: {
+    company?: {
       __typename: "Company";
       id: string;
       name: string;
@@ -691,24 +850,24 @@ export type CreateUserMutation = {
       website: string;
       street: string;
       houseNumber: string;
-      information: string | null;
+      information?: string | null;
       postcode: number;
       city: string;
       canton: string;
       legal: number;
       count: number;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type UpdateUserMutation = {
@@ -717,33 +876,33 @@ export type UpdateUserMutation = {
   prename: string;
   lastname: string;
   street: string;
-  information: string | null;
+  information?: string | null;
   houseNumber: string;
   postcode: number;
   city: string;
   canton: string;
-  image: string | null;
+  image?: string | null;
   account: {
     __typename: "Account";
     id: string;
     type: string;
-    user: {
+    user?: {
       __typename: "User";
       id: string;
       prename: string;
       lastname: string;
       street: string;
-      information: string | null;
+      information?: string | null;
       houseNumber: string;
       postcode: number;
       city: string;
       canton: string;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
-    company: {
+    company?: {
       __typename: "Company";
       id: string;
       name: string;
@@ -751,24 +910,24 @@ export type UpdateUserMutation = {
       website: string;
       street: string;
       houseNumber: string;
-      information: string | null;
+      information?: string | null;
       postcode: number;
       city: string;
       canton: string;
       legal: number;
       count: number;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type DeleteUserMutation = {
@@ -777,33 +936,33 @@ export type DeleteUserMutation = {
   prename: string;
   lastname: string;
   street: string;
-  information: string | null;
+  information?: string | null;
   houseNumber: string;
   postcode: number;
   city: string;
   canton: string;
-  image: string | null;
+  image?: string | null;
   account: {
     __typename: "Account";
     id: string;
     type: string;
-    user: {
+    user?: {
       __typename: "User";
       id: string;
       prename: string;
       lastname: string;
       street: string;
-      information: string | null;
+      information?: string | null;
       houseNumber: string;
       postcode: number;
       city: string;
       canton: string;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
-    company: {
+    company?: {
       __typename: "Company";
       id: string;
       name: string;
@@ -811,24 +970,24 @@ export type DeleteUserMutation = {
       website: string;
       street: string;
       houseNumber: string;
-      information: string | null;
+      information?: string | null;
       postcode: number;
       city: string;
       canton: string;
       legal: number;
       count: number;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type CreateCompanyMutation = {
@@ -839,34 +998,34 @@ export type CreateCompanyMutation = {
   website: string;
   street: string;
   houseNumber: string;
-  information: string | null;
+  information?: string | null;
   postcode: number;
   city: string;
   canton: string;
   legal: number;
   count: number;
-  image: string | null;
+  image?: string | null;
   account: {
     __typename: "Account";
     id: string;
     type: string;
-    user: {
+    user?: {
       __typename: "User";
       id: string;
       prename: string;
       lastname: string;
       street: string;
-      information: string | null;
+      information?: string | null;
       houseNumber: string;
       postcode: number;
       city: string;
       canton: string;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
-    company: {
+    company?: {
       __typename: "Company";
       id: string;
       name: string;
@@ -874,24 +1033,24 @@ export type CreateCompanyMutation = {
       website: string;
       street: string;
       houseNumber: string;
-      information: string | null;
+      information?: string | null;
       postcode: number;
       city: string;
       canton: string;
       legal: number;
       count: number;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
-  jobs: {
+  jobs?: {
     __typename: "ModelJobConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Job";
       id: string;
       categoryID: string;
@@ -899,19 +1058,19 @@ export type CreateCompanyMutation = {
       shortDescription: string;
       description: string;
       employment: string;
-      payFrom: number | null;
-      payTo: number | null;
+      payFrom?: number | null;
+      payTo?: number | null;
       createDate: string;
       expireDate: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type UpdateCompanyMutation = {
@@ -922,34 +1081,34 @@ export type UpdateCompanyMutation = {
   website: string;
   street: string;
   houseNumber: string;
-  information: string | null;
+  information?: string | null;
   postcode: number;
   city: string;
   canton: string;
   legal: number;
   count: number;
-  image: string | null;
+  image?: string | null;
   account: {
     __typename: "Account";
     id: string;
     type: string;
-    user: {
+    user?: {
       __typename: "User";
       id: string;
       prename: string;
       lastname: string;
       street: string;
-      information: string | null;
+      information?: string | null;
       houseNumber: string;
       postcode: number;
       city: string;
       canton: string;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
-    company: {
+    company?: {
       __typename: "Company";
       id: string;
       name: string;
@@ -957,24 +1116,24 @@ export type UpdateCompanyMutation = {
       website: string;
       street: string;
       houseNumber: string;
-      information: string | null;
+      information?: string | null;
       postcode: number;
       city: string;
       canton: string;
       legal: number;
       count: number;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
-  jobs: {
+  jobs?: {
     __typename: "ModelJobConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Job";
       id: string;
       categoryID: string;
@@ -982,19 +1141,19 @@ export type UpdateCompanyMutation = {
       shortDescription: string;
       description: string;
       employment: string;
-      payFrom: number | null;
-      payTo: number | null;
+      payFrom?: number | null;
+      payTo?: number | null;
       createDate: string;
       expireDate: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type DeleteCompanyMutation = {
@@ -1005,34 +1164,34 @@ export type DeleteCompanyMutation = {
   website: string;
   street: string;
   houseNumber: string;
-  information: string | null;
+  information?: string | null;
   postcode: number;
   city: string;
   canton: string;
   legal: number;
   count: number;
-  image: string | null;
+  image?: string | null;
   account: {
     __typename: "Account";
     id: string;
     type: string;
-    user: {
+    user?: {
       __typename: "User";
       id: string;
       prename: string;
       lastname: string;
       street: string;
-      information: string | null;
+      information?: string | null;
       houseNumber: string;
       postcode: number;
       city: string;
       canton: string;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
-    company: {
+    company?: {
       __typename: "Company";
       id: string;
       name: string;
@@ -1040,24 +1199,24 @@ export type DeleteCompanyMutation = {
       website: string;
       street: string;
       houseNumber: string;
-      information: string | null;
+      information?: string | null;
       postcode: number;
       city: string;
       canton: string;
       legal: number;
       count: number;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
-  jobs: {
+  jobs?: {
     __typename: "ModelJobConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Job";
       id: string;
       categoryID: string;
@@ -1065,19 +1224,19 @@ export type DeleteCompanyMutation = {
       shortDescription: string;
       description: string;
       employment: string;
-      payFrom: number | null;
-      payTo: number | null;
+      payFrom?: number | null;
+      payTo?: number | null;
       createDate: string;
       expireDate: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type CreateCategoryMutation = {
@@ -1085,9 +1244,9 @@ export type CreateCategoryMutation = {
   id: string;
   title: string;
   description: string;
-  jobs: {
+  jobs?: {
     __typename: "ModelJobConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Job";
       id: string;
       categoryID: string;
@@ -1095,58 +1254,58 @@ export type CreateCategoryMutation = {
       shortDescription: string;
       description: string;
       employment: string;
-      payFrom: number | null;
-      payTo: number | null;
+      payFrom?: number | null;
+      payTo?: number | null;
       createDate: string;
       expireDate: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
-  categories: {
+  categories?: {
     __typename: "ModelCategoryConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Category";
       id: string;
       title: string;
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
-  category: {
+  category?: {
     __typename: "Category";
     id: string;
     title: string;
     description: string;
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    categories: {
+    categories?: {
       __typename: "ModelCategoryConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    category: {
+    category?: {
       __typename: "Category";
       id: string;
       title: string;
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type UpdateCategoryMutation = {
@@ -1154,9 +1313,9 @@ export type UpdateCategoryMutation = {
   id: string;
   title: string;
   description: string;
-  jobs: {
+  jobs?: {
     __typename: "ModelJobConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Job";
       id: string;
       categoryID: string;
@@ -1164,58 +1323,58 @@ export type UpdateCategoryMutation = {
       shortDescription: string;
       description: string;
       employment: string;
-      payFrom: number | null;
-      payTo: number | null;
+      payFrom?: number | null;
+      payTo?: number | null;
       createDate: string;
       expireDate: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
-  categories: {
+  categories?: {
     __typename: "ModelCategoryConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Category";
       id: string;
       title: string;
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
-  category: {
+  category?: {
     __typename: "Category";
     id: string;
     title: string;
     description: string;
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    categories: {
+    categories?: {
       __typename: "ModelCategoryConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    category: {
+    category?: {
       __typename: "Category";
       id: string;
       title: string;
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type DeleteCategoryMutation = {
@@ -1223,9 +1382,9 @@ export type DeleteCategoryMutation = {
   id: string;
   title: string;
   description: string;
-  jobs: {
+  jobs?: {
     __typename: "ModelJobConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Job";
       id: string;
       categoryID: string;
@@ -1233,58 +1392,58 @@ export type DeleteCategoryMutation = {
       shortDescription: string;
       description: string;
       employment: string;
-      payFrom: number | null;
-      payTo: number | null;
+      payFrom?: number | null;
+      payTo?: number | null;
       createDate: string;
       expireDate: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
-  categories: {
+  categories?: {
     __typename: "ModelCategoryConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Category";
       id: string;
       title: string;
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
-  category: {
+  category?: {
     __typename: "Category";
     id: string;
     title: string;
     description: string;
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    categories: {
+    categories?: {
       __typename: "ModelCategoryConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    category: {
+    category?: {
       __typename: "Category";
       id: string;
       title: string;
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type CreateJobMutation = {
@@ -1295,21 +1454,21 @@ export type CreateJobMutation = {
   shortDescription: string;
   description: string;
   employment: string;
-  payFrom: number | null;
-  payTo: number | null;
+  payFrom?: number | null;
+  payTo?: number | null;
   createDate: string;
   expireDate: string;
-  applications: {
+  applications?: {
     __typename: "ModelApplicationConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Application";
       id: string;
       title: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
   company: {
     __typename: "Company";
@@ -1319,58 +1478,58 @@ export type CreateJobMutation = {
     website: string;
     street: string;
     houseNumber: string;
-    information: string | null;
+    information?: string | null;
     postcode: number;
     city: string;
     canton: string;
     legal: number;
     count: number;
-    image: string | null;
+    image?: string | null;
     account: {
       __typename: "Account";
       id: string;
       type: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   category: {
     __typename: "Category";
     id: string;
     title: string;
     description: string;
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    categories: {
+    categories?: {
       __typename: "ModelCategoryConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    category: {
+    category?: {
       __typename: "Category";
       id: string;
       title: string;
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type UpdateJobMutation = {
@@ -1381,21 +1540,21 @@ export type UpdateJobMutation = {
   shortDescription: string;
   description: string;
   employment: string;
-  payFrom: number | null;
-  payTo: number | null;
+  payFrom?: number | null;
+  payTo?: number | null;
   createDate: string;
   expireDate: string;
-  applications: {
+  applications?: {
     __typename: "ModelApplicationConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Application";
       id: string;
       title: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
   company: {
     __typename: "Company";
@@ -1405,58 +1564,58 @@ export type UpdateJobMutation = {
     website: string;
     street: string;
     houseNumber: string;
-    information: string | null;
+    information?: string | null;
     postcode: number;
     city: string;
     canton: string;
     legal: number;
     count: number;
-    image: string | null;
+    image?: string | null;
     account: {
       __typename: "Account";
       id: string;
       type: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   category: {
     __typename: "Category";
     id: string;
     title: string;
     description: string;
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    categories: {
+    categories?: {
       __typename: "ModelCategoryConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    category: {
+    category?: {
       __typename: "Category";
       id: string;
       title: string;
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type DeleteJobMutation = {
@@ -1467,21 +1626,21 @@ export type DeleteJobMutation = {
   shortDescription: string;
   description: string;
   employment: string;
-  payFrom: number | null;
-  payTo: number | null;
+  payFrom?: number | null;
+  payTo?: number | null;
   createDate: string;
   expireDate: string;
-  applications: {
+  applications?: {
     __typename: "ModelApplicationConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Application";
       id: string;
       title: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
   company: {
     __typename: "Company";
@@ -1491,58 +1650,58 @@ export type DeleteJobMutation = {
     website: string;
     street: string;
     houseNumber: string;
-    information: string | null;
+    information?: string | null;
     postcode: number;
     city: string;
     canton: string;
     legal: number;
     count: number;
-    image: string | null;
+    image?: string | null;
     account: {
       __typename: "Account";
       id: string;
       type: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   category: {
     __typename: "Category";
     id: string;
     title: string;
     description: string;
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    categories: {
+    categories?: {
       __typename: "ModelCategoryConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    category: {
+    category?: {
       __typename: "Category";
       id: string;
       title: string;
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type CreateApplicationMutation = {
@@ -1557,13 +1716,13 @@ export type CreateApplicationMutation = {
     shortDescription: string;
     description: string;
     employment: string;
-    payFrom: number | null;
-    payTo: number | null;
+    payFrom?: number | null;
+    payTo?: number | null;
     createDate: string;
     expireDate: string;
-    applications: {
+    applications?: {
       __typename: "ModelApplicationConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
     company: {
       __typename: "Company";
@@ -1573,16 +1732,16 @@ export type CreateApplicationMutation = {
       website: string;
       street: string;
       houseNumber: string;
-      information: string | null;
+      information?: string | null;
       postcode: number;
       city: string;
       canton: string;
       legal: number;
       count: number;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     category: {
       __typename: "Category";
@@ -1591,15 +1750,15 @@ export type CreateApplicationMutation = {
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type UpdateApplicationMutation = {
@@ -1614,13 +1773,13 @@ export type UpdateApplicationMutation = {
     shortDescription: string;
     description: string;
     employment: string;
-    payFrom: number | null;
-    payTo: number | null;
+    payFrom?: number | null;
+    payTo?: number | null;
     createDate: string;
     expireDate: string;
-    applications: {
+    applications?: {
       __typename: "ModelApplicationConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
     company: {
       __typename: "Company";
@@ -1630,16 +1789,16 @@ export type UpdateApplicationMutation = {
       website: string;
       street: string;
       houseNumber: string;
-      information: string | null;
+      information?: string | null;
       postcode: number;
       city: string;
       canton: string;
       legal: number;
       count: number;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     category: {
       __typename: "Category";
@@ -1648,15 +1807,15 @@ export type UpdateApplicationMutation = {
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type DeleteApplicationMutation = {
@@ -1671,13 +1830,13 @@ export type DeleteApplicationMutation = {
     shortDescription: string;
     description: string;
     employment: string;
-    payFrom: number | null;
-    payTo: number | null;
+    payFrom?: number | null;
+    payTo?: number | null;
     createDate: string;
     expireDate: string;
-    applications: {
+    applications?: {
       __typename: "ModelApplicationConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
     company: {
       __typename: "Company";
@@ -1687,16 +1846,16 @@ export type DeleteApplicationMutation = {
       website: string;
       street: string;
       houseNumber: string;
-      information: string | null;
+      information?: string | null;
       postcode: number;
       city: string;
       canton: string;
       legal: number;
       count: number;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     category: {
       __typename: "Category";
@@ -1705,46 +1864,46 @@ export type DeleteApplicationMutation = {
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type GetAccountQuery = {
   __typename: "Account";
   id: string;
   type: string;
-  user: {
+  user?: {
     __typename: "User";
     id: string;
     prename: string;
     lastname: string;
     street: string;
-    information: string | null;
+    information?: string | null;
     houseNumber: string;
     postcode: number;
     city: string;
     canton: string;
-    image: string | null;
+    image?: string | null;
     account: {
       __typename: "Account";
       id: string;
       type: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null;
-  company: {
+  company?: {
     __typename: "Company";
     id: string;
     name: string;
@@ -1752,57 +1911,57 @@ export type GetAccountQuery = {
     website: string;
     street: string;
     houseNumber: string;
-    information: string | null;
+    information?: string | null;
     postcode: number;
     city: string;
     canton: string;
     legal: number;
     count: number;
-    image: string | null;
+    image?: string | null;
     account: {
       __typename: "Account";
       id: string;
       type: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type ListAccountsQuery = {
   __typename: "ModelAccountConnection";
-  items: Array<{
+  items?: Array<{
     __typename: "Account";
     id: string;
     type: string;
-    user: {
+    user?: {
       __typename: "User";
       id: string;
       prename: string;
       lastname: string;
       street: string;
-      information: string | null;
+      information?: string | null;
       houseNumber: string;
       postcode: number;
       city: string;
       canton: string;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
-    company: {
+    company?: {
       __typename: "Company";
       id: string;
       name: string;
@@ -1810,22 +1969,22 @@ export type ListAccountsQuery = {
       website: string;
       street: string;
       houseNumber: string;
-      information: string | null;
+      information?: string | null;
       postcode: number;
       city: string;
       canton: string;
       legal: number;
       count: number;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null> | null;
-  nextToken: string | null;
+  nextToken?: string | null;
 };
 
 export type GetUserQuery = {
@@ -1834,33 +1993,33 @@ export type GetUserQuery = {
   prename: string;
   lastname: string;
   street: string;
-  information: string | null;
+  information?: string | null;
   houseNumber: string;
   postcode: number;
   city: string;
   canton: string;
-  image: string | null;
+  image?: string | null;
   account: {
     __typename: "Account";
     id: string;
     type: string;
-    user: {
+    user?: {
       __typename: "User";
       id: string;
       prename: string;
       lastname: string;
       street: string;
-      information: string | null;
+      information?: string | null;
       houseNumber: string;
       postcode: number;
       city: string;
       canton: string;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
-    company: {
+    company?: {
       __typename: "Company";
       id: string;
       name: string;
@@ -1868,53 +2027,53 @@ export type GetUserQuery = {
       website: string;
       street: string;
       houseNumber: string;
-      information: string | null;
+      information?: string | null;
       postcode: number;
       city: string;
       canton: string;
       legal: number;
       count: number;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type ListUsersQuery = {
   __typename: "ModelUserConnection";
-  items: Array<{
+  items?: Array<{
     __typename: "User";
     id: string;
     prename: string;
     lastname: string;
     street: string;
-    information: string | null;
+    information?: string | null;
     houseNumber: string;
     postcode: number;
     city: string;
     canton: string;
-    image: string | null;
+    image?: string | null;
     account: {
       __typename: "Account";
       id: string;
       type: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null> | null;
-  nextToken: string | null;
+  nextToken?: string | null;
 };
 
 export type GetCompanyQuery = {
@@ -1925,34 +2084,34 @@ export type GetCompanyQuery = {
   website: string;
   street: string;
   houseNumber: string;
-  information: string | null;
+  information?: string | null;
   postcode: number;
   city: string;
   canton: string;
   legal: number;
   count: number;
-  image: string | null;
+  image?: string | null;
   account: {
     __typename: "Account";
     id: string;
     type: string;
-    user: {
+    user?: {
       __typename: "User";
       id: string;
       prename: string;
       lastname: string;
       street: string;
-      information: string | null;
+      information?: string | null;
       houseNumber: string;
       postcode: number;
       city: string;
       canton: string;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
-    company: {
+    company?: {
       __typename: "Company";
       id: string;
       name: string;
@@ -1960,24 +2119,24 @@ export type GetCompanyQuery = {
       website: string;
       street: string;
       houseNumber: string;
-      information: string | null;
+      information?: string | null;
       postcode: number;
       city: string;
       canton: string;
       legal: number;
       count: number;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
-  jobs: {
+  jobs?: {
     __typename: "ModelJobConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Job";
       id: string;
       categoryID: string;
@@ -1985,24 +2144,24 @@ export type GetCompanyQuery = {
       shortDescription: string;
       description: string;
       employment: string;
-      payFrom: number | null;
-      payTo: number | null;
+      payFrom?: number | null;
+      payTo?: number | null;
       createDate: string;
       expireDate: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type ListCompanysQuery = {
   __typename: "ModelCompanyConnection";
-  items: Array<{
+  items?: Array<{
     __typename: "Company";
     id: string;
     name: string;
@@ -2010,30 +2169,30 @@ export type ListCompanysQuery = {
     website: string;
     street: string;
     houseNumber: string;
-    information: string | null;
+    information?: string | null;
     postcode: number;
     city: string;
     canton: string;
     legal: number;
     count: number;
-    image: string | null;
+    image?: string | null;
     account: {
       __typename: "Account";
       id: string;
       type: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null> | null;
-  nextToken: string | null;
+  nextToken?: string | null;
 };
 
 export type GetCategoryQuery = {
@@ -2041,9 +2200,9 @@ export type GetCategoryQuery = {
   id: string;
   title: string;
   description: string;
-  jobs: {
+  jobs?: {
     __typename: "ModelJobConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Job";
       id: string;
       categoryID: string;
@@ -2051,89 +2210,89 @@ export type GetCategoryQuery = {
       shortDescription: string;
       description: string;
       employment: string;
-      payFrom: number | null;
-      payTo: number | null;
+      payFrom?: number | null;
+      payTo?: number | null;
       createDate: string;
       expireDate: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
-  categories: {
+  categories?: {
     __typename: "ModelCategoryConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Category";
       id: string;
       title: string;
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
-  category: {
+  category?: {
     __typename: "Category";
     id: string;
     title: string;
     description: string;
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    categories: {
+    categories?: {
       __typename: "ModelCategoryConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    category: {
+    category?: {
       __typename: "Category";
       id: string;
       title: string;
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type ListCategorysQuery = {
   __typename: "ModelCategoryConnection";
-  items: Array<{
+  items?: Array<{
     __typename: "Category";
     id: string;
     title: string;
     description: string;
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    categories: {
+    categories?: {
       __typename: "ModelCategoryConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    category: {
+    category?: {
       __typename: "Category";
       id: string;
       title: string;
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null> | null;
-  nextToken: string | null;
+  nextToken?: string | null;
 };
 
 export type GetJobQuery = {
@@ -2144,21 +2303,21 @@ export type GetJobQuery = {
   shortDescription: string;
   description: string;
   employment: string;
-  payFrom: number | null;
-  payTo: number | null;
+  payFrom?: number | null;
+  payTo?: number | null;
   createDate: string;
   expireDate: string;
-  applications: {
+  applications?: {
     __typename: "ModelApplicationConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Application";
       id: string;
       title: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
   company: {
     __typename: "Company";
@@ -2168,63 +2327,63 @@ export type GetJobQuery = {
     website: string;
     street: string;
     houseNumber: string;
-    information: string | null;
+    information?: string | null;
     postcode: number;
     city: string;
     canton: string;
     legal: number;
     count: number;
-    image: string | null;
+    image?: string | null;
     account: {
       __typename: "Account";
       id: string;
       type: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   category: {
     __typename: "Category";
     id: string;
     title: string;
     description: string;
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    categories: {
+    categories?: {
       __typename: "ModelCategoryConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    category: {
+    category?: {
       __typename: "Category";
       id: string;
       title: string;
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type ListJobsQuery = {
   __typename: "ModelJobConnection";
-  items: Array<{
+  items?: Array<{
     __typename: "Job";
     id: string;
     categoryID: string;
@@ -2232,13 +2391,13 @@ export type ListJobsQuery = {
     shortDescription: string;
     description: string;
     employment: string;
-    payFrom: number | null;
-    payTo: number | null;
+    payFrom?: number | null;
+    payTo?: number | null;
     createDate: string;
     expireDate: string;
-    applications: {
+    applications?: {
       __typename: "ModelApplicationConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
     company: {
       __typename: "Company";
@@ -2248,16 +2407,16 @@ export type ListJobsQuery = {
       website: string;
       street: string;
       houseNumber: string;
-      information: string | null;
+      information?: string | null;
       postcode: number;
       city: string;
       canton: string;
       legal: number;
       count: number;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     category: {
       __typename: "Category";
@@ -2266,13 +2425,13 @@ export type ListJobsQuery = {
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null> | null;
-  nextToken: string | null;
+  nextToken?: string | null;
 };
 
 export type GetApplicationQuery = {
@@ -2287,13 +2446,13 @@ export type GetApplicationQuery = {
     shortDescription: string;
     description: string;
     employment: string;
-    payFrom: number | null;
-    payTo: number | null;
+    payFrom?: number | null;
+    payTo?: number | null;
     createDate: string;
     expireDate: string;
-    applications: {
+    applications?: {
       __typename: "ModelApplicationConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
     company: {
       __typename: "Company";
@@ -2303,16 +2462,16 @@ export type GetApplicationQuery = {
       website: string;
       street: string;
       houseNumber: string;
-      information: string | null;
+      information?: string | null;
       postcode: number;
       city: string;
       canton: string;
       legal: number;
       count: number;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     category: {
       __typename: "Category";
@@ -2321,20 +2480,20 @@ export type GetApplicationQuery = {
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type ListApplicationsQuery = {
   __typename: "ModelApplicationConnection";
-  items: Array<{
+  items?: Array<{
     __typename: "Application";
     id: string;
     title: string;
@@ -2346,24 +2505,24 @@ export type ListApplicationsQuery = {
       shortDescription: string;
       description: string;
       employment: string;
-      payFrom: number | null;
-      payTo: number | null;
+      payFrom?: number | null;
+      payTo?: number | null;
       createDate: string;
       expireDate: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null> | null;
-  nextToken: string | null;
+  nextToken?: string | null;
 };
 
 export type SearchJobsQuery = {
   __typename: "SearchableJobConnection";
-  items: Array<{
+  items?: Array<{
     __typename: "Job";
     id: string;
     categoryID: string;
@@ -2371,13 +2530,13 @@ export type SearchJobsQuery = {
     shortDescription: string;
     description: string;
     employment: string;
-    payFrom: number | null;
-    payTo: number | null;
+    payFrom?: number | null;
+    payTo?: number | null;
     createDate: string;
     expireDate: string;
-    applications: {
+    applications?: {
       __typename: "ModelApplicationConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
     company: {
       __typename: "Company";
@@ -2387,16 +2546,16 @@ export type SearchJobsQuery = {
       website: string;
       street: string;
       houseNumber: string;
-      information: string | null;
+      information?: string | null;
       postcode: number;
       city: string;
       canton: string;
       legal: number;
       count: number;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     category: {
       __typename: "Category";
@@ -2405,45 +2564,45 @@ export type SearchJobsQuery = {
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null> | null;
-  nextToken: string | null;
-  total: number | null;
+  nextToken?: string | null;
+  total?: number | null;
 };
 
 export type OnCreateAccountSubscription = {
   __typename: "Account";
   id: string;
   type: string;
-  user: {
+  user?: {
     __typename: "User";
     id: string;
     prename: string;
     lastname: string;
     street: string;
-    information: string | null;
+    information?: string | null;
     houseNumber: string;
     postcode: number;
     city: string;
     canton: string;
-    image: string | null;
+    image?: string | null;
     account: {
       __typename: "Account";
       id: string;
       type: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null;
-  company: {
+  company?: {
     __typename: "Company";
     id: string;
     name: string;
@@ -2451,63 +2610,63 @@ export type OnCreateAccountSubscription = {
     website: string;
     street: string;
     houseNumber: string;
-    information: string | null;
+    information?: string | null;
     postcode: number;
     city: string;
     canton: string;
     legal: number;
     count: number;
-    image: string | null;
+    image?: string | null;
     account: {
       __typename: "Account";
       id: string;
       type: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type OnUpdateAccountSubscription = {
   __typename: "Account";
   id: string;
   type: string;
-  user: {
+  user?: {
     __typename: "User";
     id: string;
     prename: string;
     lastname: string;
     street: string;
-    information: string | null;
+    information?: string | null;
     houseNumber: string;
     postcode: number;
     city: string;
     canton: string;
-    image: string | null;
+    image?: string | null;
     account: {
       __typename: "Account";
       id: string;
       type: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null;
-  company: {
+  company?: {
     __typename: "Company";
     id: string;
     name: string;
@@ -2515,63 +2674,63 @@ export type OnUpdateAccountSubscription = {
     website: string;
     street: string;
     houseNumber: string;
-    information: string | null;
+    information?: string | null;
     postcode: number;
     city: string;
     canton: string;
     legal: number;
     count: number;
-    image: string | null;
+    image?: string | null;
     account: {
       __typename: "Account";
       id: string;
       type: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type OnDeleteAccountSubscription = {
   __typename: "Account";
   id: string;
   type: string;
-  user: {
+  user?: {
     __typename: "User";
     id: string;
     prename: string;
     lastname: string;
     street: string;
-    information: string | null;
+    information?: string | null;
     houseNumber: string;
     postcode: number;
     city: string;
     canton: string;
-    image: string | null;
+    image?: string | null;
     account: {
       __typename: "Account";
       id: string;
       type: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null;
-  company: {
+  company?: {
     __typename: "Company";
     id: string;
     name: string;
@@ -2579,32 +2738,32 @@ export type OnDeleteAccountSubscription = {
     website: string;
     street: string;
     houseNumber: string;
-    information: string | null;
+    information?: string | null;
     postcode: number;
     city: string;
     canton: string;
     legal: number;
     count: number;
-    image: string | null;
+    image?: string | null;
     account: {
       __typename: "Account";
       id: string;
       type: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type OnCreateUserSubscription = {
@@ -2613,33 +2772,33 @@ export type OnCreateUserSubscription = {
   prename: string;
   lastname: string;
   street: string;
-  information: string | null;
+  information?: string | null;
   houseNumber: string;
   postcode: number;
   city: string;
   canton: string;
-  image: string | null;
+  image?: string | null;
   account: {
     __typename: "Account";
     id: string;
     type: string;
-    user: {
+    user?: {
       __typename: "User";
       id: string;
       prename: string;
       lastname: string;
       street: string;
-      information: string | null;
+      information?: string | null;
       houseNumber: string;
       postcode: number;
       city: string;
       canton: string;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
-    company: {
+    company?: {
       __typename: "Company";
       id: string;
       name: string;
@@ -2647,24 +2806,24 @@ export type OnCreateUserSubscription = {
       website: string;
       street: string;
       houseNumber: string;
-      information: string | null;
+      information?: string | null;
       postcode: number;
       city: string;
       canton: string;
       legal: number;
       count: number;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type OnUpdateUserSubscription = {
@@ -2673,33 +2832,33 @@ export type OnUpdateUserSubscription = {
   prename: string;
   lastname: string;
   street: string;
-  information: string | null;
+  information?: string | null;
   houseNumber: string;
   postcode: number;
   city: string;
   canton: string;
-  image: string | null;
+  image?: string | null;
   account: {
     __typename: "Account";
     id: string;
     type: string;
-    user: {
+    user?: {
       __typename: "User";
       id: string;
       prename: string;
       lastname: string;
       street: string;
-      information: string | null;
+      information?: string | null;
       houseNumber: string;
       postcode: number;
       city: string;
       canton: string;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
-    company: {
+    company?: {
       __typename: "Company";
       id: string;
       name: string;
@@ -2707,24 +2866,24 @@ export type OnUpdateUserSubscription = {
       website: string;
       street: string;
       houseNumber: string;
-      information: string | null;
+      information?: string | null;
       postcode: number;
       city: string;
       canton: string;
       legal: number;
       count: number;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type OnDeleteUserSubscription = {
@@ -2733,33 +2892,33 @@ export type OnDeleteUserSubscription = {
   prename: string;
   lastname: string;
   street: string;
-  information: string | null;
+  information?: string | null;
   houseNumber: string;
   postcode: number;
   city: string;
   canton: string;
-  image: string | null;
+  image?: string | null;
   account: {
     __typename: "Account";
     id: string;
     type: string;
-    user: {
+    user?: {
       __typename: "User";
       id: string;
       prename: string;
       lastname: string;
       street: string;
-      information: string | null;
+      information?: string | null;
       houseNumber: string;
       postcode: number;
       city: string;
       canton: string;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
-    company: {
+    company?: {
       __typename: "Company";
       id: string;
       name: string;
@@ -2767,24 +2926,24 @@ export type OnDeleteUserSubscription = {
       website: string;
       street: string;
       houseNumber: string;
-      information: string | null;
+      information?: string | null;
       postcode: number;
       city: string;
       canton: string;
       legal: number;
       count: number;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type OnCreateCompanySubscription = {
@@ -2795,34 +2954,34 @@ export type OnCreateCompanySubscription = {
   website: string;
   street: string;
   houseNumber: string;
-  information: string | null;
+  information?: string | null;
   postcode: number;
   city: string;
   canton: string;
   legal: number;
   count: number;
-  image: string | null;
+  image?: string | null;
   account: {
     __typename: "Account";
     id: string;
     type: string;
-    user: {
+    user?: {
       __typename: "User";
       id: string;
       prename: string;
       lastname: string;
       street: string;
-      information: string | null;
+      information?: string | null;
       houseNumber: string;
       postcode: number;
       city: string;
       canton: string;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
-    company: {
+    company?: {
       __typename: "Company";
       id: string;
       name: string;
@@ -2830,24 +2989,24 @@ export type OnCreateCompanySubscription = {
       website: string;
       street: string;
       houseNumber: string;
-      information: string | null;
+      information?: string | null;
       postcode: number;
       city: string;
       canton: string;
       legal: number;
       count: number;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
-  jobs: {
+  jobs?: {
     __typename: "ModelJobConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Job";
       id: string;
       categoryID: string;
@@ -2855,19 +3014,19 @@ export type OnCreateCompanySubscription = {
       shortDescription: string;
       description: string;
       employment: string;
-      payFrom: number | null;
-      payTo: number | null;
+      payFrom?: number | null;
+      payTo?: number | null;
       createDate: string;
       expireDate: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type OnUpdateCompanySubscription = {
@@ -2878,34 +3037,34 @@ export type OnUpdateCompanySubscription = {
   website: string;
   street: string;
   houseNumber: string;
-  information: string | null;
+  information?: string | null;
   postcode: number;
   city: string;
   canton: string;
   legal: number;
   count: number;
-  image: string | null;
+  image?: string | null;
   account: {
     __typename: "Account";
     id: string;
     type: string;
-    user: {
+    user?: {
       __typename: "User";
       id: string;
       prename: string;
       lastname: string;
       street: string;
-      information: string | null;
+      information?: string | null;
       houseNumber: string;
       postcode: number;
       city: string;
       canton: string;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
-    company: {
+    company?: {
       __typename: "Company";
       id: string;
       name: string;
@@ -2913,24 +3072,24 @@ export type OnUpdateCompanySubscription = {
       website: string;
       street: string;
       houseNumber: string;
-      information: string | null;
+      information?: string | null;
       postcode: number;
       city: string;
       canton: string;
       legal: number;
       count: number;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
-  jobs: {
+  jobs?: {
     __typename: "ModelJobConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Job";
       id: string;
       categoryID: string;
@@ -2938,19 +3097,19 @@ export type OnUpdateCompanySubscription = {
       shortDescription: string;
       description: string;
       employment: string;
-      payFrom: number | null;
-      payTo: number | null;
+      payFrom?: number | null;
+      payTo?: number | null;
       createDate: string;
       expireDate: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type OnDeleteCompanySubscription = {
@@ -2961,34 +3120,34 @@ export type OnDeleteCompanySubscription = {
   website: string;
   street: string;
   houseNumber: string;
-  information: string | null;
+  information?: string | null;
   postcode: number;
   city: string;
   canton: string;
   legal: number;
   count: number;
-  image: string | null;
+  image?: string | null;
   account: {
     __typename: "Account";
     id: string;
     type: string;
-    user: {
+    user?: {
       __typename: "User";
       id: string;
       prename: string;
       lastname: string;
       street: string;
-      information: string | null;
+      information?: string | null;
       houseNumber: string;
       postcode: number;
       city: string;
       canton: string;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
-    company: {
+    company?: {
       __typename: "Company";
       id: string;
       name: string;
@@ -2996,24 +3155,24 @@ export type OnDeleteCompanySubscription = {
       website: string;
       street: string;
       houseNumber: string;
-      information: string | null;
+      information?: string | null;
       postcode: number;
       city: string;
       canton: string;
       legal: number;
       count: number;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
-  jobs: {
+  jobs?: {
     __typename: "ModelJobConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Job";
       id: string;
       categoryID: string;
@@ -3021,19 +3180,19 @@ export type OnDeleteCompanySubscription = {
       shortDescription: string;
       description: string;
       employment: string;
-      payFrom: number | null;
-      payTo: number | null;
+      payFrom?: number | null;
+      payTo?: number | null;
       createDate: string;
       expireDate: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type OnCreateCategorySubscription = {
@@ -3041,9 +3200,9 @@ export type OnCreateCategorySubscription = {
   id: string;
   title: string;
   description: string;
-  jobs: {
+  jobs?: {
     __typename: "ModelJobConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Job";
       id: string;
       categoryID: string;
@@ -3051,58 +3210,58 @@ export type OnCreateCategorySubscription = {
       shortDescription: string;
       description: string;
       employment: string;
-      payFrom: number | null;
-      payTo: number | null;
+      payFrom?: number | null;
+      payTo?: number | null;
       createDate: string;
       expireDate: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
-  categories: {
+  categories?: {
     __typename: "ModelCategoryConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Category";
       id: string;
       title: string;
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
-  category: {
+  category?: {
     __typename: "Category";
     id: string;
     title: string;
     description: string;
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    categories: {
+    categories?: {
       __typename: "ModelCategoryConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    category: {
+    category?: {
       __typename: "Category";
       id: string;
       title: string;
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type OnUpdateCategorySubscription = {
@@ -3110,9 +3269,9 @@ export type OnUpdateCategorySubscription = {
   id: string;
   title: string;
   description: string;
-  jobs: {
+  jobs?: {
     __typename: "ModelJobConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Job";
       id: string;
       categoryID: string;
@@ -3120,58 +3279,58 @@ export type OnUpdateCategorySubscription = {
       shortDescription: string;
       description: string;
       employment: string;
-      payFrom: number | null;
-      payTo: number | null;
+      payFrom?: number | null;
+      payTo?: number | null;
       createDate: string;
       expireDate: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
-  categories: {
+  categories?: {
     __typename: "ModelCategoryConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Category";
       id: string;
       title: string;
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
-  category: {
+  category?: {
     __typename: "Category";
     id: string;
     title: string;
     description: string;
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    categories: {
+    categories?: {
       __typename: "ModelCategoryConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    category: {
+    category?: {
       __typename: "Category";
       id: string;
       title: string;
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type OnDeleteCategorySubscription = {
@@ -3179,9 +3338,9 @@ export type OnDeleteCategorySubscription = {
   id: string;
   title: string;
   description: string;
-  jobs: {
+  jobs?: {
     __typename: "ModelJobConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Job";
       id: string;
       categoryID: string;
@@ -3189,58 +3348,58 @@ export type OnDeleteCategorySubscription = {
       shortDescription: string;
       description: string;
       employment: string;
-      payFrom: number | null;
-      payTo: number | null;
+      payFrom?: number | null;
+      payTo?: number | null;
       createDate: string;
       expireDate: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
-  categories: {
+  categories?: {
     __typename: "ModelCategoryConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Category";
       id: string;
       title: string;
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
-  category: {
+  category?: {
     __typename: "Category";
     id: string;
     title: string;
     description: string;
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    categories: {
+    categories?: {
       __typename: "ModelCategoryConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    category: {
+    category?: {
       __typename: "Category";
       id: string;
       title: string;
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   } | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type OnCreateJobSubscription = {
@@ -3251,21 +3410,21 @@ export type OnCreateJobSubscription = {
   shortDescription: string;
   description: string;
   employment: string;
-  payFrom: number | null;
-  payTo: number | null;
+  payFrom?: number | null;
+  payTo?: number | null;
   createDate: string;
   expireDate: string;
-  applications: {
+  applications?: {
     __typename: "ModelApplicationConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Application";
       id: string;
       title: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
   company: {
     __typename: "Company";
@@ -3275,58 +3434,58 @@ export type OnCreateJobSubscription = {
     website: string;
     street: string;
     houseNumber: string;
-    information: string | null;
+    information?: string | null;
     postcode: number;
     city: string;
     canton: string;
     legal: number;
     count: number;
-    image: string | null;
+    image?: string | null;
     account: {
       __typename: "Account";
       id: string;
       type: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   category: {
     __typename: "Category";
     id: string;
     title: string;
     description: string;
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    categories: {
+    categories?: {
       __typename: "ModelCategoryConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    category: {
+    category?: {
       __typename: "Category";
       id: string;
       title: string;
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type OnUpdateJobSubscription = {
@@ -3337,21 +3496,21 @@ export type OnUpdateJobSubscription = {
   shortDescription: string;
   description: string;
   employment: string;
-  payFrom: number | null;
-  payTo: number | null;
+  payFrom?: number | null;
+  payTo?: number | null;
   createDate: string;
   expireDate: string;
-  applications: {
+  applications?: {
     __typename: "ModelApplicationConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Application";
       id: string;
       title: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
   company: {
     __typename: "Company";
@@ -3361,58 +3520,58 @@ export type OnUpdateJobSubscription = {
     website: string;
     street: string;
     houseNumber: string;
-    information: string | null;
+    information?: string | null;
     postcode: number;
     city: string;
     canton: string;
     legal: number;
     count: number;
-    image: string | null;
+    image?: string | null;
     account: {
       __typename: "Account";
       id: string;
       type: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   category: {
     __typename: "Category";
     id: string;
     title: string;
     description: string;
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    categories: {
+    categories?: {
       __typename: "ModelCategoryConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    category: {
+    category?: {
       __typename: "Category";
       id: string;
       title: string;
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type OnDeleteJobSubscription = {
@@ -3423,21 +3582,21 @@ export type OnDeleteJobSubscription = {
   shortDescription: string;
   description: string;
   employment: string;
-  payFrom: number | null;
-  payTo: number | null;
+  payFrom?: number | null;
+  payTo?: number | null;
   createDate: string;
   expireDate: string;
-  applications: {
+  applications?: {
     __typename: "ModelApplicationConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "Application";
       id: string;
       title: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
+    nextToken?: string | null;
   } | null;
   company: {
     __typename: "Company";
@@ -3447,58 +3606,58 @@ export type OnDeleteJobSubscription = {
     website: string;
     street: string;
     houseNumber: string;
-    information: string | null;
+    information?: string | null;
     postcode: number;
     city: string;
     canton: string;
     legal: number;
     count: number;
-    image: string | null;
+    image?: string | null;
     account: {
       __typename: "Account";
       id: string;
       type: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   category: {
     __typename: "Category";
     id: string;
     title: string;
     description: string;
-    jobs: {
+    jobs?: {
       __typename: "ModelJobConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    categories: {
+    categories?: {
       __typename: "ModelCategoryConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
-    category: {
+    category?: {
       __typename: "Category";
       id: string;
       title: string;
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type OnCreateApplicationSubscription = {
@@ -3513,13 +3672,13 @@ export type OnCreateApplicationSubscription = {
     shortDescription: string;
     description: string;
     employment: string;
-    payFrom: number | null;
-    payTo: number | null;
+    payFrom?: number | null;
+    payTo?: number | null;
     createDate: string;
     expireDate: string;
-    applications: {
+    applications?: {
       __typename: "ModelApplicationConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
     company: {
       __typename: "Company";
@@ -3529,16 +3688,16 @@ export type OnCreateApplicationSubscription = {
       website: string;
       street: string;
       houseNumber: string;
-      information: string | null;
+      information?: string | null;
       postcode: number;
       city: string;
       canton: string;
       legal: number;
       count: number;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     category: {
       __typename: "Category";
@@ -3547,15 +3706,15 @@ export type OnCreateApplicationSubscription = {
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type OnUpdateApplicationSubscription = {
@@ -3570,13 +3729,13 @@ export type OnUpdateApplicationSubscription = {
     shortDescription: string;
     description: string;
     employment: string;
-    payFrom: number | null;
-    payTo: number | null;
+    payFrom?: number | null;
+    payTo?: number | null;
     createDate: string;
     expireDate: string;
-    applications: {
+    applications?: {
       __typename: "ModelApplicationConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
     company: {
       __typename: "Company";
@@ -3586,16 +3745,16 @@ export type OnUpdateApplicationSubscription = {
       website: string;
       street: string;
       houseNumber: string;
-      information: string | null;
+      information?: string | null;
       postcode: number;
       city: string;
       canton: string;
       legal: number;
       count: number;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     category: {
       __typename: "Category";
@@ -3604,15 +3763,15 @@ export type OnUpdateApplicationSubscription = {
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 export type OnDeleteApplicationSubscription = {
@@ -3627,13 +3786,13 @@ export type OnDeleteApplicationSubscription = {
     shortDescription: string;
     description: string;
     employment: string;
-    payFrom: number | null;
-    payTo: number | null;
+    payFrom?: number | null;
+    payTo?: number | null;
     createDate: string;
     expireDate: string;
-    applications: {
+    applications?: {
       __typename: "ModelApplicationConnection";
-      nextToken: string | null;
+      nextToken?: string | null;
     } | null;
     company: {
       __typename: "Company";
@@ -3643,16 +3802,16 @@ export type OnDeleteApplicationSubscription = {
       website: string;
       street: string;
       houseNumber: string;
-      information: string | null;
+      information?: string | null;
       postcode: number;
       city: string;
       canton: string;
       legal: number;
       count: number;
-      image: string | null;
+      image?: string | null;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     category: {
       __typename: "Category";
@@ -3661,21 +3820,48 @@ export type OnDeleteApplicationSubscription = {
       description: string;
       createdAt: string;
       updatedAt: string;
-      owner: string | null;
+      owner?: string | null;
     };
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
+    owner?: string | null;
   };
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
+  owner?: string | null;
 };
 
 @Injectable({
   providedIn: "root"
 })
 export class APIService {
+  async listCategorysWithChildren(): Promise<listCategorysWithChildrenQuery> {
+    const statement = `query listCategorysWithChildren {
+        listCategorys {
+          __typename
+          items {
+            __typename
+            categories {
+              __typename
+              nextToken
+              items {
+                __typename
+                id
+                title
+                description
+              }
+            }
+            description
+            id
+            owner
+            title
+            updatedAt
+          }
+        }
+      }`;
+    const response = (await API.graphql(graphqlOperation(statement))) as any;
+    return <listCategorysWithChildrenQuery>response.data.listCategorys;
+  }
   async CreateAccount(
     input: CreateAccountInput,
     condition?: ModelAccountConditionInput
