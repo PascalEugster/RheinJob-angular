@@ -9,15 +9,18 @@
     <ion-list-header>
       {{category.title}}
     </ion-list-header>
-
-    <ion-item *ngFor="let subCategory of category.categories.items">
+    
+    <ion-card *ngFor="let subCategory of category.categories.items" (click)="navigateToCategory(subCategory.id)">
       <ion-avatar slot="start">
         <img src="./avatar-finn.png">
       </ion-avatar>
-      <ion-label>
-        <h2>{{subCategory.title}}</h2>
-        <p>{{subCategory.description}}</p>
-      </ion-label>
-    </ion-item>
+      <ion-card-header>
+        <ion-card-title>{{subCategory.title}}</ion-card-title>
+        <ion-card-subtitle>{{subCategory.description}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-button (click)="navigateToCategory(subCategory.id)" expand="block"  shape="round">
+        Zu den Jobs
+      </ion-button>
+    </ion-card>
   </ion-list>
 </ion-content>

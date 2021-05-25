@@ -1,6 +1,6 @@
 {
     "identityPoolName": "rheinjob0fa83857_identitypool_0fa83857",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "rheinj0fa83857",
     "userPoolName": "rheinjob0fa83857_userpool_0fa83857",
     "autoVerifiedAttributes": [

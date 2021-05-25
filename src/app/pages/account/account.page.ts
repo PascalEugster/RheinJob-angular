@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { APIService, CreateAccountInput, CreateCompanyInput, CreateUserInput, DeleteCompanyInput, DeleteUserInput, GetAccountQuery, UpdateAccountInput, UpdateCompanyInput, UpdateUserInput } from 'src/app/API.service';
 import { FormFieldTypes } from '@aws-amplify/ui-components';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Auth } from 'aws-amplify';
+import { Auth, Storage } from 'aws-amplify';
+
 
 @Component({
   selector: 'app-account',
@@ -15,6 +16,11 @@ export class AccountPage implements OnInit {
   data: any = { myToggle: false };
   companyForm: FormGroup;
   userForm: FormGroup;
+
+  imagePath;
+  isOpenLoader = false;
+  current = 0;
+  max = 100;
 
   constructor(public formBuilder: FormBuilder, public API: APIService) { }
 
@@ -281,6 +287,48 @@ export class AccountPage implements OnInit {
     let deleteUserInput: DeleteUserInput = { id: user };
     this.userForm.reset();
     this.API.DeleteUser(deleteUserInput);
+  }
+
+
+  
+  openFileForUpload() {
+    document.getElementById('selecetImage').click();
+  }
+
+  webSelectImage(element) {
+    // console.log(' select target ==> ', element);
+    if (element) {
+      const file = element.target.files[0];
+      this.saveImageInAmplify(element.target.files[0].name, file);
+    }
+  }
+
+  // This method puts image in AWS server
+  saveImageInAmplify(filename, file) {
+    this.isOpenLoader = true;
+    // Customize path give here
+    const customPrefix = {
+      public: 'myPublicPrefix/',
+      protected: 'myProtectedPrefix/',
+      private: 'myPrivatePrefix/'
+    };
+    const self = this;
+    Storage.put(filename, file, {
+      progressCallback(progress) {
+        const value = Math.round(progress.loaded / progress.total * 100);
+        self.current = value;
+        console.log('Uploaded : ', value, self.current);
+      },
+      contentType: 'image/png',
+      // customPrefix: customPrefix  // For customize path
+    }).then((result: any) => {
+      console.log('Success result =>', result);
+      this.isOpenLoader = false;
+      this.imagePath = 'https://s3bucket-uploadtest.s3.amazonaws.com/public/' + result.key;
+    }).catch((err) => {
+      console.log('error =>', err);
+      this.isOpenLoader = false;
+    });
   }
 
 }

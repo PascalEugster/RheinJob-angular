@@ -59,12 +59,9 @@ export class SearchPage implements OnInit {
 
       let searchFilter:SearchableJobFilterInput = {
   
-        categoryID: {
-          matchPhrasePrefix: form.category
-        },
-        and : [
-          {title: {matchPhrasePrefix: form.title}}
-        ]
+        title: {
+          matchPhrasePrefix: form.title
+        }
 
       };
 

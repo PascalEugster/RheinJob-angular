@@ -13,17 +13,19 @@ export class JobPage implements OnInit {
   public selectedEmployment;
   public employmentEnum;
   id = null;
+
+
   constructor(private activatedRoute: ActivatedRoute, private API: APIService) { }
 
  ngOnInit() {
   this.employmentEnum = Employment;
-   this.id = this.activatedRoute.snapshot.paramMap.get('id');
-   this.API.GetJob(this.id).then(getJob => {
-    if(getJob != null) {
-      this.job = getJob;
-      this.selectedEmployment = this.employmentEnum[getJob.employment]
-    }
-   });
+  this.id = this.activatedRoute.snapshot.paramMap.get('id');
+  this.API.GetJob(this.id).then(getJob => {
+  if(getJob != null) {
+    this.job = getJob;
+    this.selectedEmployment = this.employmentEnum[getJob.employment]
+  }
+  });
  }
 
 }

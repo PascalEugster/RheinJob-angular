@@ -58,6 +58,10 @@ const routes: Routes = [
   },
   { 
     path: 'job/:id', loadChildren: () => import('./pages/job/job.module').then( m => m.JobPageModule)
+  },
+  {
+    path: 'category/:id',
+    loadChildren: () => import('./pages/category/category.module').then( m => m.CategoryPageModule)
   }
 
 

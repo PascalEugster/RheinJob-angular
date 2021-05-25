@@ -1,0 +1,11 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title *ngIf="category">{{category.title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="category">
+  <ion-list>
+    <app-job-list-item *ngFor="let job of jobs; let id = index" [job]="job"></app-job-list-item>
+  </ion-list>
+</ion-content>

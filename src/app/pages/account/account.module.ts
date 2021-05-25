@@ -14,13 +14,13 @@ import Amplify from 'aws-amplify';
 
 
 
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     AccountPageRoutingModule,
-    ReactiveFormsModule,
     AmplifyUIAngularModule /* Add Amplify module */
   ],
   entryComponents: [AccountFormComponent],
