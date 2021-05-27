@@ -12,6 +12,8 @@ import { AccountFormComponent } from 'src/app/components/account-form/account-fo
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import Amplify from 'aws-amplify';
 
+import { RoundProgressModule } from 'angular-svg-round-progressbar';
+
 
 
 
@@ -21,6 +23,8 @@ import Amplify from 'aws-amplify';
     FormsModule,
     IonicModule,
     AccountPageRoutingModule,
+    RoundProgressModule,
+    ReactiveFormsModule,
     AmplifyUIAngularModule /* Add Amplify module */
   ],
   entryComponents: [AccountFormComponent],
