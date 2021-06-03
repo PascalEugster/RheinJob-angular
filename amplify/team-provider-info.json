@@ -13,7 +13,8 @@
     },
     "categories": {
       "auth": {
-        "rheinjob0fa83857": {}
+        "rheinjob0fa83857": {},
+        "userPoolGroups": {}
       }
     }
   }

@@ -17,7 +17,9 @@ export class AccountPage implements OnInit {
   companyForm: FormGroup;
   userForm: FormGroup;
 
+  storagePath = 'https://rheinjob38f8fecfab2347d2b37e4bd8fcc948e5102325-dev/public/'
   imagePath;
+  imageName;
   isOpenLoader = false;
   current = 0;
   max = 100;
@@ -38,6 +40,7 @@ export class AccountPage implements OnInit {
       information: ['', [Validators.required, Validators.minLength(2)]],
       canton: ['', [Validators.required, Validators.minLength(3)]],
       postcode: ['', [Validators.required, Validators.pattern('[0-9]+')]],
+      image: [''],
     });
 
     this.userForm = this.formBuilder.group({
@@ -91,7 +94,17 @@ export class AccountPage implements OnInit {
               city: account.company.city,
               canton: account.company.canton,
               postcode: account.company.postcode,
+              image: account.company.image
             });
+
+            Storage.get(this.companyForm.value.image)
+            .then((res) => {
+              console.log('Single image => ', res);
+              this.imagePath = res;
+            }).catch((err) => {
+              console.log('Single image error => ', err);
+            });
+           // this.imagePath = this.storagePath + this.companyForm.value.image;
           }
         }
       });
@@ -126,6 +139,7 @@ export class AccountPage implements OnInit {
           count: companyForm.count,
           information: companyForm.information,
           companyAccountId: user.username,
+          image: companyForm.image
         };
 
         let updateCompanyInput: UpdateCompanyInput = {
@@ -141,6 +155,7 @@ export class AccountPage implements OnInit {
           count: companyForm.count,
           information: companyForm.information,
           legal: companyForm.legal, 
+          image: companyForm.image
         };
 
         this.API.GetAccount(user.username).then(account => {
@@ -323,10 +338,14 @@ export class AccountPage implements OnInit {
       // customPrefix: customPrefix  // For customize path
     }).then((result: any) => {
       console.log('Success result =>', result);
+      this.imageName = filename;
+      this.companyForm.value.image = filename;
       this.isOpenLoader = false;
-      this.imagePath = 'https://s3bucket-uploadtest.s3.amazonaws.com/public/' + result.key;
+      //s3://rheinjob38f8fecfab2347d2b37e4bd8fcc948e5102325-dev/public/
+      this.imagePath = this.storagePath  + result.key;
     }).catch((err) => {
       console.log('error =>', err);
+      this.imageName = "";
       this.isOpenLoader = false;
     });
   }

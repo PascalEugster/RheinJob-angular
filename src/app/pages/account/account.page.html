@@ -91,7 +91,7 @@
                 <ion-button shape="round" (click)="openFileForUpload()">Upload Photo
                   <ion-icon slot="start" name="cloud-upload"></ion-icon>
                 </ion-button>
-                <input type="file" id="selecetImage" [hidden]="true" accept="image/*" (change)="webSelectImage($event)" />
+                <input type="file" id="selecetImage" [hidden]="true" accept="image/*" formControlName="image" (change)="webSelectImage($event)" [(ngModel)]="imageName"/>
               </ion-col>
             </ion-row>
         
