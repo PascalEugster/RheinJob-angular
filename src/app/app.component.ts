@@ -112,19 +112,19 @@ export class AppComponent implements OnInit {
       this.user = authData as CognitoUserInterface;
       this.ref.detectChanges();
  
-      // if(authState == 'signedin' ) 
-      // {
-      //   Auth.currentUserInfo().then(user => { 
-      //     this.api.GetUser(user.username).then(user => {
-      //       if(user == null) {
-      //         this.router.navigate(['/account']);
-      //       }
-      //       else {
-      //         this.router.navigate(['/']); 
-      //       }
-      //     });
-      //   });
-      // }
+      if(authState == 'signedin' ) 
+      {
+        Auth.currentUserInfo().then(user => { 
+          this.api.GetUser(user.username).then(user => {
+            if(user == null) {
+              this.router.navigate(['/account']);
+            }
+            else {
+              this.router.navigate(['/']); 
+            }
+          });
+        });
+      }
     });
   }
 

@@ -17,7 +17,7 @@
       <p>Durch unsere breite Auswahl an Partnern sind wir davon überzeugt, dass sie den richtigen Job finden, der zu Ihnen passt.</p>
     </div>
     <ion-card *ngFor="let company of companys; let id = index">
-      <img class="ion-padding" src="./assets/images/sfs.png" />
+      <amplify-s3-image [imgKey]="company.image" ></amplify-s3-image>
       <ion-card-header>
         <ion-card-title>{{company.name}}</ion-card-title>
       </ion-card-header>
