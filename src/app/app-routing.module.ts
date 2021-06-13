@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
  {
@@ -29,12 +30,8 @@ const routes: Routes = [
   },
   {
     path: 'account',
-    loadChildren: () => import('./pages/account/account.module').then( m => m.AccountPageModule)
-  },
-
-  {
-    path: 'account',
-    loadChildren: () => import('./pages/account/account.module').then( m => m.AccountPageModule)
+    loadChildren: () => import('./pages/account/account.module').then( m => m.AccountPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'apprenticeships',
@@ -54,7 +51,8 @@ const routes: Routes = [
   },
   {
     path: 'categories',
-    loadChildren: () => import('./pages/categories/categories.module').then( m => m.CategoriesPageModule)
+    loadChildren: () => import('./pages/categories/categories.module').then( m => m.CategoriesPageModule),
+    
   },
   { 
     path: 'job/:id', loadChildren: () => import('./pages/job/job.module').then( m => m.JobPageModule)
@@ -62,6 +60,10 @@ const routes: Routes = [
   {
     path: 'category/:id',
     loadChildren: () => import('./pages/category/category.module').then( m => m.CategoryPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   }
 
 

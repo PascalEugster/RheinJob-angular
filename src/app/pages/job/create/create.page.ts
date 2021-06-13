@@ -5,7 +5,7 @@ import { Auth } from 'aws-amplify';
 import { APIService, CreateJobInput } from 'src/app/API.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { Employment } from 'src/app/enums/employment.enum';
-import { ToastService } from 'src/app/services/toast.service';
+import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
   selector: 'app-create',

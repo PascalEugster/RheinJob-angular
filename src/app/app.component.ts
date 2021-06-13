@@ -107,25 +107,25 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    onAuthUIStateChange((authState, authData) => {
-      this.authState = authState;
-      this.user = authData as CognitoUserInterface;
-      this.ref.detectChanges();
+    // onAuthUIStateChange((authState, authData) => {
+    //   this.authState = authState;
+    //   this.user = authData as CognitoUserInterface;
+    //   this.ref.detectChanges();
  
-      if(authState == 'signedin' ) 
-      {
-        Auth.currentUserInfo().then(user => { 
-          this.api.GetUser(user.username).then(user => {
-            if(user == null) {
-              this.router.navigate(['/account']);
-            }
-            else {
-              this.router.navigate(['/']); 
-            }
-          });
-        });
-      }
-    });
+    //   if(authState == 'signedin' ) 
+    //   {
+    //     Auth.currentUserInfo().then(user => { 
+    //       this.api.GetUser(user.username).then(user => {
+    //         if(user == null) {
+    //           this.router.navigate(['/account']);
+    //         }
+    //         else {
+    //           this.router.navigate(['/']); 
+    //         }
+    //       });
+    //     });
+    //   }
+    // });
   }
 
   
@@ -136,6 +136,10 @@ export class AppComponent implements OnInit {
 
   handleSignInSubmit(event: any) {
     console.log('HANDLE SUBMIT for Sign In!', event);
+  }
+
+  onLoginClick() {
+    this.router.navigate(['/login']);
   }
 
   ngOnDestroy() {
