@@ -1,23 +1,23 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
     "Parameters": {
-        "authrheinjob0fa83857UserPoolId": {
+        "authrheinjobf4b7f4cdUserPoolId": {
             "Type": "String",
-            "Default": "authrheinjob0fa83857UserPoolId"
+            "Default": "authrheinjobf4b7f4cdUserPoolId"
         },
         
-        "authrheinjob0fa83857IdentityPoolId": {
+        "authrheinjobf4b7f4cdIdentityPoolId": {
             "Type": "String",
-            "Default": "authrheinjob0fa83857IdentityPoolId"
+            "Default": "authrheinjobf4b7f4cdIdentityPoolId"
         },
         
-        "authrheinjob0fa83857AppClientID": {
+        "authrheinjobf4b7f4cdAppClientID": {
             "Type": "String",
-            "Default": "authrheinjob0fa83857AppClientID"
+            "Default": "authrheinjobf4b7f4cdAppClientID"
         },
-        "authrheinjob0fa83857AppClientIDWeb": {
+        "authrheinjobf4b7f4cdAppClientIDWeb": {
             "Type": "String",
-            "Default": "authrheinjob0fa83857AppClientIDWeb"
+            "Default": "authrheinjobf4b7f4cdAppClientIDWeb"
         },
         "AuthRoleArn": {
             "Type": "String"
@@ -41,26 +41,26 @@
     },
     "Resources": {
     
-        "userGroup": {
+        "rheinjobuserpoolGroup": {
           "Type" : "AWS::Cognito::UserPoolGroup",
           "Properties" : {
-              "GroupName" : "user",
+              "GroupName" : "rheinjobuserpool",
               "Precedence" : 1,
               
               "RoleArn" : {
                 "Fn::GetAtt": [
-                    "userGroupRole",
+                    "rheinjobuserpoolGroupRole",
                     "Arn"
                 ]
               },
               
               "UserPoolId" : {
-                "Ref": "authrheinjob0fa83857UserPoolId"
+                "Ref": "authrheinjobf4b7f4cdUserPoolId"
               }
             }
         },
         
-        "userGroupRole": {
+        "rheinjobuserpoolGroupRole": {
             "Type": "AWS::IAM::Role",
             "Properties": {
                 "RoleName":{
@@ -68,9 +68,9 @@
                         "",
                         [
                           {
-                            "Ref": "authrheinjob0fa83857UserPoolId"
+                            "Ref": "authrheinjobf4b7f4cdUserPoolId"
                           },
-                          "-userGroupRole"
+                          "-rheinjobuserpoolGroupRole"
                         ]
                     ]
                 },
@@ -85,115 +85,7 @@
                             },
                             "Action": "sts:AssumeRoleWithWebIdentity",
                             "Condition": {
-                              "StringEquals": {"cognito-identity.amazonaws.com:aud": {"Ref":"authrheinjob0fa83857IdentityPoolId"}},
-                              "ForAnyValue:StringLike": {"cognito-identity.amazonaws.com:amr": "authenticated"}
-                            }
-                        }
-                    ]
-                }
-            }
-        },
-     
-    
-        "companyGroup": {
-          "Type" : "AWS::Cognito::UserPoolGroup",
-          "Properties" : {
-              "GroupName" : "company",
-              "Precedence" : 2,
-              
-              "RoleArn" : {
-                "Fn::GetAtt": [
-                    "companyGroupRole",
-                    "Arn"
-                ]
-              },
-              
-              "UserPoolId" : {
-                "Ref": "authrheinjob0fa83857UserPoolId"
-              }
-            }
-        },
-        
-        "companyGroupRole": {
-            "Type": "AWS::IAM::Role",
-            "Properties": {
-                "RoleName":{
-                    "Fn::Join": [
-                        "",
-                        [
-                          {
-                            "Ref": "authrheinjob0fa83857UserPoolId"
-                          },
-                          "-companyGroupRole"
-                        ]
-                    ]
-                },
-                "AssumeRolePolicyDocument": {
-                    "Version": "2012-10-17",
-                    "Statement": [
-                        {
-                            "Sid": "",
-                            "Effect": "Allow",
-                            "Principal": {
-                                "Federated": "cognito-identity.amazonaws.com"
-                            },
-                            "Action": "sts:AssumeRoleWithWebIdentity",
-                            "Condition": {
-                              "StringEquals": {"cognito-identity.amazonaws.com:aud": {"Ref":"authrheinjob0fa83857IdentityPoolId"}},
-                              "ForAnyValue:StringLike": {"cognito-identity.amazonaws.com:amr": "authenticated"}
-                            }
-                        }
-                    ]
-                }
-            }
-        },
-     
-    
-        "AdminsGroup": {
-          "Type" : "AWS::Cognito::UserPoolGroup",
-          "Properties" : {
-              "GroupName" : "Admins",
-              "Precedence" : 3,
-              
-              "RoleArn" : {
-                "Fn::GetAtt": [
-                    "AdminsGroupRole",
-                    "Arn"
-                ]
-              },
-              
-              "UserPoolId" : {
-                "Ref": "authrheinjob0fa83857UserPoolId"
-              }
-            }
-        },
-        
-        "AdminsGroupRole": {
-            "Type": "AWS::IAM::Role",
-            "Properties": {
-                "RoleName":{
-                    "Fn::Join": [
-                        "",
-                        [
-                          {
-                            "Ref": "authrheinjob0fa83857UserPoolId"
-                          },
-                          "-AdminsGroupRole"
-                        ]
-                    ]
-                },
-                "AssumeRolePolicyDocument": {
-                    "Version": "2012-10-17",
-                    "Statement": [
-                        {
-                            "Sid": "",
-                            "Effect": "Allow",
-                            "Principal": {
-                                "Federated": "cognito-identity.amazonaws.com"
-                            },
-                            "Action": "sts:AssumeRoleWithWebIdentity",
-                            "Condition": {
-                              "StringEquals": {"cognito-identity.amazonaws.com:aud": {"Ref":"authrheinjob0fa83857IdentityPoolId"}},
+                              "StringEquals": {"cognito-identity.amazonaws.com:aud": {"Ref":"authrheinjobf4b7f4cdIdentityPoolId"}},
                               "ForAnyValue:StringLike": {"cognito-identity.amazonaws.com:amr": "authenticated"}
                             }
                         }
@@ -219,7 +111,7 @@
                                 "",
                                 [
 
-                                  "rheinjob0fa83857",
+                                  "rheinjobf4b7f4cd",
                                   "-ExecutionRole-",
                                   {
                                     "Ref": "env"
@@ -378,16 +270,16 @@
                     "Ref": "UnauthRoleArn"
                 },
                 "identityPoolId": {
-                    "Ref": "authrheinjob0fa83857IdentityPoolId"
+                    "Ref": "authrheinjobf4b7f4cdIdentityPoolId"
                 },
                 "userPoolId": {
-                    "Ref": "authrheinjob0fa83857UserPoolId"
+                    "Ref": "authrheinjobf4b7f4cdUserPoolId"
                 },
                 "appClientIDWeb": {
-                    "Ref": "authrheinjob0fa83857AppClientIDWeb"
+                    "Ref": "authrheinjobf4b7f4cdAppClientIDWeb"
                 },
                 "appClientID": {
-                    "Ref": "authrheinjob0fa83857AppClientID"
+                    "Ref": "authrheinjobf4b7f4cdAppClientID"
                 },
                 "region": {
                     "Ref": "AWS::Region"
@@ -403,32 +295,10 @@
     
     "Outputs": {
       
-        "userGroupRole": {
+        "rheinjobuserpoolGroupRole": {
             "Value": {
                 "Fn::GetAtt": [
-                    "userGroupRole",
-                    "Arn"
-                ]
-            }
-        
-        },
-        
-      
-        "companyGroupRole": {
-            "Value": {
-                "Fn::GetAtt": [
-                    "companyGroupRole",
-                    "Arn"
-                ]
-            }
-        
-        },
-        
-      
-        "AdminsGroupRole": {
-            "Value": {
-                "Fn::GetAtt": [
-                    "AdminsGroupRole",
+                    "rheinjobuserpoolGroupRole",
                     "Arn"
                 ]
             }

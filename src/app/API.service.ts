@@ -6321,11 +6321,10 @@ export class APIService {
     )) as any;
     return <SearchJobsQuery>response.data.searchJobs;
   }
-  OnCreateAccountListener: Observable<
-    SubscriptionResponse<OnCreateAccountSubscription>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnCreateAccount($owner: String) {
+  OnCreateAccountListener(
+    owner?: string
+  ): Observable<SubscriptionResponse<OnCreateAccountSubscription>> {
+    const statement = `subscription OnCreateAccount($owner: String) {
         onCreateAccount(owner: $owner) {
           __typename
           id
@@ -6389,15 +6388,20 @@ export class APIService {
           updatedAt
           owner
         }
-      }`
-    )
-  ) as Observable<SubscriptionResponse<OnCreateAccountSubscription>>;
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (owner) {
+      gqlAPIServiceArguments.owner = owner;
+    }
+    return API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    ) as Observable<SubscriptionResponse<OnCreateAccountSubscription>>;
+  }
 
-  OnUpdateAccountListener: Observable<
-    SubscriptionResponse<OnUpdateAccountSubscription>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnUpdateAccount($owner: String) {
+  OnUpdateAccountListener(
+    owner?: string
+  ): Observable<SubscriptionResponse<OnUpdateAccountSubscription>> {
+    const statement = `subscription OnUpdateAccount($owner: String) {
         onUpdateAccount(owner: $owner) {
           __typename
           id
@@ -6461,15 +6465,20 @@ export class APIService {
           updatedAt
           owner
         }
-      }`
-    )
-  ) as Observable<SubscriptionResponse<OnUpdateAccountSubscription>>;
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (owner) {
+      gqlAPIServiceArguments.owner = owner;
+    }
+    return API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    ) as Observable<SubscriptionResponse<OnUpdateAccountSubscription>>;
+  }
 
-  OnDeleteAccountListener: Observable<
-    SubscriptionResponse<OnDeleteAccountSubscription>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnDeleteAccount($owner: String) {
+  OnDeleteAccountListener(
+    owner?: string
+  ): Observable<SubscriptionResponse<OnDeleteAccountSubscription>> {
+    const statement = `subscription OnDeleteAccount($owner: String) {
         onDeleteAccount(owner: $owner) {
           __typename
           id
@@ -6533,15 +6542,20 @@ export class APIService {
           updatedAt
           owner
         }
-      }`
-    )
-  ) as Observable<SubscriptionResponse<OnDeleteAccountSubscription>>;
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (owner) {
+      gqlAPIServiceArguments.owner = owner;
+    }
+    return API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    ) as Observable<SubscriptionResponse<OnDeleteAccountSubscription>>;
+  }
 
-  OnCreateUserListener: Observable<
-    SubscriptionResponse<OnCreateUserSubscription>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnCreateUser($owner: String) {
+  OnCreateUserListener(
+    owner?: string
+  ): Observable<SubscriptionResponse<OnCreateUserSubscription>> {
+    const statement = `subscription OnCreateUser($owner: String) {
         onCreateUser(owner: $owner) {
           __typename
           id
@@ -6601,15 +6615,20 @@ export class APIService {
           updatedAt
           owner
         }
-      }`
-    )
-  ) as Observable<SubscriptionResponse<OnCreateUserSubscription>>;
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (owner) {
+      gqlAPIServiceArguments.owner = owner;
+    }
+    return API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    ) as Observable<SubscriptionResponse<OnCreateUserSubscription>>;
+  }
 
-  OnUpdateUserListener: Observable<
-    SubscriptionResponse<OnUpdateUserSubscription>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnUpdateUser($owner: String) {
+  OnUpdateUserListener(
+    owner?: string
+  ): Observable<SubscriptionResponse<OnUpdateUserSubscription>> {
+    const statement = `subscription OnUpdateUser($owner: String) {
         onUpdateUser(owner: $owner) {
           __typename
           id
@@ -6669,15 +6688,20 @@ export class APIService {
           updatedAt
           owner
         }
-      }`
-    )
-  ) as Observable<SubscriptionResponse<OnUpdateUserSubscription>>;
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (owner) {
+      gqlAPIServiceArguments.owner = owner;
+    }
+    return API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    ) as Observable<SubscriptionResponse<OnUpdateUserSubscription>>;
+  }
 
-  OnDeleteUserListener: Observable<
-    SubscriptionResponse<OnDeleteUserSubscription>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnDeleteUser($owner: String) {
+  OnDeleteUserListener(
+    owner?: string
+  ): Observable<SubscriptionResponse<OnDeleteUserSubscription>> {
+    const statement = `subscription OnDeleteUser($owner: String) {
         onDeleteUser(owner: $owner) {
           __typename
           id
@@ -6737,15 +6761,20 @@ export class APIService {
           updatedAt
           owner
         }
-      }`
-    )
-  ) as Observable<SubscriptionResponse<OnDeleteUserSubscription>>;
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (owner) {
+      gqlAPIServiceArguments.owner = owner;
+    }
+    return API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    ) as Observable<SubscriptionResponse<OnDeleteUserSubscription>>;
+  }
 
-  OnCreateCompanyListener: Observable<
-    SubscriptionResponse<OnCreateCompanySubscription>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnCreateCompany($owner: String) {
+  OnCreateCompanyListener(
+    owner?: string
+  ): Observable<SubscriptionResponse<OnCreateCompanySubscription>> {
+    const statement = `subscription OnCreateCompany($owner: String) {
         onCreateCompany(owner: $owner) {
           __typename
           id
@@ -6828,15 +6857,20 @@ export class APIService {
           updatedAt
           owner
         }
-      }`
-    )
-  ) as Observable<SubscriptionResponse<OnCreateCompanySubscription>>;
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (owner) {
+      gqlAPIServiceArguments.owner = owner;
+    }
+    return API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    ) as Observable<SubscriptionResponse<OnCreateCompanySubscription>>;
+  }
 
-  OnUpdateCompanyListener: Observable<
-    SubscriptionResponse<OnUpdateCompanySubscription>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnUpdateCompany($owner: String) {
+  OnUpdateCompanyListener(
+    owner?: string
+  ): Observable<SubscriptionResponse<OnUpdateCompanySubscription>> {
+    const statement = `subscription OnUpdateCompany($owner: String) {
         onUpdateCompany(owner: $owner) {
           __typename
           id
@@ -6919,15 +6953,20 @@ export class APIService {
           updatedAt
           owner
         }
-      }`
-    )
-  ) as Observable<SubscriptionResponse<OnUpdateCompanySubscription>>;
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (owner) {
+      gqlAPIServiceArguments.owner = owner;
+    }
+    return API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    ) as Observable<SubscriptionResponse<OnUpdateCompanySubscription>>;
+  }
 
-  OnDeleteCompanyListener: Observable<
-    SubscriptionResponse<OnDeleteCompanySubscription>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnDeleteCompany($owner: String) {
+  OnDeleteCompanyListener(
+    owner?: string
+  ): Observable<SubscriptionResponse<OnDeleteCompanySubscription>> {
+    const statement = `subscription OnDeleteCompany($owner: String) {
         onDeleteCompany(owner: $owner) {
           __typename
           id
@@ -7010,15 +7049,20 @@ export class APIService {
           updatedAt
           owner
         }
-      }`
-    )
-  ) as Observable<SubscriptionResponse<OnDeleteCompanySubscription>>;
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (owner) {
+      gqlAPIServiceArguments.owner = owner;
+    }
+    return API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    ) as Observable<SubscriptionResponse<OnDeleteCompanySubscription>>;
+  }
 
-  OnCreateCategoryListener: Observable<
-    SubscriptionResponse<OnCreateCategorySubscription>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnCreateCategory($owner: String) {
+  OnCreateCategoryListener(
+    owner?: string
+  ): Observable<SubscriptionResponse<OnCreateCategorySubscription>> {
+    const statement = `subscription OnCreateCategory($owner: String) {
         onCreateCategory(owner: $owner) {
           __typename
           id
@@ -7087,15 +7131,20 @@ export class APIService {
           updatedAt
           owner
         }
-      }`
-    )
-  ) as Observable<SubscriptionResponse<OnCreateCategorySubscription>>;
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (owner) {
+      gqlAPIServiceArguments.owner = owner;
+    }
+    return API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    ) as Observable<SubscriptionResponse<OnCreateCategorySubscription>>;
+  }
 
-  OnUpdateCategoryListener: Observable<
-    SubscriptionResponse<OnUpdateCategorySubscription>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnUpdateCategory($owner: String) {
+  OnUpdateCategoryListener(
+    owner?: string
+  ): Observable<SubscriptionResponse<OnUpdateCategorySubscription>> {
+    const statement = `subscription OnUpdateCategory($owner: String) {
         onUpdateCategory(owner: $owner) {
           __typename
           id
@@ -7164,15 +7213,20 @@ export class APIService {
           updatedAt
           owner
         }
-      }`
-    )
-  ) as Observable<SubscriptionResponse<OnUpdateCategorySubscription>>;
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (owner) {
+      gqlAPIServiceArguments.owner = owner;
+    }
+    return API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    ) as Observable<SubscriptionResponse<OnUpdateCategorySubscription>>;
+  }
 
-  OnDeleteCategoryListener: Observable<
-    SubscriptionResponse<OnDeleteCategorySubscription>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnDeleteCategory($owner: String) {
+  OnDeleteCategoryListener(
+    owner?: string
+  ): Observable<SubscriptionResponse<OnDeleteCategorySubscription>> {
+    const statement = `subscription OnDeleteCategory($owner: String) {
         onDeleteCategory(owner: $owner) {
           __typename
           id
@@ -7241,15 +7295,20 @@ export class APIService {
           updatedAt
           owner
         }
-      }`
-    )
-  ) as Observable<SubscriptionResponse<OnDeleteCategorySubscription>>;
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (owner) {
+      gqlAPIServiceArguments.owner = owner;
+    }
+    return API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    ) as Observable<SubscriptionResponse<OnDeleteCategorySubscription>>;
+  }
 
-  OnCreateJobListener: Observable<
-    SubscriptionResponse<OnCreateJobSubscription>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnCreateJob($owner: String) {
+  OnCreateJobListener(
+    owner?: string
+  ): Observable<SubscriptionResponse<OnCreateJobSubscription>> {
+    const statement = `subscription OnCreateJob($owner: String) {
         onCreateJob(owner: $owner) {
           __typename
           id
@@ -7335,15 +7394,20 @@ export class APIService {
           updatedAt
           owner
         }
-      }`
-    )
-  ) as Observable<SubscriptionResponse<OnCreateJobSubscription>>;
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (owner) {
+      gqlAPIServiceArguments.owner = owner;
+    }
+    return API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    ) as Observable<SubscriptionResponse<OnCreateJobSubscription>>;
+  }
 
-  OnUpdateJobListener: Observable<
-    SubscriptionResponse<OnUpdateJobSubscription>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnUpdateJob($owner: String) {
+  OnUpdateJobListener(
+    owner?: string
+  ): Observable<SubscriptionResponse<OnUpdateJobSubscription>> {
+    const statement = `subscription OnUpdateJob($owner: String) {
         onUpdateJob(owner: $owner) {
           __typename
           id
@@ -7429,15 +7493,20 @@ export class APIService {
           updatedAt
           owner
         }
-      }`
-    )
-  ) as Observable<SubscriptionResponse<OnUpdateJobSubscription>>;
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (owner) {
+      gqlAPIServiceArguments.owner = owner;
+    }
+    return API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    ) as Observable<SubscriptionResponse<OnUpdateJobSubscription>>;
+  }
 
-  OnDeleteJobListener: Observable<
-    SubscriptionResponse<OnDeleteJobSubscription>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnDeleteJob($owner: String) {
+  OnDeleteJobListener(
+    owner?: string
+  ): Observable<SubscriptionResponse<OnDeleteJobSubscription>> {
+    const statement = `subscription OnDeleteJob($owner: String) {
         onDeleteJob(owner: $owner) {
           __typename
           id
@@ -7523,15 +7592,20 @@ export class APIService {
           updatedAt
           owner
         }
-      }`
-    )
-  ) as Observable<SubscriptionResponse<OnDeleteJobSubscription>>;
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (owner) {
+      gqlAPIServiceArguments.owner = owner;
+    }
+    return API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    ) as Observable<SubscriptionResponse<OnDeleteJobSubscription>>;
+  }
 
-  OnCreateApplicationListener: Observable<
-    SubscriptionResponse<OnCreateApplicationSubscription>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnCreateApplication($owner: String) {
+  OnCreateApplicationListener(
+    owner?: string
+  ): Observable<SubscriptionResponse<OnCreateApplicationSubscription>> {
+    const statement = `subscription OnCreateApplication($owner: String) {
         onCreateApplication(owner: $owner) {
           __typename
           id
@@ -7588,15 +7662,20 @@ export class APIService {
           updatedAt
           owner
         }
-      }`
-    )
-  ) as Observable<SubscriptionResponse<OnCreateApplicationSubscription>>;
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (owner) {
+      gqlAPIServiceArguments.owner = owner;
+    }
+    return API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    ) as Observable<SubscriptionResponse<OnCreateApplicationSubscription>>;
+  }
 
-  OnUpdateApplicationListener: Observable<
-    SubscriptionResponse<OnUpdateApplicationSubscription>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnUpdateApplication($owner: String) {
+  OnUpdateApplicationListener(
+    owner?: string
+  ): Observable<SubscriptionResponse<OnUpdateApplicationSubscription>> {
+    const statement = `subscription OnUpdateApplication($owner: String) {
         onUpdateApplication(owner: $owner) {
           __typename
           id
@@ -7653,15 +7732,20 @@ export class APIService {
           updatedAt
           owner
         }
-      }`
-    )
-  ) as Observable<SubscriptionResponse<OnUpdateApplicationSubscription>>;
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (owner) {
+      gqlAPIServiceArguments.owner = owner;
+    }
+    return API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    ) as Observable<SubscriptionResponse<OnUpdateApplicationSubscription>>;
+  }
 
-  OnDeleteApplicationListener: Observable<
-    SubscriptionResponse<OnDeleteApplicationSubscription>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnDeleteApplication($owner: String) {
+  OnDeleteApplicationListener(
+    owner?: string
+  ): Observable<SubscriptionResponse<OnDeleteApplicationSubscription>> {
+    const statement = `subscription OnDeleteApplication($owner: String) {
         onDeleteApplication(owner: $owner) {
           __typename
           id
@@ -7718,7 +7802,13 @@ export class APIService {
           updatedAt
           owner
         }
-      }`
-    )
-  ) as Observable<SubscriptionResponse<OnDeleteApplicationSubscription>>;
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (owner) {
+      gqlAPIServiceArguments.owner = owner;
+    }
+    return API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    ) as Observable<SubscriptionResponse<OnDeleteApplicationSubscription>>;
+  }
 }

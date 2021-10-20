@@ -1,14 +1,6 @@
 [
-    {
-        "groupName": "user",
-        "precedence": 1
-    },
-    {
-        "groupName": "company",
-        "precedence": 2
-    },
-    {
-        "groupName": "Admins",
-        "precedence": 3
-    }
+  {
+    "groupName": "rheinjobuserpool",
+    "precedence": 1
+  }
 ]

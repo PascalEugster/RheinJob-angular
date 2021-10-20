@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "rheinjob0fa83857_identitypool_0fa83857",
-    "allowUnauthenticatedIdentities": true,
-    "resourceNameTruncated": "rheinj0fa83857",
-    "userPoolName": "rheinjob0fa83857_userpool_0fa83857",
+    "identityPoolName": "rheinjobf4b7f4cd_identitypool_f4b7f4cd",
+    "allowUnauthenticatedIdentities": false,
+    "resourceNameTruncated": "rheinjf4b7f4cd",
+    "userPoolName": "rheinjobf4b7f4cd_userpool_f4b7f4cd",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -20,7 +20,7 @@
     "requiredAttributes": [
         "email"
     ],
-    "userpoolClientGenerateSecret": true,
+    "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [
         "email"
@@ -28,10 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "rheinj0fa83857_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "rheinjf4b7f4cd_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "0fa83857",
-    "resourceName": "rheinjob0fa83857",
+    "sharedId": "f4b7f4cd",
+    "resourceName": "rheinjobf4b7f4cd",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -50,5 +50,7 @@
         "email"
     ],
     "userPoolGroupList": [],
+    "serviceName": "Cognito",
+    "usernameCaseSensitive": false,
     "dependsOn": []
 }
