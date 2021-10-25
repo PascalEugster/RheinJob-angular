@@ -129,7 +129,7 @@ export class AccountPage implements OnInit {
         const createCompanyInput: CreateCompanyInput = {
           city: companyForm.city,
           houseNumber: companyForm.houseNumber,
-          postcode: companyForm.postcode,
+          postcode: companyForm.postcode, 
           name: companyForm.name,
           canton: companyForm.canton,
           street: companyForm.street,
